@@ -1,0 +1,23 @@
+node_modules/
+dist/
+docs/
+.DS_Store
+**/.DS_Store
+
+# Local visual QA and working files
+.codex-qa/
+audits/
+design-concepts/
+qa/
+references/
+screenshots/
+test-results/
+tmp/
+public/design-options/
+*.png
+*.jpg
+*.jpeg
+!public/**/*.png
+!public/**/*.jpg
+!public/**/*.jpeg
+

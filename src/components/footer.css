@@ -1,0 +1,48 @@
+/* Global footer: four open columns and a separate legal rail. */
+.home-footer { background: var(--background); color: var(--text-secondary); border-top: 1px solid var(--border); }
+.home-footer-main {
+  display: grid; grid-template-columns: 1.3fr 1.05fr .9fr 1fr;
+  gap: clamp(30px, 4vw, 72px);
+  padding: 64px max(3vw, calc((100vw - 1450px) / 2)) 62px;
+}
+.home-footer-main > * { min-width: 0; }
+.home-footer-logo { display: flex; align-items: center; gap: 18px; max-width: 100%; padding: 0; margin: -16px 0 24px; border: 0; background: none; cursor: pointer; text-align: left; }
+.home-footer-logo img { display: block; flex-shrink: 0; width: 80px; height: 88px; object-fit: contain; }
+.home-footer-tagline { padding-left: 18px; border-left: 1px solid var(--border-gold); color: var(--text-secondary); font: 400 clamp(10px, .85vw, 12px)/1.8 "Manrope", sans-serif; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; }
+.home-footer-brand h2 { margin: 0 0 24px; color: var(--text-primary); font: 400 clamp(25px, 2vw, 32px)/1.2 "Source Serif 4", Georgia, serif; }
+.home-footer-brand p { margin: 0; font-size: 14px; line-height: 1.9; }
+.home-footer h3 { margin: 0 0 24px; color: var(--gold); font: 500 12px/1.5 "Manrope", sans-serif; text-transform: uppercase; letter-spacing: .2em; }
+.home-footer ul { list-style: none; padding: 0; margin: 0; }
+.home-footer nav button {
+  display: block; min-height: 44px; padding: 9px 0; border: 0; background: none;
+  color: var(--text-secondary); font: 400 15px/1.6 "Manrope", sans-serif; text-align: left; cursor: pointer;
+}
+.home-footer a { color: var(--text-secondary); text-decoration: none; }
+.home-footer nav button:hover, .home-footer a:hover { color: var(--gold-hover); }
+.home-footer-contact dl, .home-footer-contact dd { margin: 0; }
+.home-footer-contact dl > div + div { margin-top: 24px; }
+.home-footer-contact dt { margin-bottom: 9px; color: var(--text-muted); font-size: 11px; line-height: 1.6; letter-spacing: .14em; text-transform: uppercase; }
+.home-footer-contact dd { font-size: 15px; line-height: 1.8; overflow-wrap: anywhere; }
+.home-footer-bottom {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  border-top: 1px solid var(--border); padding: 22px max(3vw, calc((100vw - 1450px) / 2));
+}
+.home-footer-bottom p { margin: 0; color: var(--text-muted); font-size: 13px; line-height: 1.7; }
+.home-footer-legal { display: flex; align-items: center; flex-shrink: 0; }
+.home-footer-legal button { padding: 0 22px; border: 0; border-left: 1px solid var(--border); background: none; color: var(--text-muted); font: 400 13px/1.6 "Manrope", sans-serif; cursor: not-allowed; }
+.home-footer-legal button:first-child { padding-left: 0; border-left: 0; }
+.home-footer-legal button:last-child { padding-right: 0; }
+.home-footer button:focus-visible, .home-footer a:focus-visible { outline: 2px solid var(--gold); outline-offset: 5px; }
+@media (max-width: 1000px) {
+  .home-footer-main { grid-template-columns: 1fr 1fr; gap: 42px; }
+  .home-footer-bottom { align-items: flex-start; flex-direction: column; gap: 16px; }
+}
+@media (max-width: 540px) {
+  .home-footer-main { padding: 44px 20px 40px; grid-template-columns: 1fr 1fr; column-gap: 22px; row-gap: 34px; }
+  .home-footer-brand, .home-footer-contact { grid-column: 1 / -1; }
+  .home-footer-logo { margin-top: 0; }
+  .home-footer h3 { font-size: 11px; margin-bottom: 18px; }
+  .home-footer nav button { font-size: 14px; }
+  .home-footer-bottom { padding: 24px 20px; }
+  .home-footer-legal button { padding: 0 16px; font-size: 12px; }
+}
