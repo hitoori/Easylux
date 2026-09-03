@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { navigationItems } from '../config/navigation'
 import type { Page } from '../types/navigation'
 
-const logoImage = '/images/brand/easy-lux-logo-wordmark-transparent-v3.png'
+const logoImage = './images/brand/easy-lux-logo-wordmark-transparent-v3.png'
 
 interface HeaderProps {
   currentPage: Page

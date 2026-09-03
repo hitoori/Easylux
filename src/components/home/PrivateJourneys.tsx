@@ -5,7 +5,7 @@ import type { BookingPrefill } from '../BookingForm'
 const destinations = [
   {
     id: 'prosecco', label: 'Prosecco Hills',
-    image: '/images/home/private-journeys/prosecco-hills.jpg',
+    image: './images/home/private-journeys/prosecco-hills.jpg',
     alt: 'Terraced vineyards and houses in the Prosecco Hills at golden hour',
     stops: ['Venice', 'Conegliano', 'Valdobbiadene'],
     destination: 'Valdobbiadene, Prosecco Hills',
@@ -13,7 +13,7 @@ const destinations = [
   },
   {
     id: 'dolomites', label: 'Dolomites',
-    image: '/images/shared/destinations/dolomites-peaks.jpg',
+    image: './images/shared/destinations/dolomites-peaks.jpg',
     alt: 'Mountain landscape in the Dolomites',
     stops: ['Venice', 'Cortina d’Ampezzo'],
     destination: 'Cortina d’Ampezzo',
@@ -21,7 +21,7 @@ const destinations = [
   },
   {
     id: 'coast', label: 'Coast & seaside',
-    image: '/images/home/hero/sicily-coast.jpg',
+    image: './images/home/hero/sicily-coast.jpg',
     alt: 'Italian coastal landscape overlooking the sea',
     stops: ['Venice', 'Your seaside destination'],
     destination: 'Seaside destination — to be confirmed',
@@ -29,7 +29,7 @@ const destinations = [
   },
   {
     id: 'cruise', label: 'Cruise terminals',
-    image: '/images/home/hero/venice-grand-canal.jpg',
+    image: './images/home/hero/venice-grand-canal.jpg',
     alt: 'Venice waterfront, the starting point for a private terminal transfer',
     stops: ['Venice', 'Your cruise terminal'],
     destination: 'Cruise terminal — to be confirmed',

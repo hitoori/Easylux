@@ -137,7 +137,7 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
             <figure className="min-w-0">
               <div className="h-[190px] overflow-hidden bg-[var(--surface)] sm:h-[230px] lg:h-[250px]">
                 <img
-                  src="/images/home/services/northern-italy-road.jpg"
+                  src="./images/home/services/northern-italy-road.jpg"
                   alt="A quiet lakeside road framed by Italian architecture and mountains"
                   className="home-documentary-photo h-full w-full object-cover"
                   style={{ objectPosition: 'center 62%' }}
@@ -193,7 +193,7 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
         className="home-flow-section order-2 h2-fleet"
       >
         <div className="h2-fleet-editorial">
-          <img className="h2-fleet-exterior" src="/images/home/vehicle/exterior.png" alt="Black private transfer van beside the Venice waterfront" />
+          <img className="h2-fleet-exterior" src="./images/home/vehicle/exterior.png" alt="Black private transfer van beside the Venice waterfront" />
           <div className="h2-fleet-content">
             <div className="h2-fleet-heading">
               <p className="h2-kicker">Private vehicle</p>
@@ -201,8 +201,8 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
               <p>Travelling as a couple, a family or a group? Tell us about passengers and luggage so we can confirm a suitable vehicle for your journey.</p>
             </div>
             <div className="h2-fleet-gallery">
-              <img src="/images/home/vehicle/cabin.png" alt="Passenger seating inside the private transfer van" />
-              <img src="/images/home/vehicle/luggage.png" alt="Chauffeur assisting with luggage" />
+              <img src="./images/home/vehicle/cabin.png" alt="Passenger seating inside the private transfer van" />
+              <img src="./images/home/vehicle/luggage.png" alt="Chauffeur assisting with luggage" />
             </div>
             <div className="h2-fleet-benefits">
               <article><h3>Prepared for you</h3><p>Passenger and luggage details checked before confirmation.</p></article>

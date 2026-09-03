@@ -106,7 +106,7 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
 
   return <div className="services-new-page">
     <section className="services-masthead" aria-labelledby="services-title">
-      <img className="services-masthead-photo" src="/images/services/hero/lake.webp" alt="" width={1816} height={866} fetchPriority="high" />
+      <img className="services-masthead-photo" src="./images/services/hero/lake.webp" alt="" width={1816} height={866} fetchPriority="high" />
       <div className="services-masthead-shell">
         <div className="services-masthead-copy">
           <p className="services-masthead-eyebrow">Private transfers in Venice, Italy &amp; Europe</p>

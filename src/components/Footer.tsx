@@ -16,7 +16,7 @@ export default function Footer({ navigate }: { navigate: (page: Page) => void })
       <div className="home-footer-main">
         <div className="home-footer-brand">
           <button type="button" className="home-footer-logo" onClick={() => navigate('home')} aria-label="Easy Lux — Home">
-            <img src="/images/brand/easy-lux-logo-wordmark-transparent-v3.png" alt="Easy Lux" width={80} height={88} loading="lazy" />
+            <img src="./images/brand/easy-lux-logo-wordmark-transparent-v3.png" alt="Easy Lux" width={80} height={88} loading="lazy" />
             <span className="home-footer-tagline">Your driver<br />Around Italy</span>
           </button>
           <h2>Private Chauffeur</h2>

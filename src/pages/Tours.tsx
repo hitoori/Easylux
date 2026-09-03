@@ -11,7 +11,7 @@ const experiences = [
     title: 'Prosecco Hills',
     description: 'A private day from Venice through Conegliano and Valdobbiadene, planned around your requested stops and timing.',
     route: 'Venice — Conegliano — Valdobbiadene — Venice',
-    image: '/images/tours/prosecco-valley.jpg',
+    image: './images/tours/prosecco-valley.jpg',
     alt: 'Vineyards across the Prosecco Hills near Valdobbiadene',
     position: 'center',
   },
@@ -19,7 +19,7 @@ const experiences = [
     title: 'Dolomites & Cortina',
     description: 'A private journey from Venice towards Cortina and the Dolomites, with the route and stops reviewed before confirmation.',
     route: 'Venice — Cortina d’Ampezzo — Venice',
-    image: '/images/shared/destinations/dolomites-peaks.jpg',
+    image: './images/shared/destinations/dolomites-peaks.jpg',
     alt: 'Mountain landscape across the Dolomites',
     position: 'center 58%',
   },
@@ -61,7 +61,7 @@ export default function Tours({ navigate }: ToursProps) {
     <div className="overflow-hidden bg-[var(--background)]">
       <section className="relative flex min-h-[690px] items-end overflow-hidden border-b border-[rgba(36,41,44,0.78)] px-6 pb-20 pt-[170px] sm:px-8 lg:px-10 lg:pb-24">
         <img
-          src="/images/tours/chauffeur-door.jpg"
+          src="./images/tours/chauffeur-door.jpg"
           alt="Chauffeur preparing a private car for a passenger"
           className="home-documentary-photo absolute inset-0 h-full w-full object-cover object-[62%_center]"
         />

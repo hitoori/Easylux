@@ -74,7 +74,7 @@ export function WaterTaxiSection({ onRequest }: { onRequest: RequestJourney }) {
     </div>
 
     <div className="sv-water-story" role="tabpanel" id={`water-panel-${direction}`} aria-labelledby={`water-tab-${direction}`} tabIndex={0}>
-      <img src="/images/services/water-taxi/connection.png" alt="Illustrated route from Venice by private Water Taxi to Piazzale Roma, continuing by chauffeur." width="1772" height="887" loading="lazy" />
+      <img src="./images/services/water-taxi/connection.png" alt="Illustrated route from Venice by private Water Taxi to Piazzale Roma, continuing by chauffeur." width="1772" height="887" loading="lazy" />
       {journey.steps.map(({ title, copy }, index) => <article className={`sv-water-story-point sv-water-story-point-${index + 1}`} key={title}>
         <span>0{index + 1}</span>
         <div><h3>{title}</h3><p>{copy}</p></div>
@@ -142,11 +142,11 @@ export function MountainsSection({ onRequest }: { onRequest: RequestJourney }) {
         <figure className="sv-mountains-photos">
           <div className="sv-mountains-photo-stage" data-active-photo={activePhoto}>
             <button className={activePhoto === 0 ? 'is-active' : ''} type="button" aria-pressed={activePhoto === 0} aria-label="Expand the Dolomites alpine road photograph" onMouseEnter={() => setActivePhoto(0)} onFocus={() => setActivePhoto(0)} onClick={() => setActivePhoto(0)}>
-              <img loading="lazy" width="1600" height="1067" src="/images/shared/destinations/dolomites-road.jpg" alt="A winding road through rocky Alpine mountain scenery" />
+              <img loading="lazy" width="1600" height="1067" src="./images/shared/destinations/dolomites-road.jpg" alt="A winding road through rocky Alpine mountain scenery" />
               <span className="sv-mountains-photo-location"><strong>Dolomites, Italy</strong><small>Alpine road</small></span>
             </button>
             <button className={activePhoto === 1 ? 'is-active' : ''} type="button" aria-pressed={activePhoto === 1} aria-label="Expand the Dolomites mountain panorama photograph" onMouseEnter={() => setActivePhoto(1)} onFocus={() => setActivePhoto(1)} onClick={() => setActivePhoto(1)}>
-              <img loading="lazy" width="1600" height="1067" src="/images/shared/destinations/dolomites-peaks.jpg" alt="Layered Dolomite peaks in warm evening light" />
+              <img loading="lazy" width="1600" height="1067" src="./images/shared/destinations/dolomites-peaks.jpg" alt="Layered Dolomite peaks in warm evening light" />
               <span className="sv-mountains-photo-location"><strong>Dolomites, Italy</strong><small>Mountain panorama</small></span>
             </button>
           </div>
@@ -175,7 +175,7 @@ export function SeasideSection({ onRequest }: { onRequest: RequestJourney }) {
     <div className="svc-shell sv-coast-shell">
       <div className="sv-coast-intro">
         <figure className="sv-coast-hero">
-          <img loading="lazy" width="1536" height="864" src="/images/services/seaside/coastal-road.png" alt="A quiet coastal road beside a sandy Adriatic beach in Veneto, Italy" />
+          <img loading="lazy" width="1536" height="864" src="./images/services/seaside/coastal-road.png" alt="A quiet coastal road beside a sandy Adriatic beach in Veneto, Italy" />
           <figcaption>Adriatic coast · Veneto, Italy</figcaption>
         </figure>
 
@@ -205,7 +205,7 @@ export function CruiseSection({ onRequest }: { onRequest: RequestJourney }) {
         </div>
 
         <figure className="sv-cruise-photo">
-          <img loading="lazy" width="2061" height="763" src="/images/services/cruise/terminal.png" alt="Cruise ship beside an elegant Adriatic port terminal" />
+          <img loading="lazy" width="2061" height="763" src="./images/services/cruise/terminal.png" alt="Cruise ship beside an elegant Adriatic port terminal" />
         </figure>
       </div>
 
