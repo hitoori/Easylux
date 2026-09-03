@@ -176,68 +176,6 @@ input[type='datetime-local']::-webkit-calendar-picker-indicator {
   animation: fadeUp 0.8s ease forwards;
 }
 
-@keyframes homeHeroIntroIn {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes homeBookingDockIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.home-hero-intro {
-  animation: homeHeroIntroIn 760ms 120ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.home-booking-dock {
-  animation: homeBookingDockIn 760ms 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes testimonialStageIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.home-booking-timeline {
-  position: relative;
-}
-
-.home-booking-node {
-  position: relative;
-  z-index: 1;
-}
-
-@media (min-width: 768px) {
-  .home-booking-timeline::before {
-    position: absolute;
-    top: 27px;
-    right: 12.5%;
-    left: 12.5%;
-    height: 1px;
-    background: rgba(194, 154, 69, 0.44);
-    content: '';
-  }
-}
-
 /* Home uses one consistent vertical rhythm. The reveal is intentionally slow
    and shallow so scrolling feels editorial rather than animated like a preset. */
 .home-sections-flow {
@@ -272,23 +210,6 @@ input[type='datetime-local']::-webkit-calendar-picker-indicator {
   padding-bottom: clamp(3rem, 4vw, 3.5rem);
 }
 
-.home-flow-section[data-home-booking-steps] {
-  padding-top: 0;
-  padding-bottom: 0;
-  background: var(--background);
-}
-
-.home-flow-section[data-home-testimonials] {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.home-flow-section[data-home-final-cta] {
-  padding-top: 0;
-  padding-bottom: 0;
-  background: var(--background);
-}
-
 .home-motion-ready .home-flow-section {
   opacity: 0;
   transform: translateY(14px);
@@ -321,36 +242,6 @@ input[type='datetime-local']::-webkit-calendar-picker-indicator {
    without replacing or permanently editing the source files. */
 .home-documentary-photo {
   filter: saturate(0.78) contrast(1.04) brightness(0.97);
-}
-
-/* A shared editorial grade brings separately sourced, real service photography
-   into the site's warmer, restrained black-and-ivory visual system. */
-.service-experience-photo {
-  filter: saturate(0.72) contrast(1.05) brightness(0.9);
-}
-
-/* Real vehicle photography is graded consistently while keeping each source
-   image intact. The crops mirror the selected editorial mosaic. */
-.vehicle-editorial-photo {
-  filter: saturate(0.74) contrast(1.05) brightness(0.87);
-}
-
-.vehicle-editorial-exterior {
-  object-position: 55% center;
-}
-
-.vehicle-editorial-interior {
-  object-position: center 62%;
-}
-
-.vehicle-editorial-luggage {
-  object-position: center;
-}
-
-@media (max-width: 1023px) {
-  .vehicle-editorial-exterior {
-    object-position: center 55%;
-  }
 }
 
 /* Services keeps its approved two-column masthead composition. A real vehicle

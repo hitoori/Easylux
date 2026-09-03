@@ -24,14 +24,14 @@ export default function App() {
     document.title = currentPage === 'home'
       ? 'Venice Private Transfers & Chauffeur Service | Easy Lux'
       : currentPage === 'services'
-        ? 'Venice Private Transfer Prices & Chauffeur Services | Easy Lux'
+        ? 'Private Transfer Prices in Venice & Italy | Easy Lux'
         : 'Easy Lux Transfer | Private Chauffeur Italy'
     document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute(
       'content',
       currentPage === 'home'
         ? 'Private transfers in Venice, airport pick-ups and coordinated Water Taxi connections. Plan your journey in Italy and Europe with Easy Lux.'
         : currentPage === 'services'
-          ? 'View private transfer prices from Venice for airports, Water Taxi connections, the Dolomites, Adriatic coast and cruise ports. Request a tailored quote.'
+          ? 'Compare private transfer prices from Venice and request chauffeur travel across Italy and Europe, including airports, Dolomites, seaside and cruise ports.'
           : 'Private chauffeur services, airport transfers and curated tours across Italy.',
     )
   }, [currentPage])

@@ -45,7 +45,7 @@
   background:
     linear-gradient(90deg, rgba(13,14,15,.98), rgba(13,14,15,.89) 46%, rgba(13,14,15,.48)),
     linear-gradient(0deg, var(--svc-bg), transparent 35%),
-    url('/images/home/hero-lake-como-unsplash-SYOHJT5rG2g.jpg') center 44% / cover no-repeat;
+    url('/images/home/hero/lake-como-boat.jpg') center 44% / cover no-repeat;
 }
 .svc-hero::after { content: ""; position: absolute; inset: auto 0 0; height: 120px; background: linear-gradient(transparent, var(--svc-bg)); }
 .svc-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr .8fr; gap: 120px; align-items: end; }

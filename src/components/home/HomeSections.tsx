@@ -1,13 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   ArrowRight,
-  CalendarBlank,
-  CarProfile,
   CaretDown,
-  EnvelopeSimple,
-  MapPin,
-  ShieldCheck,
-  Star,
 } from '@phosphor-icons/react'
 import type { BookingPrefill } from '../BookingForm'
 import type { Page } from '../../types/navigation'
@@ -45,80 +39,15 @@ const services = [
   },
 ]
 
-const initialRouteCount = 3
-
-const vehicleBenefits = [
-  {
-    title: 'Prepared in advance',
-    description: 'Details reviewed before confirmation.',
-  },
-  {
-    title: 'Comfort on board',
-    description: 'Climate control, water and charging.',
-  },
-  {
-    title: 'Assistance at every step',
-    description: 'Help with luggage at pick-up and arrival.',
-  },
-]
-
-const bookingSteps = [
-  {
-    number: '01',
-    title: 'Plan your journey',
-    description: 'Share your route, preferred date and time, and any passenger details.',
-    icon: MapPin,
-  },
-  {
-    number: '02',
-    title: 'Send your request',
-    description: 'We receive your request and confirm all the details you have provided.',
-    icon: EnvelopeSimple,
-  },
-  {
-    number: '03',
-    title: 'We check availability',
-    description: 'We review availability and propose the best option for your journey.',
-    icon: CalendarBlank,
-  },
-  {
-    number: '04',
-    title: 'Confirm your booking',
-    description: 'We confirm your booking and your chauffeur will be ready as planned.',
-    icon: CarProfile,
-  },
-]
-
-// Demonstration copy for the visual preview. Replace these entries with verified
-// client reviews before publishing the section on the production website.
-const sampleTestimonials = [
-  {
-    quote:
-      'From the airport arrival to our final hotel transfer, every detail felt calm, discreet and perfectly timed.',
-    client: 'Sofia M.',
-    journey: 'Venice Airport to Lake Como',
-  },
-  {
-    quote:
-      'Our driver made a long travel day feel effortless. The vehicle was immaculate and the entire journey was beautifully organised.',
-    client: 'Daniel R.',
-    journey: 'Private transfer across Northern Italy',
-  },
-  {
-    quote:
-      'A thoughtful, unhurried day in the Prosecco Hills, planned around exactly what we wanted to see.',
-    client: 'Elena & Marco',
-    journey: 'Private Prosecco Hills day trip',
-  },
-]
+const initialRouteCount = 5
 
 const formatPrice = (price: number) => `€${new Intl.NumberFormat('en-GB').format(price)}`
+const displayRoutePlace = (place: string) => place.replace(/ (TV|VE|PD|VR|BZ|BL)$/, '')
 
 export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: HomeSectionsProps) {
   const flowRef = useRef<HTMLDivElement>(null)
   const [visibleRouteCount, setVisibleRouteCount] = useState(initialRouteCount)
   const [selectedServiceIndex, setSelectedServiceIndex] = useState<number | null>(null)
-  const [journeyDraft, setJourneyDraft] = useState({ pickup: '', destination: '' })
   const allPopularRoutesVisible = visibleRouteCount >= popularTransferRoutes.length
 
   const handleRoutesButton = () => {
@@ -208,7 +137,7 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
             <figure className="min-w-0">
               <div className="h-[190px] overflow-hidden bg-[var(--surface)] sm:h-[230px] lg:h-[250px]">
                 <img
-                  src="/images/home/northern-italy-lakeside-road-pexels-19115672.jpg"
+                  src="/images/home/services/northern-italy-road.jpg"
                   alt="A quiet lakeside road framed by Italian architecture and mountains"
                   className="home-documentary-photo h-full w-full object-cover"
                   style={{ objectPosition: 'center 62%' }}
@@ -263,82 +192,17 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
         aria-labelledby="home-vehicle-title"
         className="home-flow-section order-2 h2-fleet"
       >
-        <div className="hidden vehicle-editorial w-full gap-3 lg:h-[clamp(600px,70svh,680px)] lg:grid-cols-[34%_1fr] lg:px-8 xl:px-10">
-          <figure className="min-h-[420px] overflow-hidden bg-[var(--background-secondary)] sm:min-h-[500px] lg:min-h-0">
-            <img
-              src="/images/vehicle-authentic/vehicle-venice-editorial.png"
-              alt="Black private transfer vehicle waiting on an Italian city street"
-              loading="lazy"
-              decoding="async"
-              className="vehicle-editorial-photo vehicle-editorial-exterior h-full w-full object-cover"
-            />
-          </figure>
-
-          <div className="grid min-h-0 gap-3 lg:grid-rows-[34%_40%_1fr]">
-            <div className="flex items-center bg-[var(--background)] px-7 py-11 sm:px-12 lg:px-14 lg:py-7 xl:px-16">
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--gold)]">
-                  Private vehicle
-                </p>
-                <h2
-                  id="home-vehicle-title"
-                  className="mt-5 font-display text-[43px] font-normal leading-[0.96] text-cream sm:text-[53px] lg:text-[clamp(44px,3.7vw,58px)]"
-                >
-                  More than the vehicle.
-                </h2>
-                <p className="mt-6 max-w-[610px] text-[14px] leading-[1.75] text-[var(--text-secondary)] sm:text-[15px] lg:mt-5">
-                  A private journey shaped around your timing, your luggage and the people travelling with you.
-                </p>
-              </div>
-            </div>
-
-            <div className="grid min-h-0 gap-3 sm:grid-cols-2">
-              <figure className="min-h-[270px] overflow-hidden bg-[var(--background-secondary)] sm:min-h-[300px] lg:min-h-0">
-                <img
-                  src="/images/vehicle-authentic/vehicle-cabin-editorial.png"
-                  alt="The real passenger cabin of the private transfer vehicle"
-                  loading="lazy"
-                  decoding="async"
-                  className="vehicle-editorial-photo vehicle-editorial-interior h-full w-full object-cover"
-                />
-              </figure>
-              <figure className="min-h-[270px] overflow-hidden bg-[var(--background-secondary)] sm:min-h-[300px] lg:min-h-0">
-                <img
-                  src="/images/vehicle-authentic/vehicle-luggage-editorial.png"
-                  alt="Professional chauffeur placing a suitcase into a vehicle"
-                  loading="lazy"
-                  decoding="async"
-                  className="vehicle-editorial-photo vehicle-editorial-luggage h-full w-full object-cover"
-                />
-              </figure>
-            </div>
-
-            <ul className="grid gap-8 bg-[var(--background)] px-7 py-9 sm:grid-cols-3 sm:gap-6 sm:px-9 lg:min-h-0 lg:items-center lg:px-10 lg:py-5 xl:px-14">
-              {vehicleBenefits.map((item) => (
-                <li key={item.title} className="min-w-0 border-t border-[rgba(36,41,44,0.9)] pt-5">
-                  <h3 className="font-display text-[22px] font-normal leading-[1.08] text-cream lg:text-[clamp(18px,1.4vw,21px)]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 max-w-[235px] text-[14px] leading-[1.65] text-[var(--text-muted)]">
-                    {item.description}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
         <div className="h2-fleet-editorial">
-          <img className="h2-fleet-exterior" src="/images/vehicle-authentic/vehicle-venice-editorial.png" alt="Black private transfer van beside the Venice waterfront" />
+          <img className="h2-fleet-exterior" src="/images/home/vehicle/exterior.png" alt="Black private transfer van beside the Venice waterfront" />
           <div className="h2-fleet-content">
             <div className="h2-fleet-heading">
               <p className="h2-kicker">Private vehicle</p>
-              <h2>More than the vehicle.</h2>
+              <h2 id="home-vehicle-title">More than the vehicle.</h2>
               <p>Travelling as a couple, a family or a group? Tell us about passengers and luggage so we can confirm a suitable vehicle for your journey.</p>
             </div>
             <div className="h2-fleet-gallery">
-              <img src="/images/vehicle-authentic/vehicle-cabin-editorial.png" alt="Passenger seating inside the private transfer van" />
-              <img src="/images/vehicle-authentic/vehicle-luggage-editorial.png" alt="Chauffeur assisting with luggage" />
+              <img src="/images/home/vehicle/cabin.png" alt="Passenger seating inside the private transfer van" />
+              <img src="/images/home/vehicle/luggage.png" alt="Chauffeur assisting with luggage" />
             </div>
             <div className="h2-fleet-benefits">
               <article><h3>Prepared for you</h3><p>Passenger and luggage details checked before confirmation.</p></article>
@@ -391,7 +255,7 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
                   <span className="w-0.5 shrink-0 bg-[var(--gold)]" aria-hidden="true" />
                   <div>
                     <h3 className="font-display text-[24px] leading-[1.1] text-cream sm:text-[27px]">
-                      {route.from} → {route.to}
+                      {displayRoutePlace(route.from)} → {displayRoutePlace(route.to)}
                     </h3>
                     <p className="mt-2 text-[14px] text-[var(--text-muted)]">Point-to-point private transfer</p>
                   </div>
@@ -424,7 +288,7 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
                     })
                   }
                   className="min-h-[44px] whitespace-nowrap border border-[rgba(194,154,69,0.5)] px-4 !text-[11px] !font-semibold !leading-none uppercase tracking-[0.09em] text-gold-light transition-colors hover:bg-gold hover:text-[var(--background)]"
-                  aria-label={`Request transfer from ${route.from} to ${route.to}`}
+                  aria-label={`Request transfer from ${displayRoutePlace(route.from)} to ${displayRoutePlace(route.to)}`}
                 >
                   Request this route
                 </button>
@@ -458,170 +322,6 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
 
       <PrivateJourneys onBookRoute={onBookRoute} />
 
-      <section
-        data-home-booking-steps
-        className="hidden home-flow-section bg-[var(--background)] px-6 sm:px-8 lg:px-10"
-      >
-        <div className="mx-auto max-w-[1280px] py-16 sm:py-20 lg:py-24">
-          <header className="text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">
-              The Easy Lux experience
-            </p>
-            <h2 className="mt-4 font-display text-[42px] font-normal leading-[0.98] text-cream sm:text-[52px]">
-              How booking works
-            </h2>
-            <p className="mx-auto mt-5 max-w-[590px] text-[14px] leading-[1.7] text-[var(--text-secondary)]">
-              A seamless, discreet process designed around your time and your journey.
-            </p>
-          </header>
-
-          <ol className="home-booking-timeline mt-12 grid gap-10 sm:mt-14 md:grid-cols-4 md:gap-0">
-            {bookingSteps.map((step) => {
-              const StepIcon = step.icon
-
-              return (
-                <li key={step.number} className="relative px-3 text-center sm:px-5">
-                  <div className="home-booking-node mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--background)] text-[var(--gold)]">
-                    <StepIcon size={24} weight="light" aria-hidden="true" />
-                  </div>
-                  <span className="mt-8 block font-display text-[32px] leading-none text-gold-light">
-                    {step.number}
-                  </span>
-                  <h3 className="mt-4 font-display text-[21px] font-normal leading-[1.12] text-cream sm:text-[22px]">
-                    {step.title}
-                  </h3>
-                  <p className="mx-auto mt-4 max-w-[230px] text-[13px] leading-[1.72] text-[var(--text-muted)]">
-                    {step.description}
-                  </p>
-                </li>
-              )
-            })}
-          </ol>
-        </div>
-      </section>
-
-      <section
-        data-home-testimonials
-        aria-labelledby="home-testimonials-title"
-        className="hidden home-flow-section bg-[var(--background)] px-6 sm:px-8 lg:px-10"
-      >
-        <div className="mx-auto max-w-[1280px] py-16 sm:py-20 lg:py-24">
-          <header className="text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">
-              Journeys shared with us
-            </p>
-            <h2 id="home-testimonials-title" className="mt-4 font-display text-[42px] font-normal leading-[0.98] text-cream sm:text-[52px]">
-              What our clients say
-            </h2>
-            <p className="mt-5 text-[14px] leading-[1.7] text-[var(--text-secondary)]">
-              Discreet, reliable and always on time.
-            </p>
-          </header>
-
-          <div className="mt-12 grid gap-0 md:grid-cols-3 md:divide-x md:divide-[rgba(36,41,44,0.9)]">
-            {sampleTestimonials.map((testimonial) => (
-              <figure
-                key={`${testimonial.client}-${testimonial.journey}`}
-                className="flex min-h-[290px] flex-col border-b border-[rgba(36,41,44,0.9)] px-1 py-8 last:border-b-0 sm:px-7 md:border-b-0 md:px-8 lg:px-10"
-              >
-                <div className="flex gap-1 text-[var(--gold)]" aria-label="Five star sample rating">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <Star key={index} size={16} weight="fill" aria-hidden="true" />
-                  ))}
-                </div>
-                <blockquote className="mt-8 text-[14px] leading-[1.9] text-[var(--text-secondary)]">
-                  “{testimonial.quote}”
-                </blockquote>
-                <figcaption className="mt-auto pt-8">
-                  <span className="block h-px w-12 bg-[var(--gold)]" aria-hidden="true" />
-                  <span className="mt-6 block text-[12px] font-semibold uppercase tracking-[0.08em] text-gold-light">
-                    {testimonial.client}
-                  </span>
-                  <span className="mt-3 block text-[12px] leading-[1.55] text-[var(--text-muted)]">
-                    {testimonial.journey}
-                  </span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section
-        data-home-final-cta
-        className="hidden home-flow-section bg-[var(--background)] px-6 sm:px-8 lg:px-10"
-      >
-        <div className="mx-auto grid max-w-[1280px] gap-12 py-16 sm:py-20 md:grid-cols-[0.8fr_1.2fr] md:items-center md:gap-16 lg:gap-24 lg:py-24">
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">
-              Your journey, our priority
-            </p>
-            <h2 className="mt-5 max-w-[430px] font-display text-[42px] font-normal leading-[1.04] text-cream sm:text-[52px]">
-              Tell us where<br className="hidden sm:block" /> you need to go
-            </h2>
-            <span className="mt-8 block h-px w-12 bg-[var(--gold)]" aria-hidden="true" />
-            <p className="mt-7 max-w-[390px] text-[14px] leading-[1.85] text-[var(--text-secondary)]">
-              Share your trip details and we’ll prepare a tailored chauffeur service for you. Italian excellence, from door to door.
-            </p>
-          </div>
-
-          <form
-            className="space-y-6"
-            onSubmit={(event) => {
-              event.preventDefault()
-              onBookRoute({
-                pickup: journeyDraft.pickup.trim(),
-                destination: journeyDraft.destination.trim(),
-              })
-            }}
-          >
-            <label className="block">
-              <span className="mb-3 block text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--text-secondary)]">
-                Pick-up location
-              </span>
-              <span className="flex min-h-[58px] items-center gap-4 border border-[rgba(36,41,44,0.96)] px-5 transition-colors focus-within:border-[var(--gold)]">
-                <MapPin size={20} weight="light" className="shrink-0 text-cream" aria-hidden="true" />
-                <input
-                  required
-                  value={journeyDraft.pickup}
-                  onChange={(event) => setJourneyDraft((current) => ({ ...current, pickup: event.target.value }))}
-                  placeholder="Enter pick-up location"
-                  className="min-w-0 flex-1 bg-transparent text-[14px] text-cream outline-none placeholder:text-[var(--text-metadata)]"
-                />
-              </span>
-            </label>
-
-            <label className="block">
-              <span className="mb-3 block text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--text-secondary)]">
-                Destination
-              </span>
-              <span className="flex min-h-[58px] items-center gap-4 border border-[rgba(36,41,44,0.96)] px-5 transition-colors focus-within:border-[var(--gold)]">
-                <MapPin size={20} weight="light" className="shrink-0 text-cream" aria-hidden="true" />
-                <input
-                  required
-                  value={journeyDraft.destination}
-                  onChange={(event) => setJourneyDraft((current) => ({ ...current, destination: event.target.value }))}
-                  placeholder="Enter destination"
-                  className="min-w-0 flex-1 bg-transparent text-[14px] text-cream outline-none placeholder:text-[var(--text-metadata)]"
-                />
-              </span>
-            </label>
-
-            <button
-              type="submit"
-              className="group flex min-h-[60px] w-full items-center justify-between bg-gold px-7 text-[12px] font-semibold uppercase tracking-[0.09em] text-[var(--background)] transition-colors hover:bg-gold-light"
-            >
-              Start your request
-              <ArrowRight size={17} weight="bold" className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
-            </button>
-
-            <p className="flex items-center gap-3 text-[13px] text-[var(--text-secondary)]">
-              <ShieldCheck size={19} weight="light" className="shrink-0 text-cream" aria-hidden="true" />
-              Discreet. Reliable. Always on time.
-            </p>
-          </form>
-        </div>
-      </section>
       <HomeClosingSections onPlanJourney={onPlanJourney} />
     </div>
   )

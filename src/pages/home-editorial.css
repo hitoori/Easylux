@@ -86,7 +86,7 @@
 .h2-hero {
   position: relative;
   min-height: 760px;
-  background: url("/images/home/hero-sicily-unsplash-iShexNYnEfk.jpg") center
+  background: url("/images/home/hero/sicily-coast.jpg") center
     58% / cover no-repeat;
 }
 .h2-hero-shade {
@@ -434,7 +434,7 @@
   min-height: 560px;
   display: grid;
   place-items: center;
-  background: url("/images/prosecco-hills-pexels-25696380.jpg") center/cover
+  background: url("/images/home/private-journeys/prosecco-hills.jpg") center/cover
     no-repeat;
   text-align: center;
 }
@@ -1445,7 +1445,7 @@
   min-height: 650px;
   padding: 0;
   border-top: 1px solid var(--border);
-  background: url("/images/venice-water-taxi.jpg") 72% 63% / cover no-repeat;
+  background: url("/images/home/water-taxi/venice-water-taxi.jpg") 72% 63% / cover no-repeat;
   overflow: hidden;
 }
 .h2-water-shade {
@@ -1952,13 +1952,6 @@
   opacity: 0; transition: opacity 650ms ease; pointer-events: none;
 }
 .private-journeys-photo img.is-active { opacity: 1; }
-.private-journeys-rotation {
-  position: absolute; z-index: 1; right: 12px; bottom: 12px;
-  display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 8px 12px;
-  border: 1px solid var(--border-gold); background: rgba(13, 14, 15, 0.84);
-  color: var(--text-primary); font: 500 12px/1.4 var(--font-body);
-}
-.private-journeys-rotation:hover { color: var(--gold-hover); }
 .private-journeys button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 .private-journeys-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 18px 0 16px; }
 .private-journeys-tabs button {
@@ -1978,8 +1971,8 @@
 }
 .private-journeys-tabs button + button { border-left: 1px solid var(--border); }
 .private-journeys-tabs button::after { content: ''; position: absolute; bottom: 0; left: 10px; right: 10px; height: 2px; background: transparent; }
-.private-journeys-tabs button[aria-selected='true'] { color: var(--gold); }
-.private-journeys-tabs button[aria-selected='true']::after { background: var(--gold); }
+.private-journeys-tabs button.is-image-active { color: var(--gold); }
+.private-journeys-tabs button.is-image-active::after { background: var(--gold); }
 .private-journeys-tabs button:hover { color: var(--gold-hover); }
 .private-journeys-tabs button span { flex-shrink: 0; }
 .private-journeys-route {

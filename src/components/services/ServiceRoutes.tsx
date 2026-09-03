@@ -22,23 +22,23 @@ export function ServiceTabs({ id, labels, selected, onChange, ariaLabel }: { id:
   </div>
 }
 
-export function RouteList({ routes, title, service, onRequest, initial = 4, moreLabel = 'View more routes', footer, editorial = false }: {
-  routes: TransferRoute[]; title: string; service: JourneyService; onRequest: RequestJourney; initial?: number; moreLabel?: string; footer?: ReactNode; editorial?: boolean
+export function RouteList({ routes, title, service, onRequest, initial = 4, moreLabel = 'View more routes', footer, editorial = false, compact = false, note }: {
+  routes: TransferRoute[]; title: string; service: JourneyService; onRequest: RequestJourney; initial?: number; moreLabel?: string; footer?: ReactNode; editorial?: boolean; compact?: boolean; note?: string
 }) {
   const [expanded, setExpanded] = useState(false)
   const tableId = useId()
   return <>
-    <div id={tableId} className="sv-table-wrap">
+    <div id={tableId} className={`sv-table-wrap${compact ? ' sv-table-wrap-compact' : ''}`}>
       <table className="sv-route-table" aria-label={title}>
-        <thead><tr><th scope="col">Route</th><th scope="col" title="Up to 3 passengers / 3 bags">Sedan</th><th scope="col" title="4–7 passengers / 7 bags">Van</th><th scope="col" title="Up to 12 passengers / 12 bags">Minibus 12</th><th scope="col"><span className="sv-sr-only">Request</span></th></tr></thead>
+        <thead><tr><th scope="col">Route</th><th scope="col">Sedan</th><th scope="col">Van</th><th scope="col">Minibus</th><th scope="col"><span className={compact ? undefined : 'sv-sr-only'}>{compact ? 'Action' : 'Request'}</span></th></tr></thead>
         <tbody>{(expanded ? routes : routes.slice(0, initial)).map(route => <tr key={route.id} data-route-id={route.id}>
-          <th scope="row"><span className={editorial ? 'sv-editorial-route' : undefined}><span className="sv-route-origin">{route.from} <ArrowRight size={17} aria-hidden="true" /></span> <span>{route.to}</span>{editorial && <span className="sv-editorial-description">Address-to-address private transfer</span>}</span></th>
-          <td data-label="Sedan">{priceLabel(route.sedan)}</td><td data-label="Van">{priceLabel(route.van)}</td><td data-label="Minibus 12">{priceLabel(route.minibus)}</td>
-          <td className="sv-route-action"><button type="button" aria-label={`Request this route: ${route.from} to ${route.to}`} onClick={() => onRequest({ service, pickup: route.pickup, destination: route.destination, airportPickup: route.airportMode === 'pickup' })}><span className={editorial ? 'sv-editorial-action' : 'sv-mobile-label'}>Request this route</span><ArrowRight size={23} aria-hidden="true" /></button></td>
+          <th scope="row"><span className={editorial ? 'sv-editorial-route' : undefined}><span className="sv-route-origin">{route.from} <ArrowRight size={17} aria-hidden="true" /></span> <span>{route.to}</span>{editorial && !compact && <span className="sv-editorial-description">Address-to-address private transfer</span>}</span></th>
+          <td data-label="Sedan">{priceLabel(route.sedan)}</td><td data-label="Van">{priceLabel(route.van)}</td><td data-label="Minibus">{priceLabel(route.minibus)}</td>
+          <td className="sv-route-action"><button type="button" aria-label={`Request this route: ${route.from} to ${route.to}`} onClick={() => onRequest({ service, pickup: route.pickup, destination: route.destination, airportPickup: route.airportMode === 'pickup' })}><span className={compact ? 'sv-compact-action' : editorial ? 'sv-editorial-action' : 'sv-mobile-label'}>Request this route</span><ArrowRight size={compact ? 19 : 23} aria-hidden="true" /></button></td>
         </tr>)}</tbody>
       </table>
     </div>
-    <p className="sv-fine-print">One-way fares from Venice. Your final quote confirms the route, availability and any extras.</p>
+    <p className="sv-fine-print">{note ?? 'Indicative one-way fares from Venice. Your final quote confirms the route, vehicle, availability and any extras.'}</p>
     <div className="sv-route-footer">
       <div>{footer || <button type="button" className="sv-text-link" onClick={() => onRequest({ service })}>Request a different destination</button>}</div>
       {routes.length > initial ? <button type="button" className="sv-button" aria-expanded={expanded} aria-controls={tableId} onClick={() => setExpanded(!expanded)}>{expanded ? 'Show fewer routes' : moreLabel}<CaretDown size={20} className={expanded ? 'sv-rotate' : ''} aria-hidden="true" /></button> : footer && <button type="button" className="sv-button" onClick={() => onRequest({ service })}>Request a different route <ArrowRight size={23} aria-hidden="true" /></button>}

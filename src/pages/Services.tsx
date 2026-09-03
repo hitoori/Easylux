@@ -16,19 +16,52 @@ import './services-hero.css'
 import './services-unified.css'
 
 export default function Services({ navigate: _navigate }: { navigate: (page: Page) => void }) {
-  const [activeSection, setActiveSection] = useState<JourneyService>('airport')
+  const [activeSection, setActiveSection] = useState<JourneyService | null>(null)
   const [meetingOpen, setMeetingOpen] = useState(false)
   const [selection, setSelection] = useState<QuoteSelection | null>(null)
   const modalReturnFocus = useRef<HTMLElement | null>(null)
+  const serviceNavRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      const current = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-      if (current) setActiveSection(current.target.id.replace('service-', '') as JourneyService)
-    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 })
-    serviceOptions.forEach(([id]) => { const section = document.getElementById('service-' + id); if (section) observer.observe(section) })
-    return () => observer.disconnect()
+    let frame = 0
+    const updateActiveSection = () => {
+      window.cancelAnimationFrame(frame)
+      frame = window.requestAnimationFrame(() => {
+        const menu = serviceNavRef.current
+        if (!menu) return
+        const headerHeight = window.matchMedia('(min-width: 1024px)').matches ? 76 : 72
+        const menuRect = menu.getBoundingClientRect()
+        if (menuRect.top > headerHeight + 1) {
+          setActiveSection(null)
+          return
+        }
+        const marker = menuRect.bottom + 2
+        const current = serviceOptions.find(([id]) => {
+          const section = document.getElementById('service-' + id)
+          if (!section) return false
+          const rect = section.getBoundingClientRect()
+          return rect.top <= marker && rect.bottom > marker
+        })
+        setActiveSection(current?.[0] ?? null)
+      })
+    }
+    updateActiveSection()
+    window.addEventListener('scroll', updateActiveSection, { passive: true })
+    window.addEventListener('resize', updateActiveSection)
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', updateActiveSection)
+      window.removeEventListener('resize', updateActiveSection)
+    }
   }, [])
+
+  useEffect(() => {
+    if (!activeSection || !serviceNavRef.current) return
+    const activeButton = serviceNavRef.current.querySelector<HTMLElement>('[aria-current="location"]')
+    if (!activeButton) return
+    const left = activeButton.offsetLeft - (serviceNavRef.current.clientWidth - activeButton.offsetWidth) / 2
+    serviceNavRef.current.scrollTo({ left: Math.max(0, left), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+  }, [activeSection])
 
   useEffect(() => {
     const items = document.querySelectorAll('[data-svc-reveal]')
@@ -65,32 +98,33 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
     if (!section) return
     setActiveSection(id as JourneyService)
     const compactHeaderHeight = window.matchMedia('(min-width: 1024px)').matches ? 76 : 72
-    const top = section.getBoundingClientRect().top + window.scrollY - compactHeaderHeight
+    const serviceMenuHeight = serviceNavRef.current?.offsetHeight ?? 64
+    const top = section.getBoundingClientRect().top + window.scrollY - compactHeaderHeight - serviceMenuHeight
     window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
   }
   const requestJourney = (request: JourneyRequest) => setSelection(previous => ({ ...request, revision: (previous?.revision ?? 0) + 1 }))
 
   return <div className="services-new-page">
     <section className="services-masthead" aria-labelledby="services-title">
-      <img className="services-masthead-photo" src="/images/services/lake-hero-approved.webp" alt="" width={1816} height={866} fetchPriority="high" />
+      <img className="services-masthead-photo" src="/images/services/hero/lake.webp" alt="" width={1816} height={866} fetchPriority="high" />
       <div className="services-masthead-shell">
         <div className="services-masthead-copy">
-          <p className="services-masthead-eyebrow">Private transfers &amp; chauffeur services</p>
-          <h1 id="services-title"><span>Travel from Venice</span><span>without planning</span><span>every connection.</span></h1>
-          <p className="services-masthead-description">Choose an airport transfer, Venice Water Taxi connection, hourly chauffeur or private route across Italy and Europe. Every timing and handover is coordinated in advance.</p>
+          <p className="services-masthead-eyebrow">Private transfers in Venice, Italy &amp; Europe</p>
+          <h1 id="services-title"><span>Private transfers</span><span>in Venice, Italy</span><span>and across Europe.</span></h1>
+          <p className="services-masthead-description">Choose an airport transfer, address-to-address journey, hourly chauffeur, Venice Water Taxi connection, Dolomites, seaside or cruise port transfer. Share your journey and receive one clear quote.</p>
           <div className="services-masthead-actions">
-            <button type="button" className="services-masthead-primary" onClick={() => scrollTo('custom')}>Request a personalised quote <ArrowRight size={19} weight="light" aria-hidden="true" /></button>
-            <button type="button" className="services-masthead-secondary" onClick={() => document.getElementById('italy-route-prices')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' })}>View routes &amp; fares</button>
+            <button type="button" className="services-masthead-primary" onClick={() => scrollTo('custom')}>Request your transfer quote <ArrowRight size={19} weight="light" aria-hidden="true" /></button>
+            <button type="button" className="services-masthead-secondary" onClick={() => document.getElementById('italy-route-prices')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' })}>Compare routes &amp; fares</button>
           </div>
         </div>
       </div>
-        <nav className="services-masthead-nav" aria-label="Choose a service">
-          {serviceOptions.map(([id, label]) => {
-            if (id === 'custom') return null
-            return <button type="button" key={id} aria-current={activeSection === id ? 'location' : undefined} onClick={() => scrollTo(id)}><span>{label}</span></button>
-          })}
-        </nav>
     </section>
+    <nav ref={serviceNavRef} className="services-masthead-nav" aria-label="Choose a service">
+      {serviceOptions.map(([id, label]) => {
+        if (id === 'custom') return null
+        return <button type="button" key={id} aria-current={activeSection === id ? 'location' : undefined} onClick={(event) => { scrollTo(id); if (event.detail > 0) event.currentTarget.blur() }}><span>{label}</span></button>
+      })}
+    </nav>
     <AirportTransfers onMeetingPoint={() => setMeetingOpen(true)} onRequest={requestJourney} />
     <HourlySection onRequest={requestJourney} />
     <WaterTaxiSection onRequest={requestJourney} />

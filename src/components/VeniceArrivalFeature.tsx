@@ -11,13 +11,13 @@ export default function VeniceArrivalFeature({ onPlanJourney }: VeniceArrivalFea
   return (
     <section data-home-arrival className="water-route-section home-flow-section">
       <img
-        src="/images/venice-water-taxi.jpg"
+        src="/images/home/water-taxi/venice-water-taxi.jpg"
         alt=""
         aria-hidden="true"
         className="water-route-background"
       />
       <div className="water-route-background-shade" aria-hidden="true" />
-      <img src="/images/water-taxi-route-map.png" alt="" aria-hidden="true" className="water-route-map" />
+      <img src="/images/home/water-taxi/route-map.png" alt="" aria-hidden="true" className="water-route-map" />
 
       <Boat size={38} weight="light" className="water-route-boat" aria-hidden="true" />
       <span className="water-route-label water-route-label-venice">Venice address</span>

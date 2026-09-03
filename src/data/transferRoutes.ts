@@ -37,7 +37,7 @@ export const transferRoutes: TransferRoute[] = [
   { id: 'venice-ortisei', from: 'Venice', to: 'Ortisei BZ', pickup: 'Venice', destination: 'Ortisei BZ', sedan: 600, van: 700, minibus: 1200 },
   { id: 'venice-lido-di-jesolo', from: 'Venice', to: 'Lido di Jesolo VE', pickup: 'Venice', destination: 'Lido di Jesolo VE', sedan: 145, van: 170, minibus: 310 },
   { id: 'venice-trieste-cruise-port', from: 'Venice', to: 'Trieste Cruise Port', pickup: 'Venice', destination: 'Trieste Cruise Port', sedan: 390, van: 450, minibus: 800 },
-  { id: 'venice-cavallino-treporti', from: 'Venice', to: 'Cavallino Treporti VE', pickup: 'Venice', destination: 'Cavallino Treporti VE', sedan: 145, van: 170, minibus: 290 },
+  { id: 'venice-cavallino-treporti', from: 'Venice', to: 'Cavallino-Treporti VE', pickup: 'Venice', destination: 'Cavallino-Treporti VE', sedan: 145, van: 170, minibus: 290 },
   { id: 'venice-bolzano', from: 'Venice', to: 'Bolzano BZ', pickup: 'Venice', destination: 'Bolzano BZ', sedan: 620, van: 680, minibus: 1240 },
   { id: 'venice-caorle', from: 'Venice', to: 'Caorle VE', pickup: 'Venice', destination: 'Caorle VE', sedan: 170, van: 200, minibus: 380 },
   { id: 'venice-fusina-cruise-terminal', from: 'Venice', to: 'Fusina Cruise Terminal VE', pickup: 'Venice', destination: 'Fusina Cruise Terminal VE', sedan: 100, van: 120, minibus: 220 },
@@ -54,16 +54,16 @@ export const transferRoutes: TransferRoute[] = [
 ]
 
 const popularRouteIds = [
-  'marco-polo-piazzale-roma',
-  'venice-treviso',
   'venice-cortina',
-  'venice-verona',
-  'venice-milan',
-  'venice-mestre',
-  'venice-padova',
   'venice-lido-di-jesolo',
+  'venice-ravenna-cruise-port',
   'venice-trieste-cruise-port',
   'venice-fusina-cruise-terminal',
+  'venice-trento',
+  'venice-cavallino-treporti',
+  'venice-treviso',
+  'venice-corvara',
+  'venice-bolzano',
 ]
 
 const routesById = new Map(transferRoutes.map((route) => [route.id, route]))

@@ -16,13 +16,17 @@ Clean React + TypeScript implementation of the local Figma Make chauffeur websit
 - `src/config/` — shared navigation configuration
 - `src/types/` — shared TypeScript types
 - `src/index.css` — design tokens, typography, Tailwind theme, and global styles
+- `public/images/brand/` — active Easy Lux identity files
+- `public/images/home/` — Home images grouped by section
+- `public/images/services/` — Services images grouped by section
+- `public/images/tours/` — Tours page images
+- `public/images/shared/` — destination images reused across pages
 
 ## Commands
 
 ```bash
 npm run dev
 npm run build
-npm run test:sites
 ```
 
 ## Booking delivery
