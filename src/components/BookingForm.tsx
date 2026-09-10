@@ -202,7 +202,7 @@ interface FieldShellProps {
 function FieldShell({ children, icon, label, error }: FieldShellProps) {
   return (
     <label
-      className={`group flex min-h-[58px] min-w-0 items-center gap-3 rounded-lg border bg-[rgba(13,14,15,0.62)] px-3.5 py-2 transition-colors sm:min-h-[68px] sm:px-4 sm:py-2.5 lg:min-h-[72px] ${
+      className={`booking-field group flex min-h-[58px] min-w-0 items-center gap-3 rounded-lg border bg-[rgba(13,14,15,0.62)] px-3.5 py-2 transition-colors sm:min-h-[68px] sm:px-4 sm:py-2.5 lg:min-h-[72px] ${
         error
           ? 'border-[var(--error)]'
           : 'border-[rgba(36,41,44,0.96)] hover:border-[rgba(143,136,128,0.48)] focus-within:border-gold'
@@ -546,7 +546,7 @@ export default function BookingForm({ prefill }: BookingFormProps) {
         className="w-full rounded-xl border border-[rgba(194,154,69,0.34)] bg-[rgba(21,25,27,0.94)] p-3 shadow-[0_24px_70px_rgba(0,0,0,0.55)] backdrop-blur-md sm:p-4 lg:min-h-[188px] lg:p-5"
       >
         <div
-          className="flex overflow-x-auto border-b border-[rgba(116,111,105,0.46)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="booking-type-tabs flex overflow-x-auto border-b border-[rgba(116,111,105,0.46)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           role="tablist"
           aria-label="Booking type"
         >
@@ -559,9 +559,23 @@ export default function BookingForm({ prefill }: BookingFormProps) {
                 key={tab.id}
                 type="button"
                 role="tab"
+                id={`booking-tab-${tab.id}`}
+                tabIndex={selected ? 0 : -1}
                 aria-selected={selected}
                 aria-controls={`booking-panel-${tab.id}`}
                 onClick={() => selectTab(tab.id)}
+                onKeyDown={(event) => {
+                  const index = tabs.findIndex(item => item.id === tab.id)
+                  let next = index
+                  if (event.key === 'ArrowRight') next = (index + 1) % tabs.length
+                  else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length
+                  else if (event.key === 'Home') next = 0
+                  else if (event.key === 'End') next = tabs.length - 1
+                  else return
+                  event.preventDefault()
+                  selectTab(tabs[next].id)
+                  document.getElementById(`booking-tab-${tabs[next].id}`)?.focus()
+                }}
                 className={`relative flex min-w-[138px] shrink-0 items-center justify-center gap-2 px-3 pb-2.5 pt-0.5 text-[12px] font-medium transition-colors sm:min-w-0 sm:flex-none sm:gap-2.5 sm:px-4 sm:pb-3 sm:text-[14px] lg:justify-start lg:px-5 lg:text-[15px] ${tab.width} ${
                   selected
                     ? 'text-gold-light'
@@ -587,7 +601,7 @@ export default function BookingForm({ prefill }: BookingFormProps) {
           })}
         </div>
 
-        <div id={`booking-panel-${activeTab}`} role="tabpanel" className="pt-3 lg:pt-4">
+        <div id={`booking-panel-${activeTab}`} role="tabpanel" aria-labelledby={`booking-tab-${activeTab}`} className="pt-3 lg:pt-4">
           {submittedTab === activeTab && activeTab !== 'transfer' ? (
             <div className="flex min-h-[96px] flex-col items-start justify-center gap-4 rounded-lg border border-[rgba(114,138,106,0.42)] bg-[rgba(114,138,106,0.08)] px-5 py-4 sm:flex-row sm:items-center sm:justify-between lg:px-6">
               <div className="flex items-start gap-3">

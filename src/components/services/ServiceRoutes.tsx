@@ -1,4 +1,4 @@
-import { useId, useState, type ReactNode, type KeyboardEvent } from 'react'
+import { useEffect, useId, useRef, useState, type ReactNode, type KeyboardEvent } from 'react'
 import { ArrowRight, CaretDown } from '@phosphor-icons/react'
 import type { TransferRoute } from '../../data/transferRoutes'
 import { priceLabel, type JourneyRequest, type JourneyService } from './serviceData'
@@ -46,8 +46,24 @@ export function RouteList({ routes, title, service, onRequest, initial = 4, more
   </>
 }
 
-export function RouteSection({ title, children, id }: { title: string; children: ReactNode; id?: string }) {
+export function RouteSection({ title, children, id, openRequest = 0 }: { title: string; children: ReactNode; id?: string; openRequest?: number }) {
   const [expanded, setExpanded] = useState(false)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const pendingReveal = useRef(false)
+  useEffect(() => {
+    if (!openRequest) return
+    pendingReveal.current = true
+    setExpanded(true)
+  }, [openRequest])
+  useEffect(() => {
+    if (!expanded || !pendingReveal.current) return
+    const frame = window.requestAnimationFrame(() => {
+      pendingReveal.current = false
+      triggerRef.current?.focus({ preventScroll: true })
+      triggerRef.current?.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [expanded, openRequest])
   const generatedId = useId()
   const panelId = `${id ?? generatedId}-panel`
 
@@ -55,6 +71,7 @@ export function RouteSection({ title, children, id }: { title: string; children:
     <div className="svc-shell">
       <button
         type="button"
+        ref={triggerRef}
         className="sv-route-disclosure-trigger"
         aria-expanded={expanded}
         aria-controls={panelId}
@@ -70,9 +87,9 @@ export function RouteSection({ title, children, id }: { title: string; children:
         </span>
       </button>
 
-      {expanded && <div id={panelId} className="sv-route-disclosure-panel">
-        {children}
-      </div>}
+      <div id={panelId} hidden={!expanded} className="sv-route-disclosure-panel">
+        {expanded && children}
+      </div>
     </div>
   </div>
 }

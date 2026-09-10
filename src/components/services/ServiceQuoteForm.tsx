@@ -18,9 +18,11 @@ export default function ServiceQuoteForm({ selection }: { selection: QuoteSelect
     setStep(0); setErrors({}); setPrepared(false)
     headingRef.current?.focus({ preventScroll: true })
     const section = document.getElementById('service-custom')
-    const anchor = section?.querySelector<HTMLElement>('.svc-eyebrow') ?? section
+    const anchor = section?.querySelector<HTMLElement>('.sv-quote-layout') ?? section
     if (anchor) {
-      const top = anchor.getBoundingClientRect().top + window.scrollY - 112
+      const headerHeight = window.matchMedia('(min-width: 1024px)').matches ? 76 : 72
+      const directoryHeight = document.querySelector('.services-masthead-nav')?.getBoundingClientRect().height ?? 64
+      const top = anchor.getBoundingClientRect().top + window.scrollY - headerHeight - directoryHeight - 24
       window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
     }
   }, [selection])
@@ -67,9 +69,9 @@ export default function ServiceQuoteForm({ selection }: { selection: QuoteSelect
   </dl>
 
   return <section id="service-custom" className="sv-section sv-quote-section" aria-labelledby="quote-intro-title"><div className="svc-shell sv-quote-layout">
-    <div className="sv-copy sv-quote-copy"><p className="svc-eyebrow">Request a private transfer quote</p><h2 id="quote-intro-title">Tell us where <br />you need <br />to go.</h2><p className="sv-lead">Share your route, date, passenger count and luggage. You’ll receive availability, a suitable vehicle and the price before you decide.</p><div className="sv-short-rule" /><p className="sv-muted">Nothing is booked until you approve the journey and quote.</p></div>
+    <div className="sv-copy sv-quote-copy"><p className="svc-eyebrow">Request a private transfer quote</p><h2 id="quote-intro-title">Let’s plan <br />your journey.</h2><p className="sv-lead">Start with your pick-up and destination. Then add your passengers and contact details, so the vehicle and price can be confirmed for your trip.</p><div className="sv-short-rule" /><p className="sv-muted">Your request starts a conversation. You decide once the journey and price are agreed.</p></div>
     <div className="sv-quote-panel">
-      <h3 ref={headingRef} tabIndex={-1} className="sv-form-title">{prepared ? 'Check your journey details.' : 'Request your transfer quote'}</h3>
+      <h3 ref={headingRef} tabIndex={-1} className="sv-form-title">{prepared ? 'Check your journey details.' : 'Your journey details'}</h3>
       {prepared ? <div className="sv-prepared"><Check size={32} aria-hidden="true" /><p role="status">Preview complete — your request has not been sent.</p><p>This local preview does not send an email or create a booking. Delivery to the Easy Lux team still needs to be connected.</p>{review}<p>{draft.name} · {draft.email}{draft.phone ? ` · ${draft.phone}` : ''}</p><button type="button" className="sv-button" onClick={() => { setPrepared(false); needsFocus.current = true }}>Edit your request <ArrowLeft size={20} /></button></div> : <>
         <ol className="sv-form-steps" aria-label="Request progress">{['Journey', 'Passengers', 'Contact'].map((label, index) => <li key={label} aria-current={step === index ? 'step' : undefined}><button type="button" disabled={index > step} onClick={() => goTo(index)}><span>{String(index + 1).padStart(2, '0')}</span> {label}</button></li>)}</ol>
         <form className="sv-quote-form" onSubmit={submit} noValidate>
@@ -98,7 +100,7 @@ export default function ServiceQuoteForm({ selection }: { selection: QuoteSelect
           </div><p className="sv-fine-print">Vehicle suitability and any extras are confirmed after reviewing your passengers and luggage.</p></fieldset>}
           {step === 2 && <fieldset><legend className="sv-step-heading">Your contact details</legend><div className="sv-fields-grid">{input('name', 'Full name', { autoComplete: 'name', required: true, placeholder: 'Your full name' })}{input('email', 'Email', { type: 'email', autoComplete: 'email', required: true, placeholder: 'your@email.com' })}{input('phone', 'Phone / WhatsApp · optional', { type: 'tel', autoComplete: 'tel', placeholder: '+39…' })}</div><h4 className="sv-review-heading">Review your journey</h4>{review}<button type="button" className="sv-text-link" onClick={() => goTo(0)}>Edit journey details</button><p className="sv-preview-notice">Local preview only: this form does not send a request or confirm a booking yet.</p></fieldset>}
           <div className="sv-form-actions">{step > 0 && <button type="button" className="sv-back" onClick={() => goTo(step - 1)} aria-label="Previous step"><ArrowLeft size={21} />Back</button>}<button type="submit" className="sv-button sv-button-gold">{step === 0 ? 'Continue to passengers' : step === 1 ? 'Continue to contact' : 'Preview your request'}<ArrowRight size={25} aria-hidden="true" /></button></div>
-          <p className="sv-form-helper">{step === 0 ? 'Next: passenger count, luggage and vehicle preference.' : step === 1 ? 'Next: contact details and journey review.' : 'No booking is made until the journey and price are confirmed.'}</p>
+          <p className="sv-form-helper">{step === 0 ? 'Your next step: passengers, luggage and vehicle preference.' : step === 1 ? 'Next: contact details and journey review.' : 'No booking is made until the journey and price are confirmed.'}</p>
         </form>
       </>}
     </div>

@@ -30,12 +30,12 @@ const services = [
   {
     title: 'Italy & Europe Transfers',
     description: 'Travel between cities or from Italy to France, Croatia and beyond. Your route, stops and timing, planned together.',
-    page: 'tours' as const,
+    page: 'services' as const,
   },
   {
     title: 'Mountains & Seaside',
     description: 'Reach the Dolomites, the Adriatic coast or your chosen trailhead. Private transport, with return pick-up on request.',
-    page: 'tours' as const,
+    page: 'services' as const,
   },
 ]
 
@@ -150,14 +150,13 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
             </figure>
           </div>
 
-          <div className="mt-9 grid border-t border-[rgba(36,41,44,0.84)] sm:mt-11 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="home-service-grid mt-9 grid border-t border-[rgba(36,41,44,0.84)] sm:mt-11 sm:grid-cols-2 xl:grid-cols-4">
             {services.map((service, index) => (
               <button
                 key={service.title}
                 type="button"
                 onClick={() => selectService(index, service.page)}
-                aria-pressed={selectedServiceIndex === index}
-                className={`group flex min-h-[204px] flex-col border-b border-[rgba(36,41,44,0.72)] py-7 text-left transition-[background-color,box-shadow,transform] duration-200 hover:bg-[rgba(13,14,15,0.38)] active:scale-[0.995] sm:min-h-[224px] sm:border-b-0 sm:px-7 xl:min-h-[238px] xl:border-t-0 xl:px-7 ${
+                className={`home-service-item group flex min-h-[204px] flex-col border-b border-[rgba(36,41,44,0.72)] py-7 text-left transition-[background-color,box-shadow,transform] duration-200 hover:bg-[rgba(13,14,15,0.38)] active:scale-[0.995] sm:min-h-[224px] sm:border-b-0 sm:px-7 xl:min-h-[238px] xl:border-t-0 xl:px-7 ${
                   selectedServiceIndex === index
                     ? 'bg-[rgba(5,6,7,0.58)] shadow-[inset_0_0_0_1px_rgba(194,154,69,0.34)]'
                     : ''
@@ -169,15 +168,15 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
                   index === 0 ? 'xl:pl-0' : 'xl:border-l'
                 }`}
               >
-                <span className="max-w-[270px] font-display text-[27px] leading-[1.02] text-cream xl:text-[28px]">
+                <span className="home-service-title max-w-[270px] font-display text-[27px] leading-[1.02] text-cream xl:text-[28px]">
                   {service.title}
                 </span>
-                <span className="mt-4 max-w-[290px] text-[14px] leading-[1.68] text-[var(--text-muted)]">
+                <span className="home-service-description mt-4 max-w-[290px] text-[14px] leading-[1.68] text-[var(--text-muted)]">
                   {service.description}
                 </span>
                 <ArrowRight
                   size={14}
-                  className="mt-auto text-[rgba(200,192,181,0.56)] transition-transform group-hover:translate-x-1 group-hover:text-gold-light"
+                  className="home-service-arrow mt-auto text-[rgba(200,192,181,0.56)] transition-transform group-hover:translate-x-1 group-hover:text-gold-light"
                   aria-hidden="true"
                 />
               </button>

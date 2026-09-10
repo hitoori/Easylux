@@ -3,13 +3,12 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Services from './pages/Services'
-import Tours from './pages/Tours'
 import About from './pages/About'
 import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
 import type { Page } from './types/navigation'
 
-const pageIds = new Set<Page>(['home', 'services', 'tours', 'about', 'faq', 'contact'])
+const pageIds = new Set<Page>(['home', 'services', 'about', 'faq', 'contact'])
 
 const getPageFromHash = (): Page => {
   const hashPage = window.location.hash.slice(1) as Page
@@ -25,14 +24,22 @@ export default function App() {
       ? 'Venice Private Transfers & Chauffeur Service | Easy Lux'
       : currentPage === 'services'
         ? 'Private Transfer Prices in Venice & Italy | Easy Lux'
-        : 'Easy Lux Transfer | Private Chauffeur Italy'
+        : currentPage === 'about'
+          ? 'About Easy Lux | A Personal Approach to Private Travel'
+          : currentPage === 'faq'
+            ? 'Transfer & Booking Questions | Easy Lux FAQ'
+            : 'Easy Lux Transfer | Private Chauffeur Italy'
     document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute(
       'content',
       currentPage === 'home'
         ? 'Private transfers in Venice, airport pick-ups and coordinated Water Taxi connections. Plan your journey in Italy and Europe with Easy Lux.'
         : currentPage === 'services'
           ? 'Compare private transfer prices from Venice and request chauffeur travel across Italy and Europe, including airports, Dolomites, seaside and cruise ports.'
-          : 'Private chauffeur services, airport transfers and curated tours across Italy.',
+          : currentPage === 'about'
+            ? 'Meet the young couple behind Easy Lux. A personal approach to private chauffeur travel, guided by professionalism, punctuality and care.'
+            : currentPage === 'faq'
+              ? 'Find answers about Easy Lux bookings, airport pick-ups, luggage, changes and private water taxi connections in Venice.'
+              : 'Private chauffeur services and airport transfers across Italy and Europe.',
     )
   }, [currentPage])
 
@@ -60,8 +67,6 @@ export default function App() {
         return <Home navigate={navigate} />
       case 'services':
         return <Services navigate={navigate} />
-      case 'tours':
-        return <Tours navigate={navigate} />
       case 'about':
         return <About navigate={navigate} />
       case 'faq':

@@ -1,224 +1,50 @@
+import { ArrowRight, Check } from '../components/PikaIcons'
 import type { Page } from '../types/navigation'
+import './about.css'
 
-interface AboutProps {
-  navigate: (page: Page) => void
-}
+interface AboutProps { navigate: (page: Page) => void }
 
-const values = [
-  {
-    title: 'Professionalism',
-    desc: 'Licensed, uniformed drivers with commercial chauffeur certification and comprehensive insurance. Every vehicle is inspected before each journey.',
-    icon: '◈',
-  },
-  {
-    title: 'Punctuality',
-    desc: 'We track flights, ferries and traffic in real time. Your driver is always at the pickup point before you arrive — never the other way around.',
-    icon: '◷',
-  },
-  {
-    title: 'Comfort & Safety',
-    desc: 'Premium vehicles maintained to manufacturer service schedules. Child seats, adapted routes and accessibility needs are accommodated on request.',
-    icon: '◎',
-  },
-  {
-    title: 'Personal Attention',
-    desc: 'We handle every booking personally. There are no call centres, no automated systems. Catalina or Mihai responds directly to every enquiry.',
-    icon: '◇',
-  },
+const services = [
+  ['Airport & city transfers', 'Private pick-ups for airport arrivals, hotel stays and travel between cities. Your meeting point and destination arranged before you set off.'],
+  ['A chauffeur by the hour', 'Keep a private driver for a schedule with several stops, meetings or time to explore. Share your itinerary so we can plan around it.'],
+  ['Longer journeys & special destinations', 'Travel across Italy and Europe, to mountain resorts, the coast or a cruise departure. Routes and stops arranged to suit your plans.'],
+]
+const steps = [
+  ['Tell us about your trip', 'Send your pick-up point, destination, date, passenger numbers and luggage details. Include any stops or special requests.'],
+  ['Review your arrangements', 'We help organise the route and suitable transport. You receive the journey details and price before you confirm.'],
+  ['Meet your driver', 'Follow the agreed pick-up instructions and begin your private transfer, with the arrangements already in place.'],
 ]
 
 export default function About({ navigate }: AboutProps) {
-  return (
-    <div>
-      {/* Page header */}
-      <div
-        className="relative px-6 pb-32 pt-[216px] lg:px-16 lg:pt-[224px] overflow-hidden"
-        style={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1649792880509-3897bbe2ba83?w=1920&h=700&fit=crop&auto=format)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center 40%',
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(13,14,15,0.36)] via-[rgba(13,14,15,0.26)] to-[rgba(13,14,15,0.82)]" />
-        <div className="relative z-10 max-w-[1400px] mx-auto">
-          <p className="text-[11px] tracking-[0.3em] uppercase text-gold mb-4">Our Story</p>
-          <h1
-            className="max-w-[600px] font-display text-[46px] font-normal leading-[0.96] text-cream sm:text-[62px]"
-          >
-            Two people,
-            <br />
-            <em>one vision.</em>
-          </h1>
-        </div>
+  return <div className="about-page">
+    <section className="ab-intro ab-shell" aria-labelledby="about-title">
+      <div className="ab-intro-copy"><p className="ab-kicker">About Easy Lux</p><h1 id="about-title">Your private driver.<br /><em>Our personal<br className="ab-wide-break" /> commitment.</em></h1><p>Easy Lux provides private transfers and chauffeur services from Venice and Veneto to destinations across Italy and Europe.</p><p>Behind the company is a young couple with a shared passion for hospitality, careful planning and making every guest feel welcome.</p><button className="ab-primary" onClick={()=>navigate('contact')}>Talk to us about your trip <ArrowRight size={18} aria-hidden="true" /></button></div>
+      <figure className="ab-intro-photo"><img src="https://images.unsplash.com/photo-1605437241278-c1806d14a4d9?auto=format&fit=crop&w=1400&q=85" alt="Leather seating and carefully finished details inside a Mercedes" fetchPriority="high" /><figcaption>Private transport. Personal attention.</figcaption></figure>
+    </section>
+    <div className="ab-overview ab-shell"><div><span>Our service</span><strong>Private transfers &amp; chauffeurs</strong></div><div><span>Our starting point</span><strong>Venice &amp; Veneto</strong></div><div><span>Your destinations</span><strong>Italy &amp; Europe</strong></div></div>
+
+    <section className="ab-story ab-shell" aria-labelledby="ab-story-title">
+      <div><p className="ab-kicker">Who we are</p><h2 id="ab-story-title">A young couple.<br />A shared ambition.<br /><em>A personal service.</em></h2></div>
+      <div className="ab-story-copy"><p>We created Easy Lux from our passion for premium chauffeur services. We wanted to build a company where professionalism and a warm welcome belong together, and where every transfer is organised with care.</p><p>For us, that means listening to your needs, respecting your time and paying attention to the details that make travel more comfortable. From a simple airport pick-up to a longer journey, our commitment is the same: a safe, reliable and personalised experience.</p><p>Your trust is our greatest reward. We work to earn it through the way we communicate, prepare and look after you.</p><blockquote>“We believe every guest should feel looked after from the first message to the final arrival.”<cite>The founders of Easy Lux</cite></blockquote></div>
+    </section>
+
+    <section className="ab-travel" aria-labelledby="ab-travel-title"><div className="ab-shell">
+      <div className="ab-section-heading"><div><p className="ab-kicker">What we do</p><h2 id="ab-travel-title">Private travel,<br /><em>for the plans you have.</em></h2></div><p>Arriving for a holiday, travelling for work or heading somewhere special. We help arrange the transport that connects each part of your trip.</p></div>
+      <div className="ab-travel-layout"><div className="ab-service-list">{services.map(([title,text],index)=><article key={title}><span className="ab-number">0{index+1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}<button className="ab-text-link" onClick={()=>navigate('services')}>View all services &amp; prices <ArrowRight size={18} aria-hidden="true" /></button></div>
+        <figure className="ab-destination"><img src="https://images.unsplash.com/photo-1658426118253-300e741685f2?auto=format&fit=crop&w=1100&q=85" alt="A canal and historic architecture in Venice" loading="lazy" /><figcaption><span>From Venice, further afield</span><p>Veneto · Italy · Europe</p></figcaption></figure>
       </div>
+      <p className="ab-water-note">Arriving in Venice’s historic centre? We can also help arrange a private water taxi. <button onClick={()=>navigate('services')}>Explore transfer options <ArrowRight size={15} aria-hidden="true" /></button></p>
+    </div></section>
 
-      {/* Story */}
-      <section className="py-24 px-6 lg:px-16 max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div>
-            <p className="text-[11px] tracking-[0.3em] uppercase text-gold mb-4">The Beginning</p>
-            <h2
-              className="mb-6 font-display text-[32px] font-normal leading-[1] text-cream sm:text-[40px]"
-            >
-              Built on a decade of
-              <br />
-              <em>Italian roads.</em>
-            </h2>
-            <div className="space-y-5 text-[14px] text-[rgba(200,192,181,0.65)] leading-relaxed">
-              <p>
-                Easy Lux Transfer was founded by Catalina Gordila and Mihai Pisarenco, partners in
-                life and in the belief that private travel in Italy should feel effortless. What
-                began as airport transfers for friends grew, over years, into a full-service
-                chauffeur company trusted by hotel concierges, wedding planners and repeat clients
-                across Europe.
-              </p>
-              <p>
-                Catalina brings meticulous attention to logistics and guest experience, ensuring
-                that every itinerary is precise and every special request is remembered. Mihai, with
-                over twelve years behind the wheel of luxury vehicles on Italian roads, offers the
-                kind of local knowledge that no GPS can replicate.
-              </p>
-              <p>
-                Based in the Veneto region, we know the back roads to Cortina, the best time to
-                cross the lagoon, and which winery deserves an extra hour. Easy Lux Transfer is
-                small by design — every booking matters to us personally.
-              </p>
-            </div>
-          </div>
+    <section className="ab-standards ab-shell" aria-labelledby="ab-standards-title"><div><p className="ab-kicker">What matters to us</p><h2 id="ab-standards-title">The care behind<br /><em>every transfer.</em></h2><p>A premium service should feel straightforward. These are the things we focus on when arranging your journey.</p></div><div className="ab-values">{[
+      ['Clear communication', 'Your pick-up, destination and travel requirements discussed in advance.'],
+      ['Punctuality', 'Careful planning around your agreed departure time and schedule.'],
+      ['Comfort & privacy', 'Private transportation with attention to your passengers and luggage.'],
+      ['Personal arrangements', 'Space to discuss extra stops, special requests and the details of your trip.'],
+    ].map(([title,text])=><article key={title}><Check size={19} aria-hidden="true" /><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></section>
 
-          {/* Founders */}
-          <div className="space-y-px">
-            <div className="grid grid-cols-2 gap-px bg-[rgba(194,154,69,0.1)]">
-              <div
-                className="h-[340px] bg-cover bg-center bg-[var(--surface)]"
-                style={{
-                  backgroundImage:
-                    'url(https://images.unsplash.com/photo-1566984991763-91b985a3f9c2?w=400&h=500&fit=crop&auto=format&crop=faces)',
-                }}
-              >
-                <div className="h-full bg-gradient-to-t from-[rgba(13,14,15,0.75)] to-transparent flex items-end p-5">
-                  <div>
-                    <p className="font-display text-[18px] text-cream">
-                      Catalina Gordila
-                    </p>
-                    <p className="text-[11px] tracking-[0.15em] uppercase text-[rgba(194,154,69,0.7)]">
-                      Co-founder · Operations
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="h-[340px] bg-cover bg-center bg-[var(--surface)]"
-                style={{
-                  backgroundImage:
-                    'url(https://images.unsplash.com/photo-1584211022290-ee43ea4955ac?w=400&h=500&fit=crop&auto=format)',
-                }}
-              >
-                <div className="h-full bg-gradient-to-t from-[rgba(13,14,15,0.75)] to-transparent flex items-end p-5">
-                  <div>
-                    <p className="font-display text-[18px] text-cream">
-                      Mihai Pisarenco
-                    </p>
-                    <p className="text-[11px] tracking-[0.15em] uppercase text-[rgba(194,154,69,0.7)]">
-                      Co-founder · Lead Driver
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-[var(--background-secondary)] p-7 border border-[rgba(194,154,69,0.12)] border-t-0">
-              <p className="text-[13px] text-[rgba(200,192,181,0.5)] leading-relaxed italic">
-                "We started Easy Lux because we believed every traveller deserved the kind of care
-                you'd give a close friend. That hasn't changed as we've grown."
-              </p>
-              <p className="text-[12px] text-[rgba(194,154,69,0.6)] mt-3">
-                — Catalina & Mihai
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+    <section className="ab-process" aria-labelledby="ab-process-title"><div className="ab-shell"><p className="ab-kicker">How it works</p><h2 id="ab-process-title">From your first message<br /><em>to your destination.</em></h2><div className="ab-steps">{steps.map(([title,text],index)=><article key={title}><span>0{index+1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
 
-      {/* Values */}
-      <section className="py-24 px-6 lg:px-16 bg-[var(--background-secondary)]">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-[11px] tracking-[0.3em] uppercase text-gold mb-4">Our Values</p>
-            <h2
-              className="font-display text-[36px] font-normal leading-[1] text-cream sm:text-[44px]"
-            >
-              What guides every journey.
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[rgba(194,154,69,0.1)]">
-            {values.map((v) => (
-              <div key={v.title} className="bg-[var(--background-secondary)] p-10">
-                <span className="block text-[22px] text-gold mb-5">{v.icon}</span>
-                <h3
-                  className="mb-4 font-display text-[24px] font-normal leading-[1.08] text-cream"
-                >
-                  {v.title}
-                </h3>
-                <p className="text-[14px] text-[rgba(200,192,181,0.55)] leading-relaxed">
-                  {v.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Numbers */}
-      <section className="py-24 px-6 lg:px-16 max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[rgba(194,154,69,0.1)]">
-          {[
-            { num: '12+', label: 'Years on Italian roads' },
-            { num: '4,800+', label: 'Transfers completed' },
-            { num: '97%', label: 'On-time arrival rate' },
-            { num: '5 ★', label: 'Average client rating' },
-          ].map((stat) => (
-            <div key={stat.label} className="bg-[var(--background)] p-10 text-center">
-              <p
-                className="mb-2 font-display text-[44px] font-normal leading-none text-cream"
-              >
-                {stat.num}
-              </p>
-              <p className="text-[12px] tracking-wide text-[rgba(194,154,69,0.6)] uppercase">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-24 px-6 lg:px-16 bg-[var(--background-secondary)]">
-        <div className="max-w-[600px] mx-auto text-center">
-          <h2
-            className="mb-5 font-display text-[34px] font-normal leading-[1] text-cream sm:text-[42px]"
-          >
-            Ready to travel with us?
-          </h2>
-          <p className="text-[14px] text-[rgba(200,192,181,0.55)] mb-8">
-            Every booking is handled personally by Catalina or Mihai. Reach us any time.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => navigate('contact')}
-              className="px-8 py-4 bg-gold text-[var(--background)] text-[13px] tracking-[0.12em] uppercase font-semibold hover:bg-gold-light transition-colors"
-            >
-              Contact Us
-            </button>
-            <button
-              onClick={() => navigate('services')}
-              className="px-8 py-4 border border-[rgba(194,154,69,0.4)] text-[rgba(200,192,181,0.7)] text-[13px] tracking-[0.12em] uppercase hover:border-gold hover:text-cream transition-all"
-            >
-              View Services
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
-  )
+    <section className="ab-contact ab-shell" aria-labelledby="ab-contact-title"><div><p className="ab-kicker">Let’s arrange your transfer</p><h2 id="ab-contact-title">Where can we take you?</h2><p>Share your plans with us. We’ll help you work out the details.</p></div><button className="ab-primary" onClick={()=>navigate('contact')}>Get in touch <ArrowRight size={20} aria-hidden="true" /></button></section>
+  </div>
 }

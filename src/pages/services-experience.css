@@ -1,0 +1,197 @@
+/* A continuous service journey, built on the existing Easy Lux design tokens. */
+.services-new-page.services-experience {
+  --svc-h2: clamp(38px, 3.6vw, 52px);
+  --experience-space: clamp(64px, 7vw, 100px);
+}
+.services-new-page.services-experience :is(.sv-section, .airport-transfers) {
+  min-height: 0;
+}
+.services-new-page.services-experience :is(.sv-section, .airport-transfers) h2 {
+  font: 400 var(--svc-h2)/1.12 "Source Serif 4", Georgia, serif;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+.services-new-page.services-experience :is(.sv-lead, .airport-intro, .sv-mountains-lead, .sv-coast-lead, .sv-cruise-lead) {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* First view: a clear offer beside Italy, with the service directory in view. */
+.services-new-page.services-experience .services-masthead {
+  min-height: 640px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  isolation: isolate;
+}
+.services-new-page.services-experience .services-masthead-photo {
+  inset: 0 0 0 auto;
+  width: 63%;
+  height: 100%;
+  object-position: center;
+  filter: saturate(.85) brightness(.94);
+}
+.services-new-page.services-experience .services-masthead::before {
+  background: linear-gradient(90deg, var(--svc-bg) 0%, var(--svc-bg) 28%, rgba(13,14,15,.94) 41%, rgba(13,14,15,.28) 66%, rgba(13,14,15,.04) 100%);
+}
+.services-new-page.services-experience .services-masthead-shell { padding-block: 152px 76px; }
+.services-new-page.services-experience .services-masthead-copy { max-width: 570px; }
+.services-new-page.services-experience .services-masthead-eyebrow { margin-bottom: 24px; font-size: 12px; }
+.services-new-page.services-experience .services-masthead h1 {
+  font-size: clamp(52px, 5.3vw, 78px);
+  line-height: 1.04;
+  max-width: none;
+  margin-bottom: 26px;
+  letter-spacing: -.03em;
+}
+.services-new-page.services-experience .services-masthead h1 em { font-weight: 400; }
+.services-new-page.services-experience .services-masthead-description { max-width: 470px; margin: 0; }
+.services-new-page.services-experience .services-masthead-actions { margin-top: 30px; gap: 12px 24px; }
+.services-new-page.services-experience .services-masthead-actions button { font-size: 12px; text-transform: none; letter-spacing: .02em; }
+.services-new-page.services-experience .services-hero-assurance { margin: 20px 0 0; max-width: 450px; font-size: 12px; line-height: 1.7; color: var(--svc-muted); }
+.services-new-page.services-experience .services-hero-caption { position: absolute; right: 0; bottom: 26px; color: var(--svc-ivory); font-size: 12px; letter-spacing: .06em; }
+.services-new-page.services-experience .services-masthead-nav { background: rgba(21,25,27,.98); }
+.services-new-page.services-experience .services-masthead-nav button { min-height: 58px; text-transform: none; font-size: 13px; letter-spacing: .02em; }
+
+/* Airport: readable steps and a separate practical meeting point. */
+.services-new-page.services-experience .airport-content { padding-block: var(--experience-space); }
+.services-new-page.services-experience .airport-family-tabs { margin-top: 32px; }
+.services-new-page.services-experience .airport-process-layout { grid-template-columns: minmax(0, 1.5fr) minmax(0, .8fr); gap: clamp(40px, 6vw, 96px); }
+.services-new-page.services-experience .airport-steps { display: grid; grid-template-columns: 1fr; gap: 0; }
+.services-new-page.services-experience .airport-steps li { display: grid; grid-template-columns: 36px minmax(0, .9fr) minmax(0, 1.15fr); align-items: baseline; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--svc-line); text-align: left; }
+.services-new-page.services-experience .airport-step-marker { position: static; margin: 0; display: block; height: auto; border: 0; }
+.services-new-page.services-experience .airport-step-marker::after { display: none; }
+.services-new-page.services-experience .airport-step-marker span { border: 0; background: transparent; width: auto; height: auto; color: var(--svc-gold); font-size: 12px; }
+.services-new-page.services-experience .airport-step-icon { display: none; }
+.services-new-page.services-experience .airport-steps h3 { margin: 0; font-size: 24px; }
+.services-new-page.services-experience .airport-steps p { margin: 0; font-size: 14px; }
+.services-new-page.services-experience .airport-meeting { padding: 24px 0 0; border: 0; border-top: 1px solid var(--svc-gold-deep); }
+.services-new-page.services-experience .airport-meeting h3 { font-size: 27px; }
+.services-new-page.services-experience .airport-meeting .sv-button { justify-content: space-between; width: 100%; }
+.services-new-page.services-experience .airport-waiting-note { margin-top: 24px; }
+.services-new-page.services-experience .airport-request { margin-top: 18px; }
+
+/* Each chapter has its own composition, without forced viewport-sized gaps. */
+.services-new-page.services-experience .sv-hourly.sv-section { padding-block: var(--experience-space); }
+.services-new-page.services-experience .sv-hourly .sv-hourly-grid { min-height: 0; padding: 0; align-items: start; align-content: start; gap: clamp(48px, 7vw, 112px); }
+.services-new-page.services-experience .sv-hourly-includes { border-left: 0; padding-left: 0; }
+.services-new-page.services-experience .sv-hourly-includes article { padding-block: 20px; }
+.services-new-page.services-experience .sv-hourly-ideal { margin-top: 26px; }
+.services-new-page.services-experience .sv-hourly .sv-hourly-quote { margin-top: 44px; padding-top: 28px; }
+.services-new-page.services-experience .sv-hourly-minimum { border: 0; padding: 0; }
+.services-new-page.services-experience .sv-hourly-link { border: 0; padding-inline: 0; font-size: 13px; text-transform: none; letter-spacing: 0; }
+
+/* The Venice illustration is the signature. Instructions remain below it. */
+.services-new-page.services-experience .sv-water.sv-section { padding-block: var(--experience-space); }
+.services-new-page.services-experience .sv-water-illustrated-intro { align-items: start; gap: 64px; }
+.services-new-page.services-experience .sv-water-story {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(1340px, calc(100% - var(--svc-gutter) * 2));
+  height: auto;
+  min-height: 0;
+  margin: 28px auto 0;
+  gap: 0 32px;
+}
+.services-new-page.services-experience .sv-water-story > img { position: static; grid-column: 1 / -1; width: 100%; height: clamp(230px, 28vw, 380px); margin: 0 0 28px; object-fit: contain; object-position: center; }
+.services-new-page.services-experience .sv-water-story-point { position: static; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; width: auto; padding: 22px 0 0; border-top: 1px solid var(--svc-line); transform: none; }
+.services-new-page.services-experience .sv-water-story-point::before,
+.services-new-page.services-experience .sv-water-story-point::after { display: none; }
+.services-new-page.services-experience .sv-water-story-point > span { width: auto; height: auto; border: 0; background: transparent; color: var(--svc-gold); font-size: 12px; }
+.services-new-page.services-experience .sv-water-story-point h3 { margin: 0 0 12px; font-size: 25px; }
+.services-new-page.services-experience .sv-water-story-point p { max-width: 330px; margin: 0; }
+.services-new-page.services-experience .sv-water-action { padding: 0; margin-top: 30px; border: 0; }
+
+.services-new-page.services-experience .sv-europe .sv-europe-shell { padding-block: var(--experience-space) 32px; }
+.services-new-page.services-experience .sv-europe .sv-europe-intro { gap: clamp(48px, 7vw, 112px); align-items: start; }
+.services-new-page.services-experience .sv-europe-benefits article { padding-block: 18px; }
+.services-new-page.services-experience .services-distance-note { display: flex; align-items: baseline; gap: 32px; margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--svc-line); }
+.services-new-page.services-experience .services-distance-note > span { color: var(--svc-muted); font-size: 12px; }
+.services-new-page.services-experience .services-distance-note p { margin: 0; font: 400 26px/1.4 "Source Serif 4", Georgia, serif; color: var(--svc-ivory); }
+.services-new-page.services-experience .sv-europe-note { margin: 18px 0 0; padding: 0; text-align: left; }
+.services-new-page.services-experience .sv-europe:has(.sv-route-disclosure[data-expanded='true']) .sv-europe-shell { padding-block: var(--experience-space) 32px; }
+.services-new-page.services-experience .sv-europe:has(.sv-route-disclosure[data-expanded='true']) .sv-europe-note { margin: 18px 0 0; }
+.services-new-page.services-experience .sv-mountains-new .sv-mountains-shell,
+.services-new-page.services-experience .sv-coast-new .sv-coast-shell,
+.services-new-page.services-experience .sv-cruise-showcase { padding-block: var(--experience-space) 32px; }
+.services-new-page.services-experience :is(.sv-mountains-intro, .sv-coast-intro, .sv-cruise-overview) { align-items: center; gap: clamp(40px, 5vw, 80px); }
+.services-new-page.services-experience .sv-mountains-photos > .sv-mountains-photo-stage { height: 420px; }
+.services-new-page.services-experience .sv-mountains-details { margin-top: 24px; }
+.services-new-page.services-experience .sv-mountains-photo-location { letter-spacing: .04em; }
+.services-new-page.services-experience .sv-coast-hero img { height: 420px; object-fit: cover; }
+.services-new-page.services-experience .sv-coast-copy { padding: 0; }
+.services-new-page.services-experience .sv-coast-caveat { margin: 24px 0 0; }
+.services-new-page.services-experience .sv-cruise-journeys { margin-top: 40px; gap: 40px; }
+.services-new-page.services-experience .sv-cruise-route { justify-content: flex-start; gap: 20px; }
+.services-new-page.services-experience .sv-cruise-route :is(h3, strong) { font: 400 27px/1.25 "Source Serif 4", Georgia, serif; text-transform: none; letter-spacing: -.015em; }
+.services-new-page.services-experience .sv-cruise-route svg { width: 28px; }
+.services-new-page.services-experience .sv-cruise-flexibility { margin-top: 28px; text-transform: none; letter-spacing: 0; }
+.services-new-page.services-experience :is(.sv-europe, .sv-mountains, .sv-coast, .sv-cruise) .sv-route-disclosure { margin-top: 0; }
+.services-new-page.services-experience :is(.sv-europe, .sv-mountains, .sv-coast, .sv-cruise) .sv-route-disclosure > .svc-shell { padding-bottom: 48px; }
+.services-new-page.services-experience .sv-route-disclosure-heading { flex-direction: column; align-items: flex-start; gap: 5px; }
+.services-new-page.services-experience .sv-route-disclosure-heading > span { text-transform: none; letter-spacing: .02em; }
+
+/* Pricing objections answered where the visitor is ready to ask for a quote. */
+.services-pricing-guide { padding-block: var(--experience-space); background: var(--svc-bg); }
+.services-pricing-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); gap: clamp(48px, 8vw, 120px); }
+.services-pricing-copy h2 { margin: 18px 0 24px; font: 400 var(--svc-h2)/1.12 "Source Serif 4", Georgia, serif; letter-spacing: -.025em; }
+.services-pricing-copy > p:not(.svc-eyebrow) { max-width: 460px; color: var(--svc-body); font-size: 16px; line-height: 1.8; }
+.services-pricing-copy .services-pricing-reassurance { padding-top: 20px; border-top: 1px solid var(--svc-line); margin-top: 28px; }
+.services-pricing-questions details { border-bottom: 1px solid var(--svc-line); }
+.services-pricing-questions details:first-child { border-top: 1px solid var(--svc-line); }
+.services-pricing-questions summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 24px; list-style: none; cursor: pointer; color: var(--svc-ivory); font-size: 16px; line-height: 1.5; }
+.services-pricing-questions summary::-webkit-details-marker { display: none; }
+.services-pricing-questions summary > span { position: relative; width: 14px; height: 14px; flex-shrink: 0; }
+.services-pricing-questions summary > span::before,
+.services-pricing-questions summary > span::after { content: ''; position: absolute; background: var(--svc-gold); }
+.services-pricing-questions summary > span::before { top: 6px; width: 14px; height: 1px; }
+.services-pricing-questions summary > span::after { left: 6px; height: 14px; width: 1px; }
+.services-pricing-questions details[open] summary > span::after { display: none; }
+.services-pricing-questions details > p { margin: 0; padding: 0 32px 24px 0; font-size: 15px; line-height: 1.8; color: var(--svc-body); }
+.services-pricing-questions summary:focus-visible { outline: 2px solid var(--svc-gold); outline-offset: 4px; }
+.services-new-page.services-experience .sv-quote-section { padding-block: var(--experience-space); }
+.services-new-page.services-experience .sv-quote-layout { align-items: start; }
+.services-new-page.services-experience .sv-quote-copy { padding-top: 28px; }
+.services-new-page.services-experience .sv-quote-copy .sv-muted { font-size: 15px; }
+
+@media (max-width: 1100px) {
+  .services-new-page.services-experience .airport-process-layout { grid-template-columns: 1fr; gap: 32px; }
+  .services-new-page.services-experience .airport-meeting { max-width: 560px; }
+  .services-new-page.services-experience .sv-water-illustrated-intro { gap: 36px; }
+}
+@media (max-width: 820px) {
+  .services-new-page.services-experience .services-masthead-photo { width: 100%; }
+  .services-new-page.services-experience .services-masthead::before { background: linear-gradient(90deg, rgba(13,14,15,.95), rgba(13,14,15,.5)); }
+  .services-new-page.services-experience .services-masthead-copy { max-width: 560px; }
+  .services-new-page.services-experience .services-masthead-shell { padding-block: 136px 64px; }
+  .services-new-page.services-experience .sv-water-story { grid-template-columns: 1fr; }
+  .services-new-page.services-experience .sv-water-story-point { padding-block: 20px; }
+  .services-new-page.services-experience .sv-water-story-point p { max-width: none; }
+  .services-new-page.services-experience .sv-water-story > img { height: auto; aspect-ratio: 2 / 1; }
+  .services-new-page.services-experience .sv-water-illustrated-intro { grid-template-columns: 1fr; }
+  .services-new-page.services-experience .services-distance-note { display: block; }
+  .services-new-page.services-experience .services-distance-note p { margin-top: 12px; }
+  .services-new-page.services-experience .sv-mountains-photos > .sv-mountains-photo-stage { height: 340px; }
+  .services-new-page.services-experience .sv-coast-hero img { height: auto; aspect-ratio: 1.6; }
+  .services-pricing-layout { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 600px) {
+  .services-new-page.services-experience { --experience-space: 64px; }
+  .services-new-page.services-experience .services-masthead { min-height: 0; }
+  .services-new-page.services-experience .services-masthead h1 { font-size: clamp(42px, 12vw, 58px); }
+  .services-new-page.services-experience .services-masthead-description { font-size: 15px; }
+  .services-new-page.services-experience .services-masthead-actions { gap: 6px; }
+  .services-new-page.services-experience .services-hero-caption { display: none; }
+  .services-new-page.services-experience .services-hero-assurance { font-size: 12px; }
+  .services-new-page.services-experience .airport-steps li { grid-template-columns: 26px minmax(0, 1fr); gap: 10px 16px; padding-block: 22px; }
+  .services-new-page.services-experience .airport-steps p { grid-column: 2; }
+  .services-new-page.services-experience .airport-direction-tabs .sv-tabs { margin-bottom: 8px; }
+  .services-new-page.services-experience .sv-hourly .sv-hourly-grid { gap: 36px; }
+  .services-new-page.services-experience .sv-hourly .sv-hourly-quote { margin-top: 28px; }
+  .services-new-page.services-experience .sv-europe .sv-europe-intro { gap: 30px; }
+  .services-new-page.services-experience .sv-mountains-photos > .sv-mountains-photo-stage { height: 270px; }
+  .services-new-page.services-experience .sv-cruise-route :is(h3, strong) { font-size: 23px; }
+  .services-new-page.services-experience .sv-cruise-journeys { gap: 28px; }
+  .services-pricing-questions summary { font-size: 15px; }
+  .services-new-page.services-experience .sv-quote-copy { padding-top: 0; }
+}

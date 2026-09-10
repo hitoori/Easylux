@@ -9,6 +9,10 @@ Clean React + TypeScript implementation of the local Figma Make chauffeur websit
 - Tailwind CSS 4
 - Vite
 
+## Iconography
+
+Interface icons combine the free MIT-licensed Pikaicons React set with Phosphor icons for transport and brand-specific symbols that are not included in the free Pikaicons package. Pikaicons are styled through `currentColor` to match the Easy Lux palette.
+
 ## Structure
 
 - `src/pages/` — the six website pages
@@ -19,7 +23,6 @@ Clean React + TypeScript implementation of the local Figma Make chauffeur websit
 - `public/images/brand/` — active Easy Lux identity files
 - `public/images/home/` — Home images grouped by section
 - `public/images/services/` — Services images grouped by section
-- `public/images/tours/` — Tours page images
 - `public/images/shared/` — destination images reused across pages
 
 ## Commands

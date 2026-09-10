@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowRight, CarProfile, Circle, Clock, DoorOpen, MapPinLine, User } from '@phosphor-icons/react'
+import { ArrowRight, CarProfile, Clock, DoorOpen, MapPinLine, User } from '@phosphor-icons/react'
 import { coastalRoutes, cruiseRoutes, italyRoutes, mountainRoutes } from './serviceData'
 import { RouteList, RouteSection, ServiceTabs, type RequestJourney } from './ServiceRoutes'
 
@@ -15,18 +15,18 @@ export function HourlySection({ onRequest }: { onRequest: RequestJourney }) {
     <div className="svc-shell sv-editorial sv-hourly-grid">
       <div className="sv-copy">
         <p className="svc-eyebrow">Chauffeur by the hour</p>
-        <h2 id="hourly-title">A private chauffeur,<br />available between every stop.</h2>
-        <p className="sv-lead">Book by the hour when your day includes several addresses, waiting time or a changing schedule. Your chauffeur and vehicle remain available for the agreed booking period.</p>
+        <h2 id="hourly-title">Several stops.<br />One chauffeur.</h2>
+        <p className="sv-lead">Meetings, lunch, shopping or time to explore. Keep one chauffeur and vehicle for your day, with stops and waiting agreed around your schedule.</p>
         <div className="sv-hourly-ideal">
           <span>Best for</span>
-          <p>Business appointments, shopping, restaurants or any day with several stops.</p>
+          <p>Days with several addresses and time between appointments.</p>
         </div>
       </div>
       <div className="sv-hourly-includes" aria-label="What this service includes">
         <p className="svc-eyebrow">Included in your booking</p>
-        <article><User size={28} weight="thin" aria-hidden="true" /><div><h3>Dedicated chauffeur</h3><p>One driver and vehicle remain assigned to your booking.</p></div></article>
-        <article><MapPinLine size={28} weight="thin" aria-hidden="true" /><div><h3>Flexible route</h3><p>Choose the addresses, order of stops and timing.</p></div></article>
-        <article><Clock size={28} weight="thin" aria-hidden="true" /><div><h3>Waiting between stops</h3><p>Your chauffeur stays available for the agreed booking period.</p></div></article>
+        <article><User size={28} weight="thin" aria-hidden="true" /><div><h3>The same driver throughout</h3><p>Leave each stop knowing who will take you to the next.</p></div></article>
+        <article><MapPinLine size={28} weight="thin" aria-hidden="true" /><div><h3>Your stops, in your order</h3><p>Share your addresses and schedule so the day can be planned around you.</p></div></article>
+        <article><Clock size={28} weight="thin" aria-hidden="true" /><div><h3>Time between appointments</h3><p>Your chauffeur remains available during the agreed booking period.</p></div></article>
       </div>
     </div>
     <div className="svc-shell sv-hourly-quote">
@@ -65,10 +65,10 @@ export function WaterTaxiSection({ onRequest }: { onRequest: RequestJourney }) {
     <div className="svc-shell sv-water-illustrated-intro">
       <div>
         <p className="svc-eyebrow">Venice Water Taxi &amp; private chauffeur</p>
-        <h2 id="water-title">One journey, coordinated<br />across water and road.</h2>
+        <h2 id="water-title">Venice by water.<br />The rest by road.</h2>
       </div>
       <div className="sv-water-intro-copy">
-        <p className="sv-lead">Combine a private Water Taxi in Venice with a chauffeur transfer at Piazzale Roma. Both meeting points and timings are confirmed before travel.</p>
+        <p className="sv-lead">Reach Venice’s historic centre with a private Water Taxi and a chauffeur connection at Piazzale Roma. The boat, driver and meeting times are coordinated for your journey.</p>
         <ServiceTabs id="water" labels={['Arriving in Venice', 'Leaving Venice']} selected={direction} onChange={setDirection} />
       </div>
     </div>
@@ -85,7 +85,7 @@ export function WaterTaxiSection({ onRequest }: { onRequest: RequestJourney }) {
   </section>
 }
 
-export function EuropeSection({ onRequest }: { onRequest: RequestJourney }) {
+export function EuropeSection({ onRequest, fareRequest = 0 }: { onRequest: RequestJourney; fareRequest?: number }) {
   const [region, setRegion] = useState(0)
 
   return <section id="service-europe" className="sv-section sv-europe" aria-labelledby="europe-title">
@@ -93,31 +93,24 @@ export function EuropeSection({ onRequest }: { onRequest: RequestJourney }) {
       <div className="sv-europe-intro">
         <div className="sv-europe-copy">
           <p className="svc-eyebrow">Private transfers across Italy &amp; Europe</p>
-          <h2 id="europe-title">From one address to the next, across Italy and Europe.</h2>
-          <p className="sv-lead">Choose your pick-up, destination and travel date. We plan the route around your schedule and confirm one private vehicle for the journey.</p>
+          <h2 id="europe-title">A longer journey.<br />Made personal.</h2>
+          <p className="sv-lead">Travel between cities with your own driver, from your chosen pick-up to your next address. Add an agreed stop for lunch, a break or another place along the way.</p>
         </div>
         <div className="sv-europe-benefits" aria-label="What this service includes">
-          <article><DoorOpen size={34} weight="thin" aria-hidden="true" /><div><h3>Direct travel</h3><p>No shared rides or fixed stops between your chosen addresses.</p></div></article>
-          <article><CarProfile size={34} weight="thin" aria-hidden="true" /><div><h3>Vehicle for your group</h3><p>Passenger count and luggage determine the right vehicle.</p></div></article>
-          <article><MapPinLine size={34} weight="thin" aria-hidden="true" /><div><h3>Stops by request</h3><p>Add a meal break, scenic stop or another agreed stop.</p></div></article>
+          <article><DoorOpen size={34} weight="thin" aria-hidden="true" /><div><h3>From address to address</h3><p>Meet at your agreed pick-up and continue in a private vehicle.</p></div></article>
+          <article><CarProfile size={34} weight="thin" aria-hidden="true" /><div><h3>Room for your plans</h3><p>Share your passengers and luggage so a suitable vehicle can be confirmed.</p></div></article>
+          <article><MapPinLine size={34} weight="thin" aria-hidden="true" /><div><h3>A stop along the way</h3><p>Include a meal break or another address in your request.</p></div></article>
         </div>
       </div>
 
-      <div className="sv-europe-journey" aria-label="Private transfers within Italy and to European destinations">
-        <div className="sv-europe-journey-labels" aria-hidden="true"><span>Pick-up</span><span>Destination</span></div>
-        <div className="sv-europe-route" aria-hidden="true">
-          <Circle size={32} weight="duotone" />
-          <span className="sv-europe-route-line" />
-          <span className="sv-europe-route-crossing"><ArrowRight size={23} weight="light" /></span>
-          <span className="sv-europe-route-line" />
-          <Circle size={32} weight="duotone" />
-        </div>
-        <div className="sv-europe-areas" aria-hidden="true"><span>Italy</span><span>Italy &amp; Europe</span></div>
+      <div className="services-distance-note">
+        <span>Your route, at your pace</span>
+        <p>City to city. Hotel to hotel. Across the border.</p>
       </div>
       <p className="sv-europe-note">Available for journeys within Italy and to destinations in Austria, Slovenia, Croatia, France and beyond.</p>
     </div>
 
-    <RouteSection id="italy-route-prices" title="Italy & Europe routes & fares">
+    <RouteSection id="italy-route-prices" openRequest={fareRequest} title="Italy & Europe routes & fares">
       <div className="sv-europe-routes">
         <div className="sv-europe-routes-head">
           <ServiceTabs id="regions" labels={['Italy', 'Europe']} selected={region} onChange={setRegion} />
@@ -150,13 +143,13 @@ export function MountainsSection({ onRequest }: { onRequest: RequestJourney }) {
               <span className="sv-mountains-photo-location"><strong>Dolomites, Italy</strong><small>Mountain panorama</small></span>
             </button>
           </div>
-          <figcaption>Hover, focus or tap a view to expand it</figcaption>
+          <figcaption>The Dolomites · choose a view</figcaption>
         </figure>
 
         <div className="sv-mountains-copy">
           <p className="svc-eyebrow">Private transfers to the Dolomites</p>
-          <h2 id="mountains-title">Travel directly to the Dolomites.</h2>
-          <p className="sv-mountains-lead">Start from your chosen address, airport, hotel or station anywhere in Italy. Continue privately to Cortina d’Ampezzo, Corvara, Canazei, Ortisei or another Dolomites destination.</p>
+          <h2 id="mountains-title">Your mountain stay<br />starts here.</h2>
+          <p className="sv-mountains-lead">From your airport, station or address in Italy to your hotel in the Dolomites. Share your luggage and equipment, and arrange a return or later collection if you need one.</p>
           <dl className="sv-mountains-details">
             <div><dt>Pick-up</dt><dd>Any accessible address, airport, hotel or station in Italy</dd></div>
             <div><dt>Popular destinations</dt><dd>Cortina d’Ampezzo · Corvara · Canazei · Ortisei</dd></div>
@@ -181,9 +174,9 @@ export function SeasideSection({ onRequest }: { onRequest: RequestJourney }) {
 
         <div className="sv-coast-copy">
           <p className="svc-eyebrow">Private transfers to Italy’s Adriatic coast</p>
-          <h2 id="coast-title">Travel directly to your seaside address.</h2>
-          <p className="sv-coast-lead">Start from any accessible address, airport, hotel or station in Italy. Continue privately to your hotel, villa or holiday address on the coast.</p>
-          <article className="sv-coast-planning"><span aria-hidden="true" /><div><h3>One private vehicle</h3><p>No shared rides or fixed stops. Book one way, return the same day or arrange collection on another date.</p></div></article>
+          <h2 id="coast-title">Straight to<br />your seaside stay.</h2>
+          <p className="sv-coast-lead">Bring your bags and your holiday plans. Your driver takes you from your chosen pick-up in Italy to your hotel, villa or accessible coastal address.</p>
+          <article className="sv-coast-planning"><span aria-hidden="true" /><div><h3>Arrive on your schedule</h3><p>Choose a one-way transfer, a same-day return or collection at the end of your stay.</p></div></article>
         </div>
       </div>
 
@@ -200,8 +193,8 @@ export function CruiseSection({ onRequest }: { onRequest: RequestJourney }) {
       <div className="sv-cruise-overview">
         <div className="sv-cruise-intro">
         <p className="svc-eyebrow">Cruise port transfers</p>
-          <h2 id="cruise-title">Private transfers to and from cruise terminals.</h2>
-          <p className="sv-cruise-lead">Book only the direction you need: your address to a cruise terminal, or the terminal to your next address.</p>
+          <h2 id="cruise-title">Before you sail.<br />After you dock.</h2>
+          <p className="sv-cruise-lead">Connect your cruise with the rest of your trip. Arrange transport to Ravenna, Trieste or Fusina, or meet your driver after disembarking.</p>
         </div>
 
         <figure className="sv-cruise-photo">
@@ -213,9 +206,9 @@ export function CruiseSection({ onRequest }: { onRequest: RequestJourney }) {
         <article>
           <p className="svc-eyebrow">Going to your cruise</p>
           <div className="sv-cruise-route">
-            <h3>Your chosen<br />pick-up</h3>
+            <h3>Your address</h3>
             <ArrowRight size={43} weight="thin" aria-hidden="true" />
-            <strong>Cruise<br />terminal</strong>
+            <strong>Cruise terminal</strong>
           </div>
           <p>Travel directly from your chosen address to Ravenna, Trieste or Fusina cruise terminal.</p>
         </article>
@@ -223,15 +216,15 @@ export function CruiseSection({ onRequest }: { onRequest: RequestJourney }) {
         <article>
           <p className="svc-eyebrow">Leaving your cruise</p>
           <div className="sv-cruise-route">
-            <h3>Cruise<br />terminal</h3>
+            <h3>Cruise terminal</h3>
             <ArrowRight size={43} weight="thin" aria-hidden="true" />
-            <strong>Your next<br />address</strong>
+            <strong>Your next stop</strong>
           </div>
           <p>Meet your driver at the terminal and continue to your hotel, airport or another address.</p>
         </article>
       </div>
 
-      <p className="sv-cruise-flexibility">Book one journey or both.</p>
+      <p className="sv-cruise-flexibility">Reserve either direction, or arrange both together.</p>
     </div>
     <RouteSection title="Cruise port routes & fares"><RouteList routes={cruiseRoutes} title="Cruise port transfer prices" service="cruise" onRequest={onRequest} initial={3} editorial compact footer={<p className="sv-fine-print">Displayed fares cover road transfer only. Water Taxi connections and return journeys are quoted separately.</p>} /></RouteSection>
   </section>

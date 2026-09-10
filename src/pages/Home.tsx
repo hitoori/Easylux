@@ -3,6 +3,7 @@ import type { Page } from '../types/navigation'
 import BookingForm, { type BookingPrefill } from '../components/BookingForm'
 import HomeSections from '../components/home/HomeSections'
 import './home-editorial.css'
+import './home-refinements.css'
 
 interface HomeProps {
   navigate: (page: Page) => void
@@ -69,6 +70,7 @@ export default function Home({ navigate }: HomeProps) {
             key={slide.url}
             role="img"
             aria-label={slide.label}
+            aria-hidden={index !== activeSlide}
             className={`hero-slide ${slide.composition ?? ''} ${index === activeSlide ? 'active' : ''}`}
             style={{
               backgroundImage: `url(${slide.url})`,

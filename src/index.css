@@ -79,6 +79,20 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Pikaicons use a 24px grid and smooth 2px strokes. The paths ship with a
+   neutral stroke colour, so currentColor keeps every icon aligned with the
+   Easy Lux gold/cream palette. */
+.pika-icon {
+  display: block;
+  flex: 0 0 auto;
+  overflow: visible;
+}
+
+.pika-icon :is(path, circle, rect, line, polyline) {
+  stroke: currentColor;
+  vector-effect: non-scaling-stroke;
+}
+
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,

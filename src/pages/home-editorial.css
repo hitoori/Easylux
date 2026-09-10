@@ -1888,10 +1888,10 @@
 }
 .private-journeys-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr);
-  gap: clamp(28px, 3.5vw, 54px);
+  grid-template-columns: minmax(280px, 0.52fr) minmax(0, 1fr);
+  gap: clamp(42px, 5vw, 76px);
 }
-.private-journeys-copy { align-self: start; padding: 0; }
+.private-journeys-copy { align-self: start; max-width: 390px; padding: 9px 0 0; }
 .private-journeys-kicker {
   color: var(--gold);
   font-size: 12px;
@@ -1905,101 +1905,105 @@
   font-size: clamp(40px, 3.6vw, 54px);
   font-weight: 400;
   letter-spacing: -0.025em;
-  line-height: 1.14;
+  line-height: 1.08;
 }
-.private-journeys-copy h2 em { display: inline-block; margin-top: 6px; font-weight: 400; }
+.private-journeys-copy h2 em { display: inline-block; margin-top: 8px; font-weight: 400; }
 .private-journeys-intro {
-  margin: 22px 0 0;
+  margin: 27px 0 0;
   font-size: clamp(14px, 1.15vw, 16px);
-  line-height: 1.75;
+  line-height: 1.82;
   color: var(--text-secondary);
 }
-.private-journeys-benefits {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 9px;
-  margin-top: 24px;
-  padding-top: 20px;
-  color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 1.8;
-}
-.private-journeys-benefits::before { content: ''; position: absolute; top: 0; left: 0; width: 120px; border-top: 1px solid var(--gold); }
-.private-journeys-benefits span + span::before { content: '·'; padding-right: 9px; color: var(--gold); }
-.private-journeys-hint { margin: 24px 0 14px; font-size: 14px; line-height: 1.6; color: var(--text-muted); }
 .private-journeys-plan {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   gap: 22px;
-  min-height: 52px;
-  padding: 13px 22px;
-  border: 1px solid var(--gold);
+  min-height: 46px;
+  margin-top: 30px;
+  padding: 11px 0 9px;
+  border: 0;
+  border-bottom: 1px solid var(--gold);
   color: var(--gold);
   background: transparent;
   text-transform: uppercase;
-  letter-spacing: 0.13em;
-  font-size: 12px;
+  letter-spacing: 0.11em;
+  font-size: 11px;
   transition: color 180ms ease, background-color 180ms ease;
 }
-.private-journeys-plan:hover { color: var(--background); background: var(--gold); }
+.private-journeys-plan:hover { color: var(--text-primary); }
 .private-journeys-visual { min-width: 0; }
-.private-journeys-photo { position: relative; height: clamp(260px, 27vw, 390px); overflow: hidden; background: var(--surface); }
+.private-journeys-photo { position: relative; height: clamp(280px, 28vw, 410px); overflow: hidden; background: var(--surface); }
 .private-journeys-photo img {
   position: absolute; inset: 0;
   width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 53%;
   opacity: 0; transition: opacity 650ms ease; pointer-events: none;
 }
 .private-journeys-photo img.is-active { opacity: 1; }
+.private-journeys-photo-caption {
+  position: absolute;
+  z-index: 2;
+  inset: auto 0 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  padding: 42px 20px 15px;
+  background: linear-gradient(transparent, rgba(5,6,7,.68));
+  color: rgba(236,230,219,.7);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.private-journeys-photo-caption span { color: var(--text-primary); }
 .private-journeys button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-.private-journeys-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 18px 0 16px; }
+.private-journeys-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-inline: 1px solid var(--border); }
 .private-journeys-tabs button {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 50px;
-  padding: 8px 10px 12px;
-  color: var(--text-primary);
-  font-size: clamp(11px, 0.92vw, 15px);
-  letter-spacing: 0.12em;
+  min-height: 68px;
+  padding: 15px 14px 17px;
+  color: var(--text-secondary);
+  font-size: clamp(10px, 0.78vw, 12px);
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   line-height: 1.5;
   background: transparent;
 }
 .private-journeys-tabs button + button { border-left: 1px solid var(--border); }
-.private-journeys-tabs button::after { content: ''; position: absolute; bottom: 0; left: 10px; right: 10px; height: 2px; background: transparent; }
-.private-journeys-tabs button.is-image-active { color: var(--gold); }
-.private-journeys-tabs button.is-image-active::after { background: var(--gold); }
+.private-journeys-tabs button::after { content: ''; position: absolute; bottom: 0; left: 14px; right: 14px; height: 1px; background: transparent; }
+.private-journeys-tabs button.is-selected { color: var(--gold); background: var(--background-secondary); }
+.private-journeys-tabs button.is-selected::after { background: var(--gold); }
 .private-journeys-tabs button:hover { color: var(--gold-hover); }
 .private-journeys-tabs button span { flex-shrink: 0; }
 .private-journeys-route {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.25fr) auto;
   align-items: stretch;
-  min-height: 104px;
-  border-block: 1px solid var(--border);
+  min-height: 112px;
+  border: 1px solid var(--border);
+  border-top: 0;
 }
 .private-journeys-stops, .private-journeys-terms {
   display: flex;
-  align-items: center;
-  align-content: center;
-  flex-wrap: wrap;
-  gap: 6px;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
   margin: 0;
-  padding: 16px 14px;
+  padding: 20px 22px;
   font-size: 14px;
   line-height: 1.7;
 }
-.private-journeys-stops { padding-left: 6px; }
-.private-journeys-stops > span { display: inline-flex; align-items: center; gap: 7px; }
+.private-journeys-stops small, .private-journeys-terms small { color: var(--text-muted); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; }
+.private-journeys-stops p, .private-journeys-terms p { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 0; }
+.private-journeys-stops p > span { display: inline-flex; align-items: center; gap: 7px; }
 .private-journeys-stops svg, .private-journeys-terms span { color: var(--gold); flex-shrink: 0; }
 .private-journeys-terms { border-left: 1px solid var(--border); color: var(--text-secondary); }
 .private-journeys-route > button {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  min-height: 70px; padding: 16px 0 16px 16px; border-left: 1px solid var(--border);
+  min-height: 70px; padding: 16px 20px; border-left: 1px solid var(--border);
   color: var(--gold); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; background: transparent;
 }
 .private-journeys-route > button:hover { color: var(--gold-hover); }
@@ -2008,12 +2012,12 @@
 .private-journeys-details p { margin: 0; max-width: 760px; font-size: 14px; line-height: 1.8; color: var(--text-secondary); }
 .private-journeys-details .private-journeys-pricing { margin-top: 10px; color: var(--text-muted); }
 @media (max-width: 1100px) {
-  .private-journeys-layout { grid-template-columns: minmax(0, 0.6fr) minmax(0, 1fr); gap: 28px; }
+  .private-journeys-layout { grid-template-columns: minmax(260px, 0.56fr) minmax(0, 1fr); gap: 34px; }
   .private-journeys-copy h2 { font-size: 40px; }
   .private-journeys-tabs button { gap: 7px; padding-inline: 8px; letter-spacing: 0.06em; }
   .private-journeys-route { grid-template-columns: 1fr auto; }
-  .private-journeys-stops { grid-column: 1 / -1; border-bottom: 1px solid var(--border); padding-block: 17px; }
-  .private-journeys-terms { padding-left: 6px; border-left: 0; }
+  .private-journeys-stops { grid-column: 1 / -1; border-bottom: 1px solid var(--border); }
+  .private-journeys-terms { border-left: 0; }
   .private-journeys-route > button { min-height: 64px; }
 }
 @media (max-width: 760px) {
@@ -2023,16 +2027,13 @@
   .private-journeys-kicker { font-size: 11px; margin-bottom: 20px; }
   .private-journeys-copy h2 { font-size: clamp(37px, 10vw, 48px); }
   .private-journeys-intro { margin-top: 22px; font-size: 14px; line-height: 1.75; }
-  .private-journeys-benefits { margin-top: 24px; padding-top: 23px; font-size: 14px; gap: 4px 7px; }
-  .private-journeys-benefits span + span::before { padding-right: 7px; }
-  .private-journeys-hint { margin-top: 22px; margin-bottom: 15px; }
-  .private-journeys-plan { width: 100%; min-height: 50px; font-size: 12px; }
+  .private-journeys-plan { min-height: 46px; margin-top: 24px; font-size: 11px; }
   .private-journeys-photo { height: auto; aspect-ratio: 1.8; }
-  .private-journeys-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 12px 0 18px; gap: 8px 0; }
-  .private-journeys-tabs button { justify-content: flex-start; min-height: 52px; padding: 12px 9px; font-size: 12px; gap: 9px; }
+  .private-journeys-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .private-journeys-tabs button { justify-content: flex-start; min-height: 58px; padding: 13px 12px; font-size: 10px; gap: 9px; }
   .private-journeys-tabs button:nth-child(3) { border-left: 0; }
   .private-journeys-route { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(58px, auto) minmax(76px, auto) minmax(52px, auto); }
-  .private-journeys-stops, .private-journeys-terms { padding: 15px 0; font-size: 14px; }
+  .private-journeys-stops, .private-journeys-terms { padding: 17px; font-size: 14px; }
   .private-journeys-route > button { border-left: 0; border-top: 1px solid var(--border); padding: 16px 0; min-height: 52px; }
 }
 @media (prefers-reduced-motion: reduce) {

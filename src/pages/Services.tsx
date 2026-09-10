@@ -14,9 +14,13 @@ import './services-mountains.css'
 import './services-seaside.css'
 import './services-hero.css'
 import './services-unified.css'
+import './services-refinements.css'
+import './services-experience.css'
+import PricingGuide from '../components/services/PricingGuide'
 
 export default function Services({ navigate: _navigate }: { navigate: (page: Page) => void }) {
   const [activeSection, setActiveSection] = useState<JourneyService | null>(null)
+  const [fareRequest, setFareRequest] = useState(0)
   const [meetingOpen, setMeetingOpen] = useState(false)
   const [selection, setSelection] = useState<QuoteSelection | null>(null)
   const modalReturnFocus = useRef<HTMLElement | null>(null)
@@ -104,19 +108,21 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
   }
   const requestJourney = (request: JourneyRequest) => setSelection(previous => ({ ...request, revision: (previous?.revision ?? 0) + 1 }))
 
-  return <div className="services-new-page">
+  return <div className="services-new-page services-experience">
     <section className="services-masthead" aria-labelledby="services-title">
       <img className="services-masthead-photo" src="./images/services/hero/lake.webp" alt="" width={1816} height={866} fetchPriority="high" />
       <div className="services-masthead-shell">
         <div className="services-masthead-copy">
-          <p className="services-masthead-eyebrow">Private transfers in Venice, Italy &amp; Europe</p>
-          <h1 id="services-title"><span>Private transfers</span><span>in Venice, Italy</span><span>and across Europe.</span></h1>
-          <p className="services-masthead-description">Choose an airport transfer, address-to-address journey, hourly chauffeur, Venice Water Taxi connection, Dolomites, seaside or cruise port transfer. Share your journey and receive one clear quote.</p>
+          <p className="services-masthead-eyebrow">Services &amp; prices</p>
+          <h1 id="services-title"><span>Your journey.</span><span><em>A private driver.</em></span></h1>
+          <p className="services-masthead-description">From an arrival in Venice to a journey across Italy or Europe. Choose the service that fits your plans, with your vehicle, pick-up and price agreed before you travel.</p>
           <div className="services-masthead-actions">
-            <button type="button" className="services-masthead-primary" onClick={() => scrollTo('custom')}>Request your transfer quote <ArrowRight size={19} weight="light" aria-hidden="true" /></button>
-            <button type="button" className="services-masthead-secondary" onClick={() => document.getElementById('italy-route-prices')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' })}>Compare routes &amp; fares</button>
+            <button type="button" className="services-masthead-primary" onClick={() => scrollTo('custom')}>Get a transfer quote <ArrowRight size={19} weight="light" aria-hidden="true" /></button>
+            <button type="button" className="services-masthead-secondary" onClick={() => setFareRequest(value => value + 1)}>Compare routes &amp; fares</button>
           </div>
+          <p className="services-hero-assurance">Private vehicle. Your itinerary. A quote before you confirm.</p>
         </div>
+        <p className="services-hero-caption">Venice, Italy &amp; beyond</p>
       </div>
     </section>
     <nav ref={serviceNavRef} className="services-masthead-nav" aria-label="Choose a service">
@@ -128,10 +134,11 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
     <AirportTransfers onMeetingPoint={() => setMeetingOpen(true)} onRequest={requestJourney} />
     <HourlySection onRequest={requestJourney} />
     <WaterTaxiSection onRequest={requestJourney} />
-    <EuropeSection onRequest={requestJourney} />
+    <EuropeSection onRequest={requestJourney} fareRequest={fareRequest} />
     <MountainsSection onRequest={requestJourney} />
     <SeasideSection onRequest={requestJourney} />
     <CruiseSection onRequest={requestJourney} />
+    <PricingGuide />
     <ServiceQuoteForm selection={selection} />
     {meetingOpen && <div className="svc-modal" role="dialog" aria-modal="true" aria-labelledby="meeting-title" onMouseDown={(event) => { if (event.target === event.currentTarget) setMeetingOpen(false) }}><div className="svc-modal-panel">
       <button type="button" className="svc-modal-close" onClick={() => setMeetingOpen(false)} aria-label="Close meeting point guide"><X size={20} /></button>

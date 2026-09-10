@@ -1,258 +1,121 @@
 import { useState } from 'react'
+import { EnvelopeSimple, Phone, WhatsappLogo } from '@phosphor-icons/react'
+import { ArrowRight, Plus, Minus, Send } from '../components/PikaIcons'
 import type { Page } from '../types/navigation'
+import './contact.css'
 
-interface ContactProps {
-  navigate: (page: Page) => void
-}
+const services = [
+  'Airport & city transfer',
+  'Chauffeur by the hour',
+  'Venice water taxi',
+  'Italy & Europe',
+  'Mountains & seaside',
+  'Cruise port transfer',
+  'Other enquiry',
+]
 
-export default function Contact({ navigate: _navigate }: ContactProps) {
+const contactChannels = [
+  { label: 'WhatsApp', value: '+39 390 123 4567', href: 'https://wa.me/393901234567', Icon: WhatsappLogo },
+  { label: 'Call us', value: '+39 390 123 4567', href: 'tel:+393901234567', Icon: Phone },
+  { label: 'Email', value: 'info@easylux.it', href: 'mailto:info@easylux.it', Icon: EnvelopeSimple },
+]
+
+export default function Contact({ navigate }: { navigate: (page: Page) => void }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [service, setService] = useState('')
   const [message, setMessage] = useState('')
-  const [sent, setSent] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSent(true)
-  }
+  const [prepared, setPrepared] = useState(false)
+  const emailDraft = `mailto:info@easylux.it?subject=${encodeURIComponent(`Easy Lux enquiry${service ? ` — ${service}` : ''}`)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nService: ${service || 'General enquiry'}\n\n${message}`)}`
 
   return (
-    <div className="pt-[88px] lg:pt-[96px]">
-      {/* Page header */}
-      <div className="py-24 px-6 lg:px-16 bg-[var(--background-secondary)] border-b border-[rgba(194,154,69,0.1)]">
-        <div className="max-w-[1400px] mx-auto">
-          <p className="text-[11px] tracking-[0.3em] uppercase text-gold mb-4">Get in Touch</p>
-          <h1
-            className="font-display text-[46px] font-normal leading-[0.96] text-cream sm:text-[62px]"
-          >
-            Contact
-            <br />
-            <em>Easy Lux Transfer</em>
-          </h1>
+    <div className="contact-page">
+      <header className="ct-hero ct-shell" aria-labelledby="contact-title">
+        <div>
+          <p className="ct-kicker">Contact Easy Lux</p>
+          <h1 id="contact-title">Contact us</h1>
+          <p className="ct-intro">Planning a transfer or have a question? Tell us what you need.</p>
         </div>
-      </div>
+      </header>
 
-      {/* Contact content */}
-      <section className="py-24 px-6 lg:px-16 max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-16 lg:gap-24">
-          {/* Form */}
-          <div>
-            <h2
-              className="mb-8 font-display text-[30px] font-normal leading-[1.05] text-cream"
-            >
-              Send us a message.
-            </h2>
-            {sent ? (
-              <div className="py-16 text-center border border-[rgba(194,154,69,0.2)]">
-                <p className="text-gold text-[11px] tracking-widest uppercase mb-4">
-                  Message Received
-                </p>
-                <p
-                  className="mb-3 font-display text-[26px] font-normal text-cream"
-                >
-                  We'll be in touch within 30 minutes.
-                </p>
-                <p className="text-[13px] text-[rgba(200,192,181,0.45)]">
-                  For urgent enquiries, please WhatsApp us directly.
-                </p>
-                <button
-                  onClick={() => setSent(false)}
-                  className="mt-6 text-[12px] text-[rgba(200,192,181,0.4)] hover:text-cream underline underline-offset-2 transition-colors"
-                >
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="border border-[rgba(194,154,69,0.15)]">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[rgba(194,154,69,0.1)]">
-                  <div className="bg-[var(--background)] p-5">
-                    <label className="block text-[10px] tracking-[0.2em] uppercase text-[rgba(194,154,69,0.6)] mb-2">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full text-[14px] text-cream bg-transparent border-b border-[rgba(194,154,69,0.15)] pb-2 focus:outline-none focus:border-gold transition-colors"
-                      placeholder="Your full name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="bg-[var(--background)] p-5">
-                    <label className="block text-[10px] tracking-[0.2em] uppercase text-[rgba(194,154,69,0.6)] mb-2">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      className="w-full text-[14px] text-cream bg-transparent border-b border-[rgba(194,154,69,0.15)] pb-2 focus:outline-none focus:border-gold transition-colors"
-                      placeholder="your@email.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[rgba(194,154,69,0.1)] border-t border-[rgba(194,154,69,0.1)]">
-                  <div className="bg-[var(--background)] p-5">
-                    <label className="block text-[10px] tracking-[0.2em] uppercase text-[rgba(194,154,69,0.6)] mb-2">
-                      Phone / WhatsApp
-                    </label>
-                    <input
-                      type="tel"
-                      className="w-full text-[14px] text-cream bg-transparent border-b border-[rgba(194,154,69,0.15)] pb-2 focus:outline-none focus:border-gold transition-colors"
-                      placeholder="+39 or international"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                    />
-                  </div>
-                  <div className="bg-[var(--background)] p-5">
-                    <label className="block text-[10px] tracking-[0.2em] uppercase text-[rgba(194,154,69,0.6)] mb-2">
-                      Service Required
-                    </label>
-                    <select
-                      className="w-full text-[14px] text-cream bg-transparent border-b border-[rgba(194,154,69,0.15)] pb-2 focus:outline-none appearance-none cursor-pointer"
-                      value={service}
-                      onChange={(e) => setService(e.target.value)}
-                    >
-                      <option value="">Select a service…</option>
-                      <option value="transfer">Private Transfer</option>
-                      <option value="airport">Airport Pickup</option>
-                      <option value="hourly">Chauffeur by the Hour</option>
-                      <option value="prosecco">Prosecco Hills Tour</option>
-                      <option value="watertaxi">Venice Water Taxi</option>
-                      <option value="custom">Custom / Multi-day</option>
-                      <option value="other">Other enquiry</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="bg-[var(--background)] p-5 border-t border-[rgba(194,154,69,0.1)]">
-                  <label className="block text-[10px] tracking-[0.2em] uppercase text-[rgba(194,154,69,0.6)] mb-2">
-                    Your Message
-                  </label>
-                  <textarea
-                    rows={5}
-                    className="w-full text-[14px] text-cream bg-transparent border-b border-[rgba(194,154,69,0.15)] pb-2 focus:outline-none focus:border-gold transition-colors resize-none"
-                    placeholder="Dates, route, number of passengers, special requirements…"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="bg-[var(--background)] p-5 border-t border-[rgba(194,154,69,0.1)]">
-                  <button
-                    type="submit"
-                    className="w-full py-4 bg-gold text-[var(--background)] text-[13px] tracking-[0.15em] uppercase font-semibold hover:bg-gold-light transition-colors"
-                  >
-                    Send Message
-                  </button>
-                  <p className="text-center text-[11px] text-[rgba(200,192,181,0.3)] mt-3">
-                    We respond to every message within 30 minutes during operating hours.
-                  </p>
-                </div>
-              </form>
-            )}
-          </div>
-
-          {/* Contact info */}
-          <div className="space-y-8">
+      <section className="ct-concierge ct-shell" aria-label="Plan your journey with Easy Lux">
+        <div className="ct-form-panel">
+          <div className="ct-form-heading">
             <div>
-              <h2
-                className="mb-8 font-display text-[30px] font-normal leading-[1.05] text-cream"
-              >
-                Direct contact.
-              </h2>
-
-              <div className="space-y-0 border border-[rgba(194,154,69,0.15)]">
-                {[
-                  {
-                    icon: '☎',
-                    label: 'Phone',
-                    value: '+39 390 123 4567',
-                    sub: 'Available 07:00–22:00 daily',
-                    href: 'tel:+393901234567',
-                  },
-                  {
-                    icon: '◎',
-                    label: 'WhatsApp',
-                    value: '+39 390 123 4567',
-                    sub: 'Fastest response · 24/7',
-                    href: 'https://wa.me/393901234567',
-                  },
-                  {
-                    icon: '✉',
-                    label: 'Email',
-                    value: 'info@easylux.it',
-                    sub: 'For detailed enquiries',
-                    href: 'mailto:info@easylux.it',
-                  },
-                ].map((c, i) => (
-                  <a
-                    key={c.label}
-                    href={c.href}
-                    className={`flex gap-4 p-5 hover:bg-[rgba(194,154,69,0.03)] transition-colors ${
-                      i < 2 ? 'border-b border-[rgba(194,154,69,0.1)]' : ''
-                    }`}
-                  >
-                    <span className="text-gold text-[18px] flex-shrink-0 mt-0.5">{c.icon}</span>
-                    <div>
-                      <p className="text-[10px] tracking-[0.2em] uppercase text-[rgba(194,154,69,0.5)] mb-0.5">
-                        {c.label}
-                      </p>
-                      <p className="text-[15px] text-cream font-medium">{c.value}</p>
-                      <p className="text-[12px] text-[rgba(200,192,181,0.4)] mt-0.5">{c.sub}</p>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Service area */}
-            <div className="border border-[rgba(194,154,69,0.15)] p-6">
-              <p className="text-[10px] tracking-[0.2em] uppercase text-[rgba(194,154,69,0.6)] mb-3">
-                Service Area
-              </p>
-              <p className="text-[14px] text-cream mb-3">Venice & the Veneto Region</p>
-              <ul className="space-y-1.5 text-[13px] text-[rgba(200,192,181,0.5)]">
-                {[
-                  'Venice — all islands and lagoon',
-                  'Treviso, Padua, Vicenza, Verona',
-                  'Dolomites and Alpine routes',
-                  'Milan, Florence, Rome (long-distance)',
-                  'Slovenia, Croatia, Austria (cross-border)',
-                ].map((area) => (
-                  <li key={area} className="flex items-start gap-2">
-                    <span className="text-[rgba(194,154,69,0.4)] flex-shrink-0">·</span>
-                    {area}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Company details */}
-            <div className="border border-[rgba(194,154,69,0.1)] p-6">
-              <p className="text-[10px] tracking-[0.2em] uppercase text-[rgba(194,154,69,0.5)] mb-4">
-                Company Information
-              </p>
-              <div className="space-y-2.5 text-[13px]">
-                {[
-                  { label: 'Company', value: 'Easy Lux Transfer S.r.l.' },
-                  { label: 'P.IVA', value: '04567890267' },
-                  { label: 'Reg. office', value: 'Via della Libertà 14, 30173 Venezia VE' },
-                  { label: 'Licence', value: 'NCC — Noleggio con Conducente' },
-                  { label: 'Insurance', value: 'Fully licensed & insured' },
-                ].map((item) => (
-                  <div key={item.label} className="flex justify-between gap-4">
-                    <span className="text-[rgba(200,192,181,0.4)]">{item.label}</span>
-                    <span className="text-cream text-right">{item.value}</span>
-                  </div>
-                ))}
-              </div>
+              <h2>Write to us</h2>
             </div>
           </div>
+
+          <form onSubmit={event => { event.preventDefault(); setPrepared(true) }} onChange={() => setPrepared(false)}>
+            <div className="ct-fields">
+              <label htmlFor="ct-name">Full name
+                <input id="ct-name" name="name" autoComplete="name" value={name} onChange={event => setName(event.target.value)} placeholder="Your name" required />
+              </label>
+              <label htmlFor="ct-email">Email address
+                <input id="ct-email" name="email" type="email" autoComplete="email" value={email} onChange={event => setEmail(event.target.value)} placeholder="you@example.com" required />
+              </label>
+              <label htmlFor="ct-phone">Phone <span>(optional)</span>
+                <input id="ct-phone" name="phone" type="tel" autoComplete="tel" value={phone} onChange={event => setPhone(event.target.value)} placeholder="Include country code" />
+              </label>
+              <label htmlFor="ct-service">Service <span>(optional)</span>
+                <select id="ct-service" name="service" value={service} onChange={event => setService(event.target.value)}>
+                  <option value="">Select a service</option>
+                  {services.map(item => <option key={item}>{item}</option>)}
+                </select>
+              </label>
+            </div>
+
+            <label className="ct-message-field" htmlFor="ct-message">Your message
+              <textarea id="ct-message" name="message" rows={4} value={message} onChange={event => setMessage(event.target.value)} placeholder="Your route, travel date, passengers and luggage…" required />
+            </label>
+
+            <div className="ct-submit">
+              <button type="submit" className="ct-primary">Prepare enquiry <Send size={18} aria-hidden="true" /></button>
+              <p>Review and send from your email app.</p>
+            </div>
+
+            {prepared && <div className="ct-draft" role="status">
+              <div><span>Ready</span><h3>Your enquiry has been prepared.</h3></div>
+              <p>Nothing has been sent yet. Open the draft, check your details and send it when you are ready.</p>
+              <a className="ct-inline-link" href={emailDraft}>Open email draft <ArrowRight size={18} aria-hidden="true" /></a>
+            </div>}
+          </form>
+        </div>
+
+        <aside className="ct-contact-panel" aria-labelledby="ct-direct-title">
+          <div>
+            <h2 id="ct-direct-title">Speak with us directly</h2>
+          </div>
+
+          <div className="ct-channels">
+            {contactChannels.map(({ label, value, href, Icon }) => <a key={label} href={href}>
+              <Icon size={20} weight="light" aria-hidden="true" />
+              <div><span>{label}</span><strong>{value}</strong></div>
+              <ArrowRight size={17} aria-hidden="true" />
+            </a>)}
+          </div>
+
+          <div className="ct-area">
+            <h3>Where we travel</h3>
+            <p>Venice &amp; Veneto, with private journeys across Italy and Europe.</p>
+            <button className="ct-inline-link" onClick={() => navigate('services')}>View services &amp; prices <ArrowRight size={17} aria-hidden="true" /></button>
+          </div>
+        </aside>
+      </section>
+
+      <section className="ct-help ct-shell" aria-labelledby="ct-help-title">
+        <div className="ct-help-heading"><h2 id="ct-help-title">Useful to know.</h2><button className="ct-inline-link" onClick={() => navigate('faq')}>Explore all FAQs <ArrowRight size={17} aria-hidden="true" /></button></div>
+        <div className="ct-help-questions">
+          <details><summary>What should I include in my request?<DisclosureIcon /></summary><p>Share your pick-up address, destination, date and preferred time, along with passenger and luggage numbers. For airport arrivals, include your flight number if you have it.</p></details>
+          <details><summary>Does an enquiry confirm my booking?<DisclosureIcon /></summary><p>No. Your enquiry starts the conversation. Your transfer is confirmed once availability, the price and journey details have been agreed with Easy Lux.</p></details>
+          <details><summary>Can I request stops or a return transfer?<DisclosureIcon /></summary><p>Yes. Include the stops, waiting time or return date you have in mind. We’ll review your itinerary and confirm the arrangements and price with you.</p></details>
         </div>
       </section>
     </div>
   )
+}
+
+function DisclosureIcon() {
+  return <span className="ct-disclosure" aria-hidden="true"><Plus className="ct-plus" size={16} /><Minus className="ct-minus" size={16} /></span>
 }

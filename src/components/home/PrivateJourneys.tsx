@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowRight } from '@phosphor-icons/react'
+import { ArrowRight } from '../PikaIcons'
 import type { BookingPrefill } from '../BookingForm'
 
 const destinations = [
@@ -48,7 +48,7 @@ export default function PrivateJourneys({ onBookRoute }: PrivateJourneysProps) {
   const selected = destinations[selectedJourneyIndex]
 
   useEffect(() => {
-    const timer = window.setInterval(() => setActiveImageIndex(index => (index + 1) % destinations.length), 2800)
+    const timer = window.setInterval(() => setActiveImageIndex(index => (index + 1) % destinations.length), 5000)
     return () => window.clearInterval(timer)
   }, [])
 
@@ -64,13 +64,9 @@ export default function PrivateJourneys({ onBookRoute }: PrivateJourneysProps) {
         <div className="private-journeys-copy">
           <p className="private-journeys-kicker">Private journeys</p>
           <h2 id="private-journeys-title">Beyond Venice,<br /><em>on your terms.</em></h2>
-          <p className="private-journeys-intro">Choose the Prosecco Hills, the Dolomites, a seaside stay or your cruise terminal. We arrange the private transport; you choose what to visit and how long to stay.</p>
-          <div className="private-journeys-benefits">
-            <span>Private chauffeur</span><span>Waiting on request</span><span>One-way or return</span>
-          </div>
-          <p className="private-journeys-hint">Select a destination to view its route.</p>
+          <p className="private-journeys-intro">Private journeys to the Prosecco Hills, the Dolomites, the coast and cruise terminals. Waiting or return travel can be arranged around your plans.</p>
           <button className="private-journeys-plan" type="button" onClick={() => onBookRoute({ pickup: 'Venice', destination: selected.destination, airportMode: 'none' })}>
-            Plan your journey <ArrowRight size={19} aria-hidden="true" />
+            Plan this journey <ArrowRight size={19} aria-hidden="true" />
           </button>
         </div>
 
@@ -83,13 +79,14 @@ export default function PrivateJourneys({ onBookRoute }: PrivateJourneysProps) {
                 className={index === activeImageIndex ? 'is-active' : ''}
                 loading="lazy" decoding="async" />
             ))}
+            <p className="private-journeys-photo-caption" aria-hidden="true">In the photograph <span>{destinations[activeImageIndex].label}</span></p>
           </div>
           <div className="private-journeys-tabs" role="tablist" aria-label="Private journey destinations">
             {destinations.map((destination, index) => (
               <button
                 key={destination.id} id={`journey-tab-${destination.id}`} type="button" role="tab"
                 aria-selected={index === selectedJourneyIndex} aria-controls="private-journey-panel"
-                className={index === activeImageIndex ? 'is-image-active' : undefined}
+                className={index === selectedJourneyIndex ? 'is-selected' : undefined}
                 tabIndex={index === selectedJourneyIndex ? 0 : -1}
                 onClick={() => selectDestination(index)}
                 onKeyDown={(event) => {
@@ -110,12 +107,12 @@ export default function PrivateJourneys({ onBookRoute }: PrivateJourneysProps) {
           </div>
           <div id="private-journey-panel" role="tabpanel" aria-labelledby={`journey-tab-${selected.id}`} tabIndex={0}>
             <div className="private-journeys-route" aria-live="polite">
-              <p className="private-journeys-stops">
+              <div className="private-journeys-stops"><small>Route</small><p>
                 {selected.stops.map((stop, index) => <span key={stop}>{index > 0 && <ArrowRight size={13} aria-hidden="true" />}{stop}</span>)}
-              </p>
-              <p className="private-journeys-terms">Private chauffeur <span>·</span> Waiting by agreement <span>·</span> Return on request</p>
+              </p></div>
+              <div className="private-journeys-terms"><small>Transfer details</small><p>Private chauffeur <span>·</span> Waiting by agreement <span>·</span> Return on request</p></div>
               <button type="button" aria-expanded={detailsOpen} aria-controls="private-journey-details" onClick={() => setDetailsOpen(open => !open)}>
-                {detailsOpen ? 'Hide details' : 'Transfer details'} <ArrowRight size={16} aria-hidden="true" />
+                {detailsOpen ? 'Hide details' : 'View details'} <ArrowRight size={16} aria-hidden="true" />
               </button>
             </div>
             <div id="private-journey-details" className="private-journeys-details" hidden={!detailsOpen}>

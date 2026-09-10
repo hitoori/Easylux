@@ -1,79 +1,39 @@
 import { useState } from 'react'
-import { AirplaneLanding, AirplaneTakeoff, ArrowRight, Car, Clock, IdentificationCard, MapPin, type Icon } from '@phosphor-icons/react'
-import { ServiceTabs, type RequestJourney } from './ServiceRoutes'
+import { AirplaneLanding, AirplaneTakeoff, ArrowRight, MapPin } from '@phosphor-icons/react'
+import type { RequestJourney } from './ServiceRoutes'
 import './airport-transfers.css'
+import './airport-concierge.css'
 
-type Step = { icon: Icon; title: string; text: string }
-const arrivalSteps: Step[] = [
-  { icon: AirplaneLanding, title: 'Share your flight', text: 'Your flight number lets us follow the live arrival time.' },
-  { icon: IdentificationCard, title: 'Meet in Arrivals', text: 'After baggage claim, find your driver holding your name.' },
-  { icon: Car, title: 'Travel to your address', text: 'Continue privately to your destination with luggage assistance.' },
+const journeys = [
+  { label: 'From the airport', detail: 'An easy arrival', icon: AirplaneLanding, from: 'Airport arrivals', to: 'Your hotel or address', title: 'Your driver meets you in Arrivals.', description: 'After baggage claim, look for your name. Continue to your destination in a private vehicle, with help for your luggage.', prepare: 'Share your flight number', preparation: 'We follow the live arrival time. Your quote confirms the included waiting time and any additional charge.', meeting: 'A familiar face, even on your first visit.', note: 'Your meeting instructions are sent before travel.' },
+  { label: 'To the airport', detail: 'A considered departure', icon: AirplaneTakeoff, from: 'Your hotel or address', to: 'Airport departures', title: 'Leave with your pick-up arranged.', description: 'Meet your chauffeur at the agreed address and travel directly to your departure terminal, with help for your luggage.', prepare: 'Share your departure details', preparation: 'Send your airport, flight number and departure time so your collection time can be agreed.', meeting: 'The right terminal. A clear meeting time.', note: 'Your collection point and terminal are confirmed before travel.' },
+  { label: 'Address to address', detail: 'The next part of your trip', icon: MapPin, from: 'Your pick-up address', to: 'Your next destination', title: 'One address to the next. Privately.', description: 'Connect your hotel, station or another accessible address with a private chauffeur. Your route follows your plans.', prepare: 'Share both addresses', preparation: 'Add your date, preferred time and luggage. Tell us about access restrictions so the meeting point can be confirmed.', meeting: 'Your route, with the details agreed.', note: 'Where vehicle access is restricted, we agree the nearest accessible pick-up point.' },
 ]
-const departureSteps: Step[] = [
-  { icon: AirplaneTakeoff, title: 'Share your departure', text: 'Send the airport, flight number, departure time and pick-up address.' },
-  { icon: Clock, title: 'Confirm your pick-up', text: 'Your collection time and accessible meeting point are agreed in advance.' },
-  { icon: Car, title: 'Arrive at the terminal', text: 'Travel directly to the correct terminal with luggage assistance.' },
-]
-const addressSteps: Step[] = [
-  { icon: MapPin, title: 'Share both addresses', text: 'Add your travel date and preferred pick-up time.' },
-  { icon: Clock, title: 'Confirm vehicle access', text: 'Meet at the address or the nearest point the vehicle can reach.' },
-  { icon: Car, title: 'Travel door to door', text: 'Continue directly to your destination with luggage assistance.' },
-]
-
-const stepVariants = [arrivalSteps, departureSteps, addressSteps]
-const meetingTitles = ['Your Arrivals meeting point', 'Your airport drop-off', 'Your pick-up point']
-const meetingDescriptions = [
-  'See where to find your driver after baggage claim.',
-  'Your terminal and collection time are confirmed from your flight details.',
-  'Share any access restrictions so the closest meeting point can be confirmed.',
-]
-
-// Inactive copy reserves its natural space, but is hidden visually and from assistive technology.
-function StableText({ texts, selected }: { texts: string[]; selected: number }) {
-  return <span className="airport-stable-text">{texts.map((text, index) => <span key={text} aria-hidden={index !== selected} className={index === selected ? 'is-current' : undefined}>{text}</span>)}</span>
-}
-
-function TransferSteps({ selected }: { selected: number }) {
-  return <ol className="airport-steps">
-    {stepVariants[selected].map(({ icon: StepIcon }, index) => <li key={index}>
-      <div className="airport-step-marker" aria-hidden="true"><span>{String(index + 1).padStart(2, '0')}</span></div>
-      <StepIcon className="airport-step-icon" size={58} weight="thin" aria-hidden="true" />
-      <h3><StableText texts={stepVariants.map(steps => steps[index].title)} selected={selected} /></h3>
-      <p><StableText texts={stepVariants.map(steps => steps[index].text)} selected={selected} /></p>
-    </li>)}
-  </ol>
-}
 
 export default function AirportTransfers({ onMeetingPoint, onRequest }: { onMeetingPoint: () => void; onRequest: RequestJourney }) {
-  const [service, setService] = useState(0)
-  const [direction, setDirection] = useState(0)
-  const arriving = service === 0 && direction === 0
-  const selected = service === 1 ? 2 : direction
-  const process = <div className="airport-process-layout">
-    <div>
-      <TransferSteps selected={selected} />
-      <p className="airport-waiting-note">Your quote confirms the included waiting time and any additional waiting charge.</p>
-    </div>
-    <aside className="airport-meeting">
-      <h3><StableText texts={meetingTitles} selected={selected} /></h3>
-      <p><StableText texts={meetingDescriptions} selected={selected} /></p>
-      <button type="button" className={`sv-button${arriving ? '' : ' airport-reserved-control'}`} disabled={!arriving} aria-hidden={!arriving} onClick={onMeetingPoint}>See Arrivals meeting point <ArrowRight size={21} aria-hidden="true" /></button>
-      <p className="airport-meeting-note">Final meeting instructions are sent before travel.</p>
-    </aside>
-  </div>
-
-  return <section id="service-airport" className="airport-transfers" aria-labelledby="airport-transfers-title">
-    <div className="svc-shell airport-content">
-      <p className="svc-eyebrow">Venice airport &amp; private transfers</p>
-      <h2 id="airport-transfers-title">Choose your pick-up. Travel directly.</h2>
-      <p className="airport-intro">Book an airport transfer or an address-to-address journey. Flight details, meeting point, luggage and timing are confirmed before travel.</p>
-      <div className="airport-family-tabs"><ServiceTabs id="private-transfer" labels={['Airport transfers', 'Address-to-address']} selected={service} onChange={setService} ariaLabel="Private transfer type" /></div>
-      <div className={`airport-direction-tabs${service === 1 ? ' airport-reserved-control' : ''}`} aria-hidden={service === 1} inert={service === 1}><ServiceTabs id="airport-direction" labels={['From the airport', 'To the airport']} selected={direction} onChange={setDirection} ariaLabel="Airport transfer direction" /></div>
-      <div id="private-transfer-panel-0" role="tabpanel" aria-labelledby="private-transfer-tab-0" hidden={service !== 0}>
-        {[0, 1].map(index => <div key={index} id={`airport-direction-panel-${index}`} role="tabpanel" aria-labelledby={`airport-direction-tab-${index}`} hidden={direction !== index}>{direction === index && service === 0 && process}</div>)}
+  const [selected, setSelected] = useState(0)
+  const journey = journeys[selected]
+  return <section id="service-airport" className="airport-transfers airport-concierge" aria-labelledby="airport-transfers-title">
+    <div className="svc-shell ac-shell">
+      <header className="ac-heading">
+        <div><p className="svc-eyebrow">Airport &amp; city transfers</p><h2 id="airport-transfers-title">Arrive at ease.<br />Leave in good hands.</h2></div>
+        <p className="ac-intro">A private chauffeur for the connections that make your trip flow. From the airport to your hotel, or from one address to the next.</p>
+      </header>
+      <div className="ac-experience">
+        <div className="ac-choices" role="tablist" aria-label="Choose your transfer" aria-orientation="vertical">
+          {journeys.map(({ label, detail, icon: Icon }, index) => <button key={label} type="button" role="tab" id={`ac-tab-${index}`} aria-controls="ac-journey" aria-selected={selected === index} tabIndex={selected === index ? 0 : -1} onClick={() => setSelected(index)} onKeyDown={event => {
+            const next = event.key === 'ArrowDown' ? (index + 1) % journeys.length : event.key === 'ArrowUp' ? (index + journeys.length - 1) % journeys.length : event.key === 'Home' ? 0 : event.key === 'End' ? journeys.length - 1 : null
+            if (next !== null) { event.preventDefault(); setSelected(next); document.getElementById(`ac-tab-${next}`)?.focus() }
+          }}><Icon size={26} weight="thin" aria-hidden="true" /><span><strong>{label}</strong><small>{detail}</small></span><ArrowRight size={19} aria-hidden="true" /></button>)}
+          <p className="ac-private-note">Your vehicle.<br />Your journey.</p>
+        </div>
+        <div className="ac-journey" id="ac-journey" role="tabpanel" aria-labelledby={`ac-tab-${selected}`} tabIndex={0}>
+          <div className="ac-route" aria-label={`${journey.from} to ${journey.to}`}><div><span>Pick-up</span><strong>{journey.from}</strong></div><ArrowRight size={32} weight="thin" aria-hidden="true" /><div><span>Destination</span><strong>{journey.to}</strong></div></div>
+          <div className="ac-details"><div className="ac-main-copy"><h3>{journey.title}</h3><p>{journey.description}</p></div><div className="ac-preparation"><span className="ac-small-label">Before you travel</span><h4>{journey.prepare}</h4><p>{journey.preparation}</p></div></div>
+          <div className="ac-meeting"><MapPin size={21} weight="thin" aria-hidden="true" /><div><h4>{journey.meeting}</h4><p>{journey.note}</p></div>{selected === 0 && <button type="button" onClick={onMeetingPoint}>View meeting point <ArrowRight size={17} aria-hidden="true" /></button>}</div>
+          <div className="ac-action"><p>Vehicle and price agreed before you confirm.</p><button className="sv-button" type="button" onClick={() => onRequest({ service: 'airport', airportPickup: selected === 0 })}>Get a transfer quote <ArrowRight size={19} aria-hidden="true" /></button></div>
+        </div>
       </div>
-      <div id="private-transfer-panel-1" role="tabpanel" aria-labelledby="private-transfer-tab-1" hidden={service !== 1}>{service === 1 && process}</div>
-      <button type="button" className="sv-text-link airport-request" onClick={() => onRequest({ service: 'airport', airportPickup: arriving })}>Request a transfer quote <ArrowRight size={18} aria-hidden="true" /></button>
     </div>
   </section>
 }
