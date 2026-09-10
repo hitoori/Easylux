@@ -10,6 +10,28 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## Project design decisions
 
+- About Us redesign: use a minimal, text-led editorial composition with no photography in page content. Include a typographic hero, mission, three values with simple gold outline icons, an abstract Europe route map centred on Venice, a brand statement and restrained final CTA. Preserve global header/footer and confirmed Venice/Italy/Europe facts. This supersedes the previous photographic About layout.
+
+- FAQ help CTA refinement: extend the Venice photograph across the entire section and place the copy and both CTAs over it with a dark directional overlay. Keep text on the right for desktop and anchor it near the bottom on mobile.
+
+- FAQ redesign: cinematic Venice/vehicle hero, five sidebar categories (Booking & Payment, Pick-up & Journey, Airport & Water Taxi, Long-distance & Hourly, General), airy serif accordion rows and photographic help CTA. Retain every existing FAQ answer and global search. Use compact horizontal mobile category navigation and shared global palette; this supersedes earlier FAQ anatomy.
+
+- Contact location correction: show Venice, Italy in the photograph and no registered-office block below it. Keep the official Treviso address in the footer/company data. Phone numbers and slash separators must share a baseline.
+
+- Display both company phone numbers inline, separated by /, with separate actionable links; allow wrapping on narrow screens.
+
+- Company email: easyluxtransfer@gmail.com. Footer includes Facebook, Instagram and TikTok icons; keep them disabled until the owner supplies actual profile URLs in src/config/company.ts.
+
+- Verified company details supplied by the owner: +393207874212 and +393202416662. Registered office: Strada Santa Bona Nuova 1/A, 31100 Treviso (TV), Italy. Operational base: Venice; journeys across Italy and Europe. Reuse src/config/company.ts and distinguish the legal address from the operational base.
+
+- Contact information strip: use three equal desktop columns with serif headings, small gold labels and exactly three concise title/body entries each. Share row sizing so headings and all entries align across columns; stack naturally on mobile.
+
+- Contact hero refinement: increase supporting copy and the three trust items for readability, give them more breathing room, and anchor the italic editorial message at the bottom right of the hero image.
+
+- Contact layout correction: keep the heading, three vertically stacked compact contact links and location photograph in the right column beside the form. Align the complete right column’s bottom with the form, with the heading slightly higher and the photo filling the remaining height. Do not move contacts into a horizontal row above the form.
+
+- Contact redesign (2026-09-10): use the global palette, Source Serif 4 / Manrope, restrained site typography and existing icon families. Follow the supplied compact photographic hero, left form/right contact, information strip, service navigation and FAQ preview. Keep global header/footer and honest email-draft behavior. This supersedes earlier Contact layout refinements.
+
 - Contact visual correction (2026-09-10): the large framed graphite form with black outlined fields and oversized serif subheadings was rejected. Keep form left/contact right, but use a flat form surface, softly filled fields, restrained sans-serif utility headings, shorter copy, and a compact warm charcoal contact inset. Preserve black/gold identity and readable spacing.
 
 - Contact form refinement clarified 2026-09-10: keep the existing fields and left-form/right-contact structure; do not add the Home booking widget's three journey tabs. Borrow only its visual language: graphite framed form, restrained gold outline, near-black field wells, compact typography and gold primary action.
