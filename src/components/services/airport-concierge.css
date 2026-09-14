@@ -1,65 +1,109 @@
-/* A private itinerary: quiet service selection beside the journey details. */
-.services-new-page.services-experience .airport-concierge { background: var(--svc-bg); }
-.services-new-page .airport-concierge .ac-shell { padding-block: clamp(64px, 7vw, 100px); }
-.services-new-page .airport-concierge .ac-heading { display: grid; grid-template-columns: 1.15fr 1fr; gap: 80px; align-items: end; margin-bottom: 48px; }
-.services-new-page .airport-concierge .ac-heading h2 { margin-bottom: 0; }
-.services-new-page .airport-concierge .ac-intro { font-size: 16px; max-width: 450px; line-height: 1.8; padding-bottom: 5px; }
-.services-new-page .airport-concierge .ac-experience { display: grid; grid-template-columns: 300px minmax(0,1fr); border-top: 1px solid var(--svc-line); border-bottom: 1px solid var(--svc-line); }
-.services-new-page .airport-concierge .ac-choices { padding: 32px 30px 32px 0; border-right: 1px solid var(--svc-line); }
-.services-new-page .airport-concierge .ac-choices button { display: flex; align-items: center; gap: 16px; width: 100%; padding: 23px 16px; border: 0; border-left: 2px solid transparent; background: transparent; text-align: left; color: var(--svc-muted); cursor: pointer; transition: background .2s, color .2s; }
-.services-new-page .airport-concierge .ac-choices button[aria-selected="true"] { background: #191b1b; color: var(--svc-ivory); border-left-color: var(--svc-gold); }
-.services-new-page .airport-concierge .ac-choices button:hover { color: var(--svc-ivory); background: #171919; }
-.services-new-page .airport-concierge .ac-choices button > svg { flex-shrink: 0; color: var(--svc-gold); }
-.services-new-page .airport-concierge .ac-choices button > svg:last-child { margin-left: auto; opacity: 0; }
-.services-new-page .airport-concierge .ac-choices button[aria-selected="true"] > svg:last-child { opacity: 1; }
-.services-new-page .airport-concierge .ac-choices strong { display: block; font: 400 19px/1.3 "Source Serif 4", Georgia, serif; }
-.services-new-page .airport-concierge .ac-choices small { display: block; margin-top: 5px; font: 400 11px/1.5 Manrope, sans-serif; color: var(--svc-muted); }
-.services-new-page .airport-concierge .ac-private-note { margin: 42px 18px 0; font: italic 400 27px/1.3 "Source Serif 4", Georgia, serif; color: var(--svc-gold); }
-.services-new-page .airport-concierge .ac-journey { min-width: 0; padding: 40px 0 32px 48px; }
-.services-new-page .airport-concierge .ac-route { display: grid; grid-template-columns: 1fr 32px 1fr; align-items: center; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--svc-line); }
-.services-new-page .airport-concierge .ac-route span, .services-new-page .airport-concierge .ac-small-label { display: block; color: var(--svc-gold); font: 500 10px/1.5 Manrope, sans-serif; text-transform: uppercase; letter-spacing: .13em; margin-bottom: 12px; }
-.services-new-page .airport-concierge .ac-route strong { font: 400 clamp(24px,2.3vw,33px)/1.2 "Source Serif 4", Georgia, serif; color: var(--svc-ivory); }
-.services-new-page .airport-concierge .ac-route > svg { color: var(--svc-gold); }
-.services-new-page .airport-concierge .ac-details { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; padding-block: 32px; }
-.services-new-page .airport-concierge .ac-details h3 { font-size: 27px; line-height: 1.25; margin-bottom: 14px; }
-.services-new-page .airport-concierge .ac-details p { font-size: 14px; line-height: 1.8; }
-.services-new-page .airport-concierge .ac-preparation { padding-left: 28px; border-left: 1px solid var(--svc-line); }
-.services-new-page .airport-concierge h4 { margin: 0 0 8px; color: var(--svc-ivory); font: 500 14px/1.5 Manrope, sans-serif; }
-.services-new-page .airport-concierge .ac-meeting { display: flex; gap: 14px; align-items: start; padding: 22px; background: #171a1b; }
-.services-new-page .airport-concierge .ac-meeting > svg { color: var(--svc-gold); flex-shrink: 0; margin-top: 2px; }
-.services-new-page .airport-concierge .ac-meeting h4 { font-size: 13px; font-weight: 400; margin-bottom: 5px; }
-.services-new-page .airport-concierge .ac-meeting p { font-size: 12px; line-height: 1.7; }
-.services-new-page .airport-concierge .ac-meeting button { display: flex; align-items: center; gap: 10px; flex-shrink: 0; margin: auto 0 auto auto; padding: 10px 0; background: none; border: 0; color: var(--svc-gold); font: 500 12px/1.4 Manrope, sans-serif; cursor: pointer; }
-.services-new-page .airport-concierge .ac-action { display: flex; gap: 24px; justify-content: space-between; align-items: center; padding-top: 28px; }
-.services-new-page .airport-concierge .ac-action p { font-size: 12px; max-width: 230px; }
-.services-new-page .airport-concierge .ac-action .sv-button { background: var(--svc-gold); color: var(--svc-bg); border-color: var(--svc-gold); text-transform: none; letter-spacing: 0; font-size: 13px; padding: 16px 22px; gap: 20px; }
-.services-new-page .airport-concierge .ac-action .sv-button:hover { background: var(--svc-ivory); border-color: var(--svc-ivory); }
-.services-new-page .airport-concierge :is(button, [role="tabpanel"]):focus-visible { outline: 2px solid var(--svc-gold); outline-offset: 4px; }
-@media(max-width:1100px) {
-  .services-new-page .airport-concierge .ac-experience { grid-template-columns: 250px minmax(0,1fr); }
-  .services-new-page .airport-concierge .ac-choices { padding-right: 20px; }
-  .services-new-page .airport-concierge .ac-journey { padding-left: 30px; }
-  .services-new-page .airport-concierge .ac-details { grid-template-columns: 1fr; gap: 24px; }
-  .services-new-page .airport-concierge .ac-preparation { border-left: 0; padding-left: 0; }
-  .services-new-page .airport-concierge .ac-meeting { flex-wrap: wrap; }
-  .services-new-page .airport-concierge .ac-meeting > div { flex: 1; }
-  .services-new-page .airport-concierge .ac-meeting button { margin: 0 0 0 35px; }
+.services-new-page.services-experience .airport-concierge{background:var(--svc-bg)}
+.services-new-page .airport-concierge .ac-shell{padding-block:clamp(72px,7.2vw,108px)}
+.services-new-page .airport-concierge .ac-stage{display:grid;grid-template-columns:minmax(250px,.58fr) minmax(350px,1fr) minmax(390px,1.06fr);grid-template-areas:"sidebar copy visual" "sidebar features visual" "sidebar info info";column-gap:clamp(40px,4vw,64px);row-gap:38px;align-items:start}
+.services-new-page .airport-concierge .ac-sidebar{grid-area:sidebar;display:flex;flex-direction:column;align-self:stretch;min-width:0;padding:22px 24px 22px 18px;border-right:1px solid var(--svc-line);background:transparent;box-shadow:none}
+.services-new-page .airport-concierge .ac-sidebar-label{margin:0 0 26px;color:var(--svc-gold);font:500 13px/1.5 Manrope,sans-serif;letter-spacing:.15em;text-transform:uppercase}
+.services-new-page .airport-concierge .ac-choices{display:grid;gap:5px}
+.services-new-page .airport-concierge .ac-choices button{position:relative;display:grid;grid-template-columns:24px 1fr 17px;align-items:center;gap:14px;width:100%;min-height:74px;padding:14px 14px 14px 18px;border:0;border-left:2px solid transparent;background:transparent;color:var(--svc-muted);text-align:left;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.services-new-page .airport-concierge .ac-choices button:hover{background:rgba(27,31,33,.42);color:var(--svc-ivory)}
+.services-new-page .airport-concierge .ac-choices button[aria-selected="true"]{border-left-color:var(--svc-gold);background:var(--background-secondary);color:var(--svc-ivory)}
+.services-new-page .airport-concierge .ac-choices button>svg:first-child{width:25px;height:25px}
+.services-new-page .airport-concierge .ac-choices button>svg:first-child{color:var(--svc-muted);transition:color .2s ease}
+.services-new-page .airport-concierge .ac-choices button[aria-selected="true"]>svg:first-child{color:var(--svc-gold)}
+.services-new-page .airport-concierge .ac-choices button>svg:last-child{opacity:0;transform:translateX(-4px);color:var(--svc-gold);transition:opacity .2s ease,transform .2s ease}
+.services-new-page .airport-concierge .ac-choices button[aria-selected="true"]>svg:last-child{opacity:1;transform:translateX(0)}
+.services-new-page .airport-concierge .ac-choices strong{display:block;color:inherit;font:500 15px/1.35 Manrope,sans-serif}
+.services-new-page .airport-concierge .ac-choices small{display:block;margin-top:5px;color:var(--svc-muted);font:400 12px/1.45 Manrope,sans-serif}
+.services-new-page .airport-concierge .ac-private-note{position:relative;margin:auto 0 34px;padding-top:19px;color:var(--svc-body);font:italic 400 25px/1.25 "Source Serif 4",Georgia,serif}
+.services-new-page .airport-concierge .ac-private-note::before{content:"";position:absolute;top:0;left:0;width:38px;height:1px;background:var(--svc-gold)}
+.services-new-page .airport-concierge .ac-copy{grid-area:copy;min-width:0;padding-top:3px}
+.services-new-page .airport-concierge .ac-index{display:flex;align-items:center;gap:13px;margin-bottom:26px;color:var(--svc-gold);font:500 12px/1 Manrope,sans-serif}
+.services-new-page .airport-concierge .ac-index i{display:block;width:34px;height:1px;background:var(--svc-gold)}
+.services-new-page .airport-concierge .ac-copy h2{margin:0;color:var(--svc-ivory);font:400 clamp(43px,4vw,60px)/1.03 "Source Serif 4",Georgia,serif;letter-spacing:-.035em}
+.services-new-page .airport-concierge .ac-copy h3{max-width:390px;margin:24px 0 16px;color:var(--svc-ivory);font:italic 400 clamp(21px,1.75vw,27px)/1.3 "Source Serif 4",Georgia,serif;letter-spacing:-.01em}
+.services-new-page .airport-concierge .ac-copy>p{max-width:475px;margin:0;color:var(--svc-body);font:400 16px/1.75 Manrope,sans-serif}
+.services-new-page .airport-concierge .ac-visual{position:relative;grid-area:visual;align-self:stretch;min-height:490px;margin:0;overflow:hidden;background:var(--background-secondary)}
+.services-new-page .airport-concierge .ac-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,14,15,.08) 22%,rgba(13,14,15,.72) 100%);pointer-events:none}
+.services-new-page .airport-concierge .ac-visual img{display:block;width:100%;height:100%;min-height:490px;object-fit:cover;object-position:58% center;filter:saturate(.82) brightness(.78);transition:transform .25s ease}
+.services-new-page .airport-concierge .ac-visual:hover img{transform:scale(1.012)}
+.services-new-page .airport-concierge .ac-place{position:absolute;z-index:1;top:24px;right:25px;color:rgba(236,230,219,.76);font:500 11px/1.75 Manrope,sans-serif;letter-spacing:.2em;text-align:right;text-transform:uppercase}
+.services-new-page .airport-concierge .ac-visual figcaption{position:absolute;z-index:1;left:30px;bottom:28px;color:var(--svc-ivory);font:italic 400 clamp(24px,2.25vw,34px)/1.18 "Source Serif 4",Georgia,serif}
+.services-new-page .airport-concierge .ac-visual figcaption i{display:block;width:38px;height:1px;margin-top:18px;background:var(--svc-gold)}
+.services-new-page .airport-concierge .ac-features{grid-area:features;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-self:end;padding-top:27px;border-top:1px solid var(--svc-line);background:transparent}
+.services-new-page .airport-concierge .ac-features>div{min-width:0;padding:0 17px}
+.services-new-page .airport-concierge .ac-features>div:first-child{padding-left:0}
+.services-new-page .airport-concierge .ac-features>div+div{border-left:1px solid var(--svc-line)}
+.services-new-page .airport-concierge .ac-features svg{display:block;width:27px;height:27px;margin-bottom:16px;color:var(--svc-gold)}
+.services-new-page .airport-concierge .ac-features strong{display:block;margin-bottom:7px;color:var(--svc-ivory);font:500 14px/1.4 Manrope,sans-serif}
+.services-new-page .airport-concierge .ac-features p{margin:0;color:var(--svc-muted);font:400 13px/1.6 Manrope,sans-serif}
+.services-new-page .airport-concierge .ac-info-bar{grid-area:info;display:grid;grid-template-columns:minmax(250px,.9fr) minmax(210px,.68fr) minmax(360px,1.22fr);gap:clamp(26px,3vw,46px);align-items:center;padding:27px 32px;border:1px solid var(--svc-line);background:var(--background-secondary)}
+.services-new-page .airport-concierge .ac-price{display:grid;grid-template-columns:auto 1fr;column-gap:18px;align-items:center}
+.services-new-page .airport-concierge .ac-price span{grid-column:1;color:var(--svc-gold);font:500 11px/1.4 Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.services-new-page .airport-concierge .ac-price strong{grid-column:1;color:var(--svc-ivory);font:400 40px/1 "Source Serif 4",Georgia,serif}
+.services-new-page .airport-concierge .ac-price p{grid-column:2;grid-row:1/3;max-width:250px;margin:0;padding-left:24px;border-left:1px solid var(--svc-line);color:var(--svc-muted);font:400 12px/1.6 Manrope,sans-serif}
+.services-new-page .airport-concierge .ac-actions{display:grid;justify-items:start;gap:10px}
+.services-new-page .airport-concierge .ac-actions .sv-button{display:flex;justify-content:space-between;width:min(100%,290px);min-height:50px;padding:13px 18px;border-color:var(--svc-gold);background:var(--svc-gold);color:var(--svc-bg);font-size:13px;letter-spacing:0;text-transform:none}
+.services-new-page .airport-concierge .ac-actions .sv-button:hover{border-color:var(--svc-ivory);background:var(--svc-ivory)}
+.services-new-page .airport-concierge .ac-quote-link,.services-new-page .airport-concierge .ac-meeting button{display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;color:var(--svc-body);font:500 13px/1.4 Manrope,sans-serif;cursor:pointer;transition:color .2s ease}
+.services-new-page .airport-concierge .ac-quote-link:hover,.services-new-page .airport-concierge .ac-meeting button:hover{color:var(--svc-gold)}
+.services-new-page .airport-concierge .ac-meeting{display:grid;grid-template-columns:21px 1fr;gap:4px 13px;padding:18px 20px;border:1px solid rgba(194,154,69,.28);background:rgba(27,31,33,.34)}
+.services-new-page .airport-concierge .ac-meeting>svg{grid-row:1/3;margin-top:2px;color:var(--svc-gold)}
+.services-new-page .airport-concierge .ac-meeting h4{margin:0 0 5px;color:var(--svc-ivory);font:500 15px/1.45 Manrope,sans-serif}
+.services-new-page .airport-concierge .ac-meeting p{margin:0;color:var(--svc-muted);font:400 13px/1.6 Manrope,sans-serif}
+.services-new-page .airport-concierge .ac-meeting button{grid-column:2;margin-top:7px;color:var(--svc-gold)}
+.services-new-page .airport-concierge .ac-fade{animation:ac-fade .2s ease both}
+.services-new-page .airport-concierge :is(button,[role="tabpanel"]):focus-visible{outline:2px solid var(--svc-gold);outline-offset:4px}
+@keyframes ac-fade{from{opacity:.58;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:1120px){
+  .services-new-page .airport-concierge .ac-stage{grid-template-columns:225px minmax(310px,1fr) minmax(320px,.86fr);column-gap:30px}
+  .services-new-page .airport-concierge .ac-choices button{padding-inline:13px 10px;gap:10px}
+  .services-new-page .airport-concierge .ac-visual,.services-new-page .airport-concierge .ac-visual img{min-height:470px}
+  .services-new-page .airport-concierge .ac-features>div{padding-inline:11px}
+  .services-new-page .airport-concierge .ac-info-bar{grid-template-columns:1fr 1fr;padding-inline:24px}
+  .services-new-page .airport-concierge .ac-meeting{grid-column:1/-1}
 }
-@media(max-width:760px) {
-  .services-new-page .airport-concierge .ac-heading { grid-template-columns: 1fr; gap: 22px; margin-bottom: 30px; }
-  .services-new-page .airport-concierge .ac-experience { grid-template-columns: 1fr; }
-  .services-new-page .airport-concierge .ac-choices { padding: 16px 0; border-right: 0; border-bottom: 1px solid var(--svc-line); }
-  .services-new-page .airport-concierge .ac-choices button { padding: 14px 16px; }
-  .services-new-page .airport-concierge .ac-choices strong { font-size: 20px; }
-  .services-new-page .airport-concierge .ac-choices small, .services-new-page .airport-concierge .ac-private-note { display: none; }
-  .services-new-page .airport-concierge .ac-journey { padding: 28px 0; }
-  .services-new-page .airport-concierge .ac-route { gap: 16px; grid-template-columns: 1fr 22px 1fr; padding-bottom: 28px; }
-  .services-new-page .airport-concierge .ac-route > svg { width: 22px; }
-  .services-new-page .airport-concierge .ac-route strong { font-size: 24px; }
-  .services-new-page .airport-concierge .ac-details { padding-block: 28px; }
-  .services-new-page .airport-concierge .ac-meeting button { flex-basis: calc(100% - 35px); }
-  .services-new-page .airport-concierge .ac-action { flex-direction: column-reverse; align-items: stretch; gap: 16px; }
-  .services-new-page .airport-concierge .ac-action .sv-button { justify-content: space-between; }
-  .services-new-page .airport-concierge .ac-action p { max-width: none; text-align: center; }
+
+@media(max-width:900px){
+  .services-new-page .airport-concierge .ac-stage{grid-template-columns:210px minmax(0,1fr);grid-template-areas:"sidebar copy" "sidebar visual" "sidebar features" "sidebar info";column-gap:32px;row-gap:30px}
+  .services-new-page .airport-concierge .ac-sidebar{padding:18px 18px 18px 14px}
+  .services-new-page .airport-concierge .ac-visual,.services-new-page .airport-concierge .ac-visual img{min-height:350px}
+  .services-new-page .airport-concierge .ac-info-bar{grid-template-columns:1fr 1fr}
+  .services-new-page .airport-concierge .ac-meeting{grid-column:1/-1}
 }
-@media(prefers-reduced-motion:reduce) { .services-new-page .airport-concierge .ac-choices button { transition: none; } }
+
+@media(max-width:700px){
+  .services-new-page .airport-concierge .ac-shell{padding-block:62px}
+  .services-new-page .airport-concierge .ac-stage{display:grid;grid-template-columns:1fr;grid-template-areas:"sidebar" "copy" "visual" "features" "info";gap:32px}
+  .services-new-page .airport-concierge .ac-sidebar{padding:0;border-right:0;background:transparent;box-shadow:none}
+  .services-new-page .airport-concierge .ac-sidebar-label{margin-bottom:15px}
+  .services-new-page .airport-concierge .ac-choices{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 9px;scrollbar-width:thin;scroll-snap-type:x proximity}
+  .services-new-page .airport-concierge .ac-choices button{display:flex;flex:0 0 auto;min-height:45px;padding:11px 14px;border:1px solid var(--svc-line);border-left-width:1px;scroll-snap-align:start}
+  .services-new-page .airport-concierge .ac-choices button[aria-selected="true"]{border-color:rgba(194,154,69,.58)}
+  .services-new-page .airport-concierge .ac-choices button>svg:first-child,.services-new-page .airport-concierge .ac-choices small,.services-new-page .airport-concierge .ac-choices button>svg:last-child,.services-new-page .airport-concierge .ac-private-note{display:none}
+  .services-new-page .airport-concierge .ac-copy h2{font-size:45px}
+  .services-new-page .airport-concierge .ac-copy h3{margin-top:20px}
+  .services-new-page .airport-concierge .ac-copy>p{font-size:14px}
+  .services-new-page .airport-concierge .ac-visual,.services-new-page .airport-concierge .ac-visual img{min-height:285px}
+  .services-new-page .airport-concierge .ac-visual figcaption{left:22px;bottom:22px;font-size:25px}
+  .services-new-page .airport-concierge .ac-place{top:18px;right:18px}
+  .services-new-page .airport-concierge .ac-features{gap:0;padding-top:24px}
+  .services-new-page .airport-concierge .ac-features>div{padding-inline:12px}
+  .services-new-page .airport-concierge .ac-features strong{font-size:11px}
+  .services-new-page .airport-concierge .ac-info-bar{grid-template-columns:1fr;gap:24px;margin-top:38px;padding:24px 20px}
+  .services-new-page .airport-concierge .ac-actions{justify-items:stretch}
+  .services-new-page .airport-concierge .ac-quote-link{justify-self:start}
+  .services-new-page .airport-concierge .ac-meeting{grid-column:auto;padding:18px 20px;border:1px solid rgba(194,154,69,.28)}
+}
+
+@media(max-width:430px){
+  .services-new-page .airport-concierge .ac-copy h2{font-size:40px}
+  .services-new-page .airport-concierge .ac-features{grid-template-columns:1fr;gap:22px}
+  .services-new-page .airport-concierge .ac-features>div{display:grid;grid-template-columns:30px 1fr;padding:0}
+  .services-new-page .airport-concierge .ac-features>div+div{padding-top:22px;border-top:1px solid var(--svc-line);border-left:0}
+  .services-new-page .airport-concierge .ac-features svg{grid-row:1/3;margin:1px 0 0}
+  .services-new-page .airport-concierge .ac-features strong,.services-new-page .airport-concierge .ac-features p{grid-column:2}
+  .services-new-page .airport-concierge .ac-visual,.services-new-page .airport-concierge .ac-visual img{min-height:270px}
+}
+
+@media(prefers-reduced-motion:reduce){.services-new-page .airport-concierge :is(.ac-fade,.ac-visual img,.ac-choices button,.ac-choices button>svg){animation:none;transition:none}}

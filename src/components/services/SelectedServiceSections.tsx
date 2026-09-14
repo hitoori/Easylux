@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { ArrowRight, CarProfile, Clock, DoorOpen, MapPinLine, User } from '@phosphor-icons/react'
+import { useEffect, useState } from 'react'
+import { ArrowRight, Boat, CarProfile, Clock, DoorOpen, MapPinLine, Mountains, Snowflake, User } from '@phosphor-icons/react'
 import { coastalRoutes, cruiseRoutes, italyRoutes, mountainRoutes } from './serviceData'
 import { RouteList, RouteSection, ServiceTabs, type RequestJourney } from './ServiceRoutes'
 
@@ -10,108 +10,157 @@ const crossBorderRoutes = [
   { id: 'italy-france', from: 'Italy', to: 'France', pickup: 'Italy', destination: 'France', sedan: 1250, van: 1450, minibus: 2400 },
 ]
 
+const europeDestinations = [
+  { name: 'Italy', image: './images/services/unsplash/italy-milan.jpg' },
+  { name: 'Austria', image: './images/services/unsplash/austria-vienna.jpg' },
+  { name: 'Slovenia', image: './images/services/unsplash/slovenia-bled.jpg' },
+  { name: 'Croatia', image: './images/services/unsplash/croatia-dubrovnik.jpg' },
+  { name: 'France', image: './images/services/unsplash/france-paris.jpg' },
+] as const
+
 export function HourlySection({ onRequest }: { onRequest: RequestJourney }) {
-  return <section id="service-hourly" className="sv-section sv-hourly" aria-labelledby="hourly-title">
-    <div className="svc-shell sv-editorial sv-hourly-grid">
-      <div className="sv-copy">
+  return <section id="service-hourly" className="sv-section sv-hourly sv-hourly-editorial" aria-labelledby="hourly-title">
+    <div className="svc-shell sv-hourly-main">
+      <div className="sv-copy sv-hourly-intro">
         <p className="svc-eyebrow">Chauffeur by the hour</p>
-        <h2 id="hourly-title">Several stops.<br />One chauffeur.</h2>
-        <p className="sv-lead">Meetings, lunch, shopping or time to explore. Keep one chauffeur and vehicle for your day, with stops and waiting agreed around your schedule.</p>
+        <h2 id="hourly-title">Several stops. One chauffeur.</h2>
+        <p className="sv-lead">Meetings, lunch, shopping or time to explore. Keep one chauffeur and vehicle with you throughout the day, with planned stops, waiting time and flexible pick-ups arranged around your schedule.</p>
         <div className="sv-hourly-ideal">
           <span>Best for</span>
           <p>Days with several addresses and time between appointments.</p>
         </div>
       </div>
-      <div className="sv-hourly-includes" aria-label="What this service includes">
-        <p className="svc-eyebrow">Included in your booking</p>
-        <article><User size={28} weight="thin" aria-hidden="true" /><div><h3>The same driver throughout</h3><p>Leave each stop knowing who will take you to the next.</p></div></article>
-        <article><MapPinLine size={28} weight="thin" aria-hidden="true" /><div><h3>Your stops, in your order</h3><p>Share your addresses and schedule so the day can be planned around you.</p></div></article>
-        <article><Clock size={28} weight="thin" aria-hidden="true" /><div><h3>Time between appointments</h3><p>Your chauffeur remains available during the agreed booking period.</p></div></article>
+      <div className="sv-hourly-visual sv-hourly-image-placeholder" role="img" aria-label="Reserved space for the Chauffeur by the Hour image" />
+      <div className="sv-hourly-info">
+        <div className="sv-hourly-includes" aria-label="What this service includes">
+          <p className="svc-eyebrow">Included in your booking</p>
+          <article><span className="sv-hourly-icon"><User size={25} weight="thin" aria-hidden="true" /></span><div><h3>The same driver throughout</h3><p>One trusted chauffeur, all day.</p></div></article>
+          <article><span className="sv-hourly-icon"><MapPinLine size={25} weight="thin" aria-hidden="true" /></span><div><h3>Your stops, in your order</h3><p>Share your addresses and schedule.</p></div></article>
+          <article><span className="sv-hourly-icon"><Clock size={25} weight="thin" aria-hidden="true" /></span><div><h3>Time between appointments</h3><p>Your chauffeur remains available.</p></div></article>
+        </div>
       </div>
     </div>
-    <div className="svc-shell sv-hourly-quote">
-      <h3>How pricing works</h3>
-      <div className="sv-hourly-price-copy">
-        <p>Your quote is based on booking length, route, vehicle, waiting time and requested stops.</p>
-        <p className="sv-hourly-minimum"><Clock size={14} weight="regular" aria-hidden="true" />Minimum booking: 2 hours</p>
+    <div className="sv-hourly-pricing-band">
+      <div className="svc-shell sv-hourly-quote">
+        <h3>How pricing works</h3>
+        <div className="sv-hourly-price-copy"><p>Your quote depends on booking length, route and requested stops.</p></div>
+        <p className="sv-hourly-minimum"><Clock size={17} weight="regular" aria-hidden="true" />Minimum booking: 2 hours</p>
+        <button type="button" className="sv-hourly-link" onClick={() => onRequest({ service: 'hourly' })}>Request an hourly quote <ArrowRight size={20} weight="light" aria-hidden="true" /></button>
       </div>
-      <button type="button" className="sv-hourly-link" onClick={() => onRequest({ service: 'hourly' })}>Request an hourly quote <ArrowRight size={20} weight="light" aria-hidden="true" /></button>
     </div>
   </section>
 }
 
 const waterTaxiJourneys = [
   {
+    note: 'Flight monitoring, airport welcome, private vehicle and Water Taxi are coordinated as one transfer.',
     steps: [
-      { title: 'Meet your chauffeur', copy: 'Start from your chosen address and travel to Piazzale Roma.' },
-      { title: 'Change at Piazzale Roma', copy: 'Your chauffeur connects you with the confirmed private Water Taxi.' },
-      { title: 'Continue by Water Taxi', copy: 'Travel to the closest accessible landing in Venice.' },
+      { title: 'Flight & airport welcome', copy: 'We monitor your flight and meet you in Arrivals holding a tablet with your name. Your chauffeur assists with your luggage.' },
+      { title: 'Drive to Piazzale Roma', copy: 'You travel privately from the airport to Piazzale Roma, where we coordinate your connection with the Water Taxi.' },
+      { title: 'Water Taxi to your stay', copy: 'Your private Water Taxi takes you directly to the hotel when canal access is available, or to the nearest accessible landing.' },
     ],
   },
   {
+    note: 'Meeting details are sent the evening before. The exact boat number is shared shortly before pick-up.',
     steps: [
-      { title: 'Meet your Water Taxi', copy: 'Board at the confirmed landing and time in Venice.' },
-      { title: 'Change at Piazzale Roma', copy: 'Your chauffeur waits at the agreed meeting point.' },
-      { title: 'Continue by chauffeur', copy: 'Travel privately to the airport, hotel or next address.' },
+      { title: 'Details the evening before', copy: 'We send your meeting point and instructions: directly at the hotel when boat access is permitted, or at the nearest accessible landing.' },
+      { title: 'Water Taxi collection', copy: 'A few minutes before pick-up, we send the exact boat number. The Water Taxi collects you and takes you to Piazzale Roma.' },
+      { title: 'Meet your chauffeur', copy: 'We meet you at Piazzale Roma, assist with your luggage and drive you privately to the airport or your final destination.' },
     ],
   },
 ] as const
 
 export function WaterTaxiSection({ onRequest }: { onRequest: RequestJourney }) {
-  const [direction, setDirection] = useState(1)
+  const [direction, setDirection] = useState(0)
   const journey = waterTaxiJourneys[direction]
 
-  return <section id="service-water-taxi" className="sv-section sv-water" aria-labelledby="water-title">
-    <div className="svc-shell sv-water-illustrated-intro">
-      <div>
+  return <section id="service-water-taxi" className="sv-section sv-water sv-water-editorial" aria-labelledby="water-title">
+    <div className="svc-shell sv-water-top">
+      <div className="sv-water-copy">
         <p className="svc-eyebrow">Venice Water Taxi &amp; private chauffeur</p>
         <h2 id="water-title">Venice by water.<br />The rest by road.</h2>
+        <p className="sv-lead">Travel between the airport and Venice with one coordinated chauffeur and private Water Taxi connection through Piazzale Roma.</p>
+        <div className="sv-water-benefits" aria-label="Water Taxi service benefits">
+          <article><Boat size={32} weight="thin" aria-hidden="true" /><div><h3>Coordinated service</h3><p>Boat and driver<br />coordinated for you.</p></div></article>
+          <article><Clock size={32} weight="thin" aria-hidden="true" /><div><h3>Stress-free transfer</h3><p>Every connection<br />arranged in advance.</p></div></article>
+          <article><MapPinLine size={32} weight="thin" aria-hidden="true" /><div><h3>A seamless journey</h3><p>A smooth connection<br />to your destination.</p></div></article>
+        </div>
       </div>
-      <div className="sv-water-intro-copy">
-        <p className="sv-lead">Reach Venice’s historic centre with a private Water Taxi and a chauffeur connection at Piazzale Roma. The boat, driver and meeting times are coordinated for your journey.</p>
+      <div className="sv-water-visual-column">
         <ServiceTabs id="water" labels={['Arriving in Venice', 'Leaving Venice']} selected={direction} onChange={setDirection} />
+        <div className="sv-water-visual sv-water-image-placeholder" role="img" aria-label="Reserved space for the main Water Taxi image" />
       </div>
     </div>
 
-    <div className="sv-water-story" role="tabpanel" id={`water-panel-${direction}`} aria-labelledby={`water-tab-${direction}`} tabIndex={0}>
-      <img src="./images/services/water-taxi/connection.png" alt="Illustrated route from Venice by private Water Taxi to Piazzale Roma, continuing by chauffeur." width="1772" height="887" loading="lazy" />
-      {journey.steps.map(({ title, copy }, index) => <article className={`sv-water-story-point sv-water-story-point-${index + 1}`} key={title}>
-        <span>0{index + 1}</span>
-        <div><h3>{title}</h3><p>{copy}</p></div>
+    <div className="svc-shell sv-water-steps" role="tabpanel" id={`water-panel-${direction}`} aria-labelledby={`water-tab-${direction}`} tabIndex={0}>
+      {journey.steps.map(({ title, copy }, index) => <article key={title}>
+        <span className="sv-water-step-number">0{index + 1}</span>
+        <h3>{title}</h3>
+        <p>{copy}</p>
+        <div className="sv-water-step-image-placeholder" role="img" aria-label={`Reserved space for ${title}`} />
       </article>)}
     </div>
 
-    <div className="svc-shell sv-water-action"><button type="button" className="sv-water-cta" onClick={() => onRequest({ service: 'water-taxi' })}>Request a Water Taxi connection <ArrowRight size={19} weight="light" aria-hidden="true" /></button></div>
+    <div className="sv-water-bottom">
+      <div className="svc-shell sv-water-action">
+        <div className="sv-water-note"><MapPinLine size={25} weight="thin" aria-hidden="true" /><div><span>Good to know</span><p>{journey.note}</p></div></div>
+        <button type="button" className="sv-water-cta" onClick={() => onRequest({ service: 'water-taxi' })}>Request a Water Taxi connection <ArrowRight size={19} weight="light" aria-hidden="true" /></button>
+      </div>
+    </div>
   </section>
 }
 
 export function EuropeSection({ onRequest, fareRequest = 0 }: { onRequest: RequestJourney; fareRequest?: number }) {
   const [region, setRegion] = useState(0)
+  const [routesOpen, setRoutesOpen] = useState(false)
 
-  return <section id="service-europe" className="sv-section sv-europe" aria-labelledby="europe-title">
-    <div className="svc-shell sv-europe-shell">
-      <div className="sv-europe-intro">
-        <div className="sv-europe-copy">
+  useEffect(() => {
+    if (!fareRequest) return
+    setRoutesOpen(true)
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById('italy-route-prices')?.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [fareRequest])
+
+  return <section id="service-europe" className="sv-section sv-europe sv-europe-editorial" aria-labelledby="europe-title">
+    <div className="svc-shell sv-europe-editorial-shell">
+      <div className="sv-europe-editorial-top">
+        <div className="sv-europe-editorial-copy">
           <p className="svc-eyebrow">Private transfers across Italy &amp; Europe</p>
           <h2 id="europe-title">A longer journey.<br />Made personal.</h2>
-          <p className="sv-lead">Travel between cities with your own driver, from your chosen pick-up to your next address. Add an agreed stop for lunch, a break or another place along the way.</p>
+          <p className="sv-lead">Travel between cities with your own driver, from your chosen pick-up to your next address.</p>
+          <p className="sv-lead sv-europe-extra">Add an agreed stop for lunch, a break or another place along the way.</p>
+          <button type="button" className="sv-europe-primary" onClick={() => onRequest({ service: 'europe' })}>Plan a long-distance journey <ArrowRight size={20} weight="light" aria-hidden="true" /></button>
         </div>
-        <div className="sv-europe-benefits" aria-label="What this service includes">
-          <article><DoorOpen size={34} weight="thin" aria-hidden="true" /><div><h3>From address to address</h3><p>Meet at your agreed pick-up and continue in a private vehicle.</p></div></article>
-          <article><CarProfile size={34} weight="thin" aria-hidden="true" /><div><h3>Room for your plans</h3><p>Share your passengers and luggage so a suitable vehicle can be confirmed.</p></div></article>
-          <article><MapPinLine size={34} weight="thin" aria-hidden="true" /><div><h3>A stop along the way</h3><p>Include a meal break or another address in your request.</p></div></article>
+
+        <figure className="sv-europe-map">
+          <div className="sv-europe-map-image" role="img" aria-label="Map showing a private transfer route from Venice through Milan and Florence to Rome" />
+          <figcaption>More destinations.<br />Same comfort.<span aria-hidden="true" /></figcaption>
+        </figure>
+
+        <div className="sv-europe-editorial-benefits" aria-label="What this service includes">
+          <article><span className="sv-europe-benefit-icon"><DoorOpen size={32} weight="thin" aria-hidden="true" /></span><div><h3>From address to address</h3><p>Meet at your agreed pick-up and continue in a private vehicle.</p></div></article>
+          <article><span className="sv-europe-benefit-icon"><CarProfile size={32} weight="thin" aria-hidden="true" /></span><div><h3>Room for your plans</h3><p>Share your passengers and luggage so a suitable vehicle can be confirmed.</p></div></article>
+          <article><span className="sv-europe-benefit-icon"><MapPinLine size={32} weight="thin" aria-hidden="true" /></span><div><h3>A stop along the way</h3><p>Include a meal break or another address in your request.</p></div></article>
         </div>
       </div>
 
-      <div className="services-distance-note">
-        <span>Your route, at your pace</span>
-        <p>City to city. Hotel to hotel. Across the border.</p>
+      <div className="sv-europe-destinations">
+        <div className="sv-europe-destinations-copy">
+          <p className="svc-eyebrow">Routes &amp; fares</p>
+          <h3>Popular destinations</h3>
+        </div>
+        <div className="sv-europe-destination-rail" aria-label="Available journey regions">
+          {europeDestinations.map(destination => <article key={destination.name} className="sv-europe-destination">
+            <img src={destination.image} alt="" width="320" height="220" loading="lazy" />
+            <span>{destination.name}</span>
+          </article>)}
+        </div>
+        <button type="button" className="sv-europe-show-routes" aria-expanded={routesOpen} aria-controls="italy-route-prices" onClick={() => setRoutesOpen(current => !current)}>{routesOpen ? 'Hide routes' : 'Show routes'} <ArrowRight size={20} weight="light" aria-hidden="true" /></button>
       </div>
-      <p className="sv-europe-note">Available for journeys within Italy and to destinations in Austria, Slovenia, Croatia, France and beyond.</p>
-    </div>
 
-    <RouteSection id="italy-route-prices" openRequest={fareRequest} title="Italy & Europe routes & fares">
-      <div className="sv-europe-routes">
+      <div id="italy-route-prices" className="sv-europe-route-panel" hidden={!routesOpen}>
         <div className="sv-europe-routes-head">
           <ServiceTabs id="regions" labels={['Italy', 'Europe']} selected={region} onChange={setRegion} />
         </div>
@@ -122,44 +171,41 @@ export function EuropeSection({ onRequest, fareRequest = 0 }: { onRequest: Reque
           <RouteList routes={crossBorderRoutes} title="Cross-border journeys" service="europe" onRequest={onRequest} initial={3} moreLabel="View all Europe routes" editorial compact note="Indicative fares from Italy. Your final quote confirms the route, vehicle, availability and any extras." />
         </div>
       </div>
-    </RouteSection>
+    </div>
   </section>
 }
 
 export function MountainsSection({ onRequest }: { onRequest: RequestJourney }) {
-  const [activePhoto, setActivePhoto] = useState<0 | 1>(0)
+  const [routesOpen, setRoutesOpen] = useState(false)
 
-  return <section id="service-mountains" className="sv-section sv-mountains sv-mountains-new" aria-labelledby="mountains-title">
-    <div className="svc-shell sv-mountains-shell">
-      <div className="sv-mountains-intro">
-        <figure className="sv-mountains-photos">
-          <div className="sv-mountains-photo-stage" data-active-photo={activePhoto}>
-            <button className={activePhoto === 0 ? 'is-active' : ''} type="button" aria-pressed={activePhoto === 0} aria-label="Expand the Dolomites alpine road photograph" onMouseEnter={() => setActivePhoto(0)} onFocus={() => setActivePhoto(0)} onClick={() => setActivePhoto(0)}>
-              <img loading="lazy" width="1600" height="1067" src="./images/shared/destinations/dolomites-road.jpg" alt="A winding road through rocky Alpine mountain scenery" />
-              <span className="sv-mountains-photo-location"><strong>Dolomites, Italy</strong><small>Alpine road</small></span>
-            </button>
-            <button className={activePhoto === 1 ? 'is-active' : ''} type="button" aria-pressed={activePhoto === 1} aria-label="Expand the Dolomites mountain panorama photograph" onMouseEnter={() => setActivePhoto(1)} onFocus={() => setActivePhoto(1)} onClick={() => setActivePhoto(1)}>
-              <img loading="lazy" width="1600" height="1067" src="./images/shared/destinations/dolomites-peaks.jpg" alt="Layered Dolomite peaks in warm evening light" />
-              <span className="sv-mountains-photo-location"><strong>Dolomites, Italy</strong><small>Mountain panorama</small></span>
-            </button>
-          </div>
-          <figcaption>The Dolomites · choose a view</figcaption>
-        </figure>
-
-        <div className="sv-mountains-copy">
+  return <section id="service-mountains" className="sv-section sv-mountains sv-mountains-new sv-mountains-editorial" aria-labelledby="mountains-title">
+    <div className="svc-shell sv-mountains-editorial-shell">
+      <div className="sv-mountains-panorama">
+        <img src="./images/services/unsplash/dolomites-pass.jpg" alt="Winding road through the Dolomites at golden hour" width="2400" height="1601" loading="lazy" />
+        <div className="sv-mountains-overlay" aria-hidden="true" />
+        <div className="sv-mountains-editorial-copy">
           <p className="svc-eyebrow">Private transfers to the Dolomites</p>
           <h2 id="mountains-title">Your mountain stay<br />starts here.</h2>
-          <p className="sv-mountains-lead">From your airport, station or address in Italy to your hotel in the Dolomites. Share your luggage and equipment, and arrange a return or later collection if you need one.</p>
-          <dl className="sv-mountains-details">
-            <div><dt>Pick-up</dt><dd>Any accessible address, airport, hotel or station in Italy</dd></div>
-            <div><dt>Popular destinations</dt><dd>Cortina d’Ampezzo · Corvara · Canazei · Ortisei</dd></div>
-            <div><dt>Booking options</dt><dd>One-way · Return · Waiting time · Later collection</dd></div>
-          </dl>
-          <p className="sv-mountains-note">Mountain access depends on weather and road conditions. Accommodation and activities are not included.</p>
+          <p className="sv-mountains-editorial-lead">From your airport, station or address in Italy to your hotel in the Dolomites.<br />Travel in comfort with a private driver and enjoy a scenic, stress-free journey.</p>
+          <div className="sv-mountains-benefits" aria-label="Dolomites transfer benefits">
+            <article><Mountains size={36} weight="thin" aria-hidden="true" /><div><h3>Scenic routes</h3><p>Breathtaking views,<br />all year round.</p></div></article>
+            <article><CarProfile size={36} weight="thin" aria-hidden="true" /><div><h3>Comfort &amp; flexibility</h3><p>Direct transfer to your<br />hotel or accommodation.</p></div></article>
+            <article><Snowflake size={36} weight="thin" aria-hidden="true" /><div><h3>All-season travel</h3><p>We adjust to weather<br />and road conditions.</p></div></article>
+          </div>
         </div>
+        <p className="sv-mountains-caption">Different<br />landscapes.<br />The same comfort.<span aria-hidden="true" /></p>
+      </div>
+
+      <div className="sv-mountains-route-bar">
+        <div className="sv-mountains-route-heading"><span>Routes &amp; fares</span><h3>Dolomites routes &amp; fares</h3></div>
+        <p className="sv-mountains-destinations" aria-label="Popular Dolomites destinations"><span>Cortina d’Ampezzo</span><i /><span>Corvara</span><i /><span>Canazei</span><i /><span>Ortisei</span><i /><span>and more</span></p>
+        <button type="button" className="sv-mountains-show-routes" aria-expanded={routesOpen} aria-controls="dolomites-route-prices" onClick={() => setRoutesOpen(current => !current)}>{routesOpen ? 'Hide routes' : 'Show routes & prices'} <ArrowRight size={20} weight="light" aria-hidden="true" /></button>
+      </div>
+
+      <div id="dolomites-route-prices" className="sv-mountains-route-panel" hidden={!routesOpen}>
+        <RouteList routes={mountainRoutes} title="Dolomites routes and fares" service="mountains" onRequest={onRequest} initial={3} moreLabel="View all Dolomites routes" editorial compact note="Indicative one-way fares apply to the listed route. Other pick-up points in Italy are quoted individually." />
       </div>
     </div>
-    <RouteSection title="Dolomites routes & fares"><RouteList routes={mountainRoutes} title="Dolomites routes and fares" service="mountains" onRequest={onRequest} initial={3} moreLabel="View all Dolomites routes" editorial compact note="Indicative one-way fares apply to the listed route. Other pick-up points in Italy are quoted individually." /></RouteSection>
   </section>
 }
 
@@ -168,14 +214,14 @@ export function SeasideSection({ onRequest }: { onRequest: RequestJourney }) {
     <div className="svc-shell sv-coast-shell">
       <div className="sv-coast-intro">
         <figure className="sv-coast-hero">
-          <img loading="lazy" width="1536" height="864" src="./images/services/seaside/coastal-road.png" alt="A quiet coastal road beside a sandy Adriatic beach in Veneto, Italy" />
+          <img loading="lazy" width="2200" height="1236" src="./images/services/unsplash/jesolo-coast.jpg" alt="Aerial view of the sandy Adriatic shoreline in Jesolo, Italy" />
           <figcaption>Adriatic coast · Veneto, Italy</figcaption>
         </figure>
 
         <div className="sv-coast-copy">
           <p className="svc-eyebrow">Private transfers to Italy’s Adriatic coast</p>
           <h2 id="coast-title">Straight to<br />your seaside stay.</h2>
-          <p className="sv-coast-lead">Bring your bags and your holiday plans. Your driver takes you from your chosen pick-up in Italy to your hotel, villa or accessible coastal address.</p>
+          <p className="sv-coast-lead">Bring your bags and holiday plans. Your driver takes you from your chosen pick-up in Italy to your hotel, villa or accessible coastal address.</p>
           <article className="sv-coast-planning"><span aria-hidden="true" /><div><h3>Arrive on your schedule</h3><p>Choose a one-way transfer, a same-day return or collection at the end of your stay.</p></div></article>
         </div>
       </div>
@@ -194,11 +240,11 @@ export function CruiseSection({ onRequest }: { onRequest: RequestJourney }) {
         <div className="sv-cruise-intro">
         <p className="svc-eyebrow">Cruise port transfers</p>
           <h2 id="cruise-title">Before you sail.<br />After you dock.</h2>
-          <p className="sv-cruise-lead">Connect your cruise with the rest of your trip. Arrange transport to Ravenna, Trieste or Fusina, or meet your driver after disembarking.</p>
+          <p className="sv-cruise-lead">Connect your cruise with the rest of your trip. Travel to Ravenna, Trieste or Fusina, or meet your driver there after disembarking.</p>
         </div>
 
         <figure className="sv-cruise-photo">
-          <img loading="lazy" width="2061" height="763" src="./images/services/cruise/terminal.png" alt="Cruise ship beside an elegant Adriatic port terminal" />
+          <img loading="lazy" width="2200" height="1467" src="./images/services/unsplash/venice-cruise-port.jpg" alt="Cruise ship docked at the passenger terminal in Venice" />
         </figure>
       </div>
 

@@ -3552,11 +3552,11 @@
   }
 }
 
-/* Persistent service directory, positioned below the fixed global header. */
+/* Service directory stays in the page flow below the masthead. */
 .services-new-page .services-masthead-nav {
-  position: sticky;
-  z-index: 40;
-  top: 76px;
+  position: relative;
+  z-index: 1;
+  top: auto;
   box-shadow: 0 14px 26px rgba(0, 0, 0, .2);
 }
 
@@ -3592,12 +3592,6 @@
 
 .services-new-page .services-masthead-nav button[aria-current] + button::before {
   display: block;
-}
-
-@media (max-width: 1023px) {
-  .services-new-page .services-masthead-nav {
-    top: 72px;
-  }
 }
 
 /* Mobile services pass: shared reading rhythm, complete media and reliable tap targets. */

@@ -16,6 +16,11 @@ import './services-hero.css'
 import './services-unified.css'
 import './services-refinements.css'
 import './services-experience.css'
+import './services-hourly-editorial.css'
+import './services-water-taxi-editorial.css'
+import './services-europe-editorial.css'
+import './services-mountains-editorial.css'
+import './services-final-polish.css'
 import PricingGuide from '../components/services/PricingGuide'
 
 export default function Services({ navigate: _navigate }: { navigate: (page: Page) => void }) {
@@ -39,7 +44,7 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
           setActiveSection(null)
           return
         }
-        const marker = menuRect.bottom + 2
+        const marker = headerHeight + 2
         const current = serviceOptions.find(([id]) => {
           const section = document.getElementById('service-' + id)
           if (!section) return false
@@ -102,15 +107,14 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
     if (!section) return
     setActiveSection(id as JourneyService)
     const compactHeaderHeight = window.matchMedia('(min-width: 1024px)').matches ? 76 : 72
-    const serviceMenuHeight = serviceNavRef.current?.offsetHeight ?? 64
-    const top = section.getBoundingClientRect().top + window.scrollY - compactHeaderHeight - serviceMenuHeight
+    const top = section.getBoundingClientRect().top + window.scrollY - compactHeaderHeight
     window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
   }
   const requestJourney = (request: JourneyRequest) => setSelection(previous => ({ ...request, revision: (previous?.revision ?? 0) + 1 }))
 
   return <div className="services-new-page services-experience">
     <section className="services-masthead" aria-labelledby="services-title">
-      <img className="services-masthead-photo" src="./images/services/hero/lake.webp" alt="" width={1816} height={866} fetchPriority="high" />
+      <img className="services-masthead-photo" src="./images/services/unsplash/venice-hero.jpg" alt="" width={2400} height={1601} fetchPriority="high" />
       <div className="services-masthead-shell">
         <div className="services-masthead-copy">
           <p className="services-masthead-eyebrow">Services &amp; prices</p>
