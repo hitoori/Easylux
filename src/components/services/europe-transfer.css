@@ -15,6 +15,7 @@
 #service-europe .et-copy h2 span { white-space: nowrap; }
 #service-europe .et-description { max-width: 49ch; margin: 0; font-size: 15px; line-height: 1.85; }
 #service-europe .et-countries { margin: 32px 0 20px; color: #c8c0b5; font: 400 clamp(12px, 1.2vw, 18px)/1.8 "Source Serif 4", Georgia, serif; letter-spacing: .07em; white-space: nowrap; }
+#service-europe .et-countries span { display: inline-block; white-space: nowrap; }
 #service-europe .et-line { position: relative; height: 1px; width: 100%; background: #c29a45; opacity: .75; }
 #service-europe .et-line::before, #service-europe .et-line::after { content: ""; position: absolute; top: -2px; width: 5px; height: 5px; border-radius: 50%; background: #c29a45; }
 #service-europe .et-line::before { left: 0; } #service-europe .et-line::after { right: 0; }
@@ -86,7 +87,14 @@
   #service-europe .et-copy { padding-block: 30px 32px; }
   #service-europe .et-copy h2 { margin-bottom: 20px; font-size: 28px; line-height: 1.13; }
   #service-europe .et-description { line-height: 1.65; }
-  #service-europe .et-countries { margin-block: 24px 16px; }
+  #service-europe .et-countries {
+    margin-block: 24px 16px;
+    font-size: clamp(12px, 3.2vw, 14px);
+    line-height: 1.6;
+    letter-spacing: .02em;
+    white-space: normal;
+    text-wrap: balance;
+  }
   #service-europe .et-statement { margin-block: 18px 22px; }
   #service-europe .et-panel { margin-top: 20px; }
 }
