@@ -152,11 +152,11 @@ export function EuropeSection({ onRequest, fareRequest = 0 }: { onRequest: Reque
 
   return <section id="service-europe" className="et-section" aria-labelledby="europe-title">
     <div className="et-intro">
-      <div className="et-photo" role="img" aria-label="Reserved space for the Private Transfer Italy & Europe image" />
+      <div className="et-photo"><img src="./images/services/unsplash/slovenia-bled.jpg" alt="Lake Bled in Slovenia" loading="lazy" /></div>
       <div className="et-copy">
         <h2 id="europe-title">Your destination<br /><span>doesn’t stop at the border.</span></h2>
         <p className="et-description">Private, door-to-door journeys across Italy and into neighbouring Europe — planned around your route, timing and stops.</p>
-        <p className="et-countries"><span>ITALY</span> <span>· AUSTRIA</span> <span>· SLOVENIA</span> <span>· CROATIA</span> <span>· FRANCE</span></p>
+        <p className="et-countries"><span>ITALY · AUSTRIA · SLOVENIA</span><span>CROATIA · FRANCE</span></p>
         <div className="et-line" aria-hidden="true" />
         <p className="et-statement">One chauffeur. One private vehicle. Your itinerary.</p>
         <button type="button" className="et-button et-disclosure" aria-expanded={routesOpen} aria-controls="italy-route-prices" onClick={() => setRoutesOpen(current => !current)}>{routesOpen ? 'HIDE ROUTES & PRICES' : 'VIEW ROUTES & PRICES'} <span aria-hidden="true">{routesOpen ? '↑' : '↓'}</span></button>
