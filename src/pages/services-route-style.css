@@ -99,6 +99,14 @@
   .services-new-page :is(#service-europe .et-table tbody th:first-child, #service-mountains .mt-table tbody th:first-child, #service-cruise .ct-route-heading) { padding-inline: 20px; }
 }
 
+@media (max-width: 600px) {
+  .services-new-page #service-europe .et-table tbody tr { gap: 16px 10px; padding-block: 22px; }
+  .services-new-page #service-europe .et-table tbody th:first-child { font-size: 22px; }
+  .services-new-page #service-europe .et-table td { font-size: 21px; }
+  .services-new-page #service-europe .et-mobile-label { margin-bottom: 5px; }
+  .services-new-page #service-europe .et-action .et-button { min-height: 40px; }
+}
+
 .services-new-page.services-experience #service-cruise .ct-route .ct-route-heading::before {
   top: 4px;
   bottom: 4px;

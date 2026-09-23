@@ -81,3 +81,12 @@
   #service-europe .et-panel-inner { width: calc(100% - 40px); }
   #service-europe .et-table tbody th { font-size: 25px; }
 }
+@media (max-width: 600px) {
+  #service-europe .et-photo { aspect-ratio: 16 / 9; }
+  #service-europe .et-copy { padding-block: 30px 32px; }
+  #service-europe .et-copy h2 { margin-bottom: 20px; font-size: 28px; line-height: 1.13; }
+  #service-europe .et-description { line-height: 1.65; }
+  #service-europe .et-countries { margin-block: 24px 16px; }
+  #service-europe .et-statement { margin-block: 18px 22px; }
+  #service-europe .et-panel { margin-top: 20px; }
+}
