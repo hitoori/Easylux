@@ -1,0 +1,31 @@
+/* Section boundaries only; image proportions and internal layouts stay intact. */
+.services-new-page.services-experience #service-hourly {
+  min-height: 0;
+  padding-block: 0;
+}
+.services-new-page.services-experience #service-airport .ac-shell { padding-bottom: 30px; }
+.services-new-page.services-experience #service-hourly .hourly-mockup-shell { padding-block: 60px 64px; }
+.services-new-page.services-experience #service-water-taxi .wt-shell { padding-block: 128px 72px; }
+.services-new-page.services-experience #service-europe { padding-block: 56px 72px; }
+.services-new-page.services-experience #service-mountains .mt-shell { padding-block: 48px 64px; }
+.services-new-page.services-experience #service-coast .cs-shell { padding-block: 40px 64px; }
+.services-new-page.services-experience #service-cruise .ct-shell { padding-block: 64px; }
+
+@media (min-width: 821px) and (max-width: 1100px) {
+  .services-new-page.services-experience #service-airport .ac-shell { padding-bottom: 28px; }
+  .services-new-page.services-experience #service-hourly .hourly-mockup-shell { padding-block: 48px 48px; }
+  .services-new-page.services-experience #service-water-taxi .wt-shell { padding-block: 84px 56px; }
+  .services-new-page.services-experience #service-europe { padding-block: 48px 56px; }
+  .services-new-page.services-experience #service-mountains .mt-shell { padding-block: 40px 48px; }
+  .services-new-page.services-experience #service-coast .cs-shell { padding-block: 32px 56px; }
+  .services-new-page.services-experience #service-cruise .ct-shell { padding-block: 48px 56px; }
+}
+@media (max-width: 820px) {
+  .services-new-page.services-experience #service-airport .ac-shell { padding-bottom: 40px; }
+  .services-new-page.services-experience #service-hourly .hourly-mockup-shell { padding-block: 40px 36px; }
+  .services-new-page.services-experience #service-water-taxi .wt-shell { padding-block: 16px 40px; }
+  .services-new-page.services-experience #service-europe { padding-block: 16px 24px; }
+  .services-new-page.services-experience #service-mountains .mt-shell { padding-block: 20px 32px; }
+  .services-new-page.services-experience #service-coast .cs-shell { padding-block: 24px 48px; }
+  .services-new-page.services-experience #service-cruise .ct-shell { padding-block: 36px 48px; }
+}

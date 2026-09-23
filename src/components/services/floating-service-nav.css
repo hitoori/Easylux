@@ -1,0 +1,127 @@
+
+.fsn {
+  color: #aaa39a;
+  font-family: Manrope, sans-serif;
+  text-shadow: 0 1px 3px rgba(0,0,0,.8);
+}
+.fsn button {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+  text-shadow: inherit;
+  cursor: pointer;
+}
+.fsn button:hover { color: #ece6db; background: transparent; }
+.fsn button:focus-visible { outline: 1px solid #c29a45; outline-offset: 5px; }
+.fsn-desktop {
+  position: fixed;
+  z-index: 45;
+  top: 50%;
+  right: 18px;
+  width: 154px;
+  transform: translateY(-50%);
+  background: transparent;
+  font-size: 11px;
+}
+.fsn-list { display: flex; flex-direction: column; border-left: 0; }
+.fsn .fsn-link { position: relative; gap: 10px; min-height: 44px; padding: 8px 0 8px 12px; text-align: left; }
+.fsn-number { color: #c29a45; font-size: 10px; font-variant-numeric: tabular-nums; }
+.fsn-link .fsn-number { visibility: visible; color: #aaa39a; }
+.fsn-link[aria-current="location"] { color: #ece6db; }
+.fsn-link[aria-current="location"] .fsn-number { color: #c29a45; }
+.fsn-link[aria-current="location"]::before { content: ""; position: absolute; width: 9px; height: 1px; left: 0; top: 50%; background: #c29a45; }
+.fsn .fsn-close { justify-content: center; width: 32px; min-height: 44px; font-size: 23px; font-weight: 300; }
+.fsn-desktop > .fsn-close { margin-left: auto; }
+.fsn .fsn-reopen { gap: 12px; min-height: 44px; font-size: 10px; letter-spacing: .16em; }
+.fsn-desktop .fsn-reopen { writing-mode: vertical-rl; padding: 8px 0 8px 8px; margin-left: auto; }
+.fsn-mobile { display: none; }
+.fsn-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: max(30px,env(safe-area-inset-top)) 30px max(30px,env(safe-area-inset-bottom));
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow-y: auto;
+}
+.fsn-dialog::backdrop { background: rgba(0,0,0,.78); }
+.fsn-dialog-content { width: min(100%,380px); margin: 0 auto; padding-top: clamp(48px,8vh,88px); }
+.fsn-dialog[open] { display: flex; }
+.fsn-dialog-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.fsn-dialog-heading h2 { margin: 0; color: #ece6db; font: 500 12px/1.5 Manrope,sans-serif; letter-spacing: .2em; }
+.fsn-dialog .fsn-link { display: grid; grid-template-columns: 24px minmax(0,1fr); min-height: 54px; gap: 18px; font-size: 18px; padding-left: 22px; }
+.fsn-dialog .fsn-number { font-size: 12px; }
+.fsn-dialog .fsn-link[aria-current="location"]::before { width: 14px; }
+@media(max-width:1100px) {
+  .fsn-desktop { display: none; }
+  .fsn-mobile { display: flex; align-items: center; justify-content: center; gap: 12px; position: fixed; z-index: 45; bottom: max(16px,env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100% - 24px); background: transparent; }
+  .fsn-mobile[hidden] { display: none; }
+  .fsn .fsn-current { gap: 12px; min-height: 44px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #ece6db; }
+  .fsn-current::before, .fsn-mobile .fsn-reopen::before { content: ""; width: 22px; height: 1px; background: #c29a45; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .fsn, .fsn * { scroll-behavior: auto; transition: none; animation: none; }
+}
+
+.services-new-page.services-experience .services-masthead-nav.services-top-navigation {
+  position: relative;
+  top: auto;
+}
+
+.fsn .fsn-link { color: #aaa39a; }
+.fsn .fsn-link[aria-current="location"] { color: #ece6db; }
+.fsn-link .fsn-number { width: 2ch; flex-shrink: 0; }
+.fsn-dialog .fsn-close {
+  position: fixed;
+  top: max(24px,env(safe-area-inset-top));
+  right: max(24px,env(safe-area-inset-right));
+  width: 32px;
+  min-height: 32px;
+  font-size: 21px;
+}
+.fsn .fsn-reopen { position: relative; gap: 8px; font-size: 9px; letter-spacing: .13em; }
+.fsn-desktop .fsn-reopen::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 64px;
+  transform: translateY(-50%);
+  background: #c29a45;
+}
+@media(max-width:1100px) {
+  .fsn-mobile:has(.fsn-reopen) {
+    top: 50%;
+    right: 18px;
+    bottom: auto;
+    left: auto;
+    transform: translateY(-50%);
+  }
+  .fsn-mobile .fsn-reopen { writing-mode: vertical-rl; padding: 8px 0 8px 8px; }
+  .fsn-mobile .fsn-reopen::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 64px;
+    transform: translateY(-50%);
+  }
+}
+@media(max-height:600px) {
+  .fsn-dialog-content { padding-top: 24px; }
+  .fsn-dialog .fsn-link { min-height: 44px; }
+}

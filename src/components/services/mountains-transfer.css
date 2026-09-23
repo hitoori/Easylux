@@ -1,0 +1,67 @@
+#service-mountains.mt-section { background: #0d0e0f; color: #c8c0b5; font-family: Manrope, sans-serif; scroll-margin-top: 150px; }
+#service-mountains .mt-shell { width: min(1340px, calc(100% - 80px)); margin-inline: auto; padding-block: 30px 72px; }
+#service-mountains #mountains-title { margin: 0 0 32px; color: #ece6db; font: 400 clamp(36px, 3.6vw, 54px)/1.1 "Source Serif 4", Georgia, serif; letter-spacing: -.025em; }
+#service-mountains .mt-panorama { width: 100%; aspect-ratio: 8 / 1; background: transparent; border: 1px solid rgba(200,192,181,.3); border-radius: 0; box-shadow: none; }
+#service-mountains .mt-information { display: flex; align-items: center; justify-content: space-between; gap: 48px; padding-block: 30px; }
+#service-mountains .mt-description { max-width: 65ch; margin: 0; font-size: 15px; line-height: 1.75; }
+#service-mountains .mt-request { display: inline-flex; justify-content: space-between; align-items: center; gap: 20px; min-height: 42px; padding: 12px 18px; border: 1px solid #c29a45; border-radius: 0; background: transparent; color: #daab2d; font: 500 11px/1.5 Manrope, sans-serif; letter-spacing: .045em; cursor: pointer; }
+#service-mountains .mt-request span { font-size: 20px; line-height: 1; }
+#service-mountains .mt-request:hover { border-color: #ece6db; color: #ece6db; }
+#service-mountains .mt-disclosure { flex-shrink: 0; width: 224px; min-height: 48px; }
+#service-mountains .mt-arrow { padding-inline: 7px; color: #c29a45; }
+#service-mountains [hidden] { display: none; }
+#service-mountains .mt-all-routes { margin: 0; padding: 0; border-top: 1px solid rgba(200,192,181,.16); scroll-margin-top: 150px; }
+#service-mountains .mt-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+#service-mountains .mt-table th, #service-mountains .mt-table td { padding: 24px 12px; text-align: left; border-bottom: 1px solid rgba(200,192,181,.14); }
+#service-mountains .mt-table th:first-child { width: 40%; padding-left: 0; }
+#service-mountains .mt-table th:last-child { width: 240px; padding-right: 0; text-align: right; }
+#service-mountains .mt-table thead th { color: #aaa39a; font: 500 12px/1.5 Manrope, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+#service-mountains .mt-table tbody th { position: relative; color: #ece6db; font: 400 24px/1.3 "Source Serif 4", Georgia, serif; }
+#service-mountains .mt-table tbody th:first-child { padding-left: 28px; }
+#service-mountains .mt-table tbody th::before { content: ""; position: absolute; left: 0; top: 50%; width: 2px; height: 24px; background: #c29a45; transform: translateY(-50%); }
+#service-mountains .mt-table .mt-action { padding-right: 0; text-align: right; }
+#service-mountains .mt-table td { color: #ece6db; font-size: 24px; font-weight: 400; font-variant-numeric: tabular-nums; }
+#service-mountains .mt-action .mt-request { width: 100%; max-width: 190px; min-height: 38px; gap: 12px; padding: 8px 12px; font-size: 10px; }
+#service-mountains .mt-mobile-label { display: none; }
+#service-mountains :is(button,[tabindex]):focus-visible { outline: 2px solid #daab2d; outline-offset: 4px; }
+#service-mountains .mt-more-routes { display: flex; justify-content: flex-end; padding-top: 24px; }
+@media(max-width:1100px) {
+  #service-mountains .mt-shell { width: calc(100% - 48px); }
+  #service-mountains .mt-information { gap: 32px; }
+  #service-mountains .mt-table tbody th, #service-mountains .mt-table td { font-size: 22px; }
+  #service-mountains .mt-table th:first-child { width: 35%; }
+  #service-mountains .mt-table th:last-child { width: 240px; }
+}
+@media(max-width:820px) {
+  #service-mountains .mt-shell { width: calc(100% - 40px); padding-block: 20px 52px; }
+  #service-mountains #mountains-title { font-size: clamp(36px,6vw,46px); margin-bottom: 24px; }
+  #service-mountains .mt-panorama { aspect-ratio: 3 / 1; }
+  #service-mountains .mt-information { flex-direction: column; align-items: stretch; gap: 22px; padding-block: 26px; }
+  #service-mountains .mt-disclosure { width: 100%; min-height: 50px; }
+  #service-mountains .mt-table, #service-mountains .mt-table tbody { display: block; }
+  #service-mountains .mt-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  #service-mountains .mt-table tbody tr { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px 12px; padding: 26px 0; border-bottom: 1px solid rgba(200,192,181,.16); }
+  #service-mountains .mt-table tbody th:first-child { display: block; grid-column: 1 / -1; width: 100%; padding: 0 0 0 20px; border: 0; font-size: 24px; }
+  #service-mountains .mt-table td { padding: 0; border: 0; font-size: 24px; }
+  #service-mountains .mt-mobile-label { display: block; margin-bottom: 8px; color: #c8c0b5; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  #service-mountains .mt-action { grid-column: 1 / -1; }
+  #service-mountains .mt-action .mt-request { width: 190px; max-width: 100%; min-height: 44px; padding-inline: 16px; font-size: 11px; }
+}
+
+#service-mountains .mt-disclosure,
+#service-mountains .mt-more-routes > .mt-request {
+  width: fit-content;
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid #c29a45;
+  border-radius: 0;
+  background: transparent;
+  font: 500 11px/1.5 Manrope, sans-serif;
+  letter-spacing: .06em;
+  gap: 20px;
+}
+@media(max-width:820px) {
+  #service-mountains .mt-disclosure { align-self: center; }
+  #service-mountains .mt-more-routes { justify-content: center; }
+}

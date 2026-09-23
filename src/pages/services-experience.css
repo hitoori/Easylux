@@ -18,7 +18,7 @@
 
 /* First view: a clear offer beside Italy, with the service directory in view. */
 .services-new-page.services-experience .services-masthead {
-  min-height: 640px;
+  min-height: 590px;
   height: auto;
   display: flex;
   justify-content: center;
@@ -26,15 +26,17 @@
 }
 .services-new-page.services-experience .services-masthead-photo {
   inset: 0 0 0 auto;
-  width: 63%;
+  width: 65%;
   height: 100%;
   object-position: center;
   filter: saturate(.85) brightness(.94);
 }
 .services-new-page.services-experience .services-masthead::before {
-  background: linear-gradient(90deg, var(--svc-bg) 0%, var(--svc-bg) 28%, rgba(13,14,15,.94) 41%, rgba(13,14,15,.28) 66%, rgba(13,14,15,.04) 100%);
+  background:
+    linear-gradient(90deg, var(--svc-bg) 0%, rgba(13,14,15,.99) 30%, rgba(13,14,15,.9) 43%, rgba(13,14,15,.55) 57%, rgba(13,14,15,.18) 74%, rgba(13,14,15,.04) 100%),
+    linear-gradient(0deg, rgba(13,14,15,.4) 0%, transparent 44%);
 }
-.services-new-page.services-experience .services-masthead-shell { padding-block: 152px 76px; }
+.services-new-page.services-experience .services-masthead-shell { padding-block: 132px 60px; }
 .services-new-page.services-experience .services-masthead-copy { max-width: 570px; }
 .services-new-page.services-experience .services-masthead-eyebrow { margin-bottom: 24px; font-size: 12px; }
 .services-new-page.services-experience .services-masthead h1 {
@@ -161,9 +163,13 @@
 }
 @media (max-width: 820px) {
   .services-new-page.services-experience .services-masthead-photo { width: 100%; }
-  .services-new-page.services-experience .services-masthead::before { background: linear-gradient(90deg, rgba(13,14,15,.95), rgba(13,14,15,.5)); }
+  .services-new-page.services-experience .services-masthead::before {
+    background:
+      linear-gradient(90deg, rgba(13,14,15,.97) 0%, rgba(13,14,15,.88) 48%, rgba(13,14,15,.48) 100%),
+      linear-gradient(0deg, rgba(13,14,15,.66) 0%, transparent 56%);
+  }
   .services-new-page.services-experience .services-masthead-copy { max-width: 560px; }
-  .services-new-page.services-experience .services-masthead-shell { padding-block: 136px 64px; }
+  .services-new-page.services-experience .services-masthead-shell { padding-block: 120px 50px; }
   .services-new-page.services-experience .sv-water-story { grid-template-columns: 1fr; }
   .services-new-page.services-experience .sv-water-story-point { padding-block: 20px; }
   .services-new-page.services-experience .sv-water-story-point p { max-width: none; }
@@ -177,8 +183,9 @@
 }
 @media (max-width: 600px) {
   .services-new-page.services-experience { --experience-space: 64px; }
-  .services-new-page.services-experience .services-masthead { min-height: 0; }
-  .services-new-page.services-experience .services-masthead h1 { font-size: clamp(42px, 12vw, 58px); }
+  .services-new-page.services-experience .services-masthead { min-height: 530px; }
+  .services-new-page.services-experience .services-masthead-shell { padding-block: 112px 42px; }
+  .services-new-page.services-experience .services-masthead h1 { font-size: clamp(39px, 11vw, 50px); }
   .services-new-page.services-experience .services-masthead-description { font-size: 15px; }
   .services-new-page.services-experience .services-masthead-actions { gap: 6px; }
   .services-new-page.services-experience .services-hero-caption { display: none; }

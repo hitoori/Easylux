@@ -10,6 +10,52 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## Project design decisions
 
+- Cruise single disclosure (2026-09-22): remove the left intro route button. Show routes initially. Keep the small right-aligned Hide/View routes action and panel heading permanently visible; that single button closes and reopens the route list and its footer.
+
+- Cruise Ports reference correction (2026-09-22): prioritise the supplied mock over the initial table wording. Use “To the terminal. From the terminal.” over the existing cruise photograph with a restrained dark overlay and a gold journey rail. The disclosure opens full-width horizontal destination rows, NEVER three route columns: destination left, direction/context and inline labelled fares in the middle, underlined request action right. Keep confirmed Ravenna 440/500/900, Trieste 390/450/800, Fusina 100/120/220, both fare notes and different-route request. Stack each complete row on mobile.
+
+- Seaside fare confirmation (2026-09-22): Marco Polo → Lignano Sabbiadoro uses the same fares as Bibione: Sedan €220, Van €250, Minibus €480. Keep the standard Minibus label for both routes; do not display “14 passengers”. This supersedes the pending Lignano prices and capacity-specific display label.
+
+- Confirmed seaside fare (2026-09-22): Marco Polo Airport → Bibione is Sedan €220, Van €250, 14 passengers €480. These are airport-origin fares, not Venice-city fares. Marco Polo → Lignano Sabbiadoro was named by the owner but its prices are still pending.
+
+- Seaside always-visible routes (2026-09-22): remove the intro View/Hide Routes & Prices button. Keep the first three seaside routes permanently visible; the lower View more seaside routes action still appends three at a time. Give the heading/description more breathing room beside the empty image frame.
+
+- Scope correction (2026-09-22): the latest split intro/three-column numbered route mock belongs to Seaside, NOT Mountains. Restore Mountains to its prior shallow framed panorama, full-width fare table with equal-size routes/fares, gold markers and 3-at-a-time reveal. Apply the split layout to Seaside: “The coast, without the connections.”, empty frame right, Jesolo/Bibione/Lignano Sabbiadoro first, existing Jesolo fares and unconfirmed €— for the other two; append remaining existing coastal routes three at a time.
+
+- Mountains three-column route redesign (2026-09-22): latest reference supersedes the panoramic-strip/table layout. Desktop intro has heading, description and outlined disclosure left, empty 2.5:1 image frame right. Mobile order: heading, copy, frame, disclosure. Opening shows numbered Cortina, Val Gardena and Madonna di Campiglio routes in three equal open columns, with existing Cortina fares and €— for the two explicitly requested unpriced destinations. Append remaining existing mountain routes three at a time without duplicates; use fine dividers and underlined text actions, stack routes on mobile.
+
+- Mountains progressive routes (2026-09-22): opening the fare panel shows three routes. A Show more routes button below appends three more per click (3, 6, 9, then all 10); hide that button once every route is shown. Closing and reopening resets to the first three.
+
+- Mountains consistent type scale (2026-09-22): route names and fares use the same size (24px desktop/mobile, 22px at compact desktop widths); keep vehicle labels and CTA text smaller. Request buttons have matching dimensions within each viewport.
+
+- Mountains fare hierarchy (2026-09-22): emphasise route names and fares over CTAs. Use larger ivory fares (21px desktop, 22px mobile), clearer vehicle labels, and smaller outlined request buttons aligned to the right. Request buttons no longer need to match the disclosure width or span the full mobile row.
+
+- Mountains route-table polish (2026-09-22): use taller, airy route rows with a short fine gold vertical marker before each route name. Align route-request buttons to the right edge and the same desktop width as the route disclosure CTA; preserve three fare columns and full-width buttons on mobile.
+
+- Mountains panorama proportions (2026-09-22): make the empty framed image space a shallow full-width panoramic strip, approximately 8:1 on desktop, following the supplied reference. Use 3:1 on mobile/tablet to retain a usable image area; preserve the heading, information row and route disclosure.
+
+- Mountains image-frame visibility (2026-09-21): restore a fine visible warm-grey border only around the empty panoramic image container, so it is distinguishable from the dark section background. This overrides the previous borderless image-space instruction.
+
+- Mountains panoramic simplification (2026-09-21): supersedes previous split/featured-route layouts. Show only “From the city to the mountains.” above a full-width empty panoramic space, without image, border, labels or decoration. Below it, place the supplied private door-to-door description left and outlined View/Hide Routes & Prices CTA right. All mountain routes are initially hidden and expand immediately below that row. On mobile use title, panorama, description, full-width CTA, routes in that exact order.
+
+- Mountains heading refinement (2026-09-21): place “Private transfers to the mountains.” across the full section width above both columns, in one line on desktop. Routes and the empty image frame start below it; allow natural heading wrapping on small screens.
+
+- Mountains breathing-room refinement (2026-09-21): reduce the right panoramic frame to a 1.9:1 aspect ratio instead of stretching to the full text-column height; vertically centre that visual group and widen the desktop gap between routes and frame. Keep mobile stacking.
+
+- Mountains redesign (2026-09-21): follow the supplied left-copy/right-panorama composition, with an empty outlined panoramic image container and no photograph, icons, cards or shadows. Use three featured route disclosures on the left (existing Cortina, Corvara and Canazei fares), first open initially. Place winter caveat above the image frame and the full weather note below the composition. View all mountain routes expands all existing mountain fares as full-width horizontal rows beneath the image, matching Italy & Europe; mobile rows stack with three fare columns. Scope changes to Mountains only.
+
+- Italy & Europe spacing/disclosure correction (2026-09-21): remove the enclosing section border; only the empty image placeholder retains its frame. Leave generous bottom breathing room before Dolomites. Routes are collapsed initially and expand below the introduction only on request, on the same background. This overrides the earlier enclosing frame and initially open fare panel.
+
+- Italy & Europe visual refinement (2026-09-21): remove the photograph and retain an empty, subtly outlined image frame, like the Hourly placeholder. Follow the new reference with a contained rectangular section, equal upper columns, broader understated country line, wider tab underlines and compact fare rows. Use one continuous near-black background for the introduction and routes, separated only by a fine rule; this supersedes the photographic left column and contrasting fare-panel background.
+
+- Italy & Europe redesign (2026-09-21): supersedes the earlier map/benefits/destination-thumbnails layout. Use a flush 50/50 panoramic-photo-left and editorial-copy-right introduction, exact “Your destination / doesn’t stop at the border.” heading, plain country line and fine gold rule with endpoints. Continue directly into an initially open Italy/Europe fare panel: three Italian routes initially, existing fares, outlined requests and view-all disclosure. On mobile photo comes first and each table row becomes an open vertical route block with three fare columns, never horizontal scrolling. Preserve other service sections.
+
+- Water Taxi mobile reference (2026-09-21): show a dedicated square map at full card width, with the complete airport–Piazzale Roma–stay route and large readable labels, matching the supplied mobile reference. Use the shared direction-neutral mobile artwork for both journey tabs; keep direction-specific copy and desktop maps. Fare and request action remain below.
+
+- Water Taxi enlargement reference (2026-09-21): extend the desktop map into the surrounding right-column whitespace, starting above the heading and closer to the right edge; use a taller map while retaining visible route labels and keeping the fare/CTA below. Preserve a full-width, uncropped map on mobile.
+
+- Water Taxi map layout refinement (2026-09-21): use a large, taller, unframed route map filling the marked right-side visual region, with soft edge fades so it blends into the black section background. Keep it fully separate from the left title. Place the summary, single Water Taxi fare and compact outlined request CTA directly below the map in the same right column; stack cleanly on mobile.
+
 - About Us redesign: use a minimal, text-led editorial composition with no photography in page content. Include a typographic hero, mission, three values with simple gold outline icons, an abstract Europe route map centred on Venice, a brand statement and restrained final CTA. Preserve global header/footer and confirmed Venice/Italy/Europe facts. This supersedes the previous photographic About layout.
 
 - FAQ help CTA refinement: extend the Venice photograph across the entire section and place the copy and both CTAs over it with a dark directional overlay. Keep text on the right for desktop and anchor it near the bottom on mobile.
