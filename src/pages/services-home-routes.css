@@ -1,0 +1,252 @@
+/* Popular Routes rhythm, scoped to the three Services route lists. */
+.services-new-page.services-experience :is(#service-europe, #service-mountains, #service-cruise) {
+  --sr-columns: minmax(0, 2fr) minmax(0, .54fr) minmax(0, .54fr) minmax(0, .68fr) 176px;
+  --sr-divider: rgba(36, 41, 44, .9);
+}
+
+.services-new-page.services-experience :is(#service-europe .sr-home-table, #service-mountains .sr-home-table),
+.services-new-page.services-experience :is(#service-europe .sr-home-table tbody, #service-mountains .sr-home-table tbody) {
+  display: block;
+  width: 100%;
+}
+
+.services-new-page.services-experience :is(#service-europe .sr-home-table thead, #service-mountains .sr-home-table thead) {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  clip-path: none;
+}
+
+.services-new-page.services-experience :is(#service-europe .sr-home-table thead tr, #service-mountains .sr-home-table thead tr, #service-cruise .sr-home-head) {
+  display: grid;
+  grid-template-columns: var(--sr-columns);
+  align-items: end;
+  gap: 0;
+  padding: 0 0 16px;
+  border-bottom: 1px solid var(--sr-divider);
+}
+
+.services-new-page.services-experience :is(#service-europe .sr-home-table thead th, #service-mountains .sr-home-table thead th, #service-cruise .sr-home-head span) {
+  display: block;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0 10px;
+  border: 0;
+  color: var(--text-metadata);
+  font: 600 11px/1.4 Manrope, sans-serif;
+  letter-spacing: .14em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.services-new-page.services-experience :is(#service-europe .sr-home-table thead th:first-child, #service-mountains .sr-home-table thead th:first-child, #service-cruise .sr-home-head span:first-child) {
+  padding-left: 0;
+  text-align: left;
+}
+
+.services-new-page.services-experience :is(#service-europe .sr-home-table thead th:last-child, #service-mountains .sr-home-table thead th:last-child, #service-cruise .sr-home-head span:last-child) {
+  padding-right: 0;
+  text-align: right;
+}
+
+.services-new-page.services-experience :is(#service-europe .sr-home-table tbody tr, #service-mountains .sr-home-table tbody tr, #service-cruise .ct-route) {
+  display: grid;
+  grid-template-columns: var(--sr-columns);
+  align-items: center;
+  gap: 0;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--sr-divider);
+  transition: background-color 180ms ease;
+}
+
+.services-new-page.services-experience :is(#service-europe .sr-home-table tbody tr, #service-mountains .sr-home-table tbody tr, #service-cruise .ct-route):hover {
+  background: var(--background-secondary);
+}
+
+.services-new-page.services-experience :is(#service-europe .sr-home-table tbody th:first-child, #service-mountains .sr-home-table tbody th:first-child, #service-cruise .ct-route-heading) {
+  position: relative;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0 22px 0 30px;
+  border: 0;
+  text-align: left;
+}
+
+.services-new-page.services-experience :is(#service-europe .sr-home-table tbody th:first-child, #service-mountains .sr-home-table tbody th:first-child, #service-cruise .ct-route-heading)::before {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 0;
+  width: 1px;
+  height: auto;
+  background: var(--border-gold);
+  transform: none;
+}
+
+.services-new-page.services-experience #service-cruise .ct-route-heading::before { content: ''; }
+.services-new-page.services-experience .sr-route-copy { display: block; }
+.services-new-page.services-experience .sr-route-title,
+.services-new-page.services-experience #service-cruise .ct-route h3 {
+  display: block;
+  color: var(--text-primary);
+  font: 400 27px/1.12 'Source Serif 4', Georgia, serif;
+  letter-spacing: -.015em;
+}
+
+.services-new-page.services-experience :is(#service-europe .et-arrow, #service-mountains .mt-arrow, #service-cruise .ct-route h3 span) {
+  padding-inline: 2px;
+  color: var(--text-primary);
+}
+
+.services-new-page.services-experience .sr-route-note,
+.services-new-page.services-experience #service-cruise .ct-direction {
+  display: block;
+  margin-top: 8px;
+  color: var(--text-muted);
+  font: 400 14px/1.5 Manrope, sans-serif;
+  letter-spacing: 0;
+}
+
+.services-new-page.services-experience :is(#service-europe .sr-home-table tbody td:not(.et-action), #service-mountains .sr-home-table tbody td:not(.mt-action), #service-cruise .ct-fares > div) {
+  min-width: 0;
+  height: auto;
+  margin: 0;
+  padding: 4px 10px;
+  border: 0;
+  border-left: 1px solid var(--sr-divider);
+  color: var(--text-secondary);
+  font: 400 20px/1.4 Manrope, sans-serif;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.services-new-page.services-experience #service-cruise .ct-fares { display: contents; }
+.services-new-page.services-experience #service-cruise .ct-fares > div { display: block; }
+.services-new-page.services-experience #service-cruise .ct-fares dt { display: none; }
+.services-new-page.services-experience #service-cruise .ct-fares dd {
+  margin: 0;
+  color: var(--text-secondary);
+  font: 400 20px/1.4 Manrope, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.services-new-page.services-experience :is(#service-europe .et-mobile-label, #service-mountains .mt-mobile-label) { display: none; }
+
+.services-new-page.services-experience :is(#service-europe .sr-home-table .et-action, #service-mountains .sr-home-table .mt-action) {
+  width: auto;
+  min-width: 0;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.services-new-page.services-experience :is(#service-europe .et-action .et-button, #service-mountains .mt-action .mt-request, #service-cruise .ct-request) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+  min-height: 44px;
+  margin: 0;
+  padding: 9px 12px;
+  border: 1px solid rgba(194, 154, 69, .5);
+  border-radius: 0;
+  background: transparent;
+  color: #d8b96e;
+  font: 600 11px/1.3 Manrope, sans-serif;
+  letter-spacing: .09em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.services-new-page.services-experience :is(#service-europe .et-action .et-button, #service-mountains .mt-action .mt-request, #service-cruise .ct-request):hover {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--background);
+}
+
+.services-new-page.services-experience :is(#service-europe .et-action .et-button span, #service-mountains .mt-action .mt-request span, #service-cruise .ct-request span) { display: none; }
+.services-new-page.services-experience #service-cruise .ct-request { padding-inline: 12px; }
+
+@media (max-width: 1150px) and (min-width: 1024px) {
+  .services-new-page.services-experience :is(#service-europe, #service-mountains, #service-cruise) {
+    --sr-columns: minmax(0, 1.8fr) repeat(3, minmax(0, .54fr)) 156px;
+  }
+  .services-new-page.services-experience .sr-route-title,
+  .services-new-page.services-experience #service-cruise .ct-route h3 { font-size: 24px; }
+  .services-new-page.services-experience :is(#service-europe .et-action .et-button, #service-mountains .mt-action .mt-request, #service-cruise .ct-request) { font-size: 10px; }
+}
+
+@media (max-width: 1023px) {
+  .services-new-page.services-experience :is(#service-europe .sr-home-table thead, #service-mountains .sr-home-table thead, #service-cruise .sr-home-head) { display: none; }
+  .services-new-page.services-experience #service-cruise .ct-prices .sr-home-head { display: none; }
+  .services-new-page.services-experience :is(#service-europe .sr-home-table tbody tr, #service-mountains .sr-home-table tbody tr, #service-cruise .ct-route) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    padding: 26px 0;
+  }
+  .services-new-page.services-experience :is(#service-europe .sr-home-table tbody th:first-child, #service-mountains .sr-home-table tbody th:first-child, #service-cruise .ct-route-heading) {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 0 0 0 20px;
+    text-align: left;
+  }
+  .services-new-page.services-experience .sr-route-title,
+  .services-new-page.services-experience #service-cruise .ct-route h3 { font-size: clamp(22px, 3vw, 27px); }
+  .services-new-page.services-experience :is(#service-europe .sr-home-table tbody td:not(.et-action), #service-mountains .sr-home-table tbody td:not(.mt-action), #service-cruise .ct-fares > div) {
+    height: auto;
+    margin-top: 20px;
+    padding: 0 6px;
+    border-left: 0;
+    font-size: 18px;
+    text-align: center;
+  }
+  .services-new-page.services-experience :is(#service-europe .sr-home-table tbody td:nth-of-type(2), #service-europe .sr-home-table tbody td:nth-of-type(3), #service-mountains .sr-home-table tbody td:nth-of-type(2), #service-mountains .sr-home-table tbody td:nth-of-type(3), #service-cruise .ct-fares > div:nth-child(n+2)) { border-left: 1px solid var(--sr-divider); }
+  .services-new-page.services-experience :is(#service-europe .et-mobile-label, #service-mountains .mt-mobile-label, #service-cruise .ct-fares dt) {
+    display: block;
+    margin: 0 0 5px;
+    color: var(--text-metadata);
+    font: 500 10px/1.4 Manrope, sans-serif;
+    letter-spacing: .1em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .services-new-page.services-experience #service-cruise .ct-fares {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+  }
+  .services-new-page.services-experience #service-cruise .ct-fares > div { display: block; }
+  .services-new-page.services-experience :is(#service-europe .sr-home-table .et-action, #service-mountains .sr-home-table .mt-action, #service-cruise .ct-request) {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    width: 100%;
+    justify-self: stretch;
+    margin-top: 20px;
+    padding: 0;
+  }
+  .services-new-page.services-experience :is(#service-europe .et-action .et-button, #service-mountains .mt-action .mt-request, #service-cruise .ct-request) {
+    width: 100%;
+    min-height: 46px;
+    margin: 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .services-new-page.services-experience .sr-route-title,
+  .services-new-page.services-experience #service-cruise .ct-route h3 { font-size: 22px; }
+  .services-new-page.services-experience :is(#service-europe .sr-home-table tbody td:not(.et-action), #service-mountains .sr-home-table tbody td:not(.mt-action), #service-cruise .ct-fares > div) { font-size: 16px; }
+  .services-new-page.services-experience :is(#service-europe .et-mobile-label, #service-mountains .mt-mobile-label, #service-cruise .ct-fares dt) { font-size: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-new-page.services-experience :is(#service-europe .sr-home-table tbody tr, #service-mountains .sr-home-table tbody tr, #service-cruise .ct-route) { transition: none; }
+}

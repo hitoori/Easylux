@@ -14,7 +14,7 @@
 #service-europe .et-copy { min-width: 0; padding: clamp(36px, 3.5vw, 56px) clamp(28px, 4vw, 64px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
 #service-europe .et-copy h2 { margin: 0 0 28px; color: #ece6db; font: 400 clamp(30px, 3vw, 48px)/1.12 "Source Serif 4", Georgia, serif; letter-spacing: -.035em; }
 #service-europe .et-copy h2 span { white-space: nowrap; }
-#service-europe .et-description { max-width: 49ch; margin: 0; font-size: 15px; line-height: 1.85; }
+#service-europe .et-description { width: 100%; max-width: none; margin: 0; font-size: 15px; line-height: 1.85; text-align: start; text-wrap: balance; }
 #service-europe .et-countries { margin: 32px 0 20px; color: #c8c0b5; font: 400 clamp(12px, 1.2vw, 18px)/1.8 "Source Serif 4", Georgia, serif; letter-spacing: .07em; white-space: nowrap; }
 #service-europe .et-countries span { display: inline-block; white-space: nowrap; }
 #service-europe .et-countries span + span { margin-left: .4em; }
@@ -22,7 +22,7 @@
 #service-europe .et-line { position: relative; height: 1px; width: 100%; background: #c29a45; opacity: .75; }
 #service-europe .et-line::before, #service-europe .et-line::after { content: ""; position: absolute; top: -2px; width: 5px; height: 5px; border-radius: 50%; background: #c29a45; }
 #service-europe .et-line::before { left: 0; } #service-europe .et-line::after { right: 0; }
-#service-europe .et-statement { margin: 24px 0 32px; color: #aaa39a; font-size: 13px; line-height: 1.7; }
+#service-europe .et-statement { margin: 24px 0 32px; color: #aaa39a; font-size: 13px; line-height: 1.7; text-align: start; }
 #service-europe .et-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 46px; padding: 13px 20px; border: 1px solid #c29a45; border-radius: 1px; background: transparent; color: #daab2d; font: 500 11px/1.5 Manrope, sans-serif; letter-spacing: .055em; cursor: pointer; }
 #service-europe .et-button:hover { border-color: #ece6db; color: #ece6db; }
 #service-europe .et-button span { font-size: 18px; line-height: 1; }

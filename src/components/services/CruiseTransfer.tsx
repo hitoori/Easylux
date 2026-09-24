@@ -21,14 +21,15 @@ export default function CruiseTransfer({ onRequest }: { onRequest: RequestJourne
       <div className="ct-prices">
         <div className="ct-prices-heading"><button type="button" className="ct-text-action" aria-expanded={routesOpen} aria-controls="cruise-route-prices" onClick={() => setRoutesOpen(current => !current)}>{routesOpen ? 'HIDE ROUTES' : 'VIEW ROUTES'} <span aria-hidden="true">{routesOpen ? '↑' : '↓'}</span></button></div>
         <div id="cruise-route-prices" hidden={!routesOpen}>
+        <div className="sr-home-head" aria-hidden="true"><span>Route</span><span>Sedan</span><span>Van</span><span>Minibus 12</span><span>Action</span></div>
         <ul className="ct-routes">
           {cruiseRoutes.map(route => <li className="ct-route" key={route.id}>
-            <div className="ct-route-heading"><h3>{route.to}</h3>
-            <p className="ct-direction">Venice / chosen address <span aria-hidden="true">↔</span> terminal</p></div>
+            <div className="ct-route-heading"><h3>{route.from} <span aria-hidden="true">→</span> {route.to}</h3>
+            <p className="ct-direction">Point-to-point private transfer</p></div>
             <dl className="ct-fares">
               <div><dt>Sedan</dt><dd>{priceLabel(route.sedan)}</dd></div>
               <div><dt>Van</dt><dd>{priceLabel(route.van)}</dd></div>
-              <div><dt>Minibus</dt><dd>{priceLabel(route.minibus)}</dd></div>
+              <div><dt>Minibus 12</dt><dd>{priceLabel(route.minibus)}</dd></div>
             </dl>
             <button type="button" className="ct-text-action ct-request" aria-label={`Request this route: ${route.from} to ${route.to}`} onClick={() => onRequest({ service: 'cruise', pickup: route.pickup, destination: route.destination })}>REQUEST THIS ROUTE <span aria-hidden="true">→</span></button>
           </li>)}

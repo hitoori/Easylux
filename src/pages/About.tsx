@@ -1,55 +1,178 @@
-import { Diamond, ShieldCheck, UsersThree } from '@phosphor-icons/react'
+import type { CSSProperties } from 'react'
+import { WhatsappLogo } from '@phosphor-icons/react'
 import { ArrowRight } from '../components/PikaIcons'
+import { company } from '../config/company'
 import type { Page } from '../types/navigation'
 import './about.css'
 
 interface AboutProps { navigate: (page: Page) => void }
 
-const values = [
-  { number: '01', title: 'People first', text: 'We put your needs at the centre of every journey.', Icon: UsersThree },
-  { number: '02', title: 'Reliability', text: 'Punctual, well-maintained vehicles and professional drivers.', Icon: ShieldCheck },
-  { number: '03', title: 'A higher standard', text: 'Discretion, professionalism and attention to detail.', Icon: Diamond },
-]
+type PhotoSlotProps = {
+  className?: string
+  subject: string
+  ratio: string
+  focus?: string
+  position?: string
+  crop?: 'cover' | 'contain'
+}
 
-const principles = [['Private', 'by default'], ['Tailored', 'to you'], ['Beyond', 'expectations']]
+/** Replace this frame with an img when a real photograph is supplied. Keep the
+ * same wrapper, aspect ratio and object-position; write descriptive alt text
+ * for that photograph instead of reusing this placeholder label. */
+function PhotoSlot({ className = '', subject, ratio, focus, position = 'center', crop = 'cover' }: PhotoSlotProps) {
+  const style = { '--ab-ratio': ratio.replace(':', ' / '), '--ab-position': position, '--ab-fit': crop } as CSSProperties
 
-function EuropeRouteGraphic() {
   return (
-    <div className="ab-map-visual">
-      <svg viewBox="0 0 720 470" role="img" aria-labelledby="ab-map-title ab-map-desc">
-        <title id="ab-map-title">Easy Lux journeys from Venice across Europe</title>
-        <desc id="ab-map-desc">A minimal outline of Europe with Venice highlighted and routes extending towards nearby countries and western Europe.</desc>
-        <path className="ab-map-outline" d="M71 102 112 72l53 11 38-35 45 10 39-29 51 35 47-11 34 27 61 1 24 33 57 16 17 42 50 24-5 49 31 38-17 44-49 5-33 39-47-7-29 40-44-23-55 8-37-30-43 6-28-39-42 2-12-43-53-18-8-46-41-28 18-45-23-34 28-36Z" />
-        <path className="ab-map-coast" d="m339 231 25 21-4 31 24 30-8 30 31 28-8 27M431 170l-23 30 10 29-17 24M220 133l25 22-17 31-38 14" />
-        <g className="ab-map-routes">
-          <path d="M365 306Q277 207 181 150" /><path d="M365 306Q342 205 395 125" />
-          <path d="M365 306Q430 243 520 233" /><path d="M365 306Q502 201 623 149" />
-          <path d="M365 306Q269 330 183 371" />
-        </g>
-        <g className="ab-map-stops"><circle cx="181" cy="150" r="3" /><circle cx="395" cy="125" r="3" /><circle cx="520" cy="233" r="3" /><circle cx="623" cy="149" r="3" /><circle cx="183" cy="371" r="3" /></g>
-        <circle className="ab-map-venice-ring" cx="365" cy="306" r="10" /><circle className="ab-map-venice" cx="365" cy="306" r="4" />
-        <text x="382" y="311">VENICE</text>
-      </svg>
-      <p>Different destinations.<br /><em>The same care.</em><span /></p>
+    <div className={`ab-photo-slot ${className}`} style={style} aria-hidden="true">
+      <div className="ab-photo-label">
+        <span>Image placeholder</span>
+        <strong>{subject}</strong>
+        <small>Recommended: {ratio}</small>
+        {focus && <small>Focus: {focus}</small>}
+        <small>Crop: {crop} · Position: {position}</small>
+      </div>
     </div>
   )
 }
 
+const facts = ['Two founders', 'Venice & Treviso', 'Private transport experience', 'Italy & Europe']
+
+const standards = [
+  {
+    number: '01',
+    title: 'Prepared around you',
+    description: 'Your route, timing, passengers and luggage are considered before the journey begins.',
+    photo: 'Journey preparation / Venice arrival',
+  },
+  {
+    number: '02',
+    title: 'Professional from start to finish',
+    description: 'Clear communication, punctual service and personal assistance throughout your transfer.',
+    photo: 'Driver and vehicle detail',
+  },
+  {
+    number: '03',
+    title: 'Genuine Italian hospitality',
+    description: 'A welcoming, attentive approach designed to help you enjoy the journey as much as the destination.',
+    photo: 'Italian road or destination',
+  },
+]
+
 export default function About({ navigate }: AboutProps) {
-  return <div className="about-page">
-    <header className="ab-hero ab-shell" aria-labelledby="about-title">
-      <div className="ab-hero-copy"><p className="ab-kicker">About Easy Lux</p><h1 id="about-title">Driven<br /><em>with purpose.</em></h1><p>Easy Lux is a private chauffeur service based in Venice, created for travellers who value comfort, reliability and a more personal way to explore Italy and beyond.</p><div className="ab-actions"><button className="ab-primary" onClick={() => navigate('services')}>Our Services <ArrowRight size={17} aria-hidden="true" /></button><button className="ab-text-link" onClick={() => navigate('contact')}>Contact us <ArrowRight size={16} aria-hidden="true" /></button></div></div>
-      <div className="ab-hero-editorial" aria-label="What defines Easy Lux"><ul>{['Discretion', 'Comfort', 'Reliability', 'Freedom'].map(item => <li key={item}>{item}</li>)}</ul><blockquote>It’s not just<br />a transfer.<br />It’s how you<br /><em>experience the journey.</em><span /></blockquote></div>
-    </header>
+  return (
+    <div className="about-page">
+      <header className="ab-hero ab-shell" aria-labelledby="about-title">
+        <div className="ab-hero-copy">
+          <p className="ab-eyebrow">About Easy Lux</p>
+          <h1 id="about-title">Driven by passion.<br />Committed to every journey.</h1>
+          <p className="ab-hero-intro">Private journeys from Venice and Treviso, arranged with care.</p>
+          <button className="ab-outline-button" type="button" onClick={() => navigate('services')}>
+            Discover our services <ArrowRight size={18} aria-hidden="true" />
+          </button>
+        </div>
+        <PhotoSlot className="ab-hero-photo" subject="Two founders with vehicle in Venice" ratio="16:10" focus="founders and vehicle" position="center" />
+      </header>
 
-    <section className="ab-mission ab-shell" aria-labelledby="ab-mission-title"><div><p className="ab-kicker">Our mission</p><h2 id="ab-mission-title">A simpler,<br />more personal way<br /><em>to travel.</em></h2></div><div className="ab-mission-copy"><p>We believe that every journey should feel effortless. Our mission is to provide reliable, comfortable and tailored transport for travellers who want to experience Italy in a smooth and enjoyable way — from airport transfers and water taxi coordination in Venice to long-distance journeys across Europe.</p><p>We focus on what matters most: your time, your comfort and a service you can count on.</p></div></section>
+      <section className="ab-facts" aria-label="Easy Lux at a glance">
+        <div className="ab-shell ab-facts-grid">
+          {facts.map(fact => <span key={fact}>{fact}</span>)}
+        </div>
+      </section>
 
-    <section className="ab-values-section ab-shell" aria-labelledby="ab-values-title"><p className="ab-kicker" id="ab-values-title">What guides us</p><div className="ab-values">{values.map(({ number, title, text, Icon }) => <article key={title}><span className="ab-value-number">{number}</span><Icon size={29} weight="light" aria-hidden="true" /><h2>{title}</h2><p>{text}</p></article>)}</div></section>
+      <section className="ab-story ab-shell ab-section ab-split" aria-labelledby="ab-story-title">
+        <div className="ab-section-copy">
+          <p className="ab-eyebrow">Our story</p>
+          <h2 id="ab-story-title">A shared vision,<br />brought to life.</h2>
+          <p>We are <span className="ab-gold-text">two young entrepreneurs</span> united by a passion for travel, hospitality and exceptional service. After years of experience in <span className="ab-gold-text">private transportation</span>, we created Easy Lux to offer a more personal way to travel.</p>
+          <p>Operating in <span className="ab-gold-text">Venice and Treviso</span>, we arrange reliable, comfortable and tailored journeys across Italy and Europe.</p>
+        </div>
+        <PhotoSlot subject="Founders preparing the vehicle" ratio="4:3" focus="people, luggage and vehicle" position="center" />
+      </section>
 
-    <section className="ab-coverage" aria-labelledby="ab-coverage-title"><div className="ab-shell ab-coverage-layout"><div className="ab-coverage-copy"><p className="ab-kicker">Based in Venice</p><h2 id="ab-coverage-title">From Italy<br />to new horizons.</h2><p>From Venice to the Dolomites, the Adriatic coast and major cities across Europe, we offer tailor-made transfers and journeys for leisure, business and special occasions.</p><div className="ab-places">Venice · Italy · Austria · Slovenia · Croatia · France</div></div><EuropeRouteGraphic /></div></section>
+      <section className="ab-luxury ab-section" aria-labelledby="ab-luxury-title">
+        <div className="ab-shell ab-split ab-luxury-layout">
+          <div className="ab-section-copy">
+            <h2 id="ab-luxury-title">Luxury is how<br />the journey feels.</h2>
+            <p>For us, luxury is not defined only by the vehicle. It is knowing that your journey has been prepared, your time is respected and someone is there when you need them.</p>
+          </div>
+          <PhotoSlot subject="Chauffeur opening the vehicle door" ratio="16:7" focus="hand, vehicle door and Venice background" position="center right" />
+        </div>
+      </section>
 
-    <section className="ab-statement ab-shell" aria-label="The Easy Lux approach"><div className="ab-statement-copy"><blockquote>“We don’t just take you to a place —<br /><em>we help you experience it.”</em></blockquote><p>Easy Lux</p></div><div className="ab-principles">{principles.map(([title, subtitle]) => <div key={title}><strong>{title}</strong><span>{subtitle}</span></div>)}</div></section>
+      <section className="ab-standards ab-shell ab-section" aria-labelledby="ab-standards-title">
+        <p className="ab-eyebrow">What guides us</p>
+        <h2 id="ab-standards-title">The Easy Lux standard.</h2>
+        <div className="ab-standard-list">
+          {standards.map(standard => (
+            <article className="ab-standard" key={standard.number}>
+              <span className="ab-standard-number">{standard.number}</span>
+              <div className="ab-standard-copy">
+                <h3>{standard.title}</h3>
+                <p>{standard.description}</p>
+              </div>
+              <PhotoSlot subject={standard.photo} ratio="16:5" position="center" />
+            </article>
+          ))}
+        </div>
+      </section>
 
-    <section className="ab-cta ab-shell" aria-labelledby="ab-cta-title"><div><p className="ab-kicker">Ready to travel?</p><h2 id="ab-cta-title">Let’s plan your journey.</h2></div><div className="ab-actions"><button className="ab-primary" onClick={() => navigate('contact')}>Book Your Ride <ArrowRight size={17} aria-hidden="true" /></button><button className="ab-secondary" onClick={() => navigate('contact')}>Contact Us <ArrowRight size={17} aria-hidden="true" /></button></div></section>
-  </div>
+      <section className="ab-collage ab-shell ab-section" aria-label="The Easy Lux experience">
+        <div className="ab-collage-grid">
+          <figure className="ab-collage-main">
+            <PhotoSlot subject="Vehicle in Venice or Treviso" ratio="4:3" focus="vehicle in its surroundings" position="center" />
+            <figcaption>Comfortable vehicles</figcaption>
+          </figure>
+          <div className="ab-collage-side">
+            <figure>
+              <PhotoSlot subject="Vehicle interior" ratio="16:7" focus="interior detail" position="center" />
+              <figcaption>Comfort on board</figcaption>
+            </figure>
+            <figure>
+              <PhotoSlot subject="Luggage assistance" ratio="16:7" focus="assistance with luggage" position="center" />
+              <figcaption>Personal service</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section className="ab-operate ab-shell ab-section ab-split" aria-labelledby="ab-operate-title">
+        <div className="ab-section-copy">
+          <p className="ab-eyebrow">Where we operate</p>
+          <h2 id="ab-operate-title">From Venice<br />and Treviso, further.</h2>
+          <p>From airport arrivals and Water Taxi connections in Venice to private transfers from Treviso and longer journeys across Italy and Europe, every route is arranged around your plans.</p>
+          <button className="ab-inline-link" type="button" onClick={() => navigate('services')}>
+            View all destinations <ArrowRight size={17} aria-hidden="true" />
+          </button>
+          <p className="ab-countries">Italy · Austria · Slovenia · Croatia · France</p>
+        </div>
+        <PhotoSlot subject="Venice & Treviso route map" ratio="4:3" focus="markers: Venice and Treviso; transparent PNG" position="center" crop="contain" />
+      </section>
+
+      <section className="ab-manifesto ab-shell ab-section" aria-labelledby="ab-manifesto-title">
+        <span className="ab-manifesto-rule" aria-hidden="true" />
+        <h2 id="ab-manifesto-title">Driven by passion.<br />Committed to excellence.</h2>
+        <p>Easy Lux</p>
+        <span className="ab-manifesto-rule" aria-hidden="true" />
+      </section>
+
+      <section className="ab-final-cta ab-section" aria-labelledby="ab-final-title">
+        <div className="ab-shell ab-split ab-final-layout">
+          <div className="ab-section-copy">
+            <p className="ab-eyebrow">Ready to travel?</p>
+            <h2 id="ab-final-title">Tell us where<br />you need to be.</h2>
+            <p>Share your plans and we’ll arrange the details, from pick-up to final destination.</p>
+            <div className="ab-final-actions">
+              <button className="ab-outline-button" type="button" onClick={() => navigate('contact')}>
+                Request your journey <ArrowRight size={18} aria-hidden="true" />
+              </button>
+              <a className="ab-whatsapp-link" href={company.phones[0].whatsapp} target="_blank" rel="noopener noreferrer">
+                <WhatsappLogo size={19} aria-hidden="true" /> WhatsApp us <ArrowRight size={17} aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+          <PhotoSlot subject="Venice waterfront at sunset" ratio="16:6" focus="architecture and negative space for text" position="center" />
+        </div>
+      </section>
+    </div>
+  )
 }

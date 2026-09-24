@@ -10,6 +10,38 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## Project design decisions
 
+- Services route lists (2026-09-24): Italy & Europe, Mountains and Cruise routes use the Home Popular Routes presentation on desktop and mobile: aligned route/fare/action columns on desktop; route title, three side-by-side fares and a full-width request button on mobile. Keep the Coast section's route design unchanged. This supersedes older Cruise route-row layout notes below.
+
+- Water Taxi full-section reference (2026-09-24): the selected `Screenshot 2026-09-24 at 00.55.16.png` supersedes the temporary empty-frame review. Use a full-bleed Venice route map behind the section, large left-aligned editorial heading/copy, direction tabs and access note below, and a bottom row with summary, separate Road transfer €80 and Private water taxi €100–140 fares, and the request button. Keep Arriving and Leaving content and map transitions functional, with mobile-specific route images that show both endpoints.
+
+- Water Taxi map frame review (2026-09-24): temporarily show an empty outlined map container in the marked right-hand area above the fare/action row. Use the same frame dimensions for both directions and keep the lower text and button fixed; retain the supplied map assets for later placement.
+
+- Water Taxi direction transition (2026-09-24): keep the map dimensions and all text/action positions fixed while switching between Arriving and Leaving. Reserve space for the longer copy and crossfade the direction-specific map and text.
+
+- Water Taxi mobile maps (2026-09-24): the latest two-state mobile reference supersedes the earlier 3:2 map layout. Show dedicated near-square map art for Arriving and Leaving, with both endpoints, labels and direction arrows visible; keep both map frames identical in size.
+
+- Water Taxi mobile layout (2026-09-24): follow the supplied two-card state reference. Each phone state uses a compact dark card with a two-line heading, shared short intro, Arriving/Leaving tabs, edge-to-edge near-square map, direction-specific short note, and a full-width outline request button. Show Road transfer €80 and Private water taxi €100–140 side by side, with each label above its fare, even at 320px. Keep the two states at identical heights and prevent horizontal overflow. Desktop retains its longer descriptions and access notes.
+
+- Water Taxi desktop typography (2026-09-24): keep the editorial two-line heading prominent while reducing body, tab, note, summary and fare-label sizes on wide screens. Give the copy a looser line height and clearer vertical gaps. Keep both fares in the lower row and constrain the outlined request button to a compact width and height; the separate mobile card remains unaffected.
+
+- Water Taxi desktop map framing (2026-09-24): zoom the map artwork out slightly within the existing full-bleed dark section so the final hotel/landing label stays fully visible at the right edge. Preserve the section background, copy, fare row and mobile map framing.
+
+- Water Taxi wide desktop map position (2026-09-24): place the map firmly in the right side of the section, with its airport marker clear of the left text column. Zoom the entire map artwork out enough for both the airport and hotel/landing labels to stay in frame. Keep the dark section backdrop and leave narrower desktop and mobile positions unchanged.
+
+- Water Taxi direction maps (2026-09-24): use the first supplied Venice route image for Arriving in Venice and the second for Leaving Venice. Keep each map tied to its matching direction tab.
+
+- Italy & Europe text alignment (2026-09-24): keep natural word spacing and allow the main private journey description to use the full text-column width so it forms two lines at normal desktop widths. Keep the heading, country names and short statement unchanged.
+
+- Water Taxi text alignment (2026-09-24): justify the main journey description and the direct hotel access note; leave the heading and direction tabs as designed.
+
+- Hourly text alignment (2026-09-24): justify the introductory “Book a private chauffeur...” paragraph in the Several stops section.
+
+- Airport request button (2026-09-24): match the header Book Your Ride button's dark translucent background, gold outline and text, and solid gold hover/pressed colors. Keep the airport button's existing request action.
+
+- Airport starting fare (2026-09-24): show “From €80” in the shared panel for From the airport, To the airport and Address to address.
+
+- Airport text layout (2026-09-23): keep the left image frame reserved for a future photo. In the right column, centre the heading, feature list and meeting-point link, justify the description, and use the same text and action positions for all three transfer tabs. Keep price and request action in their lower row. Display “Address to Address Transfer” on one line.
+
 - Cruise single disclosure (2026-09-22): remove the left intro route button. Show routes initially. Keep the small right-aligned Hide/View routes action and panel heading permanently visible; that single button closes and reopens the route list and its footer.
 
 - Cruise Ports reference correction (2026-09-22): prioritise the supplied mock over the initial table wording. Use “To the terminal. From the terminal.” over the existing cruise photograph with a restrained dark overlay and a gold journey rail. The disclosure opens full-width horizontal destination rows, NEVER three route columns: destination left, direction/context and inline labelled fares in the middle, underlined request action right. Keep confirmed Ravenna 440/500/900, Trieste 390/450/800, Fusina 100/120/220, both fare notes and different-route request. Stack each complete row on mobile.

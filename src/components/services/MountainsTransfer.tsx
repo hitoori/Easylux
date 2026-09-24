@@ -17,11 +17,11 @@ export default function MountainsTransfer({ onRequest }: { onRequest: RequestJou
         <button type="button" className="mt-request mt-disclosure" aria-expanded={routesOpen} aria-controls="dolomites-route-prices" onClick={() => { setRoutesOpen(current => !current); setVisibleCount(3) }}>{routesOpen ? 'HIDE ROUTES & PRICES' : 'VIEW ROUTES & PRICES'} <span aria-hidden="true">{routesOpen ? '↑' : '↓'}</span></button>
       </div>
       <div id="dolomites-route-prices" className="mt-all-routes" hidden={!routesOpen}>
-        <table id="mountain-route-table" className="mt-table" aria-label="All mountain routes and prices">
-          <thead><tr><th scope="col">Route</th><th scope="col">Sedan</th><th scope="col">Van</th><th scope="col">Minibus</th><th scope="col">Action</th></tr></thead>
+        <table id="mountain-route-table" className="mt-table sr-home-table" aria-label="All mountain routes and prices">
+          <thead><tr><th scope="col">Route</th><th scope="col">Sedan</th><th scope="col">Van</th><th scope="col">Minibus 12</th><th scope="col">Action</th></tr></thead>
           <tbody>{mountainRoutes.slice(0, visibleCount).map(route => <tr key={route.id}>
-            <th scope="row">{route.from} <span className="mt-arrow">→</span> {route.to}</th>
-            <td><span className="mt-mobile-label">Sedan</span>{priceLabel(route.sedan)}</td><td><span className="mt-mobile-label">Van</span>{priceLabel(route.van)}</td><td><span className="mt-mobile-label">Minibus</span>{priceLabel(route.minibus)}</td>
+            <th scope="row"><span className="sr-route-copy"><span className="sr-route-title">{route.from} <span className="mt-arrow">→</span> {route.to}</span><span className="sr-route-note">Point-to-point private transfer</span></span></th>
+            <td><span className="mt-mobile-label">Sedan</span>{priceLabel(route.sedan)}</td><td><span className="mt-mobile-label">Van</span>{priceLabel(route.van)}</td><td><span className="mt-mobile-label">Minibus 12</span>{priceLabel(route.minibus)}</td>
             <td className="mt-action"><button type="button" className="mt-request" aria-label={`Request this route: ${route.from} to ${route.to}`} onClick={() => requestRoute(route)}>REQUEST THIS ROUTE <span aria-hidden="true">→</span></button></td>
           </tr>)}</tbody>
         </table>

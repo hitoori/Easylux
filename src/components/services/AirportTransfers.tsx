@@ -7,19 +7,19 @@ const journeys = [
   {
     label: 'From the airport', title: 'Airport Transfer',
     description: 'We monitor your flight and adjust the pick-up if your arrival time changes. Your driver meets you at the agreed point, assists with luggage and takes you directly to your destination.',
-    cta: 'Book Airport Transfer',
+    cta: 'Request Airport Transfer',
     features: ['Flight monitoring', 'Meet & greet', 'Luggage assistance'],
   },
   {
     label: 'To the airport', title: 'Airport Drop-off',
     description: 'We plan collection around your departure time, terminal and traffic. Your chauffeur arrives at the agreed address, helps with luggage and takes you directly to the correct terminal.',
-    cta: 'Book Airport Drop-off',
+    cta: 'Request Airport Drop-off',
     features: ['Planned pick-up', 'Direct transfer', 'Luggage assistance'],
   },
   {
     label: 'Address to address', title: 'Address to Address Transfer',
     description: 'Travel privately between hotels, cities or accessible addresses. We confirm the route, pick-up time, meeting point and luggage requirements before travel.',
-    cta: 'Book Private Transfer',
+    cta: 'Request Private Transfer',
     features: ['Private journey', 'Flexible pick-up', 'Space for luggage'],
   },
 ]
@@ -61,7 +61,9 @@ export default function AirportTransfers({ onMeetingPoint, onRequest }: { onMeet
 
         <div className="ac-content">
           <div className="ac-copy ac-fade" key={`copy-${selected}`} id="ac-journey" role="tabpanel" aria-labelledby={`ac-tab-${selected}`} tabIndex={0}>
-            <h2 id="airport-transfers-title" className={selected === 2 ? 'ac-long-title' : undefined}>{journey.title}</h2>
+            <h2 id="airport-transfers-title" className={selected === 2 ? 'ac-long-title' : undefined}>
+              <span>{journey.title}</span>
+            </h2>
             <p>{journey.description}</p>
           </div>
 
@@ -69,15 +71,15 @@ export default function AirportTransfers({ onMeetingPoint, onRequest }: { onMeet
             {journey.features.map(feature => <li key={feature}>{feature}</li>)}
           </ul>
 
-          {selected === 0 && <div className="ac-meeting">
-            <button type="button" onClick={onMeetingPoint}>View meeting point →</button>
-          </div>}
+          <div className="ac-meeting">
+            {selected === 0 && <button type="button" onClick={onMeetingPoint}>View meeting point →</button>}
+          </div>
 
           <div className="ac-booking">
             <div className="ac-booking-row">
               <div className="ac-price">
                 <span>From</span>
-                <strong>€70</strong>
+                <strong>€80</strong>
               </div>
               <button className="sv-button" type="button" onClick={() => onRequest({ service: 'airport', airportPickup: selected === 0 })}>{journey.cta}<span aria-hidden="true">→</span></button>
             </div>

@@ -23,16 +23,14 @@ import './services-final-polish.css'
 import '../components/services/hourly-mockup.css'
 import './services-spacing.css'
 import './services-route-style.css'
+import './services-section-polish.css'
+import './services-water-taxi-reference.css'
+import './services-home-routes.css'
 import AirportTransfers from '../components/services/AirportTransfers'
 import PricingGuide from '../components/services/PricingGuide'
-import FloatingServiceNav from '../components/services/FloatingServiceNav'
 
 export default function Services({ navigate: _navigate }: { navigate: (page: Page) => void }) {
   const [activeSection, setActiveSection] = useState<JourneyService | null>(null)
-  const [floatingVisible, setFloatingVisible] = useState(false)
-  const serviceNavRef = useRef<HTMLElement | null>(null)
-  const selectedScroll = useRef(false)
-  const previousScroll = useRef(0)
   const [meetingOpen, setMeetingOpen] = useState(false)
   const [meetingClosing, setMeetingClosing] = useState(false)
   const [selection, setSelection] = useState<QuoteSelection | null>(null)
@@ -45,11 +43,6 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
     const updateActiveSection = () => {
       window.cancelAnimationFrame(frame)
       frame = window.requestAnimationFrame(() => {
-        const headerHeight = window.matchMedia('(min-width: 1024px)').matches ? 76 : 72
-        const passedMenu = (serviceNavRef.current?.getBoundingClientRect().bottom ?? Infinity) <= headerHeight
-        if (passedMenu || window.scrollY < previousScroll.current - 1) selectedScroll.current = false
-        setFloatingVisible(passedMenu || selectedScroll.current)
-        previousScroll.current = window.scrollY
         const marker = Math.max(100, window.innerHeight * .3)
         const sections = serviceOptions.filter(([id]) => id !== 'custom')
         let current = sections[0]?.[0] ?? null
@@ -124,14 +117,13 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
         </div>
       </div>
     </section>
-    <nav ref={serviceNavRef} className="services-masthead-nav services-top-navigation" aria-label="Choose a service">
+    <nav className="services-masthead-nav services-top-navigation" aria-label="Choose a service">
       {serviceOptions.filter(([id]) => id !== 'custom').map(([id, label]) =>
         <button key={id} type="button" aria-current={activeSection === id ? 'location' : undefined}
-          onClick={() => { selectedScroll.current = true; setFloatingVisible(true); scrollTo(id) }}>
+          onClick={() => scrollTo(id)}>
           <span>{label}</span>
         </button>)}
     </nav>
-    {floatingVisible && <FloatingServiceNav activeSection={activeSection} onSelect={scrollTo} />}
     <AirportTransfers onMeetingPoint={openMeetingPoint} onRequest={requestJourney} />
     <HourlySection onRequest={requestJourney} />
     <WaterTaxiSection onRequest={requestJourney} />

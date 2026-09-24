@@ -1,0 +1,113 @@
+/* Align the seven service chapters without changing their established layouts. */
+.services-new-page.services-experience {
+  --service-chapter-title: clamp(42px, 3.65vw, 52px);
+  --service-chapter-space: clamp(64px, 5vw, 76px);
+}
+
+/* Let the seven chapters flow on one dark canvas; route dividers stay intact. */
+.services-new-page.services-experience :is(
+  #service-airport,
+  #service-hourly,
+  #service-water-taxi,
+  #service-europe,
+  #service-mountains,
+  #service-coast,
+  #service-cruise
+) {
+  border-block: 0;
+}
+
+.services-new-page.services-experience #service-airport .ac-shell {
+  padding-top: var(--service-chapter-space);
+  padding-bottom: var(--service-chapter-space);
+}
+.services-new-page.services-experience #service-hourly .hourly-mockup-shell,
+.services-new-page.services-experience #service-water-taxi .wt-shell,
+.services-new-page.services-experience #service-mountains .mt-shell,
+.services-new-page.services-experience #service-coast .cs-shell,
+.services-new-page.services-experience #service-cruise .ct-shell {
+  padding-block: var(--service-chapter-space);
+}
+.services-new-page.services-experience #service-europe.et-section {
+  padding-block: var(--service-chapter-space);
+}
+
+@media (min-width: 821px) {
+  .services-new-page.services-experience #service-water-taxi .wt-shell {
+    padding-top: clamp(128px, 9vw, 148px);
+  }
+}
+
+.services-new-page.services-experience #service-hourly .hourly-mockup-visual {
+  height: clamp(340px, 30vw, 430px);
+}
+.services-new-page.services-experience #service-hourly .hourly-mockup-visual h2,
+.services-new-page.services-experience #service-water-taxi .wt-heading h2,
+.services-new-page.services-experience #service-europe .et-copy h2,
+.services-new-page.services-experience #service-mountains #mountains-title,
+.services-new-page.services-experience #service-coast #coast-title,
+.services-new-page.services-experience #service-cruise #cruise-title {
+  font-size: var(--service-chapter-title);
+  line-height: 1.08;
+}
+.services-new-page.services-experience #service-airport .ac-copy h2 {
+  font-size: var(--service-chapter-title);
+}
+
+.services-new-page.services-experience #service-coast .cs-fares {
+  gap: 10px 16px;
+}
+.services-new-page.services-experience #service-coast .cs-fares > div {
+  flex-direction: column;
+  gap: 3px;
+}
+.services-new-page.services-experience #service-coast .cs-fares dd,
+.services-new-page.services-experience #service-cruise .ct-fares dd {
+  color: var(--text-primary);
+  font-size: 22px;
+  line-height: 1.2;
+}
+.services-new-page.services-experience :is(
+  #service-coast .cs-route-request,
+  #service-cruise .ct-text-action,
+  #service-mountains .mt-request,
+  #service-europe .et-button,
+  #service-water-taxi .wt-cta,
+  #service-hourly .hourly-mockup-cta
+) {
+  font-size: 12px;
+}
+
+@media (max-width: 820px) {
+  .services-new-page.services-experience {
+    --service-chapter-title: clamp(34px, 9vw, 40px);
+  }
+  .services-new-page.services-experience #service-airport .ac-shell {
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+  .services-new-page.services-experience #service-hourly .hourly-mockup-shell,
+  .services-new-page.services-experience #service-water-taxi .wt-shell,
+  .services-new-page.services-experience #service-mountains .mt-shell,
+  .services-new-page.services-experience #service-coast .cs-shell,
+  .services-new-page.services-experience #service-cruise .ct-shell {
+    padding-block: 40px 48px;
+  }
+  .services-new-page.services-experience #service-europe.et-section {
+    padding-block: 40px 48px;
+  }
+  .services-new-page.services-experience #service-hourly .hourly-mockup-visual {
+    height: clamp(280px, 74vw, 350px);
+  }
+  .services-new-page.services-experience #service-hourly .hourly-mockup-visual h2 {
+    left: 22px;
+    bottom: 24px;
+  }
+  .services-new-page.services-experience #service-coast .cs-fares > div {
+    align-items: center;
+  }
+  .services-new-page.services-experience #service-coast .cs-fares dd,
+  .services-new-page.services-experience #service-cruise .ct-fares dd {
+    font-size: 22px;
+  }
+}

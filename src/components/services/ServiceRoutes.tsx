@@ -5,7 +5,7 @@ import { priceLabel, type JourneyRequest, type JourneyService } from './serviceD
 
 export type RequestJourney = (request: JourneyRequest) => void
 
-export function ServiceTabs({ id, labels, selected, onChange, ariaLabel }: { id: string; labels: string[]; selected: number; onChange: (index: number) => void; ariaLabel?: string }) {
+export function ServiceTabs({ id, labels, mobileLabels, selected, onChange, ariaLabel }: { id: string; labels: string[]; mobileLabels?: string[]; selected: number; onChange: (index: number) => void; ariaLabel?: string }) {
   const handleKey = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     let next = index
     if (event.key === 'ArrowRight') next = (index + 1) % labels.length
@@ -18,7 +18,7 @@ export function ServiceTabs({ id, labels, selected, onChange, ariaLabel }: { id:
     document.getElementById(`${id}-tab-${next}`)?.focus()
   }
   return <div className="sv-tabs" role="tablist" aria-label={ariaLabel ?? (id === 'water' ? 'Direction of your Water Taxi connection' : 'Route region')}>
-    {labels.map((label, index) => <button key={label} type="button" role="tab" id={`${id}-tab-${index}`} aria-selected={selected === index} aria-controls={`${id}-panel-${index}`} tabIndex={selected === index ? 0 : -1} onClick={() => onChange(index)} onKeyDown={event => handleKey(event, index)}>{label}</button>)}
+    {labels.map((label, index) => <button key={label} type="button" role="tab" id={`${id}-tab-${index}`} aria-label={label} aria-selected={selected === index} aria-controls={`${id}-panel-${index}`} tabIndex={selected === index ? 0 : -1} onClick={() => onChange(index)} onKeyDown={event => handleKey(event, index)}>{mobileLabels ? <><span className="sv-tab-desktop-label">{label}</span><span className="sv-tab-mobile-label" aria-hidden="true">{mobileLabels[index] ?? label}</span></> : label}</button>)}
   </div>
 }
 
