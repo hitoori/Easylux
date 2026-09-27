@@ -26,6 +26,7 @@ import './services-spacing.css'
 import './services-route-style.css'
 import './services-section-polish.css'
 import './services-water-taxi-reference.css'
+import { publicAsset } from '../lib/publicAsset'
 import './services-home-routes.css'
 import './services-masthead-refresh.css'
 import AirportTransfers from '../components/services/AirportTransfers'
@@ -113,7 +114,7 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
 
   return <div className="services-new-page services-experience">
     <section className="services-masthead" aria-labelledby="services-title">
-      <img className="services-masthead-photo" src="./images/services/unsplash/venice-water-taxi.jpg" alt="Boat crossing the Venetian lagoon near Santa Maria della Salute" width={2200} height={1650} fetchPriority="high" />
+      <img className="services-masthead-photo" src={publicAsset('images/services/unsplash/venice-water-taxi.jpg')} alt="Boat crossing the Venetian lagoon near Santa Maria della Salute" width={2200} height={1650} fetchPriority="high" />
       <div className="services-masthead-shell">
         <div className="services-masthead-copy">
           <p className="services-masthead-eyebrow">SERVICES &amp; PRICES</p>

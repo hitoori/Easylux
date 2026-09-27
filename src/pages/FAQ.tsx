@@ -5,6 +5,7 @@ import type { Page } from '../types/navigation'
 import { company } from '../config/company'
 import { faqTopics } from './faqData'
 import './faq.css'
+import { publicAsset } from '../lib/publicAsset'
 
 const questions = faqTopics.flatMap(group => [...group.questions])
 const categories = [
@@ -27,7 +28,7 @@ export default function FAQ({ navigate }: { navigate: (page: Page) => void }) {
 
   return <div className="faq-page">
     <header className="fq-hero" aria-labelledby="faq-title">
-      <img src="./images/home/vehicle/exterior.png" alt="" className="fq-hero-photo" fetchPriority="high" />
+      <img src={publicAsset('images/home/vehicle/exterior.png')} alt="" className="fq-hero-photo" fetchPriority="high" />
       <div className="fq-shell fq-hero-content"><div><p className="fq-eyebrow">FAQ</p><h1 id="faq-title">Your questions,<br /><em>our answers.</em></h1><p className="fq-intro-copy">Find quick answers about bookings, payments, pick-ups and more.<br />Still need help? We're just a message away.</p></div><div className="fq-editorial">More than a transfer.<br />A smoother way<br />to travel.<span /></div></div>
     </header>
 
@@ -48,7 +49,7 @@ export default function FAQ({ navigate }: { navigate: (page: Page) => void }) {
     </section>
 
     <section className="fq-help fq-shell" aria-labelledby="fq-help-title">
-      <img src="./images/home/hero/venice-grand-canal.jpg" alt="Venice’s Grand Canal and waterfront architecture" loading="lazy" />
+      <img src={publicAsset('images/home/hero/venice-grand-canal.jpg')} alt="Venice’s Grand Canal and waterfront architecture" loading="lazy" />
       <div className="fq-help-copy"><p className="fq-eyebrow">Still have a question?</p><h2 id="fq-help-title">We're here to help.</h2><p>Tell us what you need and we'll be happy to assist you.</p><div className="fq-actions"><button className="fq-button" onClick={() => navigate('contact')}>Contact us <ArrowRight size={17} aria-hidden="true" /></button><a className="fq-button fq-button-secondary" href={company.phones[0].whatsapp}><WhatsappLogo size={18} aria-hidden="true" />WhatsApp us <ArrowRight size={17} aria-hidden="true" /></a></div></div>
     </section>
   </div>

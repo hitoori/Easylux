@@ -4,6 +4,7 @@ import { italyRoutes, priceLabel } from './serviceData'
 import { ServiceTabs, type RequestJourney } from './ServiceRoutes'
 import './water-taxi-map.css'
 import './europe-transfer.css'
+import { publicAsset } from '../../lib/publicAsset'
 
 const crossBorderRoutes = [
   { id: 'italy-austria', from: 'Italy', to: 'Austria', pickup: 'Italy', destination: 'Austria', sedan: 850, van: 980, minibus: 1700 },
@@ -16,7 +17,7 @@ export function HourlySection({ onRequest }: { onRequest: RequestJourney }) {
   return <section id="service-hourly" className="sv-section sv-hourly sv-hourly-mockup" aria-labelledby="hourly-title">
     <div className="svc-shell hourly-mockup-shell">
       <div className="hourly-mockup-visual">
-        <div className="hourly-mockup-frame"><img src="./images/services/hourly/several-stops-chauffeur.jpg" alt="Chauffeur welcoming a passenger into a private vehicle" loading="lazy" /></div>
+        <div className="hourly-mockup-frame"><img src={publicAsset('images/services/hourly/several-stops-chauffeur.jpg')} alt="Chauffeur welcoming a passenger into a private vehicle" loading="lazy" /></div>
         <h2 id="hourly-title">Several stops.<br />One chauffeur.</h2>
       </div>
 
@@ -50,8 +51,8 @@ export function HourlySection({ onRequest }: { onRequest: RequestJourney }) {
 const waterTaxiJourneys = [
   {
     route: 'Route to Venice',
-    image: './images/services/water-taxi/arriving-wide-map.png',
-    mobileImage: './images/services/water-taxi/arriving-mobile-map-v2.jpg',
+    image: publicAsset('images/services/water-taxi/arriving-wide-map.png'),
+    mobileImage: publicAsset('images/services/water-taxi/arriving-mobile-map-v2.jpg'),
     alt: 'Venice transfer map showing Marco Polo Airport, Piazzale Roma and the hotel or nearest landing, connected by private car and water taxi.',
     title: <>From the airport to your<br /><span>hotel in Venice.</span></>,
     description: 'We meet you at Marco Polo Airport and drive you to Piazzale Roma. From there, a private water taxi takes you to your hotel or the nearest accessible landing.',
@@ -59,8 +60,8 @@ const waterTaxiJourneys = [
   },
   {
     route: 'Route from Venice',
-    image: './images/services/water-taxi/leaving-wide-map.png',
-    mobileImage: './images/services/water-taxi/leaving-mobile-map-v2.jpg',
+    image: publicAsset('images/services/water-taxi/leaving-wide-map.png'),
+    mobileImage: publicAsset('images/services/water-taxi/leaving-mobile-map-v2.jpg'),
     alt: 'Departure map from a Venice hotel or nearest landing by private water taxi to Piazzale Roma, then by private car to Marco Polo Airport.',
     title: <>From your hotel in Venice<br className="wt-mobile-title-break" /><br className="wt-desktop-title-break" /><span>to the airport.</span></>,
     description: 'A private water taxi collects you at your hotel or the nearest accessible landing and takes you to Piazzale Roma. From there, your chauffeur drives you to Marco Polo Airport.',
@@ -153,7 +154,7 @@ export function EuropeSection({ onRequest, fareRequest = 0 }: { onRequest: Reque
 
   return <section id="service-europe" className="et-section" aria-labelledby="europe-title">
     <div className="et-intro">
-      <div className="et-photo"><img src="./images/services/europe/italy-europe-chauffeur.jpg" alt="Chauffeur welcoming a passenger into a private vehicle" loading="lazy" /></div>
+      <div className="et-photo"><img src={publicAsset('images/services/europe/italy-europe-chauffeur.jpg')} alt="Chauffeur welcoming a passenger into a private vehicle" loading="lazy" /></div>
       <div className="et-copy">
         <p className="et-eyebrow">ITALY &amp; EUROPE</p>
         <h2 id="europe-title"><span className="et-desktop-copy">Private transfers across<br />Italy and Europe.</span><span className="et-mobile-copy"><span className="et-mobile-title-line">Your destination doesn’t</span><br />stop at the border.</span></h2>

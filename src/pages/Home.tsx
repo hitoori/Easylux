@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Page } from '../types/navigation'
 import BookingForm, { type BookingPrefill } from '../components/BookingForm'
 import HomeSections from '../components/home/HomeSections'
+import { publicAsset } from '../lib/publicAsset'
 import './home-editorial.css'
 import './home-refinements.css'
 
@@ -11,32 +12,32 @@ interface HomeProps {
 
 const heroSlides = [
   {
-    url: './images/home/hero/venice-grand-canal.jpg',
+    url: publicAsset('images/home/hero/venice-grand-canal.jpg'),
     label: 'Venice Grand Canal',
     caption: 'Venice · Grand Canal',
     position: 'center 58%',
     composition: 'hero-slide--right-focus',
   },
   {
-    url: './images/home/hero/milan-duomo.jpg',
+    url: publicAsset('images/home/hero/milan-duomo.jpg'),
     label: 'Milan Duomo at sunset',
     caption: 'Milan · Duomo at sunset',
     position: 'center 68%',
   },
   {
-    url: './images/home/hero/sicily-coast.jpg',
+    url: publicAsset('images/home/hero/sicily-coast.jpg'),
     label: 'Sicilian coast beneath dramatic clouds',
     caption: 'Sicily · Mediterranean coast',
     position: 'center 58%',
   },
   {
-    url: './images/home/hero/dolomites-night-road.jpg',
+    url: publicAsset('images/home/hero/dolomites-night-road.jpg'),
     label: 'Night road through the Dolomites',
     caption: 'Dolomites · Alpine roads',
     position: 'center 52%',
   },
   {
-    url: './images/home/hero/lake-como-boat.jpg',
+    url: publicAsset('images/home/hero/lake-como-boat.jpg'),
     label: 'Private boat on Lake Como',
     caption: 'Lake Como · By the water',
     position: 'center 58%',

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { RequestJourney } from './ServiceRoutes'
 import './airport-transfers.css'
 import './airport-concierge.css'
+import { publicAsset } from '../../lib/publicAsset'
 
 const journeys = [
   {
@@ -9,7 +10,7 @@ const journeys = [
     description: 'We monitor your flight and adjust the pick-up if your arrival time changes. Your driver meets you at the agreed point, assists with luggage and takes you directly to your destination.',
     cta: 'Request Airport Transfer',
     features: ['Flight monitoring', 'Meet & greet', 'Luggage assistance'],
-    image: './images/services/airport/journeys/from-the-airport.jpg',
+    image: publicAsset('images/services/airport/journeys/from-the-airport.jpg'),
     imageAlt: 'Arrivals sign inside the airport terminal',
   },
   {
@@ -17,7 +18,7 @@ const journeys = [
     description: 'We plan collection around your departure time, terminal and traffic. Your chauffeur arrives at the agreed address, helps with luggage and takes you directly to the correct terminal.',
     cta: 'Request Airport Drop-off',
     features: ['Planned pick-up', 'Direct transfer', 'Luggage assistance'],
-    image: './images/services/airport/journeys/to-the-airport.jpg',
+    image: publicAsset('images/services/airport/journeys/to-the-airport.jpg'),
     imageAlt: 'Departures sign inside the airport terminal',
   },
   {
@@ -25,7 +26,7 @@ const journeys = [
     description: 'Travel privately between hotels, cities or accessible addresses. We confirm the route, pick-up time, meeting point and luggage requirements before travel.',
     cta: 'Request Private Transfer',
     features: ['Private journey', 'Flexible pick-up', 'Space for luggage'],
-    image: './images/services/airport/journeys/address-to-address.jpg',
+    image: publicAsset('images/services/airport/journeys/address-to-address.jpg'),
     imageAlt: 'Chauffeur loading luggage into a private vehicle',
   },
 ]

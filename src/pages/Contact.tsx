@@ -7,6 +7,7 @@ import type { Page } from '../types/navigation'
 import { company } from '../config/company'
 import { sendBooking } from '../lib/sendBooking'
 import './contact.css'
+import { publicAsset } from '../lib/publicAsset'
 
 const services = serviceOptions.map(([, label]) => label)
 const popularServices = [
@@ -61,7 +62,7 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
   return (
     <div className="contact-page">
       <header className="ct-hero" aria-labelledby="contact-title">
-        <img className="ct-hero-image" src="./images/home/hero/venice-grand-canal.jpg" alt="" fetchPriority="high" />
+        <img className="ct-hero-image" src={publicAsset('images/home/hero/venice-grand-canal.jpg')} alt="" fetchPriority="high" />
         <div className="ct-shell ct-hero-content">
           <div>
             <p className="ct-kicker">Contact Easy Lux</p>
@@ -138,7 +139,7 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
           </div>
 
           <div className="ct-area">
-            <img src="./images/home/water-taxi/venice-water-taxi.jpg" alt="" loading="lazy" />
+            <img src={publicAsset('images/home/water-taxi/venice-water-taxi.jpg')} alt="" loading="lazy" />
             <div><span><MapPin size={17} weight="light" aria-hidden="true" />Our operational base</span>
               <h3>Venice, Italy</h3>
               <p>{company.serviceArea}</p>

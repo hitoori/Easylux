@@ -45,7 +45,7 @@ export default function ProseccoHills({ onRequest }: { onRequest: (request: Jour
   }, [])
 
   return <section ref={sectionRef} id="service-prosecco" className="ph-section" aria-labelledby="prosecco-title">
-    <img className="ph-backdrop" src="./images/home/private-journeys/prosecco-hills.jpg" alt="" aria-hidden="true" width={2400} height={1601} loading="lazy" decoding="async" />
+    <img className="ph-backdrop" src={publicAsset('images/home/private-journeys/prosecco-hills.jpg')} alt="" aria-hidden="true" width={2400} height={1601} loading="lazy" decoding="async" />
     <div className="ph-shell">
       <div className="ph-copy">
         <p className="ph-eyebrow">PROSECCO HILLS · VENETO</p>
@@ -63,3 +63,4 @@ export default function ProseccoHills({ onRequest }: { onRequest: (request: Jour
     </div>
   </section>
 }
+import { publicAsset } from '../../lib/publicAsset'
