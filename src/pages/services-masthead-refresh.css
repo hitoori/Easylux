@@ -1,0 +1,186 @@
+.services-new-page.services-experience .services-masthead {
+  min-height: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--svc-bg);
+}
+
+.services-new-page.services-experience .services-masthead-photo {
+  z-index: 0;
+  inset: 0 0 64px 0;
+  width: 100%;
+  height: calc(100% - 64px);
+  object-fit: cover;
+  object-position: center 55%;
+  filter: saturate(.88);
+  opacity: 1;
+}
+
+.services-new-page.services-experience .services-masthead::before {
+  z-index: 1;
+  inset: 0 0 64px 0;
+  width: 100%;
+  height: calc(100% - 64px);
+  background:
+    linear-gradient(90deg, rgba(13, 14, 15, .97) 0%, rgba(13, 14, 15, .88) 28%, rgba(13, 14, 15, .6) 46%, rgba(13, 14, 15, .16) 70%, transparent 100%),
+    linear-gradient(180deg, rgba(13, 14, 15, .48), transparent 30%);
+  pointer-events: none;
+}
+
+.services-new-page.services-experience .services-masthead-shell {
+  position: relative;
+  z-index: 2;
+  flex: 1 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 96px 0;
+}
+
+.services-new-page.services-experience .services-masthead-copy {
+  width: min(520px, 40vw);
+  max-width: none;
+  text-align: left;
+}
+
+.services-new-page.services-experience .services-masthead-eyebrow {
+  margin-bottom: 24px;
+  color: var(--svc-gold);
+  font-size: 12px;
+  letter-spacing: .16em;
+}
+
+.services-new-page.services-experience .services-masthead h1 {
+  max-width: none;
+  margin: 0 0 25px;
+  color: var(--svc-ivory);
+  font-size: clamp(44px, 4.6vw, 66px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+
+.services-new-page.services-experience .services-masthead h1 span { display: block; }
+
+.services-new-page.services-experience .services-masthead-description {
+  max-width: 49ch;
+  margin: 0;
+  color: var(--svc-body);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.services-new-page.services-experience .services-masthead-actions {
+  justify-content: flex-start;
+  margin-top: 32px;
+}
+
+.services-new-page.services-experience .services-masthead-actions button {
+  width: auto;
+  min-height: 48px;
+  padding-inline: 23px;
+  font-size: 12px;
+  letter-spacing: .07em;
+}
+
+.services-new-page.services-experience .services-masthead-nav {
+  position: relative;
+  z-index: 3;
+  flex: 0 0 auto;
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  border-block: 1px solid rgba(236, 230, 219, .16);
+  background: #111415;
+  box-shadow: none;
+  scroll-margin-top: 76px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--svc-gold-deep) transparent;
+}
+
+.services-new-page.services-experience .services-masthead-nav button {
+  flex: 1 0 auto;
+  min-width: 0;
+  min-height: 62px;
+  padding: 16px clamp(12px, 1.8vw, 26px);
+  border: 0;
+  color: var(--svc-body);
+  background: transparent;
+  font-size: 12px;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.services-new-page.services-experience .services-masthead-nav button + button::before { display: none; }
+
+.services-new-page.services-experience .services-masthead-nav button[aria-current] {
+  color: var(--svc-gold-bright);
+  background: transparent;
+}
+
+.services-new-page.services-experience .services-masthead-nav button[aria-current]::after {
+  content: '';
+  position: absolute;
+  right: 18px;
+  bottom: 0;
+  left: 18px;
+  height: 1px;
+  background: var(--svc-gold);
+}
+
+@media (max-width: 820px) {
+  .services-new-page.services-experience .services-masthead {
+    min-height: 0;
+    padding-top: 0;
+  }
+
+  .services-new-page.services-experience .services-masthead-photo {
+    top: 0;
+    right: 0;
+    bottom: 64px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 64px);
+    object-position: 64% center;
+  }
+
+  .services-new-page.services-experience .services-masthead::before {
+    top: 0;
+    right: 0;
+    bottom: 64px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 64px);
+    background: linear-gradient(180deg, rgba(13, 14, 15, .42) 0%, rgba(13, 14, 15, .33) 22%, rgba(13, 14, 15, .84) 58%, rgba(13, 14, 15, .97) 100%);
+  }
+
+  .services-new-page.services-experience .services-masthead-shell {
+    flex: 0 0 auto;
+    align-items: flex-start;
+    padding: 220px 0 50px;
+  }
+
+  .services-new-page.services-experience .services-masthead-copy { width: min(100%, 600px); }
+  .services-new-page.services-experience .services-masthead h1 { font-size: clamp(42px, 7vw, 58px); }
+  .services-new-page.services-experience .services-masthead-nav { scroll-margin-top: 72px; }
+  .services-new-page.services-experience .services-masthead-nav button { flex: 0 0 auto; min-width: max-content; padding-inline: 22px; }
+}
+
+@media (max-width: 600px) {
+  .services-new-page.services-experience .services-masthead-photo { object-position: 64% center; }
+  .services-new-page.services-experience .services-masthead-shell {
+    width: calc(100% - 40px);
+    padding: 190px 0 42px;
+  }
+
+  .services-new-page.services-experience .services-masthead-eyebrow { margin-bottom: 15px; }
+  .services-new-page.services-experience .services-masthead h1 {
+    margin-bottom: 19px;
+    font-size: clamp(37px, 10vw, 46px);
+  }
+
+  .services-new-page.services-experience .services-masthead-description { max-width: 40ch; font-size: 14px; line-height: 1.6; }
+  .services-new-page.services-experience .services-masthead-actions { margin-top: 26px; }
+  .services-new-page.services-experience .services-masthead-actions button { width: 100%; }
+  .services-new-page.services-experience .services-masthead-nav button { min-height: 58px; padding-inline: 18px; }
+}

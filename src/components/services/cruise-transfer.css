@@ -1,5 +1,5 @@
 #service-cruise.ct-section { position: relative; isolation: isolate; background: #0d0e0f; color: #c8c0b5; font-family: Manrope, sans-serif; scroll-margin-top: 150px; }
-#service-cruise.ct-section::before { content: ""; position: absolute; z-index: -1; inset: 0 0 auto; height: 460px; mask-image: linear-gradient(to bottom,transparent 0%,#000 22%,#000 100%); background: linear-gradient(90deg,#0d0e0f 0%,rgba(13,14,15,.65) 32%,rgba(13,14,15,.12) 76%),linear-gradient(0deg,#0d0e0f 0%,transparent 80%),url('/images/services/cruise-terminal-sunset.png') center 48% / cover; }
+#service-cruise.ct-section::before { content: ""; position: absolute; z-index: -1; inset: 0 0 auto; height: 460px; mask-image: linear-gradient(to bottom,transparent 0%,#000 22%,#000 100%); background: linear-gradient(90deg,#0d0e0f 0%,rgba(13,14,15,.65) 32%,rgba(13,14,15,.12) 76%),linear-gradient(0deg,#0d0e0f 0%,transparent 80%),url('/images/services/cruise/private-cruise-transfer.jpg') center 48% / cover; }
 #service-cruise .ct-shell { width: min(1340px,calc(100% - 80px)); margin-inline: auto; padding-block: 40px 64px; }
 #service-cruise .ct-intro { display: grid; grid-template-columns: minmax(0,.44fr) minmax(0,.56fr); gap: 52px; padding-bottom: 44px; }
 #service-cruise .ct-eyebrow { margin: 0 0 28px; color: #c29a45; font-size: 12px; letter-spacing: .1em; }

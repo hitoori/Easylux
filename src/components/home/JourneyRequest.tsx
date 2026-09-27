@@ -1,8 +1,37 @@
 import { useState } from 'react'
 import { ArrowRight } from '@phosphor-icons/react'
+import { sendBooking } from '../../lib/sendBooking'
 
 export default function JourneyRequest() {
-  const [previewReady, setPreviewReady] = useState(false)
+  const [status, setStatus] = useState('')
+  const [sending, setSending] = useState(false)
+  const [requestId, setRequestId] = useState(() => crypto.randomUUID())
+
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (sending) return
+    const form = event.currentTarget
+    const data = new FormData(form)
+    setSending(true)
+    setStatus('')
+    try {
+      const code = await sendBooking({
+        kind: 'custom',
+        source: 'home-quote',
+        service: 'Bespoke transfer quote',
+        name: String(data.get('name') || ''),
+        email: String(data.get('email') || ''),
+        details: String(data.get('journey') || ''),
+        consent: data.get('consent') === 'on',
+        website: String(data.get('website') || ''),
+      }, requestId)
+      setStatus(`Request sent. Reference ${code}. Check your email for confirmation.`)
+      form.reset()
+      setRequestId(crypto.randomUUID())
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : 'The request could not be sent.')
+    } finally { setSending(false) }
+  }
 
   return (
     <section className="home-final-request" aria-labelledby="home-final-request-title">
@@ -17,23 +46,25 @@ export default function JourneyRequest() {
       </div>
 
       <form className="home-final-request-form" aria-labelledby="journey-request-form-title"
-        onChange={() => setPreviewReady(false)}
-        onSubmit={(event) => { event.preventDefault(); setPreviewReady(true) }}>
+        onChange={() => setStatus('')}
+        onSubmit={submit}>
         <h3 id="journey-request-form-title">Request a transfer quote</h3>
         <div className="home-final-request-fields">
           <label>Your name
             <input name="name" autoComplete="name" placeholder="Full name" required maxLength={120} />
           </label>
-          <label>Email or WhatsApp
-            <input name="contact" placeholder="your@email.com or +39…" required minLength={5} maxLength={160} />
+          <label>Email
+            <input name="email" type="email" autoComplete="email" placeholder="your@email.com" required maxLength={160} />
           </label>
           <label className="home-final-request-details">Describe your journey
             <textarea name="journey" placeholder="Pick-up, destination, date, passengers, luggage and any stops or waiting…" required minLength={10} maxLength={3000} rows={4} />
           </label>
         </div>
-        <button type="submit">Send your request <ArrowRight size={20} weight="light" aria-hidden="true" /></button>
+        <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="consent" required /> I agree to be contacted about this request.</label>
+        <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px]" />
+        <button type="submit" disabled={sending}>{sending ? 'Sending…' : 'Send your request'} <ArrowRight size={20} weight="light" aria-hidden="true" /></button>
         <p className="home-final-request-status" role="status">
-          {previewReady ? 'Your details are ready. This is a local preview — no request has been sent.' : 'Local preview · request delivery is not connected yet.'}
+          {status}
         </p>
       </form>
     </section>

@@ -16,7 +16,7 @@ export function HourlySection({ onRequest }: { onRequest: RequestJourney }) {
   return <section id="service-hourly" className="sv-section sv-hourly sv-hourly-mockup" aria-labelledby="hourly-title">
     <div className="svc-shell hourly-mockup-shell">
       <div className="hourly-mockup-visual">
-        <div className="hourly-mockup-frame" role="img" aria-label="Reserved space for the Chauffeur by the Hour image" />
+        <div className="hourly-mockup-frame"><img src="./images/services/hourly/several-stops-chauffeur.jpg" alt="Chauffeur welcoming a passenger into a private vehicle" loading="lazy" /></div>
         <h2 id="hourly-title">Several stops.<br />One chauffeur.</h2>
       </div>
 
@@ -53,22 +53,18 @@ const waterTaxiJourneys = [
     image: './images/services/water-taxi/arriving-wide-map.png',
     mobileImage: './images/services/water-taxi/arriving-mobile-map-v2.jpg',
     alt: 'Venice transfer map showing Marco Polo Airport, Piazzale Roma and the hotel or nearest landing, connected by private car and water taxi.',
-    title: <>One journey.<br /><span>By road and water.</span></>,
-    description: 'We monitor your flight and meet you in Arrivals with your name displayed. Your chauffeur assists with luggage and drives you privately to Piazzale Roma, where your Water Taxi continues the journey.',
-    note: 'Direct hotel access depends on the canal and landing. Otherwise, the boat stops at the nearest accessible landing.',
-    summary: 'Private vehicle and Water Taxi coordinated as one transfer.',
-    mobileSummary: 'Your boat number and meeting point are confirmed before travel.',
+    title: <>From the airport to your<br /><span>hotel in Venice.</span></>,
+    description: 'We meet you at Marco Polo Airport and drive you to Piazzale Roma. From there, a private water taxi takes you to your hotel or the nearest accessible landing.',
+    note: <>Hotel access depends on the canal<br />and available landing point.</>,
   },
   {
     route: 'Route from Venice',
     image: './images/services/water-taxi/leaving-wide-map.png',
     mobileImage: './images/services/water-taxi/leaving-mobile-map-v2.jpg',
     alt: 'Departure map from a Venice hotel or nearest landing by private water taxi to Piazzale Roma, then by private car to Marco Polo Airport.',
-    title: <>One journey.<br /><span>By road and water.</span></>,
-    description: 'The evening before departure, we send you the boat number and exact meeting point. Your private water taxi takes you to Piazzale Roma, where your chauffeur continues the journey to Marco Polo Airport.',
-    note: 'Your exact meeting point depends on the hotel and the nearest accessible landing. We confirm all collection details before departure.',
-    summary: 'Private water taxi and road transfer coordinated as one continuous journey.',
-    mobileSummary: 'Your Water Taxi pick-up point is confirmed before travel, with your driver waiting at Piazzale Roma.',
+    title: <>From your hotel in Venice<br className="wt-mobile-title-break" /><br className="wt-desktop-title-break" /><span>to the airport.</span></>,
+    description: 'A private water taxi collects you at your hotel or the nearest accessible landing and takes you to Piazzale Roma. From there, your chauffeur drives you to Marco Polo Airport.',
+    note: 'Your exact pick-up point depends on the canal and available landing. We confirm it before departure.',
   },
 ] as const
 
@@ -96,28 +92,24 @@ export function WaterTaxiSection({ onRequest }: { onRequest: RequestJourney }) {
         </div>
         <div className="wt-hero-copy">
           <header className="wt-heading">
-            <h2 id="water-title">{journey.title}</h2>
+            <p className="wt-eyebrow">VENICE AIRPORT TRANSFER</p>
+          <h2 id="water-title" className={direction === 1 ? 'wt-leaving-title' : undefined}>{journey.title}</h2>
             <div className="wt-description-slot">
               {waterTaxiJourneys.map((item, index) => <p key={item.route} className={`wt-description${direction === index ? ' is-active' : ''}`} aria-hidden={direction !== index}>{item.description}</p>)}
             </div>
-            <p className="wt-description-mobile">We coordinate your private vehicle and Water Taxi as one journey through Piazzale Roma.</p>
           </header>
 
           <ServiceTabs id="water" labels={['Arriving in Venice', 'Leaving Venice']} mobileLabels={['Arriving', 'Leaving']} selected={direction} onChange={changeDirection} />
-          <div className="wt-access-notes">
-            {waterTaxiJourneys.map((item, index) => <p key={item.route} className={`wt-access-note${direction === index ? ' is-active' : ''}`} aria-hidden={direction !== index}>{item.note}</p>)}
-          </div>
         </div>
           <footer className="wt-booking">
-            <div className="wt-summary">
-              {waterTaxiJourneys.map((item, index) => <p key={item.route} className={`wt-summary-text${direction === index ? ' is-active' : ''}`} aria-hidden={direction !== index}>{item.summary}</p>)}
-              {waterTaxiJourneys.map((item, index) => <p key={`${item.route}-mobile`} className={`wt-summary-text wt-summary-text-mobile${direction === index ? ' is-active' : ''}`} aria-hidden={direction !== index}>{item.mobileSummary}</p>)}
+            <div className="wt-access-notes">
+              {waterTaxiJourneys.map((item, index) => <p key={item.route} className={`wt-access-note${direction === index ? ' is-active' : ''}`} aria-hidden={direction !== index}>{item.note}</p>)}
             </div>
             <div className="wt-price-block">
-              <div className="wt-fare"><span>Road transfer</span><strong>€80</strong></div>
-              <div className="wt-fare"><span>Private water taxi</span><strong>€100–140</strong></div>
+              <div className="wt-fare"><span>Private car</span><strong><span className="wt-price-prefix">From </span>€80</strong></div>
+              <div className="wt-fare"><span>Water taxi</span><strong>€100–140</strong></div>
             </div>
-            <button type="button" className="wt-cta" onClick={() => onRequest({ service: 'water-taxi', airportPickup: direction === 0 })}>REQUEST A WATER TAXI CONNECTION<ArrowRight size={18} weight="light" aria-hidden="true" /></button>
+            <button type="button" className="wt-cta" onClick={() => onRequest({ service: 'water-taxi', airportPickup: direction === 0 })}>REQUEST THIS TRANSFER<ArrowRight size={18} weight="light" aria-hidden="true" /></button>
           </footer>
       </div>
     </div>
@@ -137,10 +129,11 @@ function EuropeRouteTable({ routes, region, onRequest }: { routes: typeof italyR
         <td className="et-action"><button type="button" className="et-button" aria-label={`Request this route: ${route.from} to ${route.to}`} onClick={() => onRequest({ service: 'europe', pickup: route.pickup, destination: route.destination })}>REQUEST THIS ROUTE <span aria-hidden="true">→</span></button></td>
       </tr>)}</tbody>
     </table>
-    <p className="et-fare-note">{region === 'Italy' ? 'Indicative one-way fares from Venice. Your final quote confirms the route, vehicle, availability and any extras.' : 'Indicative fares from Italy. Your final quote confirms the route, vehicle, availability and any extras.'}</p>
     <div className="et-footer">
-      <button type="button" className="et-link" onClick={() => onRequest({ service: 'europe' })}>Request a different destination <span aria-hidden="true">→</span></button>
-      {routes.length > 3 && <button type="button" className="et-button" aria-expanded={showAll} aria-controls={`et-${region}-routes`} onClick={() => setShowAll(current => !current)}>{showAll ? 'SHOW FEWER ROUTES' : `VIEW ALL ${region.toUpperCase()} ROUTES`} <span aria-hidden="true">{showAll ? '↑' : '↓'}</span></button>}
+      <div className="et-footer-copy">
+        <p className="et-fare-note">{region === 'Italy' ? 'One-way fares from Venice. Final prices depend on route, vehicle and availability.' : 'Indicative fares from Italy. Final prices depend on the route, vehicle, availability and extras.'}<button type="button" className="et-button et-destination-button" onClick={() => onRequest({ service: 'europe' })}><span className="et-desktop-copy">Request a different destination</span><span className="et-mobile-copy">Different destination?</span><span className="et-destination-arrow" aria-hidden="true">→</span></button></p>
+      </div>
+      {routes.length > 3 && <button type="button" className="et-button et-view-all" aria-expanded={showAll} aria-controls={`et-${region}-routes`} onClick={() => setShowAll(current => !current)}>{showAll ? 'Show fewer routes' : `View all ${region} routes`} <span aria-hidden="true">{showAll ? '↑' : '↓'}</span></button>}
     </div>
   </>
 }
@@ -160,17 +153,18 @@ export function EuropeSection({ onRequest, fareRequest = 0 }: { onRequest: Reque
 
   return <section id="service-europe" className="et-section" aria-labelledby="europe-title">
     <div className="et-intro">
-      <div className="et-photo"><img src="./images/services/unsplash/slovenia-bled.jpg" alt="Lake Bled in Slovenia" loading="lazy" /></div>
+      <div className="et-photo"><img src="./images/services/europe/italy-europe-chauffeur.jpg" alt="Chauffeur welcoming a passenger into a private vehicle" loading="lazy" /></div>
       <div className="et-copy">
-        <h2 id="europe-title">Your destination<br /><span>doesn’t stop at the border.</span></h2>
-        <p className="et-description">Private, door-to-door journeys across Italy and into neighbouring Europe — planned around your route, timing and stops.</p>
-        <p className="et-countries"><span>ITALY · AUSTRIA · SLOVENIA</span><span>CROATIA · FRANCE</span></p>
+        <p className="et-eyebrow">ITALY &amp; EUROPE</p>
+        <h2 id="europe-title"><span className="et-desktop-copy">Private transfers across<br />Italy and Europe.</span><span className="et-mobile-copy"><span className="et-mobile-title-line">Your destination doesn’t</span><br />stop at the border.</span></h2>
+        <p className="et-description"><span className="et-desktop-copy">Travel between cities, hotels and destinations with a private chauffeur. Tell us where you’re going and when. We’ll arrange the route and any stops along the way.</span><span className="et-mobile-copy">Going beyond Venice? Tell us where you’d like to go and when. We’ll plan the drive and make room for any stops along the way.</span></p>
+        <p className="et-countries"><span>ITALY <i className="et-country-separator" aria-hidden="true">·</i> AUSTRIA <i className="et-country-separator" aria-hidden="true">·</i> SLOVENIA</span>{' '}<span>CROATIA <i className="et-country-separator" aria-hidden="true">·</i> FRANCE</span></p>
         <div className="et-line" aria-hidden="true" />
         <p className="et-statement">One chauffeur. One private vehicle. Your itinerary.</p>
-        <button type="button" className="et-button et-disclosure" aria-expanded={routesOpen} aria-controls="italy-route-prices" onClick={() => setRoutesOpen(current => !current)}>{routesOpen ? 'HIDE ROUTES & PRICES' : 'VIEW ROUTES & PRICES'} <span aria-hidden="true">{routesOpen ? '↑' : '↓'}</span></button>
+        <button type="button" className="et-button et-disclosure" aria-expanded={routesOpen} aria-controls="italy-route-prices" onClick={() => setRoutesOpen(current => !current)}>{routesOpen ? 'HIDE ROUTES & PRICES' : 'SEE ROUTES & PRICES'} <span aria-hidden="true">{routesOpen ? '↑' : '↓'}</span></button>
       </div>
     </div>
-    <div id="italy-route-prices" className="et-panel" hidden={!routesOpen}>
+    <div id="italy-route-prices" className="et-panel" data-open={routesOpen}>
       <div className="et-panel-inner">
         <ServiceTabs id="regions" labels={['Italy', 'Europe']} selected={region} onChange={setRegion} />
         <div role="tabpanel" id="regions-panel-0" aria-labelledby="regions-tab-0" hidden={region !== 0} tabIndex={0}>

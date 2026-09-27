@@ -7,12 +7,11 @@ const items = [
   ['hourly', 'By the Hour'],
   ['water-taxi', 'Water Taxi'],
   ['europe', 'Italy & Europe'],
+  ['prosecco', 'Prosecco Hills'],
   ['mountains', 'Mountains'],
   ['coast', 'Seaside'],
   ['cruise', 'Cruise Ports'],
 ] as const
-const number = (index: number) => String(index + 1).padStart(2, '0')
-
 export default function FloatingServiceNav({ activeSection, onSelect }: {
   activeSection: JourneyService | null
   onSelect: (id: string) => void
@@ -20,10 +19,7 @@ export default function FloatingServiceNav({ activeSection, onSelect }: {
   const [collapsed, setCollapsed] = useState(false)
   const [open, setOpen] = useState(false)
   const dialog = useRef<HTMLDialogElement>(null)
-  const desktopClose = useRef<HTMLButtonElement>(null)
-  const desktopReopen = useRef<HTMLButtonElement>(null)
-  const mobileOpen = useRef<HTMLButtonElement>(null)
-  const mobileReopen = useRef<HTMLButtonElement>(null)
+  const currentButton = useRef<HTMLButtonElement>(null)
   const activeIndex = Math.max(0, items.findIndex(([id]) => id === activeSection))
 
   useEffect(() => {
@@ -32,57 +28,37 @@ export default function FloatingServiceNav({ activeSection, onSelect }: {
     if (!open && element?.open) element.close()
   }, [open])
 
-  useEffect(() => {
-    const media = window.matchMedia('(min-width: 1101px)')
-    const closeOnDesktop = () => { if (media.matches) setOpen(false) }
-    media.addEventListener('change', closeOnDesktop)
-    return () => media.removeEventListener('change', closeOnDesktop)
-  }, [])
-
   const hide = () => {
     setOpen(false)
     setCollapsed(true)
-    requestAnimationFrame(() => {
-      (window.matchMedia('(min-width: 1101px)').matches ? desktopReopen : mobileReopen).current?.focus()
-    })
-  }
-  const restore = () => {
-    setCollapsed(false)
-    requestAnimationFrame(() => {
-      (window.matchMedia('(min-width: 1101px)').matches ? desktopClose : mobileOpen).current?.focus()
-    })
+    requestAnimationFrame(() => currentButton.current?.focus())
   }
   const choose = (id: string) => {
     setOpen(false)
+    setCollapsed(false)
     onSelect(id)
+    requestAnimationFrame(() => currentButton.current?.focus())
   }
-  const links = () => items.map(([id, label], index) =>
+  const links = () => items.map(([id, label]) =>
     <button key={id} type="button" className="fsn-link"
-      aria-current={index === activeIndex ? 'location' : undefined}
+      aria-current={id === activeSection ? 'location' : undefined}
       aria-label={`Go to ${label}`} onClick={() => choose(id)}>
-      <span className="fsn-number" aria-hidden="true">{number(index)}</span>
+      <span className="fsn-stop" aria-hidden="true" />
       <span>{label}</span>
     </button>)
 
   return <>
-    <nav className="fsn fsn-desktop" aria-label="Services navigation">
-      {collapsed
-        ? <button ref={desktopReopen} type="button" className="fsn-reopen" onClick={restore} aria-label="Show services navigation">SERVICES <span aria-hidden="true">←</span></button>
-        : <><button ref={desktopClose} className="fsn-close" type="button" onClick={hide} aria-label="Hide services navigation">×</button>
-          <div className="fsn-list">{links()}</div></>}
-    </nav>
-    <nav className="fsn fsn-mobile" aria-label="Services navigation" hidden={open}>
-      {collapsed
-        ? <button ref={mobileReopen} className="fsn-reopen" type="button" onClick={() => { setCollapsed(false); setOpen(true) }} aria-label="Open services navigation" aria-haspopup="dialog">SERVICES <span aria-hidden="true">←</span></button>
-        : <><button ref={mobileOpen} className="fsn-current" type="button" onClick={() => setOpen(true)} aria-haspopup="dialog" aria-expanded={open} aria-controls="floating-services-dialog" aria-label={`Open services navigation. Current section: ${items[activeIndex][1]}`}>
-          <span className="fsn-number">{number(activeIndex)}</span><span>{items[activeIndex][1]}</span><span aria-hidden="true">↑</span>
-        </button><button className="fsn-close" type="button" onClick={hide} aria-label="Hide services navigation">×</button></>}
+    <nav className={`fsn fsn-trigger${collapsed ? ' is-collapsed' : ''}`} aria-label="Services navigation" hidden={open}>
+      <button ref={currentButton} className="fsn-current" type="button" onClick={() => { setCollapsed(false); setOpen(true) }} aria-haspopup="dialog" aria-expanded={open} aria-controls="floating-services-dialog" aria-label={`Open services navigation. Current section: ${items[activeIndex][1]}`}>
+          <span className="fsn-stop" aria-hidden="true" /><span className="fsn-current-name">{items[activeIndex][1]}</span><span className="fsn-arrow-desktop" aria-hidden="true">←</span><span className="fsn-arrow-phone" aria-hidden="true">↑</span>
+      </button>
+      {!collapsed && <button className="fsn-close fsn-close-phone" type="button" onClick={hide} aria-label="Hide services navigation">×</button>}
     </nav>
     <dialog ref={dialog} id="floating-services-dialog" className="fsn fsn-dialog" aria-labelledby="floating-services-title"
       onCancel={() => setOpen(false)} onClose={() => setOpen(false)}
       onClick={event => { if (event.target === event.currentTarget) setOpen(false) }}>
       <div className="fsn-dialog-content">
-        <div className="fsn-dialog-heading"><h2 id="floating-services-title">SERVICES</h2><button type="button" className="fsn-close" onClick={hide} aria-label="Close and hide services navigation">×</button></div>
+        <div className="fsn-dialog-heading"><h2 id="floating-services-title">SERVICES</h2><button type="button" className="fsn-close" onClick={() => setOpen(false)} aria-label="Close services navigation">×</button></div>
         <nav className="fsn-list" aria-label="Choose a service">{links()}</nav>
       </div>
     </dialog>

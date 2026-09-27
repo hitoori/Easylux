@@ -18,8 +18,17 @@
 .services-new-page.services-experience .hourly-mockup-frame {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   border: 1px solid rgba(200, 192, 181, .18);
   background: #15191b;
+}
+
+.services-new-page.services-experience .hourly-mockup-frame::after {
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(transparent, rgba(8, 10, 11, .62));
+  content: '';
+  pointer-events: none;
 }
 
 .services-new-page.services-experience .hourly-mockup-frame img {
@@ -125,23 +134,34 @@
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  width: 100%;
-  min-height: 50px;
-  padding: 0 18px;
-  border: 1px solid #c29a45;
-  background: transparent;
-  color: #c29a45;
-  font: 700 11px/1 Manrope, sans-serif;
-  letter-spacing: .07em;
+  gap: 14px;
+  width: min(100%, 290px);
+  min-height: 56px;
+  padding: 0 22px;
+  border: 1px solid rgba(194, 154, 69, .72);
+  border-radius: 2px;
+  background: rgba(13, 14, 15, .16);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .2);
+  color: var(--gold-hover);
+  font: 700 12px/1 var(--font-body);
+  letter-spacing: .05em;
   text-align: left;
   text-transform: uppercase;
-  transition: background-color .2s ease, color .2s ease;
+  cursor: pointer;
+  transition: background-color .3s, border-color .3s, color .3s;
 }
 
-.services-new-page.services-experience .hourly-mockup-cta:hover {
-  background: #daab2d;
-  color: #0d0e0f;
+.services-new-page.services-experience .hourly-mockup-cta svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.services-new-page.services-experience .hourly-mockup-cta:hover,
+.services-new-page.services-experience .hourly-mockup-cta:active {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--background);
 }
 
 .services-new-page.services-experience .hourly-mockup-cta:focus-visible {
@@ -204,7 +224,7 @@
   .services-new-page.services-experience .hourly-mockup-cta {
     grid-column: auto;
     width: 100%;
-    min-height: 52px;
+    min-height: 50px;
   }
 }
 

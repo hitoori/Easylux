@@ -9,28 +9,19 @@ interface AboutProps { navigate: (page: Page) => void }
 
 type PhotoSlotProps = {
   className?: string
-  subject: string
+  src: string
+  alt: string
   ratio: string
-  focus?: string
   position?: string
-  crop?: 'cover' | 'contain'
+  eager?: boolean
 }
 
-/** Replace this frame with an img when a real photograph is supplied. Keep the
- * same wrapper, aspect ratio and object-position; write descriptive alt text
- * for that photograph instead of reusing this placeholder label. */
-function PhotoSlot({ className = '', subject, ratio, focus, position = 'center', crop = 'cover' }: PhotoSlotProps) {
-  const style = { '--ab-ratio': ratio.replace(':', ' / '), '--ab-position': position, '--ab-fit': crop } as CSSProperties
+function PhotoSlot({ className = '', src, alt, ratio, position = 'center', eager = false }: PhotoSlotProps) {
+  const style = { '--ab-ratio': ratio.replace(':', ' / '), '--ab-position': position } as CSSProperties
 
   return (
-    <div className={`ab-photo-slot ${className}`} style={style} aria-hidden="true">
-      <div className="ab-photo-label">
-        <span>Image placeholder</span>
-        <strong>{subject}</strong>
-        <small>Recommended: {ratio}</small>
-        {focus && <small>Focus: {focus}</small>}
-        <small>Crop: {crop} · Position: {position}</small>
-      </div>
+    <div className={`ab-photo-slot ${className}`} style={style}>
+      <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" fetchPriority={eager ? 'high' : 'auto'} />
     </div>
   )
 }
@@ -42,19 +33,22 @@ const standards = [
     number: '01',
     title: 'Prepared around you',
     description: 'Your route, timing, passengers and luggage are considered before the journey begins.',
-    photo: 'Journey preparation / Venice arrival',
+    photo: '/images/services/unsplash/venice-water-taxi.jpg',
+    alt: 'Private boat crossing the Venetian lagoon near Santa Maria della Salute',
   },
   {
     number: '02',
     title: 'Professional from start to finish',
     description: 'Clear communication, punctual service and personal assistance throughout your transfer.',
-    photo: 'Driver and vehicle detail',
+    photo: '/images/about/luggage-assistance.jpg',
+    alt: 'Chauffeur assisting a traveler with luggage beside a car',
   },
   {
     number: '03',
     title: 'Genuine Italian hospitality',
     description: 'A welcoming, attentive approach designed to help you enjoy the journey as much as the destination.',
-    photo: 'Italian road or destination',
+    photo: '/images/about/dolomites-road.jpg',
+    alt: 'Winding road through the Italian Dolomites',
   },
 ]
 
@@ -70,7 +64,7 @@ export default function About({ navigate }: AboutProps) {
             Discover our services <ArrowRight size={18} aria-hidden="true" />
           </button>
         </div>
-        <PhotoSlot className="ab-hero-photo" subject="Two founders with vehicle in Venice" ratio="16:10" focus="founders and vehicle" position="center" />
+        <PhotoSlot className="ab-hero-photo" src="/images/about/venice-sunrise.jpg" alt="Morning light over the Grand Canal in Venice" ratio="16:10" position="center 52%" eager />
       </header>
 
       <section className="ab-facts" aria-label="Easy Lux at a glance">
@@ -86,7 +80,7 @@ export default function About({ navigate }: AboutProps) {
           <p>We are <span className="ab-gold-text">two young entrepreneurs</span> united by a passion for travel, hospitality and exceptional service. After years of experience in <span className="ab-gold-text">private transportation</span>, we created Easy Lux to offer a more personal way to travel.</p>
           <p>Operating in <span className="ab-gold-text">Venice and Treviso</span>, we arrange reliable, comfortable and tailored journeys across Italy and Europe.</p>
         </div>
-        <PhotoSlot subject="Founders preparing the vehicle" ratio="4:3" focus="people, luggage and vehicle" position="center" />
+        <PhotoSlot src="/images/about/venice-canal.jpg" alt="Quiet canal and historic buildings in Venice" ratio="4:3" position="center 48%" />
       </section>
 
       <section className="ab-luxury ab-section" aria-labelledby="ab-luxury-title">
@@ -95,7 +89,7 @@ export default function About({ navigate }: AboutProps) {
             <h2 id="ab-luxury-title">Luxury is how<br />the journey feels.</h2>
             <p>For us, luxury is not defined only by the vehicle. It is knowing that your journey has been prepared, your time is respected and someone is there when you need them.</p>
           </div>
-          <PhotoSlot subject="Chauffeur opening the vehicle door" ratio="16:7" focus="hand, vehicle door and Venice background" position="center right" />
+          <PhotoSlot src="/images/about/car-door.jpg" alt="Hand opening the door of a black car" ratio="16:7" position="center 34%" />
         </div>
       </section>
 
@@ -110,7 +104,7 @@ export default function About({ navigate }: AboutProps) {
                 <h3>{standard.title}</h3>
                 <p>{standard.description}</p>
               </div>
-              <PhotoSlot subject={standard.photo} ratio="16:5" position="center" />
+              <PhotoSlot src={standard.photo} alt={standard.alt} ratio="16:5" position="center" />
             </article>
           ))}
         </div>
@@ -119,16 +113,16 @@ export default function About({ navigate }: AboutProps) {
       <section className="ab-collage ab-shell ab-section" aria-label="The Easy Lux experience">
         <div className="ab-collage-grid">
           <figure className="ab-collage-main">
-            <PhotoSlot subject="Vehicle in Venice or Treviso" ratio="4:3" focus="vehicle in its surroundings" position="center" />
+            <PhotoSlot src="/images/about/black-van.jpg" alt="Black passenger van parked on a city street" ratio="4:3" position="center" />
             <figcaption>Comfortable vehicles</figcaption>
           </figure>
           <div className="ab-collage-side">
             <figure>
-              <PhotoSlot subject="Vehicle interior" ratio="16:7" focus="interior detail" position="center" />
+              <PhotoSlot src="/images/about/van-interior.jpg" alt="Leather seating inside a passenger van" ratio="16:7" position="center" />
               <figcaption>Comfort on board</figcaption>
             </figure>
             <figure>
-              <PhotoSlot subject="Luggage assistance" ratio="16:7" focus="assistance with luggage" position="center" />
+              <PhotoSlot src="/images/about/luggage-assistance.jpg" alt="Chauffeur helping with a travel suitcase" ratio="16:7" position="center" />
               <figcaption>Personal service</figcaption>
             </figure>
           </div>
@@ -145,7 +139,7 @@ export default function About({ navigate }: AboutProps) {
           </button>
           <p className="ab-countries">Italy · Austria · Slovenia · Croatia · France</p>
         </div>
-        <PhotoSlot subject="Venice & Treviso route map" ratio="4:3" focus="markers: Venice and Treviso; transparent PNG" position="center" crop="contain" />
+        <PhotoSlot src="/images/about/venice-gondolier.jpg" alt="Gondolier navigating a narrow canal in Venice" ratio="4:3" position="center 48%" />
       </section>
 
       <section className="ab-manifesto ab-shell ab-section" aria-labelledby="ab-manifesto-title">
@@ -170,7 +164,7 @@ export default function About({ navigate }: AboutProps) {
               </a>
             </div>
           </div>
-          <PhotoSlot subject="Venice waterfront at sunset" ratio="16:6" focus="architecture and negative space for text" position="center" />
+          <PhotoSlot src="/images/services/unsplash/venice-hero.jpg" alt="Venice waterfront in warm evening light" ratio="16:6" position="center" />
         </div>
       </section>
     </div>

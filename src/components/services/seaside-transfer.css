@@ -6,7 +6,8 @@
 #service-coast .cs-description { max-width: 51ch; margin: 0; font-size: 16px; line-height: 1.85; }
 #service-coast .cs-visual { grid-column: 2; grid-row: 1; width: 100%; }
 #service-coast .cs-caption { margin: 10px 0 0; color: #aaa39a; text-align: right; font-size: 12px; line-height: 1.6; }
-#service-coast .cs-panorama { width: 100%; aspect-ratio: 2.5 / 1; border: 1px solid rgba(200,192,181,.3); background: transparent; }
+#service-coast .cs-panorama { width: 100%; aspect-ratio: 2.5 / 1; overflow: hidden; border: 1px solid rgba(200,192,181,.3); background: transparent; }
+#service-coast .cs-panorama img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 68%; }
 #service-coast .cs-route-request span { font-size: 20px; line-height: 1; }
 #service-coast [hidden] { display: none; }
 #service-coast .cs-all-routes { border-top: 1px solid rgba(200,192,181,.2); }

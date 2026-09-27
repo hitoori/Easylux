@@ -1,0 +1,152 @@
+#service-prosecco.ph-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #0d0e0f;
+  color: #c8c0b5;
+  font-family: Manrope, sans-serif;
+  scroll-margin-top: 150px;
+}
+#service-prosecco .ph-backdrop {
+  position: absolute;
+  z-index: 0;
+  top: -80px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 160px);
+  object-fit: cover;
+  object-position: center 53%;
+  transform: translate3d(0, var(--ph-parallax-y, 0px), 0);
+  pointer-events: none;
+}
+#service-prosecco.ph-section::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 58% 86% at 50% 50%, rgba(13, 14, 15, .78), rgba(13, 14, 15, .49) 76%, rgba(13, 14, 15, .34)),
+    linear-gradient(0deg, rgba(13, 14, 15, .27), rgba(13, 14, 15, .2));
+  pointer-events: none;
+}
+#service-prosecco .ph-shell {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1340px, calc(100% - 80px));
+  min-height: clamp(560px, 40vw, 640px);
+  margin-inline: auto;
+  padding-top: clamp(72px, 6vw, 96px);
+  padding-bottom: clamp(32px, 3.5vw, 54px);
+  text-align: center;
+}
+#service-prosecco .ph-copy { width: min(100%, 1080px); margin-block: auto; transform: translateY(-48px); }
+#service-prosecco .ph-eyebrow {
+  margin: 0 0 20px;
+  color: #c29a45;
+  font: 600 11px/1.5 Manrope, sans-serif;
+  letter-spacing: .15em;
+}
+#service-prosecco h2 {
+  margin: 0 0 24px;
+  color: #ece6db;
+  font: 400 clamp(38px, 4.1vw, 58px)/1.08 "Source Serif 4", Georgia, serif;
+  letter-spacing: -.035em;
+  white-space: nowrap;
+}
+#service-prosecco .ph-description {
+  max-width: 58ch;
+  margin: 0 auto;
+  color: #ddd5ca;
+  font-size: 15px;
+  line-height: 1.75;
+}
+#service-prosecco .ph-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 1.15fr) auto;
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  width: 100%;
+  padding-top: 22px;
+  border-top: 1px solid rgba(194, 154, 69, .55);
+  text-align: left;
+}
+#service-prosecco .ph-route {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: #ece6db;
+  font: 500 12px/1.6 Manrope, sans-serif;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+#service-prosecco .ph-route-arrow { color: #c29a45; font-size: 16px; }
+#service-prosecco .ph-tour-info { min-width: 0; }
+#service-prosecco .ph-tour-title {
+  margin: 0 0 5px;
+  color: #ece6db;
+  font: 500 14px/1.4 Manrope, sans-serif;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+#service-prosecco .ph-note { margin: 0; color: #c8c0b5; font-size: 12px; line-height: 1.65; }
+#service-prosecco .ph-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 46px;
+  margin-top: 0;
+  padding: 12px 18px;
+  border: 1px solid #c29a45;
+  border-radius: 1px;
+  background: rgba(13, 14, 15, .3);
+  color: #daab2d;
+  font: 500 11px/1.5 Manrope, sans-serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color .2s ease, color .2s ease, background-color .2s ease;
+}
+#service-prosecco .ph-cta:hover { border-color: #ece6db; color: #ece6db; }
+#service-prosecco .ph-cta:focus-visible { outline: 2px solid #daab2d; outline-offset: 4px; }
+@media (max-width: 820px) {
+  #service-prosecco .ph-backdrop { object-position: 62% center; }
+  #service-prosecco.ph-section::before { background: rgba(13, 14, 15, .7); }
+  #service-prosecco .ph-shell {
+    width: calc(100% - 48px);
+    min-height: 580px;
+    padding-top: 68px;
+    padding-bottom: 32px;
+  }
+  #service-prosecco h2 { font-size: clamp(36px, 7vw, 48px); }
+  #service-prosecco .ph-copy { transform: translateY(-32px); }
+  #service-prosecco .ph-footer { grid-template-columns: 1fr auto; gap: 16px 24px; }
+  #service-prosecco .ph-tour-info { grid-column: 1; grid-row: 2; }
+  #service-prosecco .ph-cta { grid-column: 2; grid-row: 1 / span 2; }
+}
+@media (max-width: 600px) {
+  #service-prosecco .ph-backdrop { object-position: 58% center; }
+  #service-prosecco.ph-section::before { background: linear-gradient(180deg, rgba(13, 14, 15, .76), rgba(13, 14, 15, .7)); }
+  #service-prosecco .ph-shell { width: calc(100% - 40px); min-height: 650px; padding-top: 48px; padding-bottom: 24px; }
+  #service-prosecco .ph-eyebrow { margin-bottom: 14px; }
+  #service-prosecco .ph-copy { transform: none; }
+  #service-prosecco h2 { margin-bottom: 18px; font-size: clamp(34px, 9vw, 42px); white-space: normal; }
+  #service-prosecco .ph-description { font-size: 14px; line-height: 1.7; }
+  #service-prosecco .ph-footer { grid-template-columns: 1fr; gap: 14px; padding-top: 18px; text-align: center; }
+  #service-prosecco .ph-tour-info, #service-prosecco .ph-cta { grid-column: auto; grid-row: auto; }
+  #service-prosecco .ph-route { justify-content: center; gap: 7px; font-size: 10px; letter-spacing: .06em; }
+  #service-prosecco .ph-tour-title { font-size: 13px; }
+  #service-prosecco .ph-note { font-size: 11px; }
+  #service-prosecco .ph-cta { width: 100%; min-height: 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #service-prosecco .ph-backdrop { transform: none; }
+  #service-prosecco .ph-cta { transition: none; }
+}

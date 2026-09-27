@@ -77,7 +77,7 @@
   transform: translateY(-50%);
 }
 .services-new-page #service-europe .et-disclosure,
-.services-new-page #service-europe .et-footer > .et-button {
+.services-new-page #service-europe .et-footer > .et-view-all {
   width: fit-content;
   min-height: 44px;
   padding: 8px 0;

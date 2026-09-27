@@ -1,5 +1,8 @@
 node_modules/
 dist/
+.env
+.env.*
+!.env.example
 docs/
 .DS_Store
 **/.DS_Store
@@ -20,4 +23,3 @@ public/design-options/
 !public/**/*.png
 !public/**/*.jpg
 !public/**/*.jpeg
-

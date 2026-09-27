@@ -13,7 +13,7 @@
 .services-masthead-primary:hover { background: var(--gold); color: var(--background); }
 .services-masthead-secondary { padding: 12px 0; color: var(--text-primary); border: 0; background: transparent; }
 .services-masthead-secondary:hover { color: var(--gold-hover); }
-.services-masthead-nav { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); width: 100%; border-block: 1px solid var(--border); background: var(--background-secondary); }
+.services-masthead-nav { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); width: 100%; border-block: 1px solid var(--border); background: var(--background-secondary); }
 .services-masthead-nav button { position: relative; display: flex; align-items: center; justify-content: center; min-height: 64px; padding: 16px 12px; border: 0; border-inline-end: 2px solid transparent; color: var(--text-secondary); background: transparent; font: 500 12px/1.4 Manrope, sans-serif; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; transition: background-color .2s, color .2s; }
 .services-masthead-nav button + button::before { content: ''; position: absolute; left: -2px; top: calc(50% - 10px); height: 20px; border-left: 1px solid var(--border); }
 .services-masthead-nav button[aria-current] { color: var(--gold); border-inline-end-color: var(--gold); }

@@ -9,18 +9,24 @@ const journeys = [
     description: 'We monitor your flight and adjust the pick-up if your arrival time changes. Your driver meets you at the agreed point, assists with luggage and takes you directly to your destination.',
     cta: 'Request Airport Transfer',
     features: ['Flight monitoring', 'Meet & greet', 'Luggage assistance'],
+    image: './images/services/airport/journeys/from-the-airport.jpg',
+    imageAlt: 'Arrivals sign inside the airport terminal',
   },
   {
     label: 'To the airport', title: 'Airport Drop-off',
     description: 'We plan collection around your departure time, terminal and traffic. Your chauffeur arrives at the agreed address, helps with luggage and takes you directly to the correct terminal.',
     cta: 'Request Airport Drop-off',
     features: ['Planned pick-up', 'Direct transfer', 'Luggage assistance'],
+    image: './images/services/airport/journeys/to-the-airport.jpg',
+    imageAlt: 'Departures sign inside the airport terminal',
   },
   {
     label: 'Address to address', title: 'Address to Address Transfer',
     description: 'Travel privately between hotels, cities or accessible addresses. We confirm the route, pick-up time, meeting point and luggage requirements before travel.',
     cta: 'Request Private Transfer',
     features: ['Private journey', 'Flexible pick-up', 'Space for luggage'],
+    image: './images/services/airport/journeys/address-to-address.jpg',
+    imageAlt: 'Chauffeur loading luggage into a private vehicle',
   },
 ]
 
@@ -55,12 +61,15 @@ export default function AirportTransfers({ onMeetingPoint, onRequest }: { onMeet
           </button>)}
         </div>
 
-        <div className="ac-visual" role="img" aria-label="Reserved space for the Airport Transfer image">
-          <div className="ac-image-frame" />
+        <div className={`ac-visual ac-visual--${['arrival', 'departure', 'address'][selected]}`}>
+          <div className="ac-image-frame">
+            <img key={journey.image} className="ac-image-main ac-fade" src={journey.image} alt={journey.imageAlt} loading="lazy" />
+          </div>
         </div>
 
         <div className="ac-content">
           <div className="ac-copy ac-fade" key={`copy-${selected}`} id="ac-journey" role="tabpanel" aria-labelledby={`ac-tab-${selected}`} tabIndex={0}>
+            <span className="ac-eyebrow" aria-hidden="true">Private Transfer</span>
             <h2 id="airport-transfers-title" className={selected === 2 ? 'ac-long-title' : undefined}>
               <span>{journey.title}</span>
             </h2>

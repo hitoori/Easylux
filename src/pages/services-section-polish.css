@@ -67,6 +67,114 @@
   font-size: 22px;
   line-height: 1.2;
 }
+
+@media (min-width: 821px) {
+  .services-new-page.services-experience #service-coast .cs-route-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .services-new-page.services-experience #service-coast .cs-route {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 330px;
+    padding: 26px 22px 22px;
+    border: 1px solid rgba(200, 192, 181, .15);
+    background: rgba(255, 255, 255, .025);
+    text-align: center;
+  }
+  .services-new-page.services-experience #service-coast .cs-route::before,
+  .services-new-page.services-experience #service-coast .cs-route::after {
+    display: none;
+  }
+  .services-new-page.services-experience #service-coast .cs-number {
+    margin-bottom: 12px;
+  }
+  .services-new-page.services-experience #service-coast .cs-route h3 {
+    display: block;
+    min-height: 78px;
+    margin-bottom: 18px;
+    text-wrap: balance;
+  }
+  .services-new-page.services-experience #service-coast .cs-fares {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 8px;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  .services-new-page.services-experience #service-coast .cs-fares > div {
+    align-items: center;
+    gap: 5px;
+  }
+  .services-new-page.services-experience #service-coast .cs-fares dt {
+    font-size: 11px;
+  }
+  .services-new-page.services-experience #service-coast .cs-fares dd {
+    font-size: clamp(18px, 1.55vw, 22px);
+  }
+  .services-new-page.services-experience #service-coast .cs-route-request {
+    justify-content: center;
+    gap: 18px;
+    width: min(100%, 280px);
+    margin-top: auto;
+  }
+}
+
+/* Keep the Services page on its primary canvas, with Seaside as the sole secondary band. */
+.services-new-page.services-experience {
+  --services-section-space: clamp(56px, 5.5vw, 76px);
+}
+.services-new-page.services-experience #service-airport,
+.services-new-page.services-experience #service-hourly,
+.services-new-page.services-experience #service-water-taxi,
+.services-new-page.services-experience #service-europe,
+.services-new-page.services-experience #service-mountains,
+.services-new-page.services-experience #service-cruise,
+.services-new-page.services-experience .services-pricing-guide,
+.services-new-page.services-experience #service-custom {
+  background-color: var(--svc-bg);
+}
+.services-new-page.services-experience #service-coast {
+  background-color: var(--background-secondary);
+}
+.services-new-page.services-experience #service-coast {
+  border-block: 1px solid rgba(236, 230, 219, .08);
+}
+.services-new-page.services-experience #service-water-taxi,
+.services-new-page.services-experience #service-mountains,
+.services-new-page.services-experience .services-pricing-guide {
+  border-top: 0;
+}
+.services-new-page.services-experience #service-custom {
+  border-bottom: 0;
+}
+.services-new-page.services-experience #service-airport .ac-shell,
+.services-new-page.services-experience #service-hourly .hourly-mockup-shell,
+.services-new-page.services-experience #service-water-taxi .wt-shell,
+.services-new-page.services-experience #service-mountains .mt-shell,
+.services-new-page.services-experience #service-coast .cs-shell,
+.services-new-page.services-experience #service-cruise .ct-shell,
+.services-new-page.services-experience .services-pricing-guide,
+.services-new-page.services-experience #service-custom {
+  padding-block: var(--services-section-space);
+}
+.services-new-page.services-experience #service-europe.et-section {
+  width: 100%;
+  margin: 0;
+  padding-block: var(--services-section-space);
+}
+.services-new-page.services-experience #service-europe .et-intro,
+.services-new-page.services-experience #service-europe .et-panel-inner {
+  width: min(1340px, calc(100% - (var(--svc-gutter) * 2)));
+  margin-inline: auto;
+}
+
+@media (max-width: 820px) {
+  .services-new-page.services-experience { --services-section-space: 40px; }
+}
+
 .services-new-page.services-experience :is(
   #service-coast .cs-route-request,
   #service-cruise .ct-text-action,

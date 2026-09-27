@@ -10,6 +10,8 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## Project design decisions
 
+- Airport & City imagery (2026-09-26, refined 2026-09-27): show one clear photo per tab in a consistent 4:3 frame. Keep the airport signs visible with per-image object positioning. On desktop, keep the image close below the tabs and align the right-hand title, copy, benefits and action to the photo as one composition. On mobile, place the image between the tabs and the copy, with no blurred backdrop or decorative edge mask.
+
 - Services route lists (2026-09-24): Italy & Europe, Mountains and Cruise routes use the Home Popular Routes presentation on desktop and mobile: aligned route/fare/action columns on desktop; route title, three side-by-side fares and a full-width request button on mobile. Keep the Coast section's route design unchanged. This supersedes older Cruise route-row layout notes below.
 
 - Water Taxi full-section reference (2026-09-24): the selected `Screenshot 2026-09-24 at 00.55.16.png` supersedes the temporary empty-frame review. Use a full-bleed Venice route map behind the section, large left-aligned editorial heading/copy, direction tabs and access note below, and a bottom row with summary, separate Road transfer €80 and Private water taxi €100–140 fares, and the request button. Keep Arriving and Leaving content and map transitions functional, with mobile-specific route images that show both endpoints.

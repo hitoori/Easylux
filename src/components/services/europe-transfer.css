@@ -8,20 +8,21 @@
   font-family: Manrope, sans-serif;
   scroll-margin-top: 150px;
 }
-#service-europe .et-intro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-#service-europe .et-photo { position: relative; min-height: 480px; margin: 0; border: 1px solid rgba(200,192,181,.18); background: transparent; }
-#service-europe .et-photo img { display: none; }
-#service-europe .et-copy { min-width: 0; padding: clamp(36px, 3.5vw, 56px) clamp(28px, 4vw, 64px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+#service-europe .et-intro { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+#service-europe .et-photo { position: relative; min-height: 480px; margin: 0; overflow: hidden; border: 1px solid rgba(200,192,181,.18); background: transparent; }
+#service-europe .et-photo img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+#service-europe .et-copy { min-width: 0; padding: clamp(36px, 3.5vw, 56px) clamp(24px, 3vw, 48px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+#service-europe .et-eyebrow { margin: 0 0 20px; color: #c29a45; font: 600 11px/1.5 Manrope, sans-serif; letter-spacing: .16em; }
 #service-europe .et-copy h2 { margin: 0 0 28px; color: #ece6db; font: 400 clamp(30px, 3vw, 48px)/1.12 "Source Serif 4", Georgia, serif; letter-spacing: -.035em; }
-#service-europe .et-copy h2 span { white-space: nowrap; }
-#service-europe .et-description { width: 100%; max-width: none; margin: 0; font-size: 15px; line-height: 1.85; text-align: start; text-wrap: balance; }
-#service-europe .et-countries { margin: 32px 0 20px; color: #c8c0b5; font: 400 clamp(12px, 1.2vw, 18px)/1.8 "Source Serif 4", Georgia, serif; letter-spacing: .07em; white-space: nowrap; }
-#service-europe .et-countries span { display: inline-block; white-space: nowrap; }
-#service-europe .et-countries span + span { margin-left: .4em; }
-#service-europe .et-countries span + span::before { content: "·"; margin-right: .4em; }
-#service-europe .et-line { position: relative; height: 1px; width: 100%; background: #c29a45; opacity: .75; }
+#service-europe .et-description { width: 100%; max-width: none; margin: 0; font-size: 15px; line-height: 1.75; text-align: start; text-wrap: pretty; }
+#service-europe .et-mobile-copy { display: none; }
+#service-europe .et-countries { width: 100%; margin: 32px 0 20px; color: #c8c0b5; font: 400 clamp(12px, 1.2vw, 18px)/1.8 "Source Serif 4", Georgia, serif; letter-spacing: .07em; text-align: center; }
+#service-europe .et-countries > span { display: block; }
+#service-europe .et-country-separator { color: #c29a45; font-style: normal; }
+#service-europe .et-line { position: relative; width: 100%; height: 1px; background: #c29a45; opacity: .85; }
 #service-europe .et-line::before, #service-europe .et-line::after { content: ""; position: absolute; top: -2px; width: 5px; height: 5px; border-radius: 50%; background: #c29a45; }
-#service-europe .et-line::before { left: 0; } #service-europe .et-line::after { right: 0; }
+#service-europe .et-line::before { left: 0; }
+#service-europe .et-line::after { right: 0; }
 #service-europe .et-statement { margin: 24px 0 32px; color: #aaa39a; font-size: 13px; line-height: 1.7; text-align: start; }
 #service-europe .et-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 46px; padding: 13px 20px; border: 1px solid #c29a45; border-radius: 1px; background: transparent; color: #daab2d; font: 500 11px/1.5 Manrope, sans-serif; letter-spacing: .055em; cursor: pointer; }
 #service-europe .et-button:hover { border-color: #ece6db; color: #ece6db; }
@@ -43,11 +44,55 @@
 #service-europe .et-table .et-action { padding-right: 0; }
 #service-europe .et-action .et-button { width: 100%; max-width: 190px; min-height: 38px; padding: 9px 12px; font-size: 10px; gap: 12px; white-space: nowrap; }
 #service-europe .et-mobile-label { display: none; }
-#service-europe .et-fare-note { margin: 24px 0 28px; color: #aaa39a; font-size: 12px; line-height: 1.8; }
-#service-europe .et-footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+#service-europe .et-fare-note { min-width: 0; margin: 0; color: #aaa39a; font-size: 12px; line-height: 1.8; }
+#service-europe .et-fare-note .et-destination-button {
+  display: inline;
+  width: auto;
+  min-height: 0;
+  margin-inline-start: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #c29a45;
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+  vertical-align: baseline;
+  cursor: pointer;
+  white-space: nowrap;
+}
+#service-europe .et-fare-note .et-destination-arrow { margin-inline-start: 3px; font-size: inherit; }
+#service-europe .et-fare-note .et-destination-button .et-desktop-copy { display: inline; }
+#service-europe .et-fare-note .et-destination-button .et-mobile-copy { display: none; }
+#service-europe .et-footer { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 28px; padding-top: 18px; }
+#service-europe .et-footer-copy { min-width: 0; }
 #service-europe .et-link { display: inline-flex; gap: 16px; padding: 10px 0; border: 0; background: transparent; color: #c29a45; font: 400 13px/1.6 Manrope, sans-serif; cursor: pointer; }
 #service-europe .et-link span { color: #c29a45; }
+#service-europe .et-disclosure { display: none; }
 #service-europe :is(button,[role="tabpanel"]):focus-visible { outline: 2px solid #daab2d; outline-offset: 5px; }
+@media (min-width: 821px) {
+  #service-europe .et-fare-note .et-destination-button {
+    display: flex;
+    width: fit-content;
+    min-height: 0;
+    margin: 8px 0 0;
+    padding: 4px 0;
+    gap: 8px;
+    color: #c29a45;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .services-new-page.services-experience #service-europe #europe-title { font-size: clamp(28px, 3.5vw, 44px); }
+  .services-new-page.services-experience #service-europe .et-disclosure { width: min(100%, 340px); font-size: 12px; }
+  .services-new-page.services-experience #service-europe .sv-tabs { width: fit-content; max-width: 100%; }
+  #service-europe .et-eyebrow { margin-bottom: 16px; }
+  #service-europe .et-copy h2 { margin-bottom: 22px; }
+  #service-europe .et-description { line-height: 1.65; }
+  #service-europe .et-countries { margin: 28px 0 18px; color: #ece6db; font: 500 17px/1.55 "Source Serif 4", Georgia, serif; letter-spacing: .12em; text-align: center; }
+  #service-europe .et-statement { margin: 18px 0 26px; color: #c8c0b5; font-size: 13px; line-height: 1.6; }
+}
 @media (max-width: 1100px) {
   #service-europe.et-section { width: calc(100% - 48px); }
   #service-europe .et-copy { padding: 44px 28px; }
@@ -56,14 +101,23 @@
   #service-europe .et-table th:first-child { width: 30%; }
   #service-europe .et-table th:last-child { width: 27%; }
   #service-europe .et-action .et-button { gap: 12px; padding-inline: 12px; font-size: 10px; }
+  #service-europe .et-footer { grid-template-columns: 1fr auto; gap: 8px 24px; }
+}
+@media (min-width: 821px) and (max-width: 900px) {
+  #service-europe .et-copy { padding-inline: 16px; }
 }
 @media (max-width: 820px) {
+  #service-europe .et-fare-note .et-destination-button .et-desktop-copy { display: none; }
+  #service-europe .et-fare-note .et-destination-button .et-mobile-copy { display: inline; }
+  #service-europe .et-disclosure { display: inline-flex; }
+  #service-europe .et-panel[data-open="false"] { display: none; }
+  #service-europe .et-desktop-copy { display: none; }
+  #service-europe .et-mobile-copy { display: inline; }
   #service-europe.et-section { width: calc(100% - 32px); }
   #service-europe .et-intro { grid-template-columns: 1fr; }
   #service-europe .et-photo { min-height: 0; aspect-ratio: 16 / 10; }
   #service-europe .et-copy { padding: 42px 24px; }
   #service-europe .et-copy h2 { font-size: clamp(30px, 5.4vw, 44px); }
-  #service-europe .et-copy h2 span { white-space: normal; }
   #service-europe .et-description { max-width: 55ch; }
   #service-europe .et-countries { font-size: clamp(9px, 2.5vw, 13px); letter-spacing: .025em; }
   #service-europe .et-panel { margin-top: 28px; padding-block: 18px 0; }
@@ -77,8 +131,11 @@
   #service-europe .et-mobile-label { display: block; margin-bottom: 8px; color: #aaa39a; font-size: 10px; letter-spacing: .09em; text-transform: uppercase; }
   #service-europe .et-table .et-action { grid-column: 1 / -1; }
   #service-europe .et-action .et-button { max-width: none; min-height: 48px; padding-inline: 18px; font-size: 11px; }
-  #service-europe .et-fare-note { margin-block: 22px; }
-  #service-europe .et-footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+  #service-europe .et-footer { grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px 16px; padding-top: 20px; }
+  #service-europe .et-footer-copy { grid-column: auto; }
+}
+@media (max-width: 600px) {
+  #service-europe .et-footer { grid-template-columns: 1fr; justify-items: stretch; }
 }
 @media (max-width: 370px) {
   #service-europe .et-copy { padding-inline: 20px; }
@@ -87,17 +144,19 @@
 }
 @media (max-width: 600px) {
   #service-europe .et-photo { aspect-ratio: 16 / 9; }
-  #service-europe .et-copy { padding-block: 30px 32px; }
-  #service-europe .et-copy h2 { margin-bottom: 20px; font-size: 28px; line-height: 1.13; }
-  #service-europe .et-description { line-height: 1.65; }
+  #service-europe .et-copy { padding: 30px 22px 34px; }
+  #service-europe .et-copy h2 { margin-bottom: 16px; font-size: clamp(30px, 8vw, 36px); line-height: 1.06; letter-spacing: -.04em; }
+  #service-europe .et-description { font-size: 14px; line-height: 1.6; text-wrap: pretty; }
   #service-europe .et-countries {
-    margin-block: 24px 16px;
-    font-size: clamp(12px, 3.2vw, 14px);
-    line-height: 1.6;
-    letter-spacing: .02em;
+    margin: 24px 0 0;
+    color: #ece6db;
+    font: 500 13px/1.7 "Source Serif 4", Georgia, serif;
+    letter-spacing: .07em;
     white-space: normal;
-    text-wrap: balance;
+    text-transform: uppercase;
   }
-  #service-europe .et-statement { margin-block: 18px 22px; }
+  #service-europe .et-line { margin-top: 18px; }
+  #service-europe .et-statement { margin: 20px 0 24px; padding: 0; border: 0; font-size: 12px; line-height: 1.55; }
+  #service-europe .et-disclosure { width: 100%; min-height: 48px; padding-inline: 16px; }
   #service-europe .et-panel { margin-top: 20px; }
 }

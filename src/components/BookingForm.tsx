@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import PlaceInput from './PlaceInput'
+import { sendBooking } from '../lib/sendBooking'
 import {
   AirplaneTilt,
   ArrowLeft,
@@ -148,14 +150,10 @@ const tabCopy = {
   hourly: {
     secondaryLabel: 'Duration',
     submitLabel: 'Request Driver',
-    successTitle: 'Request preview',
-    successText: 'Your details are ready. This is a local preview — no request has been sent.',
   },
   tours: {
     secondaryLabel: 'Destination',
     submitLabel: 'Request Journey',
-    successTitle: 'Journey preview',
-    successText: 'Your details are ready. This is a local preview — no request has been sent.',
   },
 }
 
@@ -171,13 +169,6 @@ const controlClass =
 
 const modalControlClass =
   'mt-2 h-11 w-full rounded-lg border border-[rgba(116,111,105,0.5)] bg-[rgba(13,14,15,0.65)] px-3.5 text-[14px] text-cream placeholder:text-[rgba(143,136,128,0.65)] transition-colors focus:border-gold focus:outline-none'
-
-function createRequestCode() {
-  const date = new Date()
-  const stamp = `${String(date.getFullYear()).slice(-2)}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}`
-  const suffix = Math.random().toString(36).slice(2, 6).toUpperCase()
-  return `ELX-${stamp}-${suffix}`
-}
 
 function readableDateTime(value: string) {
   if (!value) return 'Not provided'
@@ -201,7 +192,7 @@ interface FieldShellProps {
 
 function FieldShell({ children, icon, label, error }: FieldShellProps) {
   return (
-    <label
+    <div
       className={`booking-field group flex min-h-[58px] min-w-0 items-center gap-3 rounded-lg border bg-[rgba(13,14,15,0.62)] px-3.5 py-2 transition-colors sm:min-h-[68px] sm:px-4 sm:py-2.5 lg:min-h-[72px] ${
         error
           ? 'border-[var(--error)]'
@@ -222,7 +213,7 @@ function FieldShell({ children, icon, label, error }: FieldShellProps) {
           </span>
         ) : null}
       </span>
-    </label>
+    </div>
   )
 }
 
@@ -293,6 +284,10 @@ export default function BookingForm({ prefill }: BookingFormProps) {
   const [activeTab, setActiveTab] = useState<Tab>('transfer')
   const [values, setValues] = useState(initialValues)
   const [submittedTab, setSubmittedTab] = useState<Tab | null>(null)
+  const [shortContact, setShortContact] = useState({ name: '', email: '', phone: '', consent: false })
+  const [shortStatus, setShortStatus] = useState('')
+  const [shortSending, setShortSending] = useState(false)
+  const shortRequestId = useRef<string | null>(null)
   const [journey, setJourney] = useState<TransferJourney>(initialJourney)
   const [passengers, setPassengers] = useState<PassengerDetails>(initialPassengers)
   const [contact, setContact] = useState<ContactDetails>(initialContact)
@@ -304,6 +299,9 @@ export default function BookingForm({ prefill }: BookingFormProps) {
   const [specialRequestOpen, setSpecialRequestOpen] = useState(false)
   const [requestCode, setRequestCode] = useState('')
   const [transferSubmitted, setTransferSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [sendError, setSendError] = useState('')
+  const requestIdRef = useRef<string | null>(null)
   const dialogRef = useRef<HTMLDialogElement>(null)
   const dialogScrollRef = useRef<HTMLDivElement>(null)
 
@@ -379,6 +377,29 @@ export default function BookingForm({ prefill }: BookingFormProps) {
   const selectTab = (tab: Tab) => {
     setActiveTab(tab)
     setSubmittedTab(null)
+    setShortStatus('')
+    shortRequestId.current = null
+  }
+
+  const sendShortRequest = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (shortSending) return
+    setShortSending(true)
+    setShortStatus('')
+    shortRequestId.current ??= crypto.randomUUID()
+    try {
+      const details = [
+        `Pick-up: ${activeValues.pickup}`,
+        `${activeTab === 'hourly' ? 'Duration' : 'Destination'}: ${activeValues.secondary}`,
+        `Departure: ${readableDateTime(activeValues.dateTime)}`,
+      ].join('\n')
+      const code = await sendBooking({ kind: activeTab as 'hourly' | 'tours', source: 'home-booking',
+        service: activeTab === 'hourly' ? 'Chauffeur by the Hour' : 'Private Journey',
+        name: shortContact.name, email: shortContact.email, phone: shortContact.phone,
+        details, consent: shortContact.consent }, shortRequestId.current)
+      setShortStatus(`Request sent. Reference ${code}. Check your email for confirmation.`)
+    } catch (error) { setShortStatus(error instanceof Error ? error.message : 'The request could not be sent.') }
+    finally { setShortSending(false) }
   }
 
   const addStop = () => {
@@ -474,6 +495,12 @@ export default function BookingForm({ prefill }: BookingFormProps) {
     event.preventDefault()
 
     if (activeTab !== 'transfer') {
+      if (!activeValues.pickup.trim() || !activeValues.dateTime ||
+          new Date(activeValues.dateTime).getTime() <= Date.now()) {
+        setShortStatus('Enter a pick-up location and a future date and time.')
+        return
+      }
+      setShortStatus('')
       setSubmittedTab(activeTab)
       return
     }
@@ -496,11 +523,36 @@ export default function BookingForm({ prefill }: BookingFormProps) {
     setTransferStep(3)
   }
 
-  const sendBookingRequest = (event: React.FormEvent<HTMLFormElement>) => {
+  const sendBookingRequest = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (!validateContact()) return
-    setRequestCode(createRequestCode())
-    setTransferSubmitted(true)
+    if (!validateContact() || sending) return
+    setSending(true)
+    setSendError('')
+    requestIdRef.current ??= crypto.randomUUID()
+    const details = [
+      `Pick-up: ${journey.pickup}`, `Destination: ${journey.destination}`,
+      `Departure: ${readableDateTime(journey.dateTime)}`,
+      `Journey: ${journey.journeyType}`,
+      journey.returnDateTime && `Return: ${readableDateTime(journey.returnDateTime)}`,
+      journey.stops.length && `Stops: ${journey.stops.join(' · ')}`,
+      journey.airportMode !== 'none' && `Airport: ${journey.airportMode}`,
+      journey.flightNumber && `Flight: ${journey.flightNumber}`,
+      `Passengers: ${passengers.passengers}`,
+      `Luggage: ${passengers.largeLuggage} large, ${passengers.handLuggage} hand`,
+      `Child seat: ${childSeatSummary}`,
+      selectedExtras && `Extras: ${selectedExtras}`,
+      passengers.specialEquipment && `Equipment: ${passengers.specialEquipment}`,
+      passengers.specialRequests && `Requests: ${passengers.specialRequests}`,
+      `Preferred contact: ${contact.preferredContact}`,
+    ].filter(Boolean).join('\n')
+    try {
+      const code = await sendBooking({ kind: 'transfer', source: 'home-booking', service: 'Private Transfer', name: contact.fullName, email: contact.email,
+        phone: contact.phone, details, consent: contact.consent }, requestIdRef.current)
+      setRequestCode(code)
+      setTransferSubmitted(true)
+    } catch (error) {
+      setSendError(error instanceof Error ? error.message : 'The request could not be sent.')
+    } finally { setSending(false) }
   }
 
   const resetTransferFlow = () => {
@@ -513,6 +565,8 @@ export default function BookingForm({ prefill }: BookingFormProps) {
     setSpecialRequestOpen(false)
     setTransferSubmitted(false)
     setRequestCode('')
+    setSendError('')
+    requestIdRef.current = null
     setTransferStep(1)
     setDialogOpen(false)
   }
@@ -603,30 +657,18 @@ export default function BookingForm({ prefill }: BookingFormProps) {
 
         <div id={`booking-panel-${activeTab}`} role="tabpanel" aria-labelledby={`booking-tab-${activeTab}`} className="pt-3 lg:pt-4">
           {submittedTab === activeTab && activeTab !== 'transfer' ? (
-            <div className="flex min-h-[96px] flex-col items-start justify-center gap-4 rounded-lg border border-[rgba(114,138,106,0.42)] bg-[rgba(114,138,106,0.08)] px-5 py-4 sm:flex-row sm:items-center sm:justify-between lg:px-6">
-              <div className="flex items-start gap-3">
-                <CheckCircle
-                  className="mt-0.5 shrink-0 text-[var(--success)]"
-                  size={26}
-                  weight="light"
-                />
-                <div>
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[var(--success)]">
-                    {tabCopyForActive?.successTitle}
-                  </p>
-                  <p className="mt-1 text-[14px] text-[rgba(236,230,219,0.82)] sm:text-[15px]">
-                    {tabCopyForActive?.successText}
-                  </p>
-                </div>
+            <form onSubmit={sendShortRequest} className="grid gap-3 rounded-lg border border-[rgba(194,154,69,0.34)] p-4 sm:grid-cols-2" >
+              <p className="sm:col-span-2 text-[13px] text-cream">Add your contact details to send this request.</p>
+              <input required maxLength={120} autoComplete="name" placeholder="Full name" aria-label="Full name" value={shortContact.name} onChange={event => setShortContact({ ...shortContact, name: event.target.value })} className={modalControlClass} />
+              <input required type="email" maxLength={160} autoComplete="email" placeholder="Email" aria-label="Email" value={shortContact.email} onChange={event => setShortContact({ ...shortContact, email: event.target.value })} className={modalControlClass} />
+              <input type="tel" maxLength={80} autoComplete="tel" placeholder="Phone / WhatsApp (optional)" aria-label="Phone or WhatsApp" value={shortContact.phone} onChange={event => setShortContact({ ...shortContact, phone: event.target.value })} className={modalControlClass} />
+              <label className="flex items-center gap-2 text-[12px] text-cream"><input required type="checkbox" checked={shortContact.consent} onChange={event => setShortContact({ ...shortContact, consent: event.target.checked })} />I agree to be contacted about this request.</label>
+              {shortStatus && <p role="status" className="sm:col-span-2 text-[12px] text-gold-light">{shortStatus}</p>}
+              <div className="flex gap-3 sm:col-span-2">
+                <button type="button" onClick={() => { setSubmittedTab(null); setShortStatus(''); shortRequestId.current = null }} className="min-h-11 px-4 text-[12px] text-cream">Edit journey</button>
+                {!shortStatus.startsWith('Request sent') && <button type="submit" disabled={shortSending} className="min-h-11 rounded-lg bg-gold px-5 text-[12px] font-semibold text-[var(--background)]">{shortSending ? 'Sending…' : 'Send request'}</button>}
               </div>
-              <button
-                type="button"
-                onClick={() => setSubmittedTab(null)}
-                className="shrink-0 text-[12px] uppercase tracking-[0.12em] text-gold hover:text-gold-light"
-              >
-                New request
-              </button>
-            </div>
+            </form>
           ) : (
             <form onSubmit={submitJourney} noValidate>
               <div className="grid grid-cols-1 gap-2 md:grid-cols-2 sm:gap-2.5 lg:grid-cols-[1.1fr_1.1fr_1fr_150px] lg:gap-3">
@@ -635,18 +677,17 @@ export default function BookingForm({ prefill }: BookingFormProps) {
                   icon={<MapPin size={23} weight="light" aria-hidden="true" />}
                   error={activeTab === 'transfer' ? journeyErrors.pickup : undefined}
                 >
-                  <input
-                    type="text"
+                  <PlaceInput
                     value={activeTab === 'transfer' ? journey.pickup : activeValues.pickup}
-                    onChange={(event) =>
+                    onChange={(value) =>
                       activeTab === 'transfer'
-                        ? updateJourney('pickup', event.target.value)
-                        : updateValue('pickup', event.target.value)
+                        ? updateJourney('pickup', value)
+                        : updateValue('pickup', value)
                     }
                     placeholder="City, airport, address, hotel..."
                     className={controlClass}
-                    autoComplete="street-address"
-                    aria-invalid={activeTab === 'transfer' && Boolean(journeyErrors.pickup)}
+                    label="Pick-up"
+                    invalid={activeTab === 'transfer' && Boolean(journeyErrors.pickup)}
                   />
                 </FieldShell>
 
@@ -693,14 +734,13 @@ export default function BookingForm({ prefill }: BookingFormProps) {
                       <option value="Custom Tour">Custom destination</option>
                     </select>
                   ) : (
-                    <input
-                      type="text"
+                    <PlaceInput
                       value={journey.destination}
-                      onChange={(event) => updateJourney('destination', event.target.value)}
+                      onChange={(value) => updateJourney('destination', value)}
                       placeholder="City, airport, address, hotel..."
                       className={controlClass}
-                      autoComplete="off"
-                      aria-invalid={Boolean(journeyErrors.destination)}
+                      label="Destination"
+                      invalid={Boolean(journeyErrors.destination)}
                     />
                   )}
                 </FieldShell>
@@ -732,7 +772,7 @@ export default function BookingForm({ prefill }: BookingFormProps) {
                   <ArrowRight size={18} weight="bold" aria-hidden="true" />
                 </button>
               </div>
-
+              {shortStatus && activeTab !== 'transfer' && <p role="alert" className="mt-2 text-[12px] text-[var(--error)]">{shortStatus}</p>}
             </form>
           )}
         </div>
@@ -828,18 +868,17 @@ export default function BookingForm({ prefill }: BookingFormProps) {
                   <CheckCircle size={34} weight="light" aria-hidden="true" />
                 </span>
                 <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--success)]">
-                  Transfer request preview
+                  Transfer request received
                 </p>
                 <p className="mt-2 font-mono text-[22px] font-semibold tracking-[0.08em] text-gold-light sm:text-[26px]">
                   {requestCode}
                 </p>
                 <p className="mt-4 text-[14px] leading-relaxed text-[rgba(236,230,219,0.8)] sm:text-[15px]">
-                  Your details are ready for review. This local preview has not sent a request or
-                  confirmed a booking.
+                  We have emailed your request to our team and sent a copy to {contact.email}.
+                  Our team will review availability and confirm the price.
                 </p>
                 <p className="mt-3 text-[12px] leading-relaxed text-[rgba(200,192,181,0.5)]">
-                  This reference belongs to the preview only. Request delivery is not connected yet;
-                  your details have not been sent or stored.
+                  Your booking is confirmed only after our team contacts you.
                 </p>
                 <button
                   type="button"
@@ -1469,12 +1508,14 @@ export default function BookingForm({ prefill }: BookingFormProps) {
                   </button>
                   <button
                     type="submit"
+                    disabled={sending}
                     className="flex min-h-11 items-center gap-2 rounded-lg bg-gold px-5 text-[11px] font-bold uppercase tracking-[0.08em] text-[var(--background)] transition-colors hover:bg-gold-light sm:px-7"
                   >
-                    Send Booking Request
+                    {sending ? 'Sending…' : 'Send Booking Request'}
                     <ArrowRight size={16} weight="bold" aria-hidden="true" />
                   </button>
                 </div>
+                {sendError && <p role="alert" className="mt-3 text-[12px] text-[var(--error)]">{sendError}</p>}
               </form>
             )}
           </div>

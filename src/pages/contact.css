@@ -43,6 +43,8 @@
 .contact-page .ct-draft{margin-top:24px;padding-top:24px;border-top:1px solid var(--border)}
 .contact-page .ct-draft span{color:var(--gold);font-size:12px}
 .contact-page .ct-draft h3{margin-block:8px}
+.contact-page .ct-consent{display:flex;align-items:flex-start;gap:10px;margin-top:18px;font-size:13px;line-height:1.6;color:var(--text-muted)}
+.contact-page form .ct-consent input{display:inline-block;width:16px;height:16px;min-width:16px;margin:3px 0 0;padding:0;accent-color:var(--gold)}
 .contact-page .ct-contact-panel{min-width:0;padding-top:9px}
 .contact-page .ct-channels{display:grid;gap:10px;margin-top:24px}
 .contact-page .ct-channels .ct-channel{display:grid;grid-template-columns:20px minmax(0,1fr);align-items:center;gap:16px;padding:17px 20px;border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text-primary);transition:border-color 200ms}

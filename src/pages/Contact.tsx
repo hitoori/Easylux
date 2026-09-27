@@ -5,6 +5,7 @@ import { flushSync } from 'react-dom'
 import { serviceOptions } from '../components/services/serviceData'
 import type { Page } from '../types/navigation'
 import { company } from '../config/company'
+import { sendBooking } from '../lib/sendBooking'
 import './contact.css'
 
 const services = serviceOptions.map(([, label]) => label)
@@ -35,14 +36,27 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
   const [phone, setPhone] = useState('')
   const [service, setService] = useState('')
   const [message, setMessage] = useState('')
+  const [consent, setConsent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [sendStatus, setSendStatus] = useState('')
+  const [requestCode, setRequestCode] = useState('')
   const [openAnswer, setOpenAnswer] = useState<number | null>(null)
   const viewService = (id: string) => {
     flushSync(() => navigate('services'))
     const section = document.getElementById(`service-${id}`)
     if (section) window.scrollTo({ top: section.getBoundingClientRect().top + window.scrollY - 148, behavior: 'instant' })
   }
-  const [prepared, setPrepared] = useState(false)
-  const emailDraft = `mailto:${company.email}?subject=${encodeURIComponent(`Easy Lux enquiry${service ? ` — ${service}` : ''}`)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nService: ${service || 'General enquiry'}\n\n${message}`)}`
+  const submitContact = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (sending) return
+    setSending(true); setSendStatus('')
+    try {
+      const code = await sendBooking({ kind: 'custom', source: 'contact', service: service || 'General enquiry', name, email, phone, details: `Service: ${service || 'General enquiry'}\nMessage: ${message}`, consent }, crypto.randomUUID())
+      setRequestCode(code)
+      setSendStatus(`Your enquiry has been sent. Reference ${code}. A confirmation has been emailed to ${email}.`)
+    } catch (error) { setSendStatus(error instanceof Error ? error.message : 'The request could not be sent. Please try again.') }
+    finally { setSending(false) }
+  }
 
   return (
     <div className="contact-page">
@@ -74,7 +88,7 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
             </div>
           </div>
 
-          <form onSubmit={event => { event.preventDefault(); setPrepared(true) }} onChange={() => setPrepared(false)}>
+          <form onSubmit={submitContact} onChange={() => { if (sendStatus && !requestCode) setSendStatus('') }}>
             <div className="ct-fields">
               <label htmlFor="ct-name">Full name
                 <input id="ct-name" name="name" autoComplete="name" value={name} onChange={event => setName(event.target.value)} placeholder="Your name" required />
@@ -97,15 +111,16 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
               <textarea id="ct-message" name="message" rows={4} value={message} onChange={event => setMessage(event.target.value)} placeholder="Your route, travel date, passengers and luggage…" required />
             </label>
 
+            <label className="ct-consent"><input type="checkbox" checked={consent} onChange={event => setConsent(event.target.checked)} required /> I agree to be contacted about this enquiry.</label>
+
             <div className="ct-submit">
-              <button type="submit" className="ct-primary">Send enquiry <ArrowRight size={18} aria-hidden="true" /></button>
-              <p className="ct-privacy"><LockSimple size={16} weight="light" aria-hidden="true" /><span>Your details stay in this draft until you send it.<br />Review and send from your email app.</span></p>
+              <button type="submit" className="ct-primary" disabled={sending || Boolean(requestCode)}>{sending ? 'Sending…' : requestCode ? 'Enquiry sent' : 'Send enquiry'} <ArrowRight size={18} aria-hidden="true" /></button>
+              <p className="ct-privacy"><LockSimple size={16} weight="light" aria-hidden="true" /><span>Your details are sent securely to our team.<br />We’ll email you a confirmation.</span></p>
             </div>
 
-            {prepared && <div className="ct-draft" role="status">
-              <div><span>Ready</span><h3>Your enquiry has been prepared.</h3></div>
-              <p>Nothing has been sent yet. Open the draft, check your details and send it when you are ready.</p>
-              <a className="ct-inline-link" href={emailDraft}>Open email draft <ArrowRight size={18} aria-hidden="true" /></a>
+            {sendStatus && <div className="ct-draft" role={requestCode ? 'status' : 'alert'}>
+              <div><span>{requestCode ? 'Received' : 'Please try again'}</span><h3>{requestCode ? 'Your enquiry is on its way.' : 'We could not send your enquiry.'}</h3></div>
+              <p>{sendStatus}</p>
             </div>}
           </form>
         </div>

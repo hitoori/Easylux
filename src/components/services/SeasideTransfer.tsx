@@ -21,7 +21,7 @@ export default function SeasideTransfer({ onRequest }: { onRequest: RequestJourn
           <h2 id="coast-title">The coast,<br /> without the connections.</h2>
           <p className="cs-description">Private, door-to-door transfers from Venice to Italy’s Adriatic seaside destinations.</p>
         </div>
-        <div className="cs-visual"><div className="cs-panorama" aria-hidden="true" /><p className="cs-caption">Hotel, villa or marina — directly to the address you choose.</p></div>
+        <div className="cs-visual"><div className="cs-panorama"><img src="./images/services/seaside/adriatic-coast.jpg" alt="Adriatic seaside town overlooking the sea" loading="lazy" /></div><p className="cs-caption">Hotel, villa or marina — directly to the address you choose.</p></div>
       </div>
       <div id="coast-route-prices" className="cs-all-routes">
         <ol id="coast-route-list" className="cs-route-grid">

@@ -10,13 +10,13 @@ export default function MountainsTransfer({ onRequest }: { onRequest: RequestJou
 
   return <section id="service-mountains" className="mt-section" aria-labelledby="mountains-title">
     <div className="mt-shell">
-      <h2 id="mountains-title">From the city to the mountains.</h2>
+      <h2 id="mountains-title">From the city to the<br className="mt-mobile-title-break" /> mountains.</h2>
       <div className="mt-panorama" aria-hidden="true" />
       <div className="mt-information">
         <p className="mt-description">Private, door-to-door transfers from Venice to the Dolomites and Italy’s most requested mountain destinations.</p>
         <button type="button" className="mt-request mt-disclosure" aria-expanded={routesOpen} aria-controls="dolomites-route-prices" onClick={() => { setRoutesOpen(current => !current); setVisibleCount(3) }}>{routesOpen ? 'HIDE ROUTES & PRICES' : 'VIEW ROUTES & PRICES'} <span aria-hidden="true">{routesOpen ? '↑' : '↓'}</span></button>
       </div>
-      <div id="dolomites-route-prices" className="mt-all-routes" hidden={!routesOpen}>
+      <div id="dolomites-route-prices" className="mt-all-routes" data-open={routesOpen}>
         <table id="mountain-route-table" className="mt-table sr-home-table" aria-label="All mountain routes and prices">
           <thead><tr><th scope="col">Route</th><th scope="col">Sedan</th><th scope="col">Van</th><th scope="col">Minibus 12</th><th scope="col">Action</th></tr></thead>
           <tbody>{mountainRoutes.slice(0, visibleCount).map(route => <tr key={route.id}>
@@ -25,7 +25,10 @@ export default function MountainsTransfer({ onRequest }: { onRequest: RequestJou
             <td className="mt-action"><button type="button" className="mt-request" aria-label={`Request this route: ${route.from} to ${route.to}`} onClick={() => requestRoute(route)}>REQUEST THIS ROUTE <span aria-hidden="true">→</span></button></td>
           </tr>)}</tbody>
         </table>
-        {visibleCount < mountainRoutes.length && <div className="mt-more-routes"><button type="button" className="mt-request" aria-controls="mountain-route-table" onClick={() => setVisibleCount(current => Math.min(current + 3, mountainRoutes.length))}>SHOW MORE ROUTES <span aria-hidden="true">↓</span></button></div>}
+        <div className="mt-more-routes">
+          {visibleCount < mountainRoutes.length && <button type="button" className="mt-request" aria-controls="mountain-route-table" onClick={() => setVisibleCount(current => Math.min(current + 3, mountainRoutes.length))}>SHOW MORE ROUTES <span aria-hidden="true">↓</span></button>}
+          <p className="mt-disclaimer"><span className="mt-disclaimer-mark" aria-hidden="true">!</span><span>Seasonal weather and road conditions may affect mountain access, journey times and fares. We’ll confirm current conditions and the final details before your trip.</span></p>
+        </div>
       </div>
     </div>
   </section>

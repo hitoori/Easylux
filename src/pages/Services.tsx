@@ -3,6 +3,7 @@ import { ArrowRight } from '@phosphor-icons/react'
 import type { Page } from '../types/navigation'
 import { serviceOptions, type JourneyRequest, type JourneyService, type QuoteSelection } from '../components/services/serviceData'
 import { HourlySection, WaterTaxiSection, EuropeSection, MountainsSection, SeasideSection, CruiseSection } from '../components/services/SelectedServiceSections'
+import ProseccoHills from '../components/services/ProseccoHills'
 import ServiceQuoteForm from '../components/services/ServiceQuoteForm'
 import './services.css'
 import './services-selected.css'
@@ -26,11 +27,14 @@ import './services-route-style.css'
 import './services-section-polish.css'
 import './services-water-taxi-reference.css'
 import './services-home-routes.css'
+import './services-masthead-refresh.css'
 import AirportTransfers from '../components/services/AirportTransfers'
 import PricingGuide from '../components/services/PricingGuide'
+import FloatingServiceNav from '../components/services/FloatingServiceNav'
 
 export default function Services({ navigate: _navigate }: { navigate: (page: Page) => void }) {
   const [activeSection, setActiveSection] = useState<JourneyService | null>(null)
+  const [showFloatingNav, setShowFloatingNav] = useState(false)
   const [meetingOpen, setMeetingOpen] = useState(false)
   const [meetingClosing, setMeetingClosing] = useState(false)
   const [selection, setSelection] = useState<QuoteSelection | null>(null)
@@ -51,6 +55,10 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
           if (section && section.getBoundingClientRect().top <= marker) current = id
         }
         setActiveSection(current)
+        const directory = document.querySelector('.services-masthead-nav')
+        const quote = document.getElementById('service-custom')
+        const headerHeight = window.matchMedia('(min-width: 1024px)').matches ? 76 : 72
+        setShowFloatingNav(Boolean(directory && directory.getBoundingClientRect().bottom <= headerHeight && (!quote || quote.getBoundingClientRect().top > marker)))
       })
     }
     updateActiveSection()
@@ -105,29 +113,31 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
 
   return <div className="services-new-page services-experience">
     <section className="services-masthead" aria-labelledby="services-title">
-      <img className="services-masthead-photo" src="./images/services/unsplash/venice-hero.jpg" alt="" width={2400} height={1601} fetchPriority="high" />
+      <img className="services-masthead-photo" src="./images/services/unsplash/venice-water-taxi.jpg" alt="Boat crossing the Venetian lagoon near Santa Maria della Salute" width={2200} height={1650} fetchPriority="high" />
       <div className="services-masthead-shell">
         <div className="services-masthead-copy">
-          <p className="services-masthead-eyebrow">Services &amp; prices</p>
-          <h1 id="services-title"><span>Your journey.</span><span><em>A private driver.</em></span></h1>
-          <p className="services-masthead-description">Private transfers from Venice to destinations across Italy and Europe, with your vehicle, route and price agreed before you travel.</p>
+          <p className="services-masthead-eyebrow">SERVICES &amp; PRICES</p>
+          <h1 id="services-title"><span>From Venice.</span><span>Where to next?</span></h1>
+          <p className="services-masthead-description">Airport pick-ups, a driver for the day, and private journeys across Italy and Europe. Choose what fits your plans; we’ll agree on the route and price before you travel.</p>
           <div className="services-masthead-actions">
-            <button type="button" className="services-masthead-primary" onClick={() => scrollTo('custom')}>Get a transfer quote <ArrowRight size={19} weight="light" aria-hidden="true" /></button>
+            <button type="button" className="services-masthead-primary" onClick={() => document.getElementById('services-directory')?.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })}>EXPLORE SERVICES <ArrowRight size={19} weight="light" aria-hidden="true" /></button>
           </div>
         </div>
       </div>
+      <nav id="services-directory" className="services-masthead-nav services-top-navigation" aria-label="Choose a service">
+        {serviceOptions.filter(([id]) => id !== 'custom').map(([id, label]) =>
+          <button key={id} type="button" aria-current={activeSection === id ? 'location' : undefined}
+            onClick={() => scrollTo(id)}>
+            <span>{label}</span>
+          </button>)}
+      </nav>
     </section>
-    <nav className="services-masthead-nav services-top-navigation" aria-label="Choose a service">
-      {serviceOptions.filter(([id]) => id !== 'custom').map(([id, label]) =>
-        <button key={id} type="button" aria-current={activeSection === id ? 'location' : undefined}
-          onClick={() => scrollTo(id)}>
-          <span>{label}</span>
-        </button>)}
-    </nav>
+    {showFloatingNav && <FloatingServiceNav activeSection={activeSection} onSelect={scrollTo} />}
     <AirportTransfers onMeetingPoint={openMeetingPoint} onRequest={requestJourney} />
     <HourlySection onRequest={requestJourney} />
     <WaterTaxiSection onRequest={requestJourney} />
     <EuropeSection onRequest={requestJourney} />
+    <ProseccoHills onRequest={requestJourney} />
     <MountainsSection onRequest={requestJourney} />
     <SeasideSection onRequest={requestJourney} />
     <CruiseSection onRequest={requestJourney} />

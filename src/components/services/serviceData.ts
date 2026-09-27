@@ -2,11 +2,11 @@ import { transferRoutes } from '../../data/transferRoutes'
 
 export const serviceOptions = [
   ['airport', 'Airport & City'], ['hourly', 'By the Hour'], ['water-taxi', 'Water Taxi'],
-  ['europe', 'Italy & Europe'], ['mountains', 'Mountains'], ['coast', 'Seaside'],
+  ['europe', 'Italy & Europe'], ['prosecco', 'Prosecco Hills'], ['mountains', 'Mountains'], ['coast', 'Seaside'],
   ['cruise', 'Cruise Ports'], ['custom', 'Custom destination'],
 ] as const
 export type JourneyService = typeof serviceOptions[number][0]
-export interface JourneyRequest { service: JourneyService; pickup?: string; destination?: string; airportPickup?: boolean }
+export interface JourneyRequest { service: JourneyService; pickup?: string; destination?: string; airportPickup?: boolean; addReturn?: boolean }
 export interface QuoteSelection extends JourneyRequest { revision: number }
 
 const routeMap = new Map(transferRoutes.map(route => [route.id, route]))
