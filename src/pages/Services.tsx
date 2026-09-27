@@ -160,11 +160,11 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
       </div>
       <div className="svc-meeting-gallery">
         <figure>
-          <div className="svc-meeting-photo"><img src="/images/services/airport/venice-airport-arrivals.jpeg" alt="Arrivals exit at Venice Marco Polo Airport" /></div>
+          <div className="svc-meeting-photo"><img src={`${import.meta.env.BASE_URL}images/services/airport/venice-airport-arrivals.jpeg`} alt="Arrivals exit at Venice Marco Polo Airport" /></div>
           <figcaption><span>01</span><strong>Exit through Arrivals</strong></figcaption>
         </figure>
         <figure>
-          <div className="svc-meeting-photo"><img src="/images/services/airport/venice-airport-change.jpeg" alt="Currency exchange counter marked Change inside Venice Marco Polo Airport" /></div>
+          <div className="svc-meeting-photo"><img src={`${import.meta.env.BASE_URL}images/services/airport/venice-airport-change.jpeg`} alt="Currency exchange counter marked Change inside Venice Marco Polo Airport" /></div>
           <figcaption><span>02</span><strong>Nearby reference point</strong><small>Look for the CHANGE office.</small></figcaption>
         </figure>
       </div>

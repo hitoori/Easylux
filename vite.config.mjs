@@ -35,7 +35,9 @@ function bookingApi(localEnv) {
 }
 
 export default defineConfig(({ mode }) => ({
-  base: "./",
+  // GitHub Pages publishes this repository from /Easylux/; local and Sites
+  // builds stay relative to their deployment root.
+  base: process.env.GITHUB_ACTIONS === "true" ? "/Easylux/" : "./",
   build: {
     outDir: "dist/client",
   },

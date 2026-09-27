@@ -64,7 +64,7 @@ export default function About({ navigate }: AboutProps) {
             Discover our services <ArrowRight size={18} aria-hidden="true" />
           </button>
         </div>
-        <PhotoSlot className="ab-hero-photo" src="/images/about/venice-sunrise.jpg" alt="Morning light over the Grand Canal in Venice" ratio="16:10" position="center 52%" eager />
+        <PhotoSlot className="ab-hero-photo" src={`${import.meta.env.BASE_URL}images/about/venice-sunrise.jpg`} alt="Morning light over the Grand Canal in Venice" ratio="16:10" position="center 52%" eager />
       </header>
 
       <section className="ab-facts" aria-label="Easy Lux at a glance">
@@ -80,7 +80,7 @@ export default function About({ navigate }: AboutProps) {
           <p>We are <span className="ab-gold-text">two young entrepreneurs</span> united by a passion for travel, hospitality and exceptional service. After years of experience in <span className="ab-gold-text">private transportation</span>, we created Easy Lux to offer a more personal way to travel.</p>
           <p>Operating in <span className="ab-gold-text">Venice and Treviso</span>, we arrange reliable, comfortable and tailored journeys across Italy and Europe.</p>
         </div>
-        <PhotoSlot src="/images/about/venice-canal.jpg" alt="Quiet canal and historic buildings in Venice" ratio="4:3" position="center 48%" />
+        <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/venice-canal.jpg`} alt="Quiet canal and historic buildings in Venice" ratio="4:3" position="center 48%" />
       </section>
 
       <section className="ab-luxury ab-section" aria-labelledby="ab-luxury-title">
@@ -89,7 +89,7 @@ export default function About({ navigate }: AboutProps) {
             <h2 id="ab-luxury-title">Luxury is how<br />the journey feels.</h2>
             <p>For us, luxury is not defined only by the vehicle. It is knowing that your journey has been prepared, your time is respected and someone is there when you need them.</p>
           </div>
-          <PhotoSlot src="/images/about/car-door.jpg" alt="Hand opening the door of a black car" ratio="16:7" position="center 34%" />
+          <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/car-door.jpg`} alt="Hand opening the door of a black car" ratio="16:7" position="center 34%" />
         </div>
       </section>
 
@@ -113,16 +113,16 @@ export default function About({ navigate }: AboutProps) {
       <section className="ab-collage ab-shell ab-section" aria-label="The Easy Lux experience">
         <div className="ab-collage-grid">
           <figure className="ab-collage-main">
-            <PhotoSlot src="/images/about/black-van.jpg" alt="Black passenger van parked on a city street" ratio="4:3" position="center" />
+            <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/black-van.jpg`} alt="Black passenger van parked on a city street" ratio="4:3" position="center" />
             <figcaption>Comfortable vehicles</figcaption>
           </figure>
           <div className="ab-collage-side">
             <figure>
-              <PhotoSlot src="/images/about/van-interior.jpg" alt="Leather seating inside a passenger van" ratio="16:7" position="center" />
+              <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/van-interior.jpg`} alt="Leather seating inside a passenger van" ratio="16:7" position="center" />
               <figcaption>Comfort on board</figcaption>
             </figure>
             <figure>
-              <PhotoSlot src="/images/about/luggage-assistance.jpg" alt="Chauffeur helping with a travel suitcase" ratio="16:7" position="center" />
+              <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/luggage-assistance.jpg`} alt="Chauffeur helping with a travel suitcase" ratio="16:7" position="center" />
               <figcaption>Personal service</figcaption>
             </figure>
           </div>
@@ -139,7 +139,7 @@ export default function About({ navigate }: AboutProps) {
           </button>
           <p className="ab-countries">Italy · Austria · Slovenia · Croatia · France</p>
         </div>
-        <PhotoSlot src="/images/about/venice-gondolier.jpg" alt="Gondolier navigating a narrow canal in Venice" ratio="4:3" position="center 48%" />
+        <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/venice-gondolier.jpg`} alt="Gondolier navigating a narrow canal in Venice" ratio="4:3" position="center 48%" />
       </section>
 
       <section className="ab-manifesto ab-shell ab-section" aria-labelledby="ab-manifesto-title">
@@ -164,7 +164,7 @@ export default function About({ navigate }: AboutProps) {
               </a>
             </div>
           </div>
-          <PhotoSlot src="/images/services/unsplash/venice-hero.jpg" alt="Venice waterfront in warm evening light" ratio="16:6" position="center" />
+          <PhotoSlot src={`${import.meta.env.BASE_URL}images/services/unsplash/venice-hero.jpg`} alt="Venice waterfront in warm evening light" ratio="16:6" position="center" />
         </div>
       </section>
     </div>

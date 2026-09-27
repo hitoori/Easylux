@@ -91,7 +91,7 @@ export default function PlaceInput({ value, onChange, className, placeholder, la
     />
     {open && suggestions.length > 0 && <span role="listbox" className="absolute left-0 top-full z-[100] mt-3 block w-[min(80vw,390px)] overflow-hidden rounded-lg border border-[rgba(194,154,69,0.45)] bg-[#17191a] shadow-[0_18px_42px_rgba(0,0,0,.65)]">
       {suggestions.map((item, index) => <button key={item.placeId} type="button" role="option" aria-selected={index === active} onMouseDown={event => event.preventDefault()} onClick={() => void choose(item)} className={`block w-full px-4 py-2.5 text-left text-[13px] text-cream hover:bg-[rgba(194,154,69,.14)] ${index === active ? 'bg-[rgba(194,154,69,.14)]' : ''}`}>{item.text.toString()}</button>)}
-      <span className="flex justify-end border-t border-white/10 bg-white px-3 py-1.5"><img src="/images/powered_by_google_on_white.png" alt="Powered by Google" className="h-[18px] w-auto" /></span>
+      <span className="flex justify-end border-t border-white/10 bg-white px-3 py-1.5"><img src={`${import.meta.env.BASE_URL}images/powered_by_google_on_white.png`} alt="Powered by Google" className="h-[18px] w-auto" /></span>
     </span>}
   </span>
 }
