@@ -33,8 +33,8 @@ const standards = [
     number: '01',
     title: 'Prepared around you',
     description: 'Your route, timing, passengers and luggage are considered before the journey begins.',
-    photo: `${import.meta.env.BASE_URL}images/services/unsplash/venice-water-taxi.jpg`,
-    alt: 'Private boat crossing the Venetian lagoon near Santa Maria della Salute',
+    photo: `${import.meta.env.BASE_URL}images/about/standard-prepared-around-you.png`,
+    alt: 'Travel details being coordinated on a phone beside a laptop and notebook',
   },
   {
     number: '02',
@@ -47,8 +47,8 @@ const standards = [
     number: '03',
     title: 'Genuine Italian hospitality',
     description: 'A welcoming, attentive approach designed to help you enjoy the journey as much as the destination.',
-    photo: `${import.meta.env.BASE_URL}images/about/dolomites-road.jpg`,
-    alt: 'Winding road through the Italian Dolomites',
+    photo: `${import.meta.env.BASE_URL}images/about/standard-italian-hospitality.jpg`,
+    alt: 'Hotel professional welcoming a guest and handing over a room key',
   },
 ]
 
@@ -64,7 +64,7 @@ export default function About({ navigate }: AboutProps) {
             Discover our services <ArrowRight size={18} aria-hidden="true" />
           </button>
         </div>
-        <PhotoSlot className="ab-hero-photo" src={`${import.meta.env.BASE_URL}images/about/venice-sunrise.jpg`} alt="Morning light over the Grand Canal in Venice" ratio="16:10" position="center 52%" eager />
+        <PhotoSlot className="ab-hero-photo" src={`${import.meta.env.BASE_URL}images/about/airport-transfer-van.png`} alt="Black Mercedes van outside an airport at sunset" ratio="16:10" position="center 52%" eager />
       </header>
 
       <section className="ab-facts" aria-label="Easy Lux at a glance">
@@ -80,7 +80,7 @@ export default function About({ navigate }: AboutProps) {
           <p>We are <span className="ab-gold-text">two young entrepreneurs</span> united by a passion for travel, hospitality and exceptional service. After years of experience in <span className="ab-gold-text">private transportation</span>, we created Easy Lux to offer a more personal way to travel.</p>
           <p>Operating in <span className="ab-gold-text">Venice and Treviso</span>, we arrange reliable, comfortable and tailored journeys across Italy and Europe.</p>
         </div>
-        <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/venice-canal.jpg`} alt="Quiet canal and historic buildings in Venice" ratio="4:3" position="center 48%" />
+        <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/story-private-journey.png`} alt="Chauffeur loading luggage into a private transfer van at the airport" ratio="4:3" position="center 48%" />
       </section>
 
       <section className="ab-luxury ab-section" aria-labelledby="ab-luxury-title">
@@ -104,7 +104,7 @@ export default function About({ navigate }: AboutProps) {
                 <h3>{standard.title}</h3>
                 <p>{standard.description}</p>
               </div>
-              <PhotoSlot src={standard.photo} alt={standard.alt} ratio="16:5" position="center" />
+              <PhotoSlot className={standard.number === '03' ? 'ab-standard-hospitality' : ''} src={standard.photo} alt={standard.alt} ratio="16:5" position="center" />
             </article>
           ))}
         </div>
@@ -113,16 +113,16 @@ export default function About({ navigate }: AboutProps) {
       <section className="ab-collage ab-shell ab-section" aria-label="The Easy Lux experience">
         <div className="ab-collage-grid">
           <figure className="ab-collage-main">
-            <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/black-van.jpg`} alt="Black passenger van parked on a city street" ratio="4:3" position="center" />
+            <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/comfortable-vehicle.png`} alt="Black Mercedes private transfer van outside a hotel" ratio="4:3" position="center" />
             <figcaption>Comfortable vehicles</figcaption>
           </figure>
           <div className="ab-collage-side">
             <figure>
-              <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/van-interior.jpg`} alt="Leather seating inside a passenger van" ratio="16:7" position="center" />
+              <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/comfort-on-board.png`} alt="Comfortable passenger seating inside the private transfer van" ratio="16:7" position="center" />
               <figcaption>Comfort on board</figcaption>
             </figure>
             <figure>
-              <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/luggage-assistance.jpg`} alt="Chauffeur helping with a travel suitcase" ratio="16:7" position="center" />
+              <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/personal-chauffeur-service.png`} alt="Chauffeur assisting a passenger with luggage beside a private van" ratio="16:7" position="center" />
               <figcaption>Personal service</figcaption>
             </figure>
           </div>
@@ -139,7 +139,7 @@ export default function About({ navigate }: AboutProps) {
           </button>
           <p className="ab-countries">Italy · Austria · Slovenia · Croatia · France</p>
         </div>
-        <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/venice-gondolier.jpg`} alt="Gondolier navigating a narrow canal in Venice" ratio="4:3" position="center 48%" />
+        <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/dolomites-where-we-operate.jpg`} alt="Mountain peaks, forest and village in the Dolomites" ratio="4:3" position="center" />
       </section>
 
       <section className="ab-manifesto ab-shell ab-section" aria-labelledby="ab-manifesto-title">
@@ -164,7 +164,7 @@ export default function About({ navigate }: AboutProps) {
               </a>
             </div>
           </div>
-          <PhotoSlot src={`${import.meta.env.BASE_URL}images/services/unsplash/venice-hero.jpg`} alt="Venice waterfront in warm evening light" ratio="16:6" position="center" />
+          <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/family-airport-arrival.png`} alt="Family arriving at a hotel beside a private chauffeur van" ratio="16:6" position="center 55%" />
         </div>
       </section>
     </div>

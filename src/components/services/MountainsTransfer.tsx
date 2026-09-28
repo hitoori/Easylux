@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { mountainRoutes, priceLabel } from './serviceData'
 import type { RequestJourney } from './ServiceRoutes'
+import { publicAsset } from '../../lib/publicAsset'
 import './mountains-transfer.css'
 
 export default function MountainsTransfer({ onRequest }: { onRequest: RequestJourney }) {
@@ -10,8 +11,9 @@ export default function MountainsTransfer({ onRequest }: { onRequest: RequestJou
 
   return <section id="service-mountains" className="mt-section" aria-labelledby="mountains-title">
     <div className="mt-shell">
+      <p className="mt-eyebrow">PRIVATE MOUNTAIN TRANSFERS</p>
       <h2 id="mountains-title">From the city to the<br className="mt-mobile-title-break" /> mountains.</h2>
-      <div className="mt-panorama" aria-hidden="true" />
+      <img className="mt-panorama" src={publicAsset('images/services/venice-dolomites-transfer.png')} alt="Mercedes chauffeur vehicle between Venice and the Dolomite mountains" width={2172} height={724} loading="lazy" decoding="async" />
       <div className="mt-information">
         <p className="mt-description">Private, door-to-door transfers from Venice to the Dolomites and Italy’s most requested mountain destinations.</p>
         <button type="button" className="mt-request mt-disclosure" aria-expanded={routesOpen} aria-controls="dolomites-route-prices" onClick={() => { setRoutesOpen(current => !current); setVisibleCount(3) }}>{routesOpen ? 'HIDE ROUTES & PRICES' : 'VIEW ROUTES & PRICES'} <span aria-hidden="true">{routesOpen ? '↑' : '↓'}</span></button>

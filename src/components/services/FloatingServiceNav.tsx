@@ -48,7 +48,7 @@ export default function FloatingServiceNav({ activeSection, onSelect }: {
     </button>)
 
   return <>
-    <nav className={`fsn fsn-trigger${collapsed ? ' is-collapsed' : ''}`} aria-label="Services navigation" hidden={open}>
+    <nav className={`fsn fsn-trigger${collapsed ? ' is-collapsed' : ''}${activeSection === 'cruise' ? ' is-cruise' : ''}`} aria-label="Services navigation" hidden={open}>
       <button ref={currentButton} className="fsn-current" type="button" onClick={() => { setCollapsed(false); setOpen(true) }} aria-haspopup="dialog" aria-expanded={open} aria-controls="floating-services-dialog" aria-label={`Open services navigation. Current section: ${items[activeIndex][1]}`}>
           <span className="fsn-stop" aria-hidden="true" /><span className="fsn-current-name">{items[activeIndex][1]}</span><span className="fsn-arrow-desktop" aria-hidden="true">←</span><span className="fsn-arrow-phone" aria-hidden="true">↑</span>
       </button>

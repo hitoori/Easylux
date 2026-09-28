@@ -6,25 +6,25 @@ import { publicAsset } from '../../lib/publicAsset'
 
 const journeys = [
   {
-    label: 'From the airport', title: 'Airport Transfer',
-    description: 'We monitor your flight and adjust the pick-up if your arrival time changes. Your driver meets you at the agreed point, assists with luggage and takes you directly to your destination.',
-    cta: 'Request Airport Transfer',
-    features: ['Flight monitoring', 'Meet & greet', 'Luggage assistance'],
+    label: 'From the airport', title: 'Airport transfers, made simple.',
+    description: 'We track your flight and adjust the pick-up time if needed. Your driver will meet you at the agreed point, help with your luggage and take you directly to your destination.',
+    cta: 'REQUEST YOUR TRANSFER',
+    features: ['Flight tracking', 'Meet & greet', 'Luggage assistance'],
     image: publicAsset('images/services/airport/journeys/from-the-airport.jpg'),
     imageAlt: 'Arrivals sign inside the airport terminal',
   },
   {
-    label: 'To the airport', title: 'Airport Drop-off',
-    description: 'We plan collection around your departure time, terminal and traffic. Your chauffeur arrives at the agreed address, helps with luggage and takes you directly to the correct terminal.',
-    cta: 'Request Airport Drop-off',
+    label: 'To the airport', title: 'To the airport, on time.',
+    description: 'We plan your pick-up around your departure time, terminal and traffic. Your chauffeur meets you at your address, helps with your luggage and takes you directly to the right terminal.',
+    cta: 'REQUEST YOUR TRANSFER',
     features: ['Planned pick-up', 'Direct transfer', 'Luggage assistance'],
     image: publicAsset('images/services/airport/journeys/to-the-airport.jpg'),
     imageAlt: 'Departures sign inside the airport terminal',
   },
   {
-    label: 'Address to address', title: 'Address to Address Transfer',
-    description: 'Travel privately between hotels, cities or accessible addresses. We confirm the route, pick-up time, meeting point and luggage requirements before travel.',
-    cta: 'Request Private Transfer',
+    label: 'Address to address', title: 'Private travel, door to door.',
+    description: 'Travel privately between hotels, cities or other accessible addresses. We confirm your route, pick-up time, meeting point and luggage needs before the journey.',
+    cta: 'REQUEST YOUR TRANSFER',
     features: ['Private journey', 'Flexible pick-up', 'Space for luggage'],
     image: publicAsset('images/services/airport/journeys/address-to-address.jpg'),
     imageAlt: 'Chauffeur loading luggage into a private vehicle',
@@ -70,7 +70,7 @@ export default function AirportTransfers({ onMeetingPoint, onRequest }: { onMeet
 
         <div className="ac-content">
           <div className="ac-copy ac-fade" key={`copy-${selected}`} id="ac-journey" role="tabpanel" aria-labelledby={`ac-tab-${selected}`} tabIndex={0}>
-            <span className="ac-eyebrow" aria-hidden="true">Private Transfer</span>
+            <span className="ac-eyebrow">PRIVATE TRANSFER</span>
             <h2 id="airport-transfers-title" className={selected === 2 ? 'ac-long-title' : undefined}>
               <span>{journey.title}</span>
             </h2>
@@ -81,11 +81,10 @@ export default function AirportTransfers({ onMeetingPoint, onRequest }: { onMeet
             {journey.features.map(feature => <li key={feature}>{feature}</li>)}
           </ul>
 
-          <div className="ac-meeting">
-            {selected === 0 && <button type="button" onClick={onMeetingPoint}>View meeting point →</button>}
-          </div>
-
           <div className="ac-booking">
+            {selected === 0 && <div className="ac-meeting">
+              <button type="button" onClick={onMeetingPoint}>View meeting point →</button>
+            </div>}
             <div className="ac-booking-row">
               <div className="ac-price">
                 <span>From</span>

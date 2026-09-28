@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { ArrowRight } from '@phosphor-icons/react'
 import type { Page } from '../types/navigation'
 import { serviceOptions, type JourneyRequest, type JourneyService, type QuoteSelection } from '../components/services/serviceData'
 import { HourlySection, WaterTaxiSection, EuropeSection, MountainsSection, SeasideSection, CruiseSection } from '../components/services/SelectedServiceSections'
@@ -33,7 +32,7 @@ import AirportTransfers from '../components/services/AirportTransfers'
 import PricingGuide from '../components/services/PricingGuide'
 import FloatingServiceNav from '../components/services/FloatingServiceNav'
 
-export default function Services({ navigate: _navigate }: { navigate: (page: Page) => void }) {
+export default function Services({ navigate }: { navigate: (page: Page) => void }) {
   const [activeSection, setActiveSection] = useState<JourneyService | null>(null)
   const [showFloatingNav, setShowFloatingNav] = useState(false)
   const [meetingOpen, setMeetingOpen] = useState(false)
@@ -112,16 +111,16 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
   }
   const requestJourney = (request: JourneyRequest) => setSelection(previous => ({ ...request, revision: (previous?.revision ?? 0) + 1 }))
 
-  return <div className="services-new-page services-experience">
+  return <div className={`services-new-page services-experience${activeSection === 'hourly' ? ' is-hourly-active' : ''}${activeSection === 'water-taxi' ? ' is-water-taxi-active' : ''}${activeSection === 'europe' ? ' is-europe-active' : ''}`}>
     <section className="services-masthead" aria-labelledby="services-title">
       <img className="services-masthead-photo" src={publicAsset('images/services/unsplash/venice-water-taxi.jpg')} alt="Boat crossing the Venetian lagoon near Santa Maria della Salute" width={2200} height={1650} fetchPriority="high" />
       <div className="services-masthead-shell">
         <div className="services-masthead-copy">
           <p className="services-masthead-eyebrow">SERVICES &amp; PRICES</p>
-          <h1 id="services-title"><span>From Venice.</span><span>Where to next?</span></h1>
-          <p className="services-masthead-description">Airport pick-ups, a driver for the day, and private journeys across Italy and Europe. Choose what fits your plans; we’ll agree on the route and price before you travel.</p>
+          <h1 id="services-title">Choose the journey that fits your plans.</h1>
+          <p className="services-masthead-description">Airport transfers, hourly chauffeur service, water taxis and private journeys across Italy and Europe.</p>
           <div className="services-masthead-actions">
-            <button type="button" className="services-masthead-primary" onClick={() => document.getElementById('services-directory')?.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })}>EXPLORE SERVICES <ArrowRight size={19} weight="light" aria-hidden="true" /></button>
+            <button type="button" className="services-masthead-primary" onClick={() => scrollTo('airport')}>EXPLORE SERVICES ↓</button>
           </div>
         </div>
       </div>
@@ -142,7 +141,7 @@ export default function Services({ navigate: _navigate }: { navigate: (page: Pag
     <MountainsSection onRequest={requestJourney} />
     <SeasideSection onRequest={requestJourney} />
     <CruiseSection onRequest={requestJourney} />
-    <PricingGuide />
+    <PricingGuide navigate={navigate} />
     <ServiceQuoteForm selection={selection} />
     {meetingOpen && <div
       className={`svc-modal${meetingClosing ? ' is-closing' : ''}`}

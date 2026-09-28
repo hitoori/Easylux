@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Page } from '../types/navigation'
 import BookingForm, { type BookingPrefill } from '../components/BookingForm'
 import HomeSections from '../components/home/HomeSections'
@@ -48,6 +48,13 @@ export default function Home({ navigate }: HomeProps) {
   const [activeSlide, setActiveSlide] = useState(0)
   const [routePrefill, setRoutePrefill] = useState<BookingPrefill | null>(null)
 
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveSlide(current => (current + 1) % heroSlides.length)
+    }, 5000)
+    return () => window.clearInterval(timer)
+  }, [])
+
   const scrollToBooking = () => {
     document.getElementById('home-booking')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
@@ -83,8 +90,9 @@ export default function Home({ navigate }: HomeProps) {
         <div className="h2-hero-shade" />
 
         <div className="h2-hero-copy">
-          <h1>Private transfers,<br /><em>Venice &amp; beyond.</em></h1>
-          <p className="h2-lead">Travel with Easy Lux across Veneto, Italy and Europe. Airport transfers, a chauffeur by the hour and private journeys arranged around your plans.</p>
+          <p className="h2-kicker">PRIVATE CHAUFFEUR SERVICE · VENICE &amp; TREVISO</p>
+          <h1>Private transfers from Venice,<br /><em>across Italy and Europe.</em></h1>
+          <p className="h2-lead">Airport transfers, hourly chauffeur service and private journeys, planned around your route, schedule and stops.</p>
         </div>
 
         <div

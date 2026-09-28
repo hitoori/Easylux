@@ -1,18 +1,23 @@
+import type { Page } from '../../types/navigation'
+
 const questions = [
-  ['Are the displayed fares the final price?', 'The route tables show indicative fares. Your quote confirms the vehicle, availability, route and requested extras before you book.'],
-  ['Can I add a return journey or waiting?', 'Yes. Include the return date, stops or waiting in your request. A return or later collection is quoted separately, and waiting arrangements are agreed in advance.'],
-  ['Can my driver collect me at any address in Venice?', 'Road vehicles cannot reach every address in Venice’s historic centre. A Water Taxi can connect you with your chauffeur at Piazzale Roma; the closest accessible landing is confirmed before travel.'],
-  ['What do you need to prepare my quote?', 'Your pick-up, destination, date, passengers and luggage. For airport pick-ups, add your flight number. For a cruise, include the ship, terminal and boarding or disembarkation time.'],
+  ['Which transfer service should I choose?', 'Choose Airport & City for airport or local journeys, By the Hour for a driver who stays with you, or the section that matches your destination: Water Taxi, Italy & Europe, Prosecco Hills, Mountains, Seaside or Cruise Ports. You can request a different destination if it is not listed.'],
+  ['Can I combine a road transfer with a Water Taxi in Venice?', 'Yes. For destinations that need water access, your chauffeur can take you to the agreed handover point and a private Water Taxi can continue to your hotel or the nearest available landing. We confirm access before departure.'],
+  ['Can my route include stops or a return journey?', 'Yes. Add your stops, waiting time and return details to your request. For hourly journeys, your driver can remain available through your itinerary; other routes are quoted around the requested journey.'],
+  ['Which cruise terminals can you serve?', 'The Cruise Port Transfers section covers Ravenna, Trieste and Fusina. Choose the terminal that matches your ship and include your embarkation or disembarkation details in the request.'],
 ]
 
-export default function PricingGuide() {
+export default function PricingGuide({ navigate }: { navigate: (page: Page) => void }) {
   return <section className="services-pricing-guide" aria-labelledby="services-pricing-title">
     <div className="svc-shell services-pricing-layout">
-      <div className="services-pricing-copy">
-        <p className="svc-eyebrow">Before you book</p>
-        <h2 id="services-pricing-title">A clear quote.<br />An agreed journey.</h2>
-        <p>Compare the indicative fares, then tell us what your trip needs. Your quote brings the route, vehicle and any extras together.</p>
-        <p className="services-pricing-reassurance">Nothing is booked until you approve the journey and price.</p>
+      <div className="services-pricing-heading">
+        <div>
+          <p className="svc-eyebrow">Useful to know</p>
+          <h2 id="services-pricing-title">Quick answers</h2>
+        </div>
+        <button type="button" className="services-pricing-link" onClick={() => navigate('faq')}>
+          Explore all FAQs <span aria-hidden="true">→</span>
+        </button>
       </div>
       <div className="services-pricing-questions">
         {questions.map(([question, answer]) => <details key={question}>

@@ -768,7 +768,7 @@ export default function BookingForm({ prefill }: BookingFormProps) {
                   type="submit"
                   className="flex min-h-[52px] items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-gold px-4 text-[13px] font-semibold tracking-[0.02em] text-[var(--background)] shadow-[0_12px_34px_rgba(194,154,69,0.14)] transition-colors hover:bg-gold-light focus-visible:outline-gold-light sm:min-h-[62px] lg:min-h-[72px]"
                 >
-                  {activeTab === 'transfer' ? 'Next' : tabCopyForActive?.submitLabel}
+                  {activeTab === 'transfer' ? 'Continue' : tabCopyForActive?.submitLabel}
                   <ArrowRight size={18} weight="bold" aria-hidden="true" />
                 </button>
               </div>

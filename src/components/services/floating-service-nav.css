@@ -78,9 +78,15 @@
   backdrop-filter: none;
   transform: translateY(-50%);
 }
-.fsn-dialog::backdrop { background: transparent; }
+.fsn-dialog::backdrop {
+  background: transparent;
+}
 .fsn-dialog[open] { display: flex; animation: fsn-slide-right 340ms cubic-bezier(.22,1,.36,1) both; }
-.fsn-dialog-content { width: 100%; margin: 0; }
+.fsn-dialog-content {
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
 .fsn-dialog-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
 .fsn-dialog-heading h2 { margin: 0; color: #d2aa57; font: 600 11px/1.5 var(--font-body, Manrope, sans-serif); letter-spacing: .2em; }
 .fsn-dialog .fsn-close { width: 30px; min-height: 32px; }
@@ -130,7 +136,7 @@
     max-width: calc(100% - 32px);
     transform: translateX(-50%);
   }
-  .fsn .fsn-current { justify-content: flex-start; gap: 9px; min-width: 0; min-height: 44px; padding: 0 4px; border-bottom: 1px solid rgba(194,154,69,.8); font-size: 12px; writing-mode: horizontal-tb; }
+  .fsn .fsn-current { justify-content: flex-start; gap: 9px; min-width: 0; min-height: 44px; padding: 0 10px; border-bottom: 1px solid rgba(194,154,69,.8); font-size: 12px; writing-mode: horizontal-tb; }
   .fsn-current-name::before { display: none; }
   .fsn-arrow-desktop { display: none; }
   .fsn-arrow-phone { display: inline; }
@@ -149,4 +155,9 @@
 @media (prefers-reduced-motion: reduce) {
   .fsn .fsn-link { transition: none; }
   .fsn-dialog[open], .fsn-dialog[open] .fsn-dialog-content { animation: none; }
+}
+
+@media (min-width: 601px) {
+  .fsn-trigger.is-coast .fsn-current { min-height: 48px; }
+  .fsn-trigger.is-coast .fsn-current-name { display: none; }
 }

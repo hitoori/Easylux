@@ -2,6 +2,7 @@ import {
   ArrowRight,
   Boat,
 } from '@phosphor-icons/react'
+import { publicAsset } from '../lib/publicAsset'
 
 interface VeniceArrivalFeatureProps {
   onPlanJourney: () => void
@@ -17,29 +18,24 @@ export default function VeniceArrivalFeature({ onPlanJourney }: VeniceArrivalFea
         className="water-route-background"
       />
       <div className="water-route-background-shade" aria-hidden="true" />
-      <img src={publicAsset('images/home/water-taxi/route-map.png')} alt="" aria-hidden="true" className="water-route-map" />
-
-      <Boat size={38} weight="light" className="water-route-boat" aria-hidden="true" />
-      <span className="water-route-label water-route-label-venice">Venice address</span>
-      <span className="water-route-label water-route-label-roma">Piazzale Roma</span>
-      <span className="water-route-label water-route-label-destination">Final destination</span>
 
       <div className="water-route-inner">
         <div className="water-route-copy">
           <p className="water-route-kicker">Venice Water Taxi</p>
           <h2>Venice by water,<br />connected by road.</h2>
-          <p className="water-route-description">
-            Your Water Taxi connects Venice’s historic centre with Piazzale Roma, where your private driver meets you. We coordinate both services, including journeys in the opposite direction. The day before, you receive the boarding point and boat number, with the location confirmed around canal access and tide conditions.
-          </p>
+          <div className="water-route-description">
+            <p>Travel between Venice’s historic centre and Piazzale Roma with one coordinated service. We arrange your Water Taxi and private chauffeur, including journeys in the opposite direction.</p>
+            <p>The day before, you’ll receive the confirmed boarding point and boat number.</p>
+          </div>
 
           <div className="water-route-rates">
             <div>
-              <p>Road transfer</p>
+              <p>Private car</p>
               <strong>from €70</strong>
             </div>
             <div>
-              <p>Private water taxi</p>
-              <strong className="water-route-gold-rate">€100–140 estimated</strong>
+              <p>Water taxi</p>
+              <strong className="water-route-gold-rate">€100–140 <span>estimated</span></strong>
             </div>
           </div>
 
@@ -49,7 +45,13 @@ export default function VeniceArrivalFeature({ onPlanJourney }: VeniceArrivalFea
           </button>
         </div>
       </div>
+      <div className="water-route-visual">
+        <img src={publicAsset('images/home/water-taxi/route-map.png')} alt="" aria-hidden="true" className="water-route-map" />
+        <Boat size={38} weight="light" className="water-route-boat" aria-hidden="true" />
+        <span className="water-route-label water-route-label-venice">Venice address</span>
+        <span className="water-route-label water-route-label-roma">Piazzale Roma</span>
+        <span className="water-route-label water-route-label-destination">Final destination</span>
+      </div>
     </section>
   )
 }
-import { publicAsset } from '../lib/publicAsset'

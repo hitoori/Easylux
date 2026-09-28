@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { cruiseRoutes, priceLabel } from './serviceData'
 import type { RequestJourney } from './ServiceRoutes'
+import { publicAsset } from '../../lib/publicAsset'
 import './cruise-transfer.css'
 
 export default function CruiseTransfer({ onRequest }: { onRequest: RequestJourney }) {
@@ -10,13 +11,17 @@ export default function CruiseTransfer({ onRequest }: { onRequest: RequestJourne
       <div className="ct-intro">
         <div className="ct-copy">
           <p className="ct-eyebrow">CRUISE PORT TRANSFERS</p>
-          <h2 id="cruise-title">Private transfers to<br />your cruise terminal.</h2>
-          <p className="ct-description">Travel between your hotel, airport or chosen address and the cruise terminals in Ravenna, Trieste or Fusina. Available for both embarkation and disembarkation.</p>
+          <h2 id="cruise-title">From your door to the cruise terminal.</h2>
+          <p className="ct-description">Private transfers between your hotel, airport or chosen address and the cruise terminals in Ravenna, Trieste and Fusina — for both embarkation and disembarkation.</p>
         </div>
-        <div className="ct-journey" aria-label="Private transfers between your address and Ravenna, Trieste or Fusina cruise terminals">
-          <div className="ct-stops" aria-hidden="true"><span>Your address</span><span>Ravenna</span><span>Trieste</span><span>Fusina</span><span>Cruise terminal</span></div>
-          <p>ONE WAY OR BOTH DIRECTIONS</p>
-        </div>
+      </div>
+      <figure className="ct-cruise-photo">
+        <img src={publicAsset('images/services/cruise/cruise-port-transfer-ship.jpg')} alt="Cruise ship docked at port at sunset" />
+      </figure>
+      <div className="ct-journey" role="group" aria-label="Cruise transfer details">
+        <div className="ct-journey-detail"><span className="ct-route-label">FROM</span><span className="ct-route-place">Your hotel, airport or address</span></div>
+        <div className="ct-journey-detail"><span className="ct-route-label">TERMINALS</span><span className="ct-route-place">Ravenna · Trieste · Fusina</span></div>
+        <div className="ct-journey-detail"><span className="ct-route-label">JOURNEY</span><span className="ct-route-place">One way or return</span></div>
       </div>
       <div className="ct-prices">
         <div className="ct-prices-heading"><button type="button" className="ct-text-action" aria-expanded={routesOpen} aria-controls="cruise-route-prices" onClick={() => setRoutesOpen(current => !current)}>{routesOpen ? 'HIDE ROUTES' : 'VIEW ROUTES'} <span aria-hidden="true">{routesOpen ? '↑' : '↓'}</span></button></div>

@@ -14,7 +14,7 @@
 .about-page h2 { font-size: clamp(42px, 3.8vw, 60px); line-height: 1.1; }
 .about-page p { color: var(--text-secondary); font-size: 16px; line-height: 1.72; }
 .about-page .ab-eyebrow { margin-bottom: 22px; color: var(--gold); font: 600 11px/1.5 var(--font-body); letter-spacing: .18em; text-transform: uppercase; }
-.about-page .ab-section { padding-block: 104px; }
+.about-page .ab-section { padding-block: 80px; }
 .about-page .ab-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(48px, 6vw, 100px); align-items: center; }
 .about-page .ab-section-copy { max-width: 590px; }
 .about-page .ab-section-copy > h2 + p { margin-top: 28px; }
@@ -59,6 +59,7 @@
 .about-page .ab-standard-number { align-self: start; color: var(--gold); font: 400 48px/1 var(--font-display); }
 .about-page .ab-standard-copy h3 { max-width: 450px; font-size: clamp(25px, 2.1vw, 31px); line-height: 1.2; }
 .about-page .ab-standard-copy p { max-width: 450px; margin-top: 16px; font-size: 15px; }
+.about-page .ab-standard-hospitality img { object-position: center; transform: scale(1.08); transform-origin: left center; }
 
 .about-page .ab-collage { padding-top: 0; }
 .about-page .ab-collage-grid { display: grid; grid-template-columns: 1.04fr .96fr; gap: 18px; align-items: stretch; }
@@ -68,11 +69,11 @@
 .about-page .ab-collage-main .ab-photo-slot { aspect-ratio: 4 / 3; }
 .about-page .ab-collage figcaption { padding-top: 13px; color: var(--text-secondary); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
 
-.about-page .ab-operate { padding-top: 16px; }
+.about-page .ab-operate { padding-top: 80px; }
 .about-page .ab-operate .ab-inline-link { margin-top: 20px; }
 .about-page .ab-operate .ab-countries { margin-top: 34px; color: var(--text-muted); font-size: 11px; font-weight: 600; letter-spacing: .13em; line-height: 1.8; text-transform: uppercase; }
 
-.about-page .ab-manifesto { display: flex; flex-direction: column; align-items: center; gap: 29px; padding-block: 100px 108px; border-top: 1px solid var(--ab-line); text-align: center; }
+.about-page .ab-manifesto { display: flex; flex-direction: column; align-items: center; gap: 29px; padding-block: 80px 88px; border-top: 1px solid var(--ab-line); text-align: center; }
 .about-page .ab-manifesto h2 { font-size: clamp(40px, 4vw, 64px); }
 .about-page .ab-manifesto p { color: var(--text-primary); font-size: 11px; font-weight: 700; letter-spacing: .21em; text-transform: uppercase; }
 .about-page .ab-manifesto-rule { width: 42px; height: 1px; background: var(--gold); }
@@ -95,9 +96,9 @@
   .about-page h2 { font-size: clamp(36px, 9.3vw, 42px); line-height: 1.12; }
   .about-page p { font-size: 16px; line-height: 1.6; }
   .about-page .ab-eyebrow { margin-bottom: 18px; font-size: 10px; }
-  .about-page .ab-section { padding-block: 72px; }
+  .about-page .ab-section { padding-block: 56px; }
   .about-page .ab-split { grid-template-columns: 1fr; gap: 34px; }
-  .about-page .ab-hero { grid-template-columns: 1fr; gap: 34px; padding-top: 66px; padding-bottom: 64px; }
+  .about-page .ab-hero { grid-template-columns: 1fr; gap: 34px; padding-top: 56px; padding-bottom: 48px; }
   .about-page .ab-hero-intro { margin-top: 24px; }
   .about-page .ab-hero .ab-outline-button { margin-top: 26px; }
   .about-page .ab-outline-button { width: 100%; min-height: 52px; }
@@ -116,8 +117,8 @@
   .about-page .ab-collage-grid, .about-page .ab-collage-side { display: grid; grid-template-columns: 1fr; gap: 24px; }
   .about-page .ab-collage-side { grid-template-rows: auto; }
   .about-page .ab-collage figure .ab-photo-slot { flex: auto; }
-  .about-page .ab-operate { padding-top: 4px; }
-  .about-page .ab-manifesto { gap: 25px; padding-block: 78px; }
+  .about-page .ab-operate { padding-top: 56px; }
+  .about-page .ab-manifesto { gap: 25px; padding-block: 56px; }
   .about-page .ab-final-actions { flex-direction: column; align-items: stretch; gap: 18px; }
   .about-page .ab-whatsapp-link { justify-content: center; align-self: stretch; min-height: 48px; }
   .about-page .ab-final-layout .ab-photo-slot { aspect-ratio: 16 / 9; }
