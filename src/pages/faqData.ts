@@ -1,32 +1,33 @@
 export const faqTopics = [
-  { id: 'booking', title: 'Booking & payment', questions: [
-    { id: 'book', q: 'How do I book a private transfer?', a: 'Share your pick-up, destination, date, passengers and luggage. We will confirm availability and send your journey details and quote before you book.' },
-    { id: 'price', q: 'Are the prices on the website final?', a: 'The route tables show indicative fares. Your personal quote confirms the vehicle, route, availability and any requested extras. Review the full arrangements and price before confirming.' },
-    { id: 'payment', q: 'How can I pay for my transfer?', a: 'Please ask us to confirm the available payment methods and any advance payment when requesting your quote. Check when the balance is due before you confirm your booking.' },
-    { id: 'return', q: 'Can I book a return trip or a driver by the hour?', a: 'Yes. For a return trip, include both dates and pick-up times; each direction is quoted separately. For a chauffeur by the hour, share the approximate duration, stops and waiting you need.' },
+  { id: 'booking', title: 'Booking & Payment', questions: [
+    { id: 'book', q: 'Does sending a request book my transfer?', a: 'No. We’ll check availability and send you a quote. Your transfer is booked once you’ve agreed the details and we’ve confirmed it with you.' },
+    { id: 'price', q: 'Will I pay the price shown on the website?', a: 'The prices shown are indicative. We’ll confirm the fare for your route, vehicle and travel date before you book.' },
+    { id: 'payment', q: 'Do I need to pay a deposit?', a: 'If an advance payment is required, we’ll tell you the amount, how to pay it and when the balance is due before you confirm.' },
+    { id: 'modify', q: 'Can I change my pick-up time or destination after booking?', a: 'Tell us what needs to change as soon as you can. We’ll check availability and let you know if it affects the price.' },
+    { id: 'cancel', q: 'What happens if I need to cancel?', a: 'Contact us as soon as your plans change. Any cancellation fee or refund depends on the terms agreed for your booking.' },
   ] },
-  { id: 'airport', title: 'Airport & pick-up', questions: [
-    { id: 'meeting', q: 'Where will I meet my driver at the airport?', a: 'Your driver meets you in Arrivals after baggage claim, with your name displayed. Follow the airport-specific meeting instructions sent before travel. If you cannot find your driver, contact us before leaving the meeting area.' },
-    { id: 'delay', q: 'What if my flight is delayed?', a: 'Include your flight number so we can follow the actual arrival time. Let us know if your flight number or travel plans change. Your quote confirms the included waiting time and any additional charge.' },
-    { id: 'waiting', q: 'How much waiting time is included?', a: 'Waiting arrangements depend on the pick-up and service. Check your quote for the included period, when it starts and the charge for additional waiting. Tell us as soon as you expect a delay.' },
-    { id: 'port', q: 'Can you collect me from a hotel, station or cruise port?', a: 'Yes. Send the full address or station details. For a cruise, include the ship, terminal and boarding or disembarkation time. We arrange transfers to destinations including Ravenna, Trieste and Fusina, with the meeting point agreed before travel.' },
+  { id: 'journey', title: 'Pick-up & Journey', questions: [
+    { id: 'port', q: 'Can you pick us up from a hotel, train station or cruise terminal?', a: 'Yes. Send us the address or station name. For a cruise pick-up, include your ship, terminal and disembarkation time so we can agree on a meeting point.' },
+    { id: 'bags', q: 'Will all our luggage fit?', a: 'Tell us how many people and bags are travelling. Mention large suitcases, skis or pushchairs so we can confirm a suitable vehicle.' },
+    { id: 'child', q: 'Can you provide a child seat?', a: 'Tell us each child’s age and size when requesting a quote. We’ll confirm the suitable seat, availability and any charge.' },
   ] },
-  { id: 'luggage', title: 'Luggage & requests', questions: [
-    { id: 'bags', q: 'How much luggage can I bring?', a: 'Tell us the number and size of your bags, as well as the passenger count. Mention ski equipment, golf bags, pushchairs or other oversized items so we can check suitable transport before confirming.' },
-    { id: 'child', q: 'Can I request a child seat?', a: 'Include each child’s age and size in your request, along with the type of seat needed. Ask us to confirm the suitable seat, availability and any charge before you book.' },
-    { id: 'access', q: 'Can you accommodate accessibility requirements?', a: 'Tell us about the assistance you need and any mobility equipment, including its dimensions and whether it folds. We will check suitable arrangements with you before you book.' },
-    { id: 'pets', q: 'Can I travel with a pet?', a: 'Please mention your pet when requesting a quote, including its size and carrier requirements. Let us know if you travel with an assistance dog so we can discuss the appropriate arrangements.' },
+  { id: 'airport', title: 'Airport & Water Taxi', questions: [
+    { id: 'meeting', q: 'Where do I meet the driver when I land?', a: 'Your driver will meet you in Arrivals after baggage claim, with your name displayed. We’ll send you the exact meeting instructions before you travel.' },
+    { id: 'delay', q: 'What if my flight is delayed?', a: 'Give us your flight number so we can follow its arrival and adjust the pick-up time. If your flight number changes, let us know.' },
+    { id: 'cancelled-flight', q: 'What if my flight is cancelled?', a: 'Message us as soon as you know. If you have a replacement flight, send us its details and we’ll check a new pick-up time. Any fees or refund depend on your booking terms.' },
+    { id: 'hotel', q: 'Can the car take us all the way to our hotel in Venice?', a: 'Not if the hotel can’t be reached by road. Send us its address and we’ll tell you where the car can take you and whether you’ll need a water taxi.' },
+    { id: 'combine', q: 'How do the car and water taxi connect?', a: 'For a Marco Polo Airport arrival, your driver takes you to Piazzale Roma. From there, a private water taxi takes you to your hotel or the nearest accessible landing. We can arrange the journey in reverse too.' },
+    { id: 'boat-price', q: 'Is the water taxi included in the car price?', a: 'No. The site currently lists the private car from €80 and the water taxi at €100–140. We’ll confirm the price of your complete journey before you book.' },
   ] },
-  { id: 'changes', title: 'Changes & cancellations', questions: [
-    { id: 'modify', q: 'Can I change my pick-up time or destination?', a: 'Contact us with your booking details and the change you need. Changes depend on availability and may affect the price. Ask for confirmation of the revised arrangements before travelling.' },
-    { id: 'cancel', q: 'How do I cancel a booking?', a: 'Contact us with your booking reference as soon as your plans change. Ask us to confirm the cancellation and whether a fee or refund applies under the terms agreed for your booking.' },
-    { id: 'cancelled-flight', q: 'What if my flight is cancelled?', a: 'Contact us as soon as possible with your booking details and any replacement flight. We can check options for a different pick-up. Changes, cancellation charges and refunds depend on your booking terms.' },
-    { id: 'stops', q: 'Can I add a stop during my journey?', a: 'Include planned stops in your initial request so they can be allowed for in the route and quote. If you need to add one later, contact us to check the schedule and any price change.' },
+  { id: 'distance', title: 'Long-distance & Hourly', questions: [
+    { id: 'hourly', q: 'Can we keep the driver for a few hours?', a: 'Yes. Hourly chauffeur service starts at two hours. Tell us roughly how long you need the driver and where you plan to stop.' },
+    { id: 'return', q: 'Can we book a return transfer?', a: 'Yes. Include the dates and pick-up times for both journeys when requesting a quote. Each direction is priced separately.' },
+    { id: 'stops', q: 'Can we stop somewhere on the way?', a: 'Yes. Tell us your planned stops when requesting a quote so we can include the time and route in the price.' },
+    { id: 'europe', q: 'Can you take us from Venice to another country?', a: 'Yes. We arrange private journeys to destinations in Austria, Slovenia, Croatia and France. Send us your exact route for a quote.' },
+    { id: 'prosecco', q: 'Does a Prosecco Hills transfer include winery tastings?', a: 'No. Easy Lux provides the private transfer. Winery visits, tastings and guided tours are not included. Tell us if you need waiting time or a return pick-up.' },
   ] },
-  { id: 'venice', title: 'Venice & water taxi', questions: [
-    { id: 'hotel', q: 'Can a car take me directly to my hotel in Venice?', a: 'Road vehicles cannot reach every address in Venice’s historic centre. Send your hotel’s name and address so we can advise on a road transfer, a water taxi or a combination, with the closest accessible landing confirmed before travel.' },
-    { id: 'combine', q: 'Can you arrange a car transfer and a water taxi together?', a: 'Yes. A private water taxi can connect your Venice address with your chauffeur at Piazzale Roma. Share your starting point and destination so we can arrange the connection in either direction.' },
-    { id: 'boat-price', q: 'How much does a private water taxi cost?', a: 'Request a quote with your route, date, time, passengers and luggage. The price depends on these details and the landing arrangements. Confirm the complete journey price before booking.' },
-    { id: 'boat-luggage', q: 'What details do you need for a water taxi booking?', a: 'Send your hotel or address, preferred time, passenger count and luggage details. Mention mobility requirements or unusually large bags so we can check the boat and landing arrangements.' },
+  { id: 'general', title: 'Special requests', questions: [
+    { id: 'access', q: 'Can I travel with a wheelchair or mobility aid?', a: 'Tell us what assistance you need and whether you need to remain in your wheelchair during the journey. Include the equipment’s dimensions so we can check whether suitable transport is available before you book.' },
+    { id: 'pets', q: 'Can I bring my dog or another pet?', a: 'Tell us the animal’s size and whether it will travel in a carrier. We’ll check the arrangements with you before confirming the booking. Mention an assistance dog when you contact us.' },
   ] },
 ] as const

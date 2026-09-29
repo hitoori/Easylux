@@ -163,7 +163,7 @@
   right: 24px;
   bottom: 22px;
   color: var(--svc-ivory);
-  font: italic 400 15px/1.25 "Source Serif 4", Georgia, serif;
+  font: 400 15px/1.25 "Source Serif 4", Georgia, serif;
   text-align: right;
   text-shadow: 0 2px 18px rgba(0, 0, 0, .96);
   white-space: nowrap;

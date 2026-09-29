@@ -15,14 +15,14 @@ export default function MountainsTransfer({ onRequest }: { onRequest: RequestJou
       <h2 id="mountains-title">From the city to the<br className="mt-mobile-title-break" /> mountains.</h2>
       <img className="mt-panorama" src={publicAsset('images/services/venice-dolomites-transfer.png')} alt="Mercedes chauffeur vehicle between Venice and the Dolomite mountains" width={2172} height={724} loading="lazy" decoding="async" />
       <div className="mt-information">
-        <p className="mt-description">Private, door-to-door transfers from Venice to the Dolomites and Italy’s most requested mountain destinations.</p>
+        <p className="mt-description">Private transfers from Venice to Cortina d’Ampezzo, Corvara, Canazei and other Dolomites destinations.</p>
         <button type="button" className="mt-request mt-disclosure" aria-expanded={routesOpen} aria-controls="dolomites-route-prices" onClick={() => { setRoutesOpen(current => !current); setVisibleCount(3) }}>{routesOpen ? 'HIDE ROUTES & PRICES' : 'VIEW ROUTES & PRICES'} <span aria-hidden="true">{routesOpen ? '↑' : '↓'}</span></button>
       </div>
       <div id="dolomites-route-prices" className="mt-all-routes" data-open={routesOpen}>
         <table id="mountain-route-table" className="mt-table sr-home-table" aria-label="All mountain routes and prices">
           <thead><tr><th scope="col">Route</th><th scope="col">Sedan</th><th scope="col">Van</th><th scope="col">Minibus 12</th><th scope="col">Action</th></tr></thead>
           <tbody>{mountainRoutes.slice(0, visibleCount).map(route => <tr key={route.id}>
-            <th scope="row"><span className="sr-route-copy"><span className="sr-route-title">{route.from} <span className="mt-arrow">→</span> {route.to}</span><span className="sr-route-note">Point-to-point private transfer</span></span></th>
+            <th scope="row"><span className="sr-route-copy"><span className="sr-route-title">{route.from} <span className="mt-arrow">→</span> {route.to}</span></span></th>
             <td><span className="mt-mobile-label">Sedan</span>{priceLabel(route.sedan)}</td><td><span className="mt-mobile-label">Van</span>{priceLabel(route.van)}</td><td><span className="mt-mobile-label">Minibus 12</span>{priceLabel(route.minibus)}</td>
             <td className="mt-action"><button type="button" className="mt-request" aria-label={`Request this route: ${route.from} to ${route.to}`} onClick={() => requestRoute(route)}>REQUEST THIS ROUTE <span aria-hidden="true">→</span></button></td>
           </tr>)}</tbody>

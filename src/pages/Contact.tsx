@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { EnvelopeSimple, Phone, WhatsappLogo, LockSimple, MapPin, AirplaneTilt, Boat, Mountains, GlobeHemisphereWest, Anchor, Waves } from '@phosphor-icons/react'
+import { EnvelopeSimple, Phone, WhatsappLogo, MapPin, AirplaneTilt, Boat, Mountains, GlobeHemisphereWest, Anchor, Waves } from '@phosphor-icons/react'
 import { ArrowRight, Clock, Message, Check, Plus } from '../components/PikaIcons'
 import { flushSync } from 'react-dom'
 import { serviceOptions } from '../components/services/serviceData'
@@ -20,9 +20,9 @@ const popularServices = [
   { label: 'Cruise Ports', id: 'cruise', Icon: Anchor },
 ]
 const quickAnswers = [
-  ['What should I include in my request?', 'Share your pick-up and destination, travel date and time, passenger count and luggage. Include any child seats, planned stops or other requests so we can check the arrangements.'],
-  ['Does an enquiry confirm my booking?', 'No. An enquiry lets us check availability and prepare your quote. Review the price and arrangements with us before confirming your booking.'],
-  ['Can I request stops or a return transfer?', 'Yes. Include planned stops and both dates and pick-up times in your request. Each direction is quoted separately; stops are included in your individual quote.'],
+  ['Can I request a destination that isn’t listed?', 'Yes. Choose “Custom destination” in the form and tell us your route. We’ll check if we can arrange it.'],
+  ['Does sending an enquiry book my transfer?', 'No. We’ll check availability and send you a quote. Your booking is confirmed after you accept the details and we confirm it with you.'],
+  ['Can I request stops or a return transfer?', 'Yes. Tell us about any stops or a return journey, including the dates and approximate times. We’ll include them in your quote.'],
 ]
 
 const contactChannels = [
@@ -66,16 +66,15 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
         <div className="ct-shell ct-hero-content">
           <div>
             <p className="ct-kicker">Contact Easy Lux</p>
-            <h1 id="contact-title">Let's plan<br /><em>your journey.</em></h1>
-            <p className="ct-intro">Planning a transfer or have a question? Tell us what you need.<br />We'll get back to you as soon as possible.</p>
+            <h1 id="contact-title">Let's plan your journey.</h1>
+            <p className="ct-intro">Tell us where and when you’d like to travel. We’ll check availability and send a quote. Questions are welcome, too.</p>
             {/* TODO: Confirm response-time and opening-hours claims before publishing them. */}
             <div className="ct-trust" aria-label="Ways to connect">
-              <div><Clock size={17} aria-hidden="true" /><span>Personal attention<br /><strong>From the first message</strong></span></div>
-              <div><MapPin size={18} weight="light" aria-hidden="true" /><span>Based in Venice<br /><strong>Italy &amp; Europe</strong></span></div>
-              <div><Message size={17} aria-hidden="true" /><span>WhatsApp<br /><strong>Send us your plans</strong></span></div>
+              <div><Clock size={17} aria-hidden="true" /><span>Direct contact<br /><strong>With our team</strong></span></div>
+              <div><MapPin size={18} weight="light" aria-hidden="true" /><span>Based in Venice and Treviso<br /><strong>Across Italy and Europe</strong></span></div>
+              <div><Message size={17} aria-hidden="true" /><span>WhatsApp<br /><strong>Send us your route</strong></span></div>
             </div>
           </div>
-          <div className="ct-editorial">More than a transfer.<br />A smoother way<br />to travel.<span /></div>
         </div>
       </header>
 
@@ -85,7 +84,7 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
         <div className="ct-form-panel">
           <div className="ct-form-heading">
             <div>
-              <h2>Send us a message</h2><p>Fill in the details and we’ll get back to you soon.</p>
+              <h2>Send us a message</h2><p>Tell us your route and date, or ask a question. If you’re flying in, include your flight number.</p>
             </div>
           </div>
 
@@ -108,15 +107,15 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
               </label>
             </div>
 
-            <label className="ct-message-field" htmlFor="ct-message">Your message
-              <textarea id="ct-message" name="message" rows={4} value={message} onChange={event => setMessage(event.target.value)} placeholder="Your route, travel date, passengers and luggage…" required />
+            <label className="ct-message-field" htmlFor="ct-message">Journey details or question
+              <textarea id="ct-message" name="message" rows={4} value={message} onChange={event => setMessage(event.target.value)} placeholder="Pick-up, destination, date and time, passengers, luggage and any special requests…" required />
             </label>
 
             <label className="ct-consent"><input type="checkbox" checked={consent} onChange={event => setConsent(event.target.checked)} required /> I agree to be contacted about this enquiry.</label>
 
             <div className="ct-submit">
               <button type="submit" className="ct-primary" disabled={sending || Boolean(requestCode)}>{sending ? 'Sending…' : requestCode ? 'Enquiry sent' : 'Send enquiry'} <ArrowRight size={18} aria-hidden="true" /></button>
-              <p className="ct-privacy"><LockSimple size={16} weight="light" aria-hidden="true" /><span>Your details are sent securely to our team.<br />We’ll email you a confirmation.</span></p>
+              <p className="ct-privacy"><EnvelopeSimple size={16} weight="light" aria-hidden="true" /><span>We’ll email you to confirm we received your enquiry. Your transfer is confirmed separately.</span></p>
             </div>
 
             {sendStatus && <div className="ct-draft" role={requestCode ? 'status' : 'alert'}>
@@ -178,7 +177,7 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
       </section>
 
       <nav className="ct-services ct-shell" aria-labelledby="ct-services-title">
-        <div className="ct-services-heading"><div><p className="ct-info-label">Ways to travel</p><h2 id="ct-services-title">Explore our services</h2></div><p>Seven services, tailored around your plans.</p></div>
+        <div className="ct-services-heading"><div><p className="ct-info-label">Ways to travel</p><h2 id="ct-services-title">Explore our services</h2></div></div>
         <div className="ct-services-marquee"><div className="ct-services-track">{[0, 1].map(copy => <div className="ct-services-set" key={copy} aria-hidden={copy === 1 || undefined}>{popularServices.map(({ label, id, Icon }) => <a key={`${copy}-${label}`} href="#services" tabIndex={copy === 1 ? -1 : undefined} onClick={event => { event.preventDefault(); viewService(id) }}><span className="ct-service-icon"><Icon size={20} aria-hidden="true" /></span><strong>{label}</strong><ArrowRight size={16} aria-hidden="true" /></a>)}</div>)}</div></div>
       </nav>
 

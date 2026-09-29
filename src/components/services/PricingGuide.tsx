@@ -3,8 +3,8 @@ import type { Page } from '../../types/navigation'
 const questions = [
   ['Which transfer service should I choose?', 'Choose Airport & City for airport or local journeys, By the Hour for a driver who stays with you, or the section that matches your destination: Water Taxi, Italy & Europe, Prosecco Hills, Mountains, Seaside or Cruise Ports. You can request a different destination if it is not listed.'],
   ['Can I combine a road transfer with a Water Taxi in Venice?', 'Yes. For destinations that need water access, your chauffeur can take you to the agreed handover point and a private Water Taxi can continue to your hotel or the nearest available landing. We confirm access before departure.'],
-  ['Can my route include stops or a return journey?', 'Yes. Add your stops, waiting time and return details to your request. For hourly journeys, your driver can remain available through your itinerary; other routes are quoted around the requested journey.'],
-  ['Which cruise terminals can you serve?', 'The Cruise Port Transfers section covers Ravenna, Trieste and Fusina. Choose the terminal that matches your ship and include your embarkation or disembarkation details in the request.'],
+  ['Can my route include stops or a return journey?', 'Yes. Add any stops, waiting time or return pick-up to your request. We’ll include them in your quote.'],
+  ['Which cruise terminals can you serve?', 'Ravenna, Trieste and Fusina. Include your ship and terminal details when you request a quote.'],
 ]
 
 export default function PricingGuide({ navigate }: { navigate: (page: Page) => void }) {

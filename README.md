@@ -1,6 +1,6 @@
 # Easy Lux Transfer
 
-Clean React + TypeScript implementation of the local Figma Make chauffeur website.
+React + TypeScript site for Easy Lux Transfer.
 
 ## Stack
 
@@ -15,7 +15,7 @@ Interface icons combine the free MIT-licensed Pikaicons React set with Phosphor 
 
 ## Structure
 
-- `src/pages/` — the six website pages
+- `src/pages/` — the five website pages
 - `src/components/` — shared layout and booking components
 - `src/config/` — shared navigation configuration
 - `src/types/` — shared TypeScript types
@@ -23,14 +23,28 @@ Interface icons combine the free MIT-licensed Pikaicons React set with Phosphor 
 - `public/images/brand/` — active Easy Lux identity files
 - `public/images/home/` — Home images grouped by section
 - `public/images/services/` — Services images grouped by section
-- `public/images/shared/` — destination images reused across pages
+- `public/images/about/` — About images
+- `public/images/shared/` — images reused across pages
+- `IMAGE_CREDITS.md` — known stock photo credits, kept outside the published assets
 
 ## Commands
 
 ```bash
 npm run dev
+npm test
 npm run build
 ```
+
+## Cloudflare Workers deployment
+
+The site and booking API deploy together as a Cloudflare Worker. `wrangler.jsonc` serves `dist/client` and sends `/api/booking` to `worker/index.js`.
+
+1. Connect the GitHub repository to **Workers & Pages** in Cloudflare. Set the project root to the repository root, the production branch to `main`, the build command to `npm run build`, and the deploy command to `npx wrangler deploy`. The Worker name must be `easyluxtransfer`, matching `wrangler.jsonc`.
+2. Set `VITE_GOOGLE_MAPS_API_KEY` as a **build variable** if address suggestions are needed. It is public in the browser, so restrict the key to the production domain and required Google APIs.
+3. In the Worker's **Variables and Secrets**, set `RESEND_API_KEY`, `BOOKING_FROM_EMAIL`, and `BOOKING_TO_EMAIL`. The Resend key must be a secret. Optional social URLs are `BOOKING_INSTAGRAM_URL`, `BOOKING_FACEBOOK_URL`, and `BOOKING_TIKTOK_URL`. Configure and verify the sending domain in Resend before accepting real requests.
+4. Check the `workers.dev` preview, including a form submission, before attaching the public domain. The existing GitHub Pages workflow remains separate until the Cloudflare site is live.
+
+For a local Cloudflare Worker preview, run `npm run preview:cloudflare`. Wrangler can read the ignored `.env.local` already used by Vite, or a separate ignored `.dev.vars` file. For a manual deployment from this folder, run `npm run deploy:cloudflare` after authenticating Wrangler. A local edit changes only localhost; with Git integration, the live site updates after the changes are committed and pushed to `main`, then Cloudflare finishes its build. Manual deployments use the deploy command instead.
 
 ## Booking delivery
 

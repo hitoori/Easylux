@@ -104,7 +104,7 @@
   bottom: 62px;
   margin: 0;
   color: var(--svc-ivory);
-  font: italic 400 17px/1.38 'Source Serif 4', Georgia, serif;
+  font: 400 17px/1.38 'Source Serif 4', Georgia, serif;
 }
 
 .services-new-page.services-experience .sv-mountains-caption span {

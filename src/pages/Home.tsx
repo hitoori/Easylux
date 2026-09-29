@@ -12,34 +12,27 @@ interface HomeProps {
 
 const heroSlides = [
   {
-    url: publicAsset('images/home/hero/venice-grand-canal.jpg'),
-    label: 'Venice Grand Canal',
+    url: publicAsset('images/home/hero/venice-canal-boats.jpg'),
+    label: 'Boats on Venice Grand Canal',
     caption: 'Venice · Grand Canal',
     position: 'center 58%',
-    composition: 'hero-slide--right-focus',
   },
   {
-    url: publicAsset('images/home/hero/milan-duomo.jpg'),
-    label: 'Milan Duomo at sunset',
-    caption: 'Milan · Duomo at sunset',
-    position: 'center 68%',
-  },
-  {
-    url: publicAsset('images/home/hero/sicily-coast.jpg'),
-    label: 'Sicilian coast beneath dramatic clouds',
-    caption: 'Sicily · Mediterranean coast',
+    url: publicAsset('images/home/hero/dolomites-green-valley.jpg'),
+    label: 'Green valley beneath the Dolomites',
+    caption: 'Dolomites · Green valley',
     position: 'center 58%',
   },
   {
-    url: publicAsset('images/home/hero/dolomites-night-road.jpg'),
-    label: 'Night road through the Dolomites',
-    caption: 'Dolomites · Alpine roads',
-    position: 'center 52%',
+    url: publicAsset('images/home/hero/dolomites-cave-peaks.jpg'),
+    label: 'Dolomite peaks framed by a mountain cave',
+    caption: 'Dolomites · Mountain peaks',
+    position: 'center 58%',
   },
   {
-    url: publicAsset('images/home/hero/lake-como-boat.jpg'),
-    label: 'Private boat on Lake Como',
-    caption: 'Lake Como · By the water',
+    url: publicAsset('images/home/hero/alpine-lakeside-cabin.jpg'),
+    label: 'Cabin beside an alpine lake',
+    caption: 'Alps · Lakeside cabin',
     position: 'center 58%',
   },
 ]
@@ -51,7 +44,7 @@ export default function Home({ navigate }: HomeProps) {
   useEffect(() => {
     const timer = window.setInterval(() => {
       setActiveSlide(current => (current + 1) % heroSlides.length)
-    }, 5000)
+    }, 6000)
     return () => window.clearInterval(timer)
   }, [])
 
@@ -79,7 +72,7 @@ export default function Home({ navigate }: HomeProps) {
             role="img"
             aria-label={slide.label}
             aria-hidden={index !== activeSlide}
-            className={`hero-slide ${slide.composition ?? ''} ${index === activeSlide ? 'active' : ''}`}
+            className={`hero-slide ${index === activeSlide ? 'active' : ''}`}
             style={{
               backgroundImage: `url(${slide.url})`,
               backgroundPosition: slide.position,

@@ -3,6 +3,7 @@
   background: var(--background);
   color: var(--text-primary);
   font-family: var(--font-body);
+  font-style: normal;
   overflow: clip;
 }
 
@@ -47,14 +48,17 @@
 .about-page .ab-facts-grid span { display: flex; align-items: center; justify-content: center; min-height: 26px; padding-inline: 18px; color: var(--text-secondary); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-align: center; text-transform: uppercase; }
 .about-page .ab-facts-grid span + span { border-left: 1px solid rgba(194, 154, 69, .48); }
 
-.about-page .ab-story { grid-template-columns: minmax(0, .92fr) minmax(0, 1fr); }
+.about-page .ab-story { grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); align-items: start; }
+.about-page .ab-story .ab-section-copy { max-width: none; }
 .about-page .ab-story .ab-section-copy p + p { margin-top: 20px; }
 .about-page .ab-luxury { background: var(--background-secondary); border-block: 1px solid var(--ab-line); }
 .about-page .ab-luxury-layout { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); }
 .about-page .ab-luxury .ab-section-copy p { max-width: 540px; }
 
 .about-page .ab-standards { padding-bottom: 132px; }
-.about-page .ab-standards > h2 { margin-bottom: 104px; text-align: center; }
+.about-page .ab-standards > .ab-eyebrow { text-align: center; }
+.about-page .ab-standards > h2 { text-align: center; }
+.about-page .ab-standards-intro { max-width: 760px; margin: 28px auto 104px; text-align: center; }
 .about-page .ab-standard-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; align-items: stretch; isolation: isolate; }
 .about-page .ab-standard { display: flex; flex-direction: column; min-width: 0; min-height: 290px; padding-block: 36px 40px; }
 .about-page .ab-standard + .ab-standard { padding-left: 36px; }
@@ -101,7 +105,7 @@
 
 @media (max-width: 800px) and (min-width: 768px) {
   .about-page .ab-standards { padding-bottom: 96px; }
-  .about-page .ab-standards > h2 { margin-bottom: 56px; }
+  .about-page .ab-standards-intro { margin-bottom: 56px; }
   .about-page .ab-standard-list { grid-template-columns: 1fr; gap: 0; }
   .about-page .ab-standard, .about-page .ab-standard + .ab-standard { min-height: 0; padding: 28px 0; border-top: 1px solid var(--ab-line); }
   .about-page .ab-standard:last-child { border-bottom: 1px solid var(--ab-line); }
@@ -125,7 +129,8 @@
   .about-page .ab-facts-grid span:nth-child(n+3) { border-top: 1px solid var(--ab-line); }
   .about-page .ab-luxury .ab-photo-slot { aspect-ratio: 16 / 9; }
   .about-page .ab-standards { padding-bottom: 88px; }
-  .about-page .ab-standards > h2 { margin-bottom: 44px; text-align: left; }
+  .about-page .ab-standards > .ab-eyebrow, .about-page .ab-standards > h2 { text-align: left; }
+  .about-page .ab-standards-intro { margin: 20px 0 44px; text-align: left; }
   .about-page .ab-standard-list { grid-template-columns: 1fr; gap: 0; }
   .about-page .ab-standard, .about-page .ab-standard + .ab-standard { min-height: 0; padding: 28px 0 32px; border-top: 1px solid var(--ab-line); }
   .about-page .ab-standard:last-child { border-bottom: 1px solid var(--ab-line); }

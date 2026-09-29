@@ -113,12 +113,12 @@ export default function Services({ navigate }: { navigate: (page: Page) => void 
 
   return <div className={`services-new-page services-experience${activeSection === 'hourly' ? ' is-hourly-active' : ''}${activeSection === 'water-taxi' ? ' is-water-taxi-active' : ''}${activeSection === 'europe' ? ' is-europe-active' : ''}`}>
     <section className="services-masthead" aria-labelledby="services-title">
-      <img className="services-masthead-photo" src={publicAsset('images/services/unsplash/venice-water-taxi.jpg')} alt="Boat crossing the Venetian lagoon near Santa Maria della Salute" width={2200} height={1650} fetchPriority="high" />
+      <img className="services-masthead-photo" src={publicAsset('images/services/water-taxi/venice-lagoon-water-taxi.jpg')} alt="Boat crossing the Venetian lagoon near Santa Maria della Salute" width={2200} height={1650} fetchPriority="high" />
       <div className="services-masthead-shell">
         <div className="services-masthead-copy">
           <p className="services-masthead-eyebrow">SERVICES &amp; PRICES</p>
-          <h1 id="services-title">Choose the journey that fits your plans.</h1>
-          <p className="services-masthead-description">Airport transfers, hourly chauffeur service, water taxis and private journeys across Italy and Europe.</p>
+          <h1 id="services-title">Private transfers from Venice and Treviso.</h1>
+          <p className="services-masthead-description">Airport pick-ups, Water Taxi connections, chauffeurs by the hour and longer routes across Italy and Europe.</p>
           <div className="services-masthead-actions">
             <button type="button" className="services-masthead-primary" onClick={() => scrollTo('airport')}>EXPLORE SERVICES ↓</button>
           </div>

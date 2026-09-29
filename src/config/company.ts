@@ -8,5 +8,5 @@ export const company = {
   social: { facebook: '', instagram: '', tiktok: '' },
   registeredOffice: 'Strada Santa Bona Nuova 1/A, 31100 Treviso (TV), Italy',
   operationalBase: 'Venice, Veneto – Italy',
-  serviceArea: 'Based in Venice, travelling across Italy and Europe.',
+  serviceArea: 'Based in Venice and Treviso, travelling across Italy and Europe.',
 } as const

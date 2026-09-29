@@ -123,9 +123,9 @@
     width: auto;
   }
   .services-new-page.services-experience #service-europe .et-disclosure {
-    grid-row: 7;
+    grid-row: 6;
     width: calc(100% - 48px);
-    margin-inline: 24px;
+    margin: 20px 24px 0;
     min-height: 50px;
     padding: 12px 16px;
     border: 1px solid #c29a45;

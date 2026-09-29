@@ -26,23 +26,23 @@ function PhotoSlot({ className = '', src, alt, ratio, position = 'center', eager
   )
 }
 
-const facts = ['Two founders', 'Venice & Treviso', 'Private transport experience', 'Italy & Europe']
+const facts = ['Two founders', 'Years in private transport', 'Venice & Treviso', 'Italy & Europe']
 
 const standards = [
   {
     number: '01',
-    title: 'Prepared around you',
-    description: 'Your route, timing, passengers and luggage are considered before the journey begins.',
+    title: 'Planned before you travel',
+    description: 'We confirm your route, pick-up time, passengers and luggage in advance.',
   },
   {
     number: '02',
-    title: 'Professional from start to finish',
-    description: 'Clear communication, punctual service and personal assistance throughout your transfer.',
+    title: 'A clear pick-up',
+    description: 'Your driver meets you at the agreed point and helps with your luggage.',
   },
   {
     number: '03',
     title: 'Genuine Italian hospitality',
-    description: 'A welcoming, attentive approach designed to help you enjoy the journey as much as the destination.',
+    description: 'We want you to feel welcome from the moment you meet your driver.',
   },
 ]
 
@@ -52,8 +52,8 @@ export default function About({ navigate }: AboutProps) {
       <header className="ab-hero ab-shell" aria-labelledby="about-title">
         <div className="ab-hero-copy">
           <p className="ab-eyebrow">About Easy Lux</p>
-          <h1 id="about-title">Driven by passion.<br />Committed to every journey.</h1>
-          <p className="ab-hero-intro">Private journeys from Venice and Treviso, arranged with care.</p>
+          <h1 id="about-title">Why we started<br />Easy Lux.</h1>
+          <p className="ab-hero-intro">Private transfers from Venice and Treviso, across Italy and Europe.</p>
           <button className="ab-outline-button" type="button" onClick={() => navigate('services')}>
             Discover our services <ArrowRight size={18} aria-hidden="true" />
           </button>
@@ -70,9 +70,9 @@ export default function About({ navigate }: AboutProps) {
       <section className="ab-story ab-shell ab-section ab-split" aria-labelledby="ab-story-title">
         <div className="ab-section-copy">
           <p className="ab-eyebrow">Our story</p>
-          <h2 id="ab-story-title">A shared vision,<br />brought to life.</h2>
-          <p>We are <span className="ab-gold-text">two young entrepreneurs</span> united by a passion for travel, hospitality and exceptional service. After years of experience in <span className="ab-gold-text">private transportation</span>, we created Easy Lux to offer a more personal way to travel.</p>
-          <p>Operating in <span className="ab-gold-text">Venice and Treviso</span>, we arrange reliable, comfortable and tailored journeys across Italy and Europe.</p>
+          <h2 id="ab-story-title">A company we believe in.</h2>
+          <p>We are two young entrepreneurs, united by a passion for travel, hospitality and excellence. After years of experience in the private transportation industry, we decided to turn our vision into reality and create a service built around one fundamental principle: every journey deserves to be exceptional.</p>
+          <p>Our company was born from dedication, sacrifice and the courage to believe in our dream. We have invested our energy, experience and determination into creating a service where professionalism meets genuine Italian hospitality.</p>
         </div>
         <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/story-private-journey.png`} alt="Chauffeur loading luggage into a private transfer van at the airport" ratio="4:3" position="center 48%" />
       </section>
@@ -81,14 +81,16 @@ export default function About({ navigate }: AboutProps) {
         <div className="ab-shell ab-split ab-luxury-layout">
           <div className="ab-section-copy">
             <h2 id="ab-luxury-title">Luxury is how<br />the journey feels.</h2>
-            <p>For us, luxury is not defined only by the vehicle. It is knowing that your journey has been prepared, your time is respected and someone is there when you need them.</p>
+            <p>For us, luxury is not simply about travelling in comfort. It is about how you feel throughout the entire experience.</p>
           </div>
           <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/car-door.jpg`} alt="Hand opening the door of a black car" ratio="16:7" position="center 34%" />
         </div>
       </section>
 
       <section className="ab-standards ab-shell ab-section" aria-labelledby="ab-standards-title">
+        <p className="ab-eyebrow">What guides us</p>
         <h2 id="ab-standards-title">The Easy Lux standard.</h2>
+        <p className="ab-standards-intro">Our company is the result of our hard work, our ambitions and our belief that passion can become excellence when combined with dedication.</p>
         <div className="ab-standard-list">
           {standards.map(standard => (
             <article className={`ab-standard${standard.number === '02' ? ' ab-standard-featured' : ''}`} key={standard.number}>
@@ -110,7 +112,7 @@ export default function About({ navigate }: AboutProps) {
           </figure>
           <div className="ab-collage-side">
             <figure>
-              <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/comfort-on-board.png`} alt="Comfortable passenger seating inside the private transfer van" ratio="16:7" position="center" />
+              <PhotoSlot src={`${import.meta.env.BASE_URL}images/shared/private-van-passenger-cabin.png`} alt="Comfortable passenger seating inside the private transfer van" ratio="16:7" position="center" />
               <figcaption>Comfort on board</figcaption>
             </figure>
             <figure>
@@ -124,8 +126,8 @@ export default function About({ navigate }: AboutProps) {
       <section className="ab-operate ab-shell ab-section ab-split" aria-labelledby="ab-operate-title">
         <div className="ab-section-copy">
           <p className="ab-eyebrow">Where we operate</p>
-          <h2 id="ab-operate-title">From Venice<br />and Treviso, further.</h2>
-          <p>From airport arrivals and Water Taxi connections in Venice to private transfers from Treviso and longer journeys across Italy and Europe, every route is arranged around your plans.</p>
+          <h2 id="ab-operate-title">From Venice and Treviso, across Italy and Europe.</h2>
+          <p>We are proud to share the beauty of Italy with our guests, turning every transfer into an opportunity to discover its cities, landscapes and hidden treasures.</p>
           <button className="ab-inline-link" type="button" onClick={() => navigate('services')}>
             View all destinations <ArrowRight size={17} aria-hidden="true" />
           </button>
@@ -146,10 +148,10 @@ export default function About({ navigate }: AboutProps) {
           <div className="ab-section-copy">
             <p className="ab-eyebrow">Ready to travel?</p>
             <h2 id="ab-final-title">Tell us where<br />you need to be.</h2>
-            <p>Share your plans and we’ll arrange the details, from pick-up to final destination.</p>
+            <p>Tell us your pick-up, destination and date. We’ll check availability and send you a quote.</p>
             <div className="ab-final-actions">
               <button className="ab-outline-button" type="button" onClick={() => navigate('contact')}>
-                Request your journey <ArrowRight size={18} aria-hidden="true" />
+                Book your ride <ArrowRight size={18} aria-hidden="true" />
               </button>
               <a className="ab-whatsapp-link" href={company.phones[0].whatsapp} target="_blank" rel="noopener noreferrer">
                 <WhatsappLogo size={19} aria-hidden="true" /> WhatsApp us <ArrowRight size={17} aria-hidden="true" />

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { handleBookingRequest } from '../worker/index.js'
 
 const payload = {
-  kind: 'transfer', name: 'Test Client', email: 'client@example.com', phone: '+39 123456789',
+  kind: 'transfer', source: 'home-booking', name: 'Test Client', email: 'client@example.com', phone: '+39 123456789',
   details: 'Pick-up: Venice\nDestination: Milan', consent: true,
   requestId: '124fe6c0-2f57-4faf-b4c6-72c431e63f25',
 }
@@ -39,6 +39,6 @@ test('booking endpoint sends company and customer emails with one idempotency ke
     assert.equal(sent.headers['Idempotency-Key'], `booking/${payload.requestId}`)
     const messages = JSON.parse(sent.body)
     assert.deepEqual(messages.map(message => message.to[0]), ['office@example.com', payload.email])
-    assert.match(messages[1].text, /deposit instructions/)
+    assert.match(messages[1].text, /deposit payment/)
   } finally { globalThis.fetch = originalFetch }
 })

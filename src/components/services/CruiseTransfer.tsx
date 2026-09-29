@@ -11,8 +11,8 @@ export default function CruiseTransfer({ onRequest }: { onRequest: RequestJourne
       <div className="ct-intro">
         <div className="ct-copy">
           <p className="ct-eyebrow">CRUISE PORT TRANSFERS</p>
-          <h2 id="cruise-title">From your door to the cruise terminal.</h2>
-          <p className="ct-description">Private transfers between your hotel, airport or chosen address and the cruise terminals in Ravenna, Trieste and Fusina — for both embarkation and disembarkation.</p>
+          <h2 id="cruise-title">Cruise terminal transfers, both ways.</h2>
+          <p className="ct-description">Travel between your hotel, airport or agreed pick-up point and the cruise terminals in Ravenna, Trieste or Fusina.</p>
         </div>
       </div>
       <figure className="ct-cruise-photo">
@@ -29,8 +29,7 @@ export default function CruiseTransfer({ onRequest }: { onRequest: RequestJourne
         <div className="sr-home-head" aria-hidden="true"><span>Route</span><span>Sedan</span><span>Van</span><span>Minibus 12</span><span>Action</span></div>
         <ul className="ct-routes">
           {cruiseRoutes.map(route => <li className="ct-route" key={route.id}>
-            <div className="ct-route-heading"><h3>{route.from} <span aria-hidden="true">→</span> {route.to}</h3>
-            <p className="ct-direction">Point-to-point private transfer</p></div>
+            <div className="ct-route-heading"><h3>{route.id === 'venice-fusina-cruise-terminal' ? <>{route.from} <span aria-hidden="true">→</span> Fusina Cruise<br className="ct-terminal-break" /> Terminal</> : <>{route.from} <span aria-hidden="true">→</span> {route.to}</>}</h3></div>
             <dl className="ct-fares">
               <div><dt>Sedan</dt><dd>{priceLabel(route.sedan)}</dd></div>
               <div><dt>Van</dt><dd>{priceLabel(route.van)}</dd></div>

@@ -123,7 +123,7 @@
   left: 27px;
   bottom: 34px;
   color: var(--svc-ivory);
-  font: italic 400 clamp(21px, 1.85vw, 27px)/1.08 "Source Serif 4", Georgia, serif;
+  font: 400 clamp(21px, 1.85vw, 27px)/1.08 "Source Serif 4", Georgia, serif;
 }
 
 .services-new-page.services-experience .sv-hourly-visual figcaption span {

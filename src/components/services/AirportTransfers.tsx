@@ -6,7 +6,7 @@ import { publicAsset } from '../../lib/publicAsset'
 
 const journeys = [
   {
-    label: 'From the airport', title: 'Airport transfers, made simple.',
+    label: 'From the airport', title: <>Airport pick-ups at<br /><span className="ac-title-second-line">Marco Polo and Treviso.</span></>,
     description: 'We track your flight and adjust the pick-up time if needed. Your driver will meet you at the agreed point, help with your luggage and take you directly to your destination.',
     cta: 'REQUEST YOUR TRANSFER',
     features: ['Flight tracking', 'Meet & greet', 'Luggage assistance'],
@@ -22,8 +22,8 @@ const journeys = [
     imageAlt: 'Departures sign inside the airport terminal',
   },
   {
-    label: 'Address to address', title: 'Private travel, door to door.',
-    description: 'Travel privately between hotels, cities or other accessible addresses. We confirm your route, pick-up time, meeting point and luggage needs before the journey.',
+    label: 'Address to address', title: 'Direct transfers between addresses.',
+    description: 'Travel between hotels, stations and other road-accessible addresses. We confirm the pick-up point and luggage space in advance.',
     cta: 'REQUEST YOUR TRANSFER',
     features: ['Private journey', 'Flexible pick-up', 'Space for luggage'],
     image: publicAsset('images/services/airport/journeys/address-to-address.jpg'),
@@ -71,7 +71,7 @@ export default function AirportTransfers({ onMeetingPoint, onRequest }: { onMeet
         <div className="ac-content">
           <div className="ac-copy ac-fade" key={`copy-${selected}`} id="ac-journey" role="tabpanel" aria-labelledby={`ac-tab-${selected}`} tabIndex={0}>
             <span className="ac-eyebrow">PRIVATE TRANSFER</span>
-            <h2 id="airport-transfers-title" className={selected === 2 ? 'ac-long-title' : undefined}>
+            <h2 id="airport-transfers-title" className={selected === 2 ? 'ac-long-title' : selected === 0 ? 'ac-airport-title' : undefined}>
               <span>{journey.title}</span>
             </h2>
             <p>{journey.description}</p>

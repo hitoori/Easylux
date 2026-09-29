@@ -10,6 +10,9 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 ## Project design decisions
 
+- About Us copy (2026-09-29): use the user's supplied story-led text, retain the separate “Driven by passion. Committed to excellence.” statement, and keep the three photo-free standard columns. Let the full two-paragraph Our Story copy determine its column height without reducing type size or paragraph spacing.
+- About Us and Services & Prices typography (2026-09-29): use upright type throughout both pages; no italic words in headings, body text or image captions.
+
 - Airport & City imagery (2026-09-26, refined 2026-09-27): show one clear photo per tab in a consistent 4:3 frame. Keep the airport signs visible with per-image object positioning. On desktop, keep the image close below the tabs and align the right-hand title, copy, benefits and action to the photo as one composition. On mobile, place the image between the tabs and the copy, with no blurred backdrop or decorative edge mask.
 
 - Services route lists (2026-09-24): Italy & Europe, Mountains and Cruise routes use the Home Popular Routes presentation on desktop and mobile: aligned route/fare/action columns on desktop; route title, three side-by-side fares and a full-width request button on mobile. Keep the Coast section's route design unchanged. This supersedes older Cruise route-row layout notes below.

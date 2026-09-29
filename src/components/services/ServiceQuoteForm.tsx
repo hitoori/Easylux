@@ -93,7 +93,7 @@ export default function ServiceQuoteForm({ selection }: { selection: QuoteSelect
   </dl>
 
   return <section id="service-custom" className="sv-section sv-quote-section" aria-labelledby="quote-intro-title"><div className="svc-shell sv-quote-layout">
-    <div className="sv-copy sv-quote-copy"><p className="svc-eyebrow">Request a private transfer quote</p><h2 id="quote-intro-title">Let’s plan <br />your journey.</h2><p className="sv-lead">Start with your pick-up and destination. Then add your passengers and contact details, so the vehicle and price can be confirmed for your trip.</p><div className="sv-short-rule" /><p className="sv-muted">Your request starts a conversation. You decide once the journey and price are agreed.</p></div>
+    <div className="sv-copy sv-quote-copy"><p className="svc-eyebrow">Request a private transfer quote</p><h2 id="quote-intro-title">Request a quote for your transfer.</h2><p className="sv-lead">Tell us where and when you need to travel. We’ll confirm the vehicle and price before you decide.</p></div>
     <div className="sv-quote-panel">
       <h3 ref={headingRef} tabIndex={-1} className="sv-form-title">{prepared ? 'Check your journey details.' : 'Your journey details'}</h3>
       {prepared ? <div className="sv-prepared"><Check size={32} aria-hidden="true" /><p role="status">Your request has been sent. Reference {requestCode}.</p><p>We’ve emailed a confirmation to {draft.email}. Our team will contact you to discuss the journey and quote.</p>{review}<button type="button" className="sv-button" onClick={() => { setPrepared(false); setStep(0); setDraft(initialQuote); setRequestCode(''); requestId.current = crypto.randomUUID(); needsFocus.current = true }}>Send another request <ArrowLeft size={20} /></button></div> : <>

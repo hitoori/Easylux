@@ -172,7 +172,7 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
         className="home-flow-section order-2 h2-fleet"
       >
         <div className="h2-fleet-editorial">
-          <img className="h2-fleet-exterior" src={publicAsset('images/home/vehicle/exterior.png')} alt="Black private transfer van beside the Venice waterfront" />
+          <img className="h2-fleet-exterior" src={publicAsset('images/home/vehicle/chauffeur-pickup.jpg')} alt="Chauffeur welcoming a passenger into a black private transfer van" />
           <div className="h2-fleet-content">
             <div className="h2-fleet-heading">
               <p className="h2-kicker">Private vehicle</p>
@@ -180,8 +180,8 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
               <p>Tell us how many people and bags are travelling. We’ll confirm a suitable vehicle before you book.</p>
             </div>
             <div className="h2-fleet-gallery">
-              <img src={publicAsset('images/home/vehicle/cabin.png')} alt="Passenger seating inside the private transfer van" />
-              <img src={publicAsset('images/home/vehicle/luggage.png')} alt="Chauffeur assisting with luggage" />
+              <img src={publicAsset('images/shared/private-van-passenger-cabin.png')} alt="Passenger seating inside the private transfer van" />
+              <img src={publicAsset('images/home/vehicle/chauffeur-luggage-assistance.png')} alt="Chauffeur assisting with luggage" />
             </div>
             <div className="h2-fleet-benefits">
               <article><h3>Prepared for you</h3><p>Passenger and luggage details checked before confirmation.</p></article>

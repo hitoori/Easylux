@@ -27,7 +27,7 @@ export default function App() {
         : currentPage === 'about'
           ? 'About Easy Lux | A Personal Approach to Private Travel'
           : currentPage === 'faq'
-            ? 'Transfer & Booking Questions | Easy Lux FAQ'
+            ? 'Easy Lux FAQ | Booking, Pick-ups & Water Taxi'
             : 'Easy Lux Transfer | Private Chauffeur Italy'
     document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute(
       'content',
@@ -38,7 +38,7 @@ export default function App() {
           : currentPage === 'about'
             ? 'Meet the young couple behind Easy Lux. A personal approach to private chauffeur travel, guided by professionalism, punctuality and care.'
             : currentPage === 'faq'
-              ? 'Find answers about Easy Lux bookings, airport pick-ups, luggage, changes and private water taxi connections in Venice.'
+              ? 'Answers about booking, prices, pick-ups, luggage and Venice Water Taxi connections.'
               : 'Private chauffeur services and airport transfers across Italy and Europe.',
     )
   }, [currentPage])

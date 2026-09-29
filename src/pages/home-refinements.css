@@ -84,6 +84,42 @@
 /* Keep the selected journey in the same gold treatment as its underline. */
 .home-page .private-journeys-tabs button[aria-selected='true'] { color: var(--gold); }
 
+/* Let destination photos crossfade smoothly through the gold route divider. */
+.home-page .private-journeys-photo { position: relative; }
+.home-page .private-journeys-photo::after {
+  position: absolute;
+  z-index: 3;
+  inset: auto 0 0;
+  height: clamp(90px, 11vw, 160px);
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(13,14,15,.22) 36%, rgba(13,14,15,.72) 78%, rgba(13,14,15,.9) 100%);
+}
+.home-page .private-journeys-photo img {
+  position: absolute;
+  inset: 0;
+  animation: none;
+}
+.home-page .private-journeys-photo img.is-current {
+  z-index: 1;
+  animation: private-journey-crossfade-in 850ms ease both;
+}
+.home-page .private-journeys-photo img.is-outgoing {
+  z-index: 2;
+  animation: private-journey-crossfade-out 850ms ease both;
+}
+.home-page .private-journeys-route {
+  z-index: 4;
+  border-top-color: rgba(194,154,69,.72);
+  background: linear-gradient(180deg, rgba(13,14,15,.74) 0%, rgba(13,14,15,.91) 36%, rgba(13,14,15,.96) 100%);
+}
+@keyframes private-journey-crossfade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes private-journey-crossfade-out { from { opacity: 1; } to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .home-page .private-journeys-photo img { animation: none !important; }
+  .home-page .private-journeys-photo img.is-outgoing { display: none; }
+}
+
 .home-page .home-final-request-status { font-size: 13px; color: var(--text-secondary); }
 .home-page .home-final-request-fields { gap: 24px; }
 .home-page .home-final-request-fields label { color: var(--text-secondary); letter-spacing: .08em; }

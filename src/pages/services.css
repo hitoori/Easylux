@@ -10,6 +10,7 @@
   --svc-gold-bright: #daab2d;
   color: var(--svc-ivory);
   background: var(--svc-bg);
+  font-style: normal;
   overflow: clip;
 }
 

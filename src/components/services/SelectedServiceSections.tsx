@@ -18,12 +18,11 @@ export function HourlySection({ onRequest }: { onRequest: RequestJourney }) {
     <div className="svc-shell hourly-mockup-shell">
       <div className="hourly-mockup-visual">
         <div className="hourly-mockup-frame"><img src={publicAsset('images/services/hourly/several-stops-chauffeur-panorama.jpg')} alt="Chauffeur welcoming a passenger into a private vehicle" loading="lazy" /></div>
-        <p className="hourly-mockup-eyebrow">BY THE HOUR</p>
         <h2 id="hourly-title">Several stops.<br />One chauffeur.</h2>
       </div>
 
       <div className="hourly-mockup-content">
-        <p className="hourly-mockup-description">Book a private chauffeur for a few hours or the entire day. Share your stops, and your driver remains available throughout your itinerary.</p>
+        <p className="hourly-mockup-description">Book a chauffeur for two hours or a full day. Agree your stops in advance; your driver waits between them.</p>
 
         <div className="hourly-mockup-route-wrap">
           <div className="hourly-mockup-route-scroll">
@@ -31,7 +30,7 @@ export function HourlySection({ onRequest }: { onRequest: RequestJourney }) {
               <div><Buildings size={21} weight="thin" aria-hidden="true" /><span>Hotel</span></div>
               <i aria-hidden="true"><ArrowRight size={15} weight="light" /></i>
               <div><Briefcase size={21} weight="thin" aria-hidden="true" /><span>Meeting</span></div>
-              <i className="hourly-route-turn" aria-hidden="true"><ArrowRight size={15} weight="light" /><svg className="hourly-route-turn-line" viewBox="0 0 300 40" preserveAspectRatio="none"><path d="M299 0 V16 H1 V38 M-3 32 L1 38 L5 32" fill="none" stroke="currentColor" strokeWidth="1" vectorEffect="non-scaling-stroke" /></svg></i>
+              <i aria-hidden="true"><ArrowRight size={15} weight="light" /></i>
               <div><ForkKnife size={21} weight="thin" aria-hidden="true" /><span>Lunch</span></div>
               <i aria-hidden="true"><ArrowRight size={15} weight="light" /></i>
               <div><ShoppingBag size={21} weight="thin" aria-hidden="true" /><span>Shopping</span></div>
@@ -73,6 +72,23 @@ const waterTaxiJourneys = [
 export function WaterTaxiSection({ onRequest }: { onRequest: RequestJourney }) {
   const [direction, setDirection] = useState(0)
   const journey = waterTaxiJourneys[direction]
+
+  useEffect(() => {
+    const section = document.getElementById('service-water-taxi')
+    if (!section || !('IntersectionObserver' in window)) return
+
+    section.classList.add('wt-mobile-reveal-ready')
+    const observer = new IntersectionObserver(([entry]) => {
+      section.classList.toggle('wt-mobile-in-view', entry.isIntersecting)
+    }, { threshold: 0.01, rootMargin: '0px 0px -12% 0px' })
+    observer.observe(section)
+
+    return () => {
+      observer.disconnect()
+      section.classList.remove('wt-mobile-reveal-ready', 'wt-mobile-in-view')
+    }
+  }, [])
+
   const changeDirection = (next: number) => {
     if (next === direction) return
     setDirection(next)
@@ -112,12 +128,13 @@ export function WaterTaxiSection({ onRequest }: { onRequest: RequestJourney }) {
         </div>
           <footer className="wt-booking">
             <div className="wt-access-notes">
-              {waterTaxiJourneys.map((item, index) => <p key={item.route} className={`wt-access-note${direction === index ? ' is-active' : ''}`} aria-hidden={direction !== index}>{item.note}</p>)}
+              {waterTaxiJourneys.map((item, index) => <p key={item.route} className={`wt-access-note${direction === index ? ' is-active' : ''}`} aria-hidden={direction !== index}>
+                {item.route === 'Route to Venice' ? <>Direct hotel access depends on the canal<br className="wt-desktop-note-break" /> and the available landing point.</> : item.note}
+              </p>)}
             </div>
             <div className="wt-price-block">
               <div className="wt-fare"><span>Private car</span><strong><span className="wt-price-prefix">from </span>€80</strong></div>
-              <span className="wt-price-plus" aria-hidden="true">+</span>
-              <div className="wt-fare"><span>Water taxi</span><strong>€100–140</strong></div>
+              <div className="wt-fare"><span>Water taxi</span><strong>€100–140<span className="wt-estimated"> estimated</span></strong></div>
             </div>
             <button type="button" className="wt-cta" onClick={() => onRequest({ service: 'water-taxi', airportPickup: direction === 0 })}>REQUEST THIS TRANSFER<ArrowRight size={18} weight="light" aria-hidden="true" /></button>
           </footer>
@@ -132,7 +149,7 @@ function EuropeRouteTable({ routes, region, onRequest }: { routes: typeof italyR
     <table className="et-table sr-home-table" id={`et-${region}-routes`} aria-label={`${region} routes and prices`}>
       <thead><tr><th scope="col">Route</th><th scope="col">Sedan</th><th scope="col">Van</th><th scope="col">Minibus 12</th><th scope="col">Action</th></tr></thead>
       <tbody>{(showAll ? routes : routes.slice(0, 3)).map(route => <tr key={route.id}>
-        <th scope="row"><span className="sr-route-copy"><span className="sr-route-title">{route.from} <span className="et-arrow">→</span> {route.to}</span><span className="sr-route-note">Point-to-point private transfer</span></span></th>
+        <th scope="row"><span className="sr-route-copy"><span className="sr-route-title">{route.from} <span className="et-arrow">→</span> {route.to}</span></span></th>
         <td><span className="et-mobile-label">Sedan</span>{priceLabel(route.sedan)}</td>
         <td><span className="et-mobile-label">Van</span>{priceLabel(route.van)}</td>
         <td><span className="et-mobile-label">Minibus 12</span>{priceLabel(route.minibus)}</td>
@@ -168,11 +185,10 @@ export function EuropeSection({ onRequest, fareRequest = 0 }: { onRequest: Reque
       <div className="et-photo"><img src={publicAsset('images/services/europe/italy-europe-chauffeur.jpg')} alt="Chauffeur welcoming a passenger into a private vehicle" loading="lazy" /></div>
       <div className="et-copy">
         <p className="et-eyebrow">PRIVATE JOURNEYS · ITALY &amp; EUROPE</p>
-        <h2 id="europe-title"><span>Your route, your time,</span><span>your journey.</span></h2>
-        <p className="et-description">From a hotel in Venice to a city across the border, every transfer is planned around where you need to be — including any stops along the way.</p>
+        <h2 id="europe-title">Private transfers across Italy and into Europe.</h2>
+        <p className="et-description">Travel from Venice or Treviso to another city in Italy or across the border.</p>
         <p className="et-countries">ITALY <i className="et-country-separator" aria-hidden="true">·</i> AUSTRIA <i className="et-country-separator" aria-hidden="true">·</i> SLOVENIA <i className="et-country-separator" aria-hidden="true">·</i> CROATIA <i className="et-country-separator" aria-hidden="true">·</i> FRANCE</p>
         <div className="et-line" aria-hidden="true" />
-        <p className="et-statement">Door to door · One chauffeur · Flexible stops</p>
         <button type="button" className="et-plan-link" onClick={() => onRequest({ service: 'europe' })}>PLAN YOUR JOURNEY <span aria-hidden="true">→</span></button>
         <button type="button" className="et-button et-disclosure" aria-expanded={routesOpen} aria-controls="italy-route-prices" onClick={() => setRoutesOpen(current => !current)}>{routesOpen ? 'HIDE ROUTES & PRICES' : 'SEE ROUTES & PRICES'} <span aria-hidden="true">{routesOpen ? '↑' : '↓'}</span></button>
       </div>

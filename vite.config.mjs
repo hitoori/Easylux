@@ -11,7 +11,7 @@ function bookingApi(localEnv) {
     ASSETS: {
       async fetch(request) {
         const url = new URL(request.url);
-        if (url.pathname !== "/images/brand/easy-lux-logo-wordmark-transparent-v3.png") return new Response("Not found", { status: 404 });
+        if (url.pathname !== "/images/brand/easy-lux-logo-wordmark.png") return new Response("Not found", { status: 404 });
         return new Response(readFileSync(path.resolve("public", `.${url.pathname}`)), { headers: { "content-type": "image/png" } });
       },
     },

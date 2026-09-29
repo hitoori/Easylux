@@ -61,6 +61,35 @@
   }
 }
 
+@media (max-width: 767px) {
+  .services-new-page.services-experience #service-water-taxi .wt-booking {
+    gap: 14px;
+    padding-top: 12px;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-price-block {
+    gap: 9px;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare,
+  .services-new-page.services-experience #service-water-taxi .wt-fare + .wt-fare {
+    min-height: 30px;
+    align-items: baseline;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-price-block span {
+    font-size: 12px;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-price-block strong {
+    font-size: clamp(20px, 5.8vw, 24px);
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-cta {
+    min-height: 48px;
+  }
+}
+
 .services-new-page.services-experience #service-water-taxi .wt-hero-maps {
   position: absolute;
   inset: 0;
@@ -1379,6 +1408,68 @@
   }
 }
 
+@media (max-width: 767px) {
+  .services-new-page.services-experience #service-water-taxi.wt-map-section {
+    padding-top: 28px;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-booking {
+    gap: 18px;
+    padding-top: 14px;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-price-block {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin: 0;
+    justify-self: stretch;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare,
+  .services-new-page.services-experience #service-water-taxi .wt-fare + .wt-fare {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    gap: 16px;
+    padding: 0;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare:first-child {
+    justify-self: start;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-price-block .wt-price-plus {
+    display: none;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare:last-child {
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  .services-new-page.services-experience #service-water-taxi.wt-mobile-reveal-ready {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 500ms ease, transform 500ms ease;
+  }
+
+  .services-new-page.services-experience #service-water-taxi.wt-mobile-reveal-ready.wt-mobile-in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .services-new-page.services-experience #service-water-taxi.wt-mobile-reveal-ready {
+    transition: none;
+    transform: none;
+  }
+}
+
 @media (min-width: 1440px) {
   .services-new-page.services-experience #service-water-taxi .wt-visual-column {
     transform: translate(-15%, 0) scale(1.52);
@@ -1487,5 +1578,154 @@
 
   .services-new-page.services-experience #service-water-taxi.wt-map-section .wt-heading h2.wt-leaving-title span::before {
     content: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .services-new-page.services-experience #service-water-taxi .wt-booking {
+    grid-template-columns: minmax(0, .78fr) minmax(0, .72fr) minmax(280px, .5fr);
+    gap: clamp(18px, 1.7vw, 30px);
+    transform: translateY(-10px);
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-access-note {
+    max-width: 540px;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-desktop-note-break {
+    display: block;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-price-block {
+    grid-template-columns: max-content max-content;
+    gap: clamp(22px, 2.4vw, 38px);
+    justify-self: start;
+    transform: translateX(-18px);
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare > span {
+    text-transform: uppercase;
+    letter-spacing: .13em;
+    font-size: clamp(11px, .72vw, 14px);
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare + .wt-fare {
+    padding-left: clamp(22px, 2.4vw, 38px);
+    border-left: 1px solid rgba(200, 192, 181, .4);
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-price-block strong {
+    font-size: clamp(32px, 2.55vw, 43px);
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare:first-child strong {
+    color: var(--svc-ivory);
+  }
+
+}
+
+@media (max-width: 1023px) {
+  .services-new-page.services-experience #service-water-taxi .wt-desktop-note-break {
+    display: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .services-new-page.services-experience #service-water-taxi .wt-booking {
+    grid-template-columns: minmax(0, .68fr) minmax(0, .78fr) minmax(260px, .5fr);
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-price-block {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    width: min(100%, 540px);
+    max-width: 540px;
+    min-height: 68px;
+    gap: 0;
+    transform: translateX(-24px);
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare {
+    min-height: 68px;
+    justify-content: center;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare + .wt-fare {
+    padding-left: clamp(20px, 2vw, 32px);
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-cta {
+    min-height: 68px;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-price-block strong {
+    font-size: clamp(29px, 2.2vw, 37px);
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare > span {
+    font-size: clamp(10px, .66vw, 13px);
+  }
+}
+
+.services-new-page.services-experience #service-water-taxi .wt-estimated {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .services-new-page.services-experience #service-water-taxi .wt-price-block {
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.3fr);
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    margin: 0 0 8px;
+    padding: 0;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare,
+  .services-new-page.services-experience #service-water-taxi .wt-fare + .wt-fare {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-width: 0;
+    min-height: 0;
+    gap: 4px;
+    padding: 0 12px 0 0;
+    border: 0;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare + .wt-fare {
+    padding: 0 0 0 16px;
+    border-left: 1px solid rgba(200, 192, 181, .28);
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare:last-child {
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: stretch;
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-fare > span:first-child {
+    color: var(--svc-muted);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-price-block strong {
+    display: block;
+    font-size: 21px;
+    line-height: 1.18;
+    white-space: nowrap;
+  }
+
+  .services-new-page.services-experience #service-water-taxi .wt-estimated {
+    display: inline;
+    color: var(--svc-muted);
+    font: 400 13px/1.3 var(--font-display);
+    letter-spacing: 0;
   }
 }

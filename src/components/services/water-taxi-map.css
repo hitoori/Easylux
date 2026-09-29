@@ -11,6 +11,25 @@
   padding-block: clamp(72px, 7vw, 100px);
 }
 
+@media (max-width: 767px) {
+  #service-water-taxi.wt-mobile-reveal-ready .wt-visual-column {
+    opacity: 0;
+    transition: opacity 900ms ease;
+    will-change: opacity;
+  }
+
+  #service-water-taxi.wt-mobile-reveal-ready.wt-mobile-in-view .wt-visual-column {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  #service-water-taxi.wt-mobile-reveal-ready .wt-visual-column {
+    opacity: 1;
+    transition: none;
+  }
+}
+
 #service-water-taxi .wt-hero {
   position: relative;
   isolation: isolate;

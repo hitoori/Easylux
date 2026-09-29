@@ -50,12 +50,12 @@ export default function ProseccoHills({ onRequest }: { onRequest: (request: Jour
       <div className="ph-copy">
         <p className="ph-eyebrow">PROSECCO HILLS · VENETO</p>
         <h2 id="prosecco-title">From Venice to the Prosecco Hills.</h2>
-        <p className="ph-description">Head from Venice into the Prosecco Hills with a private chauffeur. Share your exact destination, any waiting time and whether you need a return pick-up.</p>
+        <p className="ph-description">Private transfers from Venice to Conegliano, Valdobbiadene or another destination in the Prosecco Hills.</p>
       </div>
     </div>
     <div className="ph-footer">
       <p className="ph-route"><span>Venice</span><span className="ph-route-arrow" aria-hidden="true">→</span><span>Conegliano</span><span className="ph-route-arrow" aria-hidden="true">→</span><span>Valdobbiadene</span></p>
-      <p className="ph-note">Private transfer only to your chosen destination. Choose one-way or return, with waiting time on request. Winery visits, tastings and guided tours are not included.</p>
+      <p className="ph-note">One-way or return, with waiting time on request. Winery visits, tastings and guided tours are not included.</p>
       <button type="button" className="ph-cta" onClick={() => onRequest({ service: 'prosecco', pickup: 'Venice', destination: 'Prosecco Hills' })}>Plan your trip <ArrowRight size={19} weight="light" aria-hidden="true" /></button>
     </div>
   </section>

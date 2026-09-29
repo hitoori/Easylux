@@ -3,7 +3,7 @@ import { navigationItems } from '../config/navigation'
 import type { Page } from '../types/navigation'
 import { publicAsset } from '../lib/publicAsset'
 
-const logoImage = publicAsset('images/brand/easy-lux-logo-wordmark-transparent-v3.png')
+const logoImage = publicAsset('images/brand/easy-lux-logo-wordmark.png')
 
 interface HeaderProps {
   currentPage: Page
@@ -70,11 +70,11 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
             alt="Easy Lux"
             className={`translate-y-0.5 object-contain drop-shadow-[0_3px_8px_rgba(0,0,0,0.72)] transition-[width,height,transform] duration-500 group-hover:scale-[1.03] ${
               headerElevated
-                ? 'h-[56px] w-[56px] sm:h-[60px] sm:w-[60px] lg:h-[62px] lg:w-[62px]'
-                : 'h-[62px] w-[62px] sm:h-[66px] sm:w-[66px] lg:h-[72px] lg:w-[72px]'
+                ? 'h-[60px] w-[60px] sm:h-[60px] sm:w-[60px] lg:h-[62px] lg:w-[62px]'
+                : 'h-[66px] w-[66px] sm:h-[66px] sm:w-[66px] lg:h-[72px] lg:w-[72px]'
             }`}
           />
-          <span className="ml-3 hidden border-l border-[var(--border-gold)] pl-3 text-[8px] font-medium uppercase leading-[1.65] tracking-[0.19em] text-[rgba(236,230,219,0.72)] sm:block lg:ml-3.5 lg:pl-3.5">
+          <span className="ml-2 border-l border-[var(--border-gold)] pl-2.5 text-[7px] font-medium uppercase leading-[1.65] tracking-[0.16em] text-[rgba(236,230,219,0.82)] sm:ml-3 sm:pl-3 sm:text-[8px] sm:tracking-[0.19em] lg:ml-3.5 lg:pl-3.5">
             <span className="block whitespace-nowrap">Your driver</span>
             <span className="block whitespace-nowrap">Around Italy</span>
           </span>
@@ -102,33 +102,27 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
             onClick={() => navigateAndClose('contact')}
             className="flex shrink-0 items-center gap-2 rounded-sm border border-[rgba(194,154,69,0.72)] bg-[rgba(13,14,15,0.16)] px-5 py-3 text-[12px] font-medium tracking-[0.02em] text-gold-light shadow-[0_4px_18px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-gold hover:text-[var(--background)] 2xl:px-6"
           >
-            {currentPage === 'home' ? 'Request a Quote' : 'Book Your Ride'}
+            {currentPage === 'home' || currentPage === 'services' ? 'Request a Quote' : 'Book Your Ride'}
           </button>
         </div>
 
         {/* Tablet/mobile actions */}
-        <div className="ml-auto flex items-center justify-end gap-4 xl:hidden">
-          <button
-            onClick={() => navigateAndClose('contact')}
-            className="hidden items-center rounded-sm border border-[rgba(194,154,69,0.72)] bg-[rgba(13,14,15,0.16)] px-5 py-3 text-[12px] font-medium tracking-[0.02em] text-gold-light backdrop-blur-[2px] transition-all duration-300 hover:bg-gold hover:text-[var(--background)] sm:flex"
-          >
-            {currentPage === 'home' ? 'Request a Quote' : 'Book Your Ride'}
-          </button>
+        <div className="ml-auto flex items-center justify-end xl:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="flex w-7 flex-col gap-1.5 py-2"
+            className="flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-1.5 rounded-sm p-2.5"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
           >
             <span
-              className={`block h-px bg-cream transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-[7px]' : ''}`}
+              className={`block h-px w-full bg-cream transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-[7px]' : ''}`}
             />
             <span
-              className={`block h-px bg-cream transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`}
+              className={`block h-px w-full bg-cream transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`}
             />
             <span
-              className={`block h-px bg-cream transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`}
+              className={`block h-px w-full bg-cream transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`}
             />
           </button>
         </div>
@@ -165,7 +159,7 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
             }}
             className="mt-3 border border-gold py-3 text-[13px] font-medium tracking-[0.02em] text-gold transition-all duration-300 hover:bg-gold hover:text-[var(--background)]"
           >
-            {currentPage === 'home' ? 'Request a Quote' : 'Book Your Ride'}
+            {currentPage === 'home' || currentPage === 'services' ? 'Request a Quote' : 'Book Your Ride'}
           </button>
         </nav>
       </div>

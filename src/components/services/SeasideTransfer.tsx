@@ -33,13 +33,13 @@ export default function SeasideTransfer({ onRequest }: { onRequest: RequestJourn
           <h2 id="coast-title">From Venice, straight to the coast.</h2>
           <p className="cs-description">Private transfers from Venice or Marco Polo Airport to Jesolo, Bibione, Caorle and other Adriatic seaside destinations.</p>
         </div>
-        <div className="cs-visual"><div className="cs-panorama"><img src={publicAsset('images/services/seaside/adriatic-coast.jpg')} alt="Adriatic seaside town overlooking the sea" loading="lazy" /></div><p className="cs-caption">Hotel, villa or marina — we’ll take you straight there.</p></div>
+        <div className="cs-visual"><div className="cs-panorama"><img src={publicAsset('images/services/seaside/adriatic-coast.jpg')} alt="Adriatic seaside town overlooking the sea" loading="lazy" /></div></div>
       </div>
       <div id="coast-route-prices" className="cs-all-routes">
         <ol id="coast-route-list" className="cs-route-grid">
           {routes.slice(0, visibleCount).map((route, index) => <li className="cs-route" key={route.id}>
             <span className="cs-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-            <h3 className={[`${route.from} ${route.to}`.length > 27 && 'cs-long-route', route.id === 'marco-polo-lignano-sabbiadoro' && 'cs-nowrap-route'].filter(Boolean).join(' ')}><span className="cs-origin">{route.from} <span className="cs-arrow">→</span></span> <span className="cs-destination">{route.to}</span></h3>
+            <h3 className={[`${route.from} ${route.to}`.length > 27 && 'cs-long-route', route.id === 'marco-polo-lignano-sabbiadoro' && 'cs-nowrap-route'].filter(Boolean).join(' ')}><span className="cs-origin">{route.from} <span className="cs-arrow">→</span></span> <span className="cs-destination">{route.id === 'marco-polo-lignano-sabbiadoro' ? <>Lignano<br className="cs-mobile-route-break" /> Sabbiadoro</> : route.to}</span></h3>
             <dl className="cs-fares"><div><dt>Sedan</dt><dd>{fare(route.sedan)}</dd></div><div><dt>Van</dt><dd>{fare(route.van)}</dd></div><div><dt>{route.minibusLabel}</dt><dd>{fare(route.minibus)}</dd></div></dl>
             <button type="button" className="cs-route-request" aria-label={`Request this route: ${route.from} to ${route.to}`} onClick={() => onRequest({ service: 'coast', pickup: route.pickup, destination: route.destination, airportPickup: route.airportMode === 'pickup' })}>REQUEST THIS ROUTE <span aria-hidden="true">→</span></button>
           </li>)}

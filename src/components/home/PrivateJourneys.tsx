@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { BookingPrefill } from '../BookingForm'
 import { publicAsset } from '../../lib/publicAsset'
 
@@ -13,7 +13,7 @@ const destinations = [
   },
   {
     id: 'dolomites', label: 'Dolomites',
-    image: publicAsset('images/shared/destinations/dolomites-peaks.jpg'),
+    image: publicAsset('images/home/private-journeys/dolomites-mountain-landscape.jpg'),
     alt: 'Mountain landscape in the Dolomites',
     stops: ['Venice', 'Cortina d’Ampezzo'],
     destination: 'Cortina d’Ampezzo',
@@ -21,7 +21,7 @@ const destinations = [
   },
   {
     id: 'coast', label: 'Coast & seaside',
-    image: publicAsset('images/home/hero/sicily-coast.jpg'),
+    image: publicAsset('images/home/private-journeys/adriatic-coast-beach-aerial.jpg'),
     alt: 'Italian coastal landscape overlooking the sea',
     stops: ['Venice', 'Your seaside destination'],
     destination: 'Seaside destination — to be confirmed',
@@ -29,8 +29,8 @@ const destinations = [
   },
   {
     id: 'cruise', label: 'Cruise terminals',
-    image: publicAsset('images/home/hero/venice-grand-canal.jpg'),
-    alt: 'Venice waterfront, the starting point for a private terminal transfer',
+    image: publicAsset('images/home/private-journeys/cruise-ship-at-terminal.jpg'),
+    alt: 'Cruise ship at port at dusk',
     stops: ['Venice', 'Your cruise terminal'],
     destination: 'Cruise terminal — to be confirmed',
     journey: 'Private chauffeur to or from your confirmed cruise terminal, planned around your ship and boarding time.',
@@ -43,7 +43,18 @@ interface PrivateJourneysProps {
 
 export default function PrivateJourneys({ onBookRoute }: PrivateJourneysProps) {
   const [selectedJourneyIndex, setSelectedJourneyIndex] = useState(0)
+  const [transitionFromIndex, setTransitionFromIndex] = useState<number | null>(null)
+  const previousJourneyIndex = useRef(0)
   const selected = destinations[selectedJourneyIndex]
+
+  useEffect(() => {
+    if (previousJourneyIndex.current === selectedJourneyIndex) return
+
+    setTransitionFromIndex(previousJourneyIndex.current)
+    previousJourneyIndex.current = selectedJourneyIndex
+    const timer = window.setTimeout(() => setTransitionFromIndex(null), 850)
+    return () => window.clearTimeout(timer)
+  }, [selectedJourneyIndex])
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -86,10 +97,11 @@ export default function PrivateJourneys({ onBookRoute }: PrivateJourneysProps) {
           ))}
         </div>
 
-        <div id="private-journey-panel" className="private-journeys-visual" role="tabpanel" aria-labelledby={`journey-tab-${selected.id}`} tabIndex={0}>
-          <div className="private-journeys-photo">
-            <img key={selected.id} src={selected.image} alt={selected.alt} loading="lazy" decoding="async" />
-          </div>
+          <div id="private-journey-panel" className="private-journeys-visual" role="tabpanel" aria-labelledby={`journey-tab-${selected.id}`} tabIndex={0}>
+            <div className="private-journeys-photo">
+              {transitionFromIndex !== null && <img key={`out-${destinations[transitionFromIndex].id}`} className="is-outgoing" src={destinations[transitionFromIndex].image} alt="" aria-hidden="true" decoding="async" />}
+              <img key={`in-${selected.id}`} className="is-current" src={selected.image} alt={selected.alt} loading="lazy" decoding="async" />
+            </div>
           <div className="private-journeys-route" aria-live="polite">
             <div className="private-journeys-stops">
               <small>Route</small>

@@ -125,7 +125,7 @@
   position: relative;
   z-index: 2;
   color: var(--svc-ivory);
-  font: italic 400 12px/1.4 'Source Serif 4', Georgia, serif;
+  font: 400 12px/1.4 'Source Serif 4', Georgia, serif;
   text-align: left;
   text-transform: none;
   letter-spacing: 0;
