@@ -43,9 +43,13 @@ export default function App() {
               ? 'Answers about booking, prices, pick-ups, luggage and Venice Water Taxi connections.'
               : 'Private chauffeur services and airport transfers across Italy and Europe.',
     )
-    document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute(
-      'href', `https://easyluxtransfer.com${pagePath(currentPage)}`,
-    )
+    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    if (!canonical) {
+      canonical = document.createElement('link')
+      canonical.rel = 'canonical'
+      document.head.append(canonical)
+    }
+    canonical.href = `https://easyluxtransfer.com${pagePath(currentPage)}`
   }, [currentPage])
 
   useEffect(() => {
