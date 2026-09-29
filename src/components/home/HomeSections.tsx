@@ -19,22 +19,22 @@ interface HomeSectionsProps {
 const services = [
   {
     title: 'Airport & City Transfers',
-    description: 'Private transfers to and from Marco Polo Airport (VCE), Treviso Airport (TSF), hotels and cruise terminals.',
+    description: 'Pick-ups and drop-offs at Marco Polo and Treviso airports, hotels, addresses and cruise terminals.',
     page: 'services' as const,
   },
   {
     title: 'Chauffeur by the Hour',
-    description: 'Keep your driver for meetings, shopping or a museum visit, with waiting and onward travel agreed in advance.',
+    description: 'A driver for meetings, shopping or sightseeing. Stops and waiting time are agreed in advance.',
     page: 'services' as const,
   },
   {
     title: 'Italy & Europe Transfers',
-    description: 'Travel between cities or from Italy to France, Croatia and beyond. Your route, stops and timing, planned together.',
+    description: 'Travel between Italian cities or onward to Austria, Slovenia, Croatia and France. Add stops along the way.',
     page: 'services' as const,
   },
   {
     title: 'Mountains & Seaside',
-    description: 'Reach the Dolomites, the Adriatic coast or your chosen trailhead. Private transport, with return pick-up on request.',
+    description: 'Private transfers to the Dolomites and the coast, with a return pick-up if you need one.',
     page: 'services' as const,
   },
 ]
@@ -110,44 +110,22 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
         className="home-flow-section bg-[var(--background-secondary)] px-6 pb-8 pt-16 sm:px-8 sm:pb-10 lg:px-10 lg:pb-12 lg:pt-20"
       >
         <div className="mx-auto max-w-[1340px]">
-          <div className="grid gap-9 lg:grid-cols-[0.72fr_1.55fr] lg:items-start lg:gap-14">
-            <div className="max-w-[340px]">
-              <h2 className="font-display text-[42px] font-normal leading-[0.96] text-cream sm:text-[50px]">
-                Our{' '}
-                <br aria-hidden="true" />
-                services
-              </h2>
-              <p className="mt-5 text-[14px] leading-[1.75] text-[var(--text-muted)]">
-                An airport arrival, a day with several stops or a longer journey: choose the private transport that fits your plans.
-              </p>
-              <button
-                type="button"
-                onClick={() => navigate('services')}
-                className="group mt-6 flex items-center gap-2 text-[12px] font-medium text-[var(--text-secondary)] transition-colors hover:text-gold-light"
-              >
-                Explore transfer services
-                <ArrowRight
-                  size={14}
-                  className="transition-transform group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </button>
-            </div>
-
-            <figure className="min-w-0">
-              <div className="h-[190px] overflow-hidden bg-[var(--surface)] sm:h-[230px] lg:h-[250px]">
-                <img
-                  src={publicAsset('images/home/services/northern-italy-road.jpg')}
-                  alt="A quiet lakeside road framed by Italian architecture and mountains"
-                  className="home-documentary-photo h-full w-full object-cover"
-                  style={{ objectPosition: 'center 62%' }}
-                />
-              </div>
-              <figcaption className="mt-2 flex items-center justify-between gap-4 text-[11px] font-medium uppercase tracking-[0.12em] text-[var(--text-metadata)]">
-                <span>Venice and Northern Italy</span>
-                <span className="text-right">Private chauffeur service</span>
-              </figcaption>
-            </figure>
+          <div className="flex flex-col items-center text-center">
+            <h2 className="font-display text-[48px] font-normal leading-[1.02] text-cream sm:text-[64px] lg:text-[76px]">
+              Our services
+            </h2>
+            <button
+              type="button"
+              onClick={() => navigate('services')}
+              className="group mt-6 flex items-center gap-2 text-[12px] font-medium text-gold transition-colors hover:text-gold-light"
+            >
+              Explore transfer services
+              <ArrowRight
+                size={14}
+                className="transition-transform group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </button>
           </div>
 
           <div className="home-service-grid mt-9 grid border-t border-[rgba(36,41,44,0.84)] sm:mt-11 sm:grid-cols-2 xl:grid-cols-4">
@@ -196,8 +174,8 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
           <div className="h2-fleet-content">
             <div className="h2-fleet-heading">
               <p className="h2-kicker">Private vehicle</p>
-              <h2 id="home-vehicle-title">More than the vehicle.</h2>
-              <p>Travelling as a couple, a family or a group? Tell us about passengers and luggage so we can confirm a suitable vehicle for your journey.</p>
+              <h2 id="home-vehicle-title">The right vehicle for your group.</h2>
+              <p>Tell us how many people and bags are travelling. We’ll confirm a suitable vehicle before you book.</p>
             </div>
             <div className="h2-fleet-gallery">
               <img src={publicAsset('images/home/vehicle/cabin.png')} alt="Passenger seating inside the private transfer van" />
@@ -206,7 +184,7 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
             <div className="h2-fleet-benefits">
               <article><h3>Prepared for you</h3><p>Passenger and luggage details checked before confirmation.</p></article>
               <article><h3>Comfort on board</h3><p>Climate control, water and charging.</p></article>
-              <article><h3>A helping hand</h3><p>Your driver assists with luggage at pick-up and arrival.</p></article>
+              <article><h3>Help with luggage</h3><p>Your driver assists with luggage at pick-up and arrival.</p></article>
             </div>
           </div>
         </div>
@@ -223,7 +201,7 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
                 Popular Routes &amp; Prices
               </h2>
               <p className="mt-4 max-w-[650px] text-[14px] leading-[1.7] text-[var(--text-muted)]">
-                Compare indicative one-way prices for popular transfers from Venice. We confirm your route, vehicle, availability and final price before you book.
+                Indicative one-way fares from Venice. We’ll confirm the vehicle and final price with your quote.
               </p>
             </div>
             <button
@@ -256,7 +234,6 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
                     <h3 className="font-display text-[24px] leading-[1.1] text-cream sm:text-[27px]">
                       {displayRoutePlace(route.from)} → {displayRoutePlace(route.to)}
                     </h3>
-                    <p className="mt-2 text-[14px] text-[var(--text-muted)]">Point-to-point private transfer</p>
                   </div>
                 </div>
 

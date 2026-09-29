@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { ArrowLeft, ArrowRight } from '@phosphor-icons/react'
 
 const stories = [
-  ['Alexandra M.', 'London, UK', 'Mihai was waiting for us at Marco Polo despite our delayed flight. The V-Class was immaculate, and the entire journey felt effortless.'],
-  ['Thomas & Claire B.', 'Paris, France', 'We booked a full-day chauffeur for our Dolomites journey. Every stop felt effortless and perfectly timed.'],
-  ['Pieter van D.', 'Amsterdam, NL', 'The Prosecco Hills experience was the highlight of our Italy trip. The entire day felt curated just for us.'],
-  ['Sarah K.', 'New York, USA', 'Punctual, professional, and the car was beautiful. Our group had plenty of room.'],
+  ['Airport transfer', 'Marco Polo Airport', 'Our flight was delayed, but Mihai was there when we arrived. The V-Class was spotless, and the drive was really comfortable.'],
+  ['Dolomites', 'Private day journey', 'We booked a driver for our day in the Dolomites. The timing worked well, and we could just enjoy the stops instead of worrying about the drive.'],
+  ['Prosecco Hills', 'Private day journey', 'The Prosecco Hills were one of our favourite days in Italy. We had time to enjoy the places we visited without feeling rushed.'],
+  ['Group transfer', 'Private transfer', 'The driver arrived on time, and there was plenty of room for all of us and our bags. Everything was straightforward.'],
 ]
 
 export default function ClientStories() {
@@ -15,7 +15,7 @@ export default function ClientStories() {
   const indicator = <>{String(activeIndex + 1).padStart(2, '0')} <span>/ {String(stories.length).padStart(2, '0')}</span></>
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setActiveIndex(index => (index + 1) % stories.length), 5000)
+    const timer = window.setTimeout(() => setActiveIndex(index => (index + 1) % stories.length), 8000)
     return () => window.clearTimeout(timer)
   }, [activeIndex])
 

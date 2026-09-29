@@ -57,8 +57,8 @@ export default function PrivateJourneys({ onBookRoute }: PrivateJourneysProps) {
       <div className="private-journeys-layout">
         <div className="private-journeys-copy">
           <p className="private-journeys-kicker">Private journeys</p>
-          <h2 id="private-journeys-title">Beyond Venice, <em>at your pace.</em></h2>
-          <p className="private-journeys-intro">Travel from Venice to the Prosecco Hills, the Dolomites, the coast or your cruise terminal — with waiting time and return travel arranged around your plans.</p>
+          <h2 id="private-journeys-title">Journeys from Venice.</h2>
+          <p className="private-journeys-intro">Travel to the Prosecco Hills, Dolomites, coast or cruise terminals. Stops and return pick-up can be arranged in advance.</p>
         </div>
 
         <div className="private-journeys-tabs" role="tablist" aria-label="Private journey destinations">

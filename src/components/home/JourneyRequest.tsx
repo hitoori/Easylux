@@ -38,11 +38,7 @@ export default function JourneyRequest() {
       <div className="home-final-request-copy">
         <p className="h2-kicker">Bespoke journey</p>
         <h2 id="home-final-request-title">Tell us where<br /> you want<br /> <em>to go.</em></h2>
-        <p>Need a different route, several stops or a return pick-up? Share your plans for a personalised transfer quote.</p>
-        <div className="home-final-request-note">
-          <p>Your route. Your plans.</p>
-          <p>We’ll check availability and agree the price before you confirm.</p>
-        </div>
+        <p>Share your route, date, number of passengers and any stops. We’ll reply with availability and a price before you confirm.</p>
       </div>
 
       <form className="home-final-request-form" aria-labelledby="journey-request-form-title"
@@ -56,7 +52,7 @@ export default function JourneyRequest() {
           <label>Email
             <input name="email" type="email" autoComplete="email" placeholder="your@email.com" required maxLength={160} />
           </label>
-          <label className="home-final-request-details">Describe your journey
+          <label className="home-final-request-details">Route, date &amp; travel details
             <textarea name="journey" placeholder="Pick-up, destination, date, passengers, luggage and any stops or waiting…" required minLength={10} maxLength={3000} rows={4} />
           </label>
         </div>

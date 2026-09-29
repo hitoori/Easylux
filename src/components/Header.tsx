@@ -102,7 +102,7 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
             onClick={() => navigateAndClose('contact')}
             className="flex shrink-0 items-center gap-2 rounded-sm border border-[rgba(194,154,69,0.72)] bg-[rgba(13,14,15,0.16)] px-5 py-3 text-[12px] font-medium tracking-[0.02em] text-gold-light shadow-[0_4px_18px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-gold hover:text-[var(--background)] 2xl:px-6"
           >
-            Book Your Ride
+            {currentPage === 'home' ? 'Request a Quote' : 'Book Your Ride'}
           </button>
         </div>
 
@@ -112,7 +112,7 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
             onClick={() => navigateAndClose('contact')}
             className="hidden items-center rounded-sm border border-[rgba(194,154,69,0.72)] bg-[rgba(13,14,15,0.16)] px-5 py-3 text-[12px] font-medium tracking-[0.02em] text-gold-light backdrop-blur-[2px] transition-all duration-300 hover:bg-gold hover:text-[var(--background)] sm:flex"
           >
-            Book Your Ride
+            {currentPage === 'home' ? 'Request a Quote' : 'Book Your Ride'}
           </button>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -165,7 +165,7 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
             }}
             className="mt-3 border border-gold py-3 text-[13px] font-medium tracking-[0.02em] text-gold transition-all duration-300 hover:bg-gold hover:text-[var(--background)]"
           >
-            Book Your Ride
+            {currentPage === 'home' ? 'Request a Quote' : 'Book Your Ride'}
           </button>
         </nav>
       </div>

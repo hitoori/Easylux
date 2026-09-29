@@ -102,7 +102,7 @@ const tabs = [
   },
   {
     id: 'tours' as const,
-    label: 'Private Journey',
+    label: 'Day Trips & Longer Routes',
     icon: Compass,
     width: 'sm:w-[220px] lg:w-[250px]',
   },

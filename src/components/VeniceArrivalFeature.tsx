@@ -22,10 +22,10 @@ export default function VeniceArrivalFeature({ onPlanJourney }: VeniceArrivalFea
       <div className="water-route-inner">
         <div className="water-route-copy">
           <p className="water-route-kicker">Venice Water Taxi</p>
-          <h2>Venice by water,<br />connected by road.</h2>
+          <h2><span>Water Taxi and private</span>{' '}<span>car, arranged together.</span></h2>
           <div className="water-route-description">
-            <p>Travel between Venice’s historic centre and Piazzale Roma with one coordinated service. We arrange your Water Taxi and private chauffeur, including journeys in the opposite direction.</p>
-            <p>The day before, you’ll receive the confirmed boarding point and boat number.</p>
+            <p>We arrange a Water Taxi between your Venice address and Piazzale Roma, where a private driver continues your journey. The same service is available in reverse.</p>
+            <p>We’ll send your boarding point and boat number the day before travel.</p>
           </div>
 
           <div className="water-route-rates">
