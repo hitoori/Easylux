@@ -35,9 +35,9 @@ function bookingApi(localEnv) {
 }
 
 export default defineConfig(({ mode }) => ({
-  // GitHub Pages publishes this repository from /Easylux/; local and Sites
-  // builds stay relative to their deployment root.
-  base: process.env.GITHUB_ACTIONS === "true" ? "/Easylux/" : "./",
+  // Cloudflare serves this site from the domain root. Keep the GitHub Pages
+  // subpath only for its separate workflow.
+  base: process.env.GITHUB_ACTIONS === "true" ? "/Easylux/" : "/",
   build: {
     outDir: "dist/client",
   },
