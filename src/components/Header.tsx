@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type MouseEvent } from 'react'
 import { navigationItems } from '../config/navigation'
-import type { Page } from '../types/navigation'
+import { pagePath, type Page } from '../types/navigation'
 import { publicAsset } from '../lib/publicAsset'
 
 const logoImage = publicAsset('images/brand/easy-lux-logo-wordmark.png')
@@ -28,6 +28,12 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
   const navigateAndClose = (page: Page) => {
     setMenuOpen(false)
     navigate(page)
+  }
+
+  const followPageLink = (event: MouseEvent<HTMLAnchorElement>, page: Page) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    event.preventDefault()
+    navigateAndClose(page)
   }
 
   return (
@@ -60,8 +66,9 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
         }`}
       >
         {/* Logo */}
-        <button
-          onClick={() => navigateAndClose('home')}
+        <a
+          href={pagePath('home')}
+          onClick={event => followPageLink(event, 'home')}
           className="group flex h-full shrink-0 items-center text-left"
           aria-label="Easy Lux — Home"
         >
@@ -78,15 +85,16 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
             <span className="block whitespace-nowrap">Your driver</span>
             <span className="block whitespace-nowrap">Around Italy</span>
           </span>
-        </button>
+        </a>
 
         {/* Right-aligned desktop navigation */}
         <div className="ml-auto hidden items-center justify-end gap-5 xl:flex xl:gap-7">
           <nav className="flex items-center gap-5 2xl:gap-6" aria-label="Main navigation">
             {navigationItems.map((link) => (
-              <button
+              <a
                 key={link.page}
-                onClick={() => navigateAndClose(link.page)}
+                href={pagePath(link.page)}
+                onClick={event => followPageLink(event, link.page)}
                 aria-current={currentPage === link.page ? 'page' : undefined}
                 className={`relative whitespace-nowrap py-2.5 text-[12px] tracking-[0.02em] [text-shadow:0_2px_7px_rgba(0,0,0,0.92)] transition-colors duration-200 2xl:text-[13px] ${
                   currentPage === link.page
@@ -95,15 +103,16 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
                 }`}
               >
                 {link.label}
-              </button>
+              </a>
             ))}
           </nav>
-          <button
-            onClick={() => navigateAndClose('contact')}
+          <a
+            href={pagePath('contact')}
+            onClick={event => followPageLink(event, 'contact')}
             className="flex shrink-0 items-center gap-2 rounded-sm border border-[rgba(194,154,69,0.72)] bg-[rgba(13,14,15,0.16)] px-5 py-3 text-[12px] font-medium tracking-[0.02em] text-gold-light shadow-[0_4px_18px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-gold hover:text-[var(--background)] 2xl:px-6"
           >
             {currentPage === 'home' || currentPage === 'services' ? 'Request a Quote' : 'Book Your Ride'}
-          </button>
+          </a>
         </div>
 
         {/* Tablet/mobile actions */}
@@ -138,11 +147,10 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
       >
         <nav className="flex flex-col gap-1 border-t border-[rgba(194,154,69,0.1)] bg-[var(--background-secondary)] px-6 py-4">
           {navigationItems.map((link) => (
-            <button
+            <a
               key={link.page}
-              onClick={() => {
-                navigateAndClose(link.page)
-              }}
+              href={pagePath(link.page)}
+              onClick={event => followPageLink(event, link.page)}
               aria-current={currentPage === link.page ? 'page' : undefined}
               className={`border-b border-[rgba(194,154,69,0.08)] py-3 text-left text-[15px] transition-colors last:border-0 ${
                 currentPage === link.page
@@ -151,16 +159,15 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
               }`}
             >
               {link.label}
-            </button>
+            </a>
           ))}
-          <button
-            onClick={() => {
-              navigateAndClose('contact')
-            }}
+          <a
+            href={pagePath('contact')}
+            onClick={event => followPageLink(event, 'contact')}
             className="mt-3 border border-gold py-3 text-[13px] font-medium tracking-[0.02em] text-gold transition-all duration-300 hover:bg-gold hover:text-[var(--background)]"
           >
             {currentPage === 'home' || currentPage === 'services' ? 'Request a Quote' : 'Book Your Ride'}
-          </button>
+          </a>
         </nav>
       </div>
     </header>

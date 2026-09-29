@@ -13,12 +13,12 @@
 .home-footer-brand p { margin: 0; font-size: 14px; line-height: 1.9; }
 .home-footer h3 { margin: 0 0 24px; color: var(--gold); font: 500 12px/1.5 "Manrope", sans-serif; text-transform: uppercase; letter-spacing: .2em; }
 .home-footer ul { list-style: none; padding: 0; margin: 0; }
-.home-footer nav button {
+.home-footer nav a {
   display: block; min-height: 44px; padding: 9px 0; border: 0; background: none;
   color: var(--text-secondary); font: 400 15px/1.6 "Manrope", sans-serif; text-align: left; cursor: pointer;
 }
 .home-footer a { color: var(--text-secondary); text-decoration: none; }
-.home-footer nav button:hover, .home-footer a:hover { color: var(--gold-hover); }
+.home-footer nav a:hover, .home-footer a:hover { color: var(--gold-hover); }
 .home-footer-contact dl, .home-footer-contact dd { margin: 0; }
 .home-footer-contact dl > div + div { margin-top: 24px; }
 .home-footer-contact dt { margin-bottom: 9px; color: var(--text-muted); font-size: 11px; line-height: 1.6; letter-spacing: .14em; text-transform: uppercase; }
@@ -42,7 +42,7 @@
   .home-footer-brand, .home-footer-contact { grid-column: 1 / -1; }
   .home-footer-logo { margin-top: 0; }
   .home-footer h3 { font-size: 11px; margin-bottom: 18px; }
-  .home-footer nav button { font-size: 14px; }
+  .home-footer nav a { font-size: 14px; }
   .home-footer-bottom { padding: 24px 20px; }
   .home-footer-legal button { padding: 0 16px; font-size: 12px; }
 }

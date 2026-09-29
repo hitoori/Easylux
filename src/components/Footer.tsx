@@ -1,5 +1,6 @@
 import { FacebookLogo, InstagramLogo, TiktokLogo } from '@phosphor-icons/react'
-import type { Page } from '../types/navigation'
+import type { MouseEvent } from 'react'
+import { pagePath, type Page } from '../types/navigation'
 import { company } from '../config/company'
 import './footer.css'
 
@@ -19,14 +20,20 @@ const navigation: { label: string; page: Page }[] = [
 ]
 
 export default function Footer({ navigate }: { navigate: (page: Page) => void }) {
+  const followPageLink = (event: MouseEvent<HTMLAnchorElement>, page: Page) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    event.preventDefault()
+    navigate(page)
+  }
+
   return (
     <footer className="home-footer">
       <div className="home-footer-main">
         <div className="home-footer-brand">
-          <button type="button" className="home-footer-logo" onClick={() => navigate('home')} aria-label="Easy Lux — Home">
+          <a href={pagePath('home')} className="home-footer-logo" onClick={event => followPageLink(event, 'home')} aria-label="Easy Lux — Home">
             <img src={publicAsset('images/brand/easy-lux-logo-wordmark.png')} alt="Easy Lux" width={80} height={88} loading="lazy" />
             <span className="home-footer-tagline">Your driver<br />Around Italy</span>
-          </button>
+          </a>
           <h2>Private Chauffeur</h2>
           <p>Private transfers from Venice across Italy and Europe.<br />Airport pick-ups, hourly chauffeurs and journeys on request.</p>
           <div className="home-footer-social" aria-label="Easy Lux social media">
@@ -38,11 +45,11 @@ export default function Footer({ navigate }: { navigate: (page: Page) => void })
         </div>
         <nav aria-labelledby="home-footer-services">
           <h3 id="home-footer-services">Services</h3>
-          <ul>{services.map((service) => <li key={service}><button type="button" onClick={() => navigate('services')}>{service}</button></li>)}</ul>
+          <ul>{services.map((service) => <li key={service}><a href={pagePath('services')} onClick={event => followPageLink(event, 'services')}>{service}</a></li>)}</ul>
         </nav>
         <nav aria-labelledby="home-footer-navigation">
           <h3 id="home-footer-navigation">Navigation</h3>
-          <ul>{navigation.map(({ label, page }) => <li key={page}><button type="button" onClick={() => navigate(page)}>{label}</button></li>)}</ul>
+          <ul>{navigation.map(({ label, page }) => <li key={page}><a href={pagePath(page)} onClick={event => followPageLink(event, page)}>{label}</a></li>)}</ul>
         </nav>
         <div className="home-footer-contact">
           <h3>Contact</h3>

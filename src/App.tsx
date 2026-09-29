@@ -6,17 +6,19 @@ import Services from './pages/Services'
 import About from './pages/About'
 import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
-import type { Page } from './types/navigation'
+import { pagePath, type Page } from './types/navigation'
 
 const pageIds = new Set<Page>(['home', 'services', 'about', 'faq', 'contact'])
 
-const getPageFromHash = (): Page => {
+const getPageFromLocation = (): Page => {
+  const pathPage = window.location.pathname.replace(/^\/+|\/+$/g, '') as Page
+  if (pageIds.has(pathPage)) return pathPage
   const hashPage = window.location.hash.slice(1) as Page
   return pageIds.has(hashPage) ? hashPage : 'home'
 }
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<Page>(getPageFromHash)
+  const [currentPage, setCurrentPage] = useState<Page>(getPageFromLocation)
 
   useEffect(() => {
     // Home copy is page-specific; retain the existing metadata on other views.
@@ -41,10 +43,13 @@ export default function App() {
               ? 'Answers about booking, prices, pick-ups, luggage and Venice Water Taxi connections.'
               : 'Private chauffeur services and airport transfers across Italy and Europe.',
     )
+    document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute(
+      'href', `https://easyluxtransfer.com${pagePath(currentPage)}`,
+    )
   }, [currentPage])
 
   useEffect(() => {
-    const syncPageFromLocation = () => setCurrentPage(getPageFromHash())
+    const syncPageFromLocation = () => setCurrentPage(getPageFromLocation())
     window.addEventListener('hashchange', syncPageFromLocation)
     window.addEventListener('popstate', syncPageFromLocation)
     return () => {
@@ -55,9 +60,7 @@ export default function App() {
 
   const navigate = (page: Page) => {
     setCurrentPage(page)
-    const nextHash = page === 'home' ? '' : `#${page}`
-    const nextUrl = `${window.location.pathname}${window.location.search}${nextHash}`
-    window.history.pushState({ page }, '', nextUrl)
+    window.history.pushState({ page }, '', pagePath(page))
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
