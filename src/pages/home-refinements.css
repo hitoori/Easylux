@@ -45,7 +45,7 @@
 .home-page .home-closing :is(.booking-process, .client-stories, .home-final-request) {
   padding-inline: var(--home-gutter);
 }
-.home-page [data-home-services] { padding-block: 88px 64px; }
+.home-page [data-home-services] { padding-block: 48px 56px; }
 .home-page [data-home-routes] { padding-block: 80px; }
 .home-page [data-home-vehicle] { padding-block: 80px; }
 .home-page .private-journeys { padding: 60px clamp(20px, 2.4vw, 48px) 68px; }
@@ -58,7 +58,7 @@
   line-height: 1.75;
 }
 .home-page [data-home-services] figcaption { color: var(--text-muted); line-height: 1.6; }
-.home-page .home-service-grid { margin-top: 40px; }
+.home-page .home-service-grid { margin-top: 24px; }
 .home-page .home-service-item {
   min-height: 260px;
   padding-block: 30px;
@@ -122,7 +122,8 @@
   .home-page .hero-photo-controls { gap: 4px; }
   .home-page .hero-photo-controls button { width: 22px; }
   .home-page .hero-photo-controls button[aria-current='true'] { width: 30px; }
-  .home-page [data-home-services] { padding-block: 56px 44px; }
+  .home-page [data-home-services] { padding-block: 32px 40px; }
+  .home-page .home-service-grid { margin-top: 16px; }
   .home-page [data-home-routes] { padding-block: 48px; }
   .home-page [data-home-vehicle] { padding-block: 48px 56px; }
   .home-page .private-journeys { padding-block: 60px 48px; }
@@ -133,7 +134,9 @@
   .home-page .home-service-description { max-width: none; }
   .home-page .home-service-arrow { margin-top: 20px; }
   .home-page .h2-fleet-editorial { gap: 32px; }
+  .home-page .h2-fleet-exterior { display: none; }
   .home-page .h2-fleet-heading { padding: 0 0 28px; }
+  .home-page .h2-fleet-gallery img:first-child { height: auto; }
   .home-page .h2-fleet-benefits { padding: 28px 0 0; }
   .home-page .home-final-request-fields { gap: 22px; }
   .home-page .home-final-request-form { padding: 24px 18px 18px; }
@@ -167,7 +170,7 @@
   line-height: 1.02;
 }
 
-.home-page .h2-hero h1 em { font-style: italic; }
+.home-page .home-hero-mobile-break { display: none; }
 
 .home-page .h2-lead {
   max-width: 660px;
@@ -179,16 +182,9 @@
 .home-page .h2-booking-wrap { bottom: 30px; }
 
 .home-page [data-booking-dock] {
-  min-height: 0 !important;
-  padding: 12px 16px !important;
   border-color: var(--border-gold);
   background: var(--background-secondary) !important;
 }
-
-.home-page .booking-type-tabs [role='tab'] { min-height: 42px; }
-.home-page .booking-type-tabs + div { padding-top: 12px; }
-.home-page .booking-field { min-height: 62px; padding-block: 6px; }
-.home-page [data-booking-dock] button[type='submit'] { min-height: 58px; }
 
 @media (min-width: 761px) and (max-width: 1100px) {
   .home-page .h2-hero-copy { padding-top: clamp(128px, 16vh, 160px); }
@@ -196,7 +192,37 @@
   .home-page .h2-lead { max-width: 590px; }
 }
 
+@media (max-width: 1100px) {
+  .home-page .water-route-visual { display: none; }
+}
+
 @media (max-width: 760px) {
+  .home-page [data-home-hero]::after,
+  .home-page .water-route-section::after {
+    content: '';
+    position: absolute;
+    z-index: 3;
+    inset: auto 0 0;
+    height: clamp(110px, 30vw, 160px);
+    pointer-events: none;
+  }
+  .home-page [data-home-hero]::after {
+    background: linear-gradient(to bottom, transparent, var(--background-secondary));
+  }
+  .home-page .water-route-section::after {
+    z-index: 1;
+    background: linear-gradient(to bottom, transparent, var(--background));
+  }
+  .home-page .water-route-section::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset: 0 0 auto;
+    height: clamp(80px, 24vw, 130px);
+    background: linear-gradient(to bottom, var(--background-secondary), transparent);
+    pointer-events: none;
+  }
+  .home-page .water-route-section { border-bottom: 0; }
   .home-page .h2-hero { padding-bottom: 24px; }
   .home-page .h2-hero-shade {
     background:
@@ -205,10 +231,10 @@
   }
   .home-page .h2-hero-copy { padding-top: 118px; }
   .home-page .h2-hero-copy .h2-kicker { margin-bottom: 16px; font-size: 9px; letter-spacing: .15em; }
-  .home-page .h2-hero h1 { font-size: clamp(32px, 8vw, 36px); line-height: 1.03; }
+  .home-page .h2-hero h1 { font-size: clamp(28px, 8vw, 36px); line-height: 1.03; }
+  .home-page .home-hero-mobile-break { display: initial; }
+  .home-page .home-hero-desktop-break { display: none; }
   .home-page .h2-lead { max-width: 38ch; margin-top: 20px; font-size: 14px; line-height: 1.6; }
-  .home-page .h2-booking-wrap { margin: 32px 16px 0; }
-  .home-page [data-booking-dock] { padding: 10px !important; }
-  .home-page .booking-field { min-height: 56px; }
-  .home-page [data-booking-dock] button[type='submit'] { width: 100%; min-height: 50px; }
+  .home-page .h2-booking-wrap { margin: 56px 16px 0; }
+  .home-page [data-booking-dock] button[type='submit'] { width: 100%; }
 }

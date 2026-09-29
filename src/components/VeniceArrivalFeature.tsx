@@ -31,7 +31,7 @@ export default function VeniceArrivalFeature({ onPlanJourney }: VeniceArrivalFea
           <div className="water-route-rates">
             <div>
               <p>Private car</p>
-              <strong>from €70</strong>
+              <strong>from €80</strong>
             </div>
             <div>
               <p>Water taxi</p>

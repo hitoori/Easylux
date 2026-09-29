@@ -82,7 +82,8 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
     }
 
     flow.classList.add('home-motion-ready')
-    sections[0]?.classList.add('is-visible')
+    const mobileFade = window.matchMedia('(max-width: 760px)').matches
+    if (!mobileFade) sections[0]?.classList.add('is-visible')
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -98,7 +99,8 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
       },
     )
 
-    sections.slice(1).forEach((section) => observer.observe(section))
+    const sectionsToObserve = mobileFade ? sections : sections.slice(1)
+    sectionsToObserve.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
   }, [])
 
@@ -111,13 +113,13 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
       >
         <div className="mx-auto max-w-[1340px]">
           <div className="flex flex-col items-center text-center">
-            <h2 className="font-display text-[48px] font-normal leading-[1.02] text-cream sm:text-[64px] lg:text-[76px]">
+            <h2 className="font-display text-[clamp(44px,13vw,54px)] font-normal leading-[1.02] text-cream sm:text-[68px] lg:text-[80px]">
               Our services
             </h2>
             <button
               type="button"
               onClick={() => navigate('services')}
-              className="group mt-6 flex items-center gap-2 text-[12px] font-medium text-gold transition-colors hover:text-gold-light"
+              className="group mt-4 flex items-center gap-2 text-[12px] font-medium text-gold transition-colors hover:text-gold-light"
             >
               Explore transfer services
               <ArrowRight

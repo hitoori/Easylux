@@ -37,7 +37,7 @@ export default function JourneyRequest() {
     <section className="home-final-request" aria-labelledby="home-final-request-title">
       <div className="home-final-request-copy">
         <p className="h2-kicker">Bespoke journey</p>
-        <h2 id="home-final-request-title">Tell us where<br /> you want<br /> <em>to go.</em></h2>
+        <h2 id="home-final-request-title">Tell us where<br /> you want<br /> <span>to go.</span></h2>
         <p>Share your route, date, number of passengers and any stops. We’ll reply with availability and a price before you confirm.</p>
       </div>
 

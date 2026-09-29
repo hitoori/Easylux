@@ -91,7 +91,11 @@ export default function Home({ navigate }: HomeProps) {
 
         <div className="h2-hero-copy">
           <p className="h2-kicker">PRIVATE CHAUFFEUR SERVICE · VENICE &amp; TREVISO</p>
-          <h1>Private transfers from Venice,<br /><em>across Italy and Europe.</em></h1>
+          <h1>
+            Private transfers from<br className="home-hero-mobile-break" />{' '}
+            Venice,<br className="home-hero-desktop-break" />{' '}
+            <span>across Italy<br className="home-hero-mobile-break" />{' '}and Europe.</span>
+          </h1>
           <p className="h2-lead">Airport pick-ups, city transfers, a chauffeur by the hour and longer journeys.</p>
         </div>
 
