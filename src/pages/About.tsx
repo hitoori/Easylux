@@ -33,22 +33,16 @@ const standards = [
     number: '01',
     title: 'Prepared around you',
     description: 'Your route, timing, passengers and luggage are considered before the journey begins.',
-    photo: `${import.meta.env.BASE_URL}images/about/standard-prepared-around-you.png`,
-    alt: 'Travel details being coordinated on a phone beside a laptop and notebook',
   },
   {
     number: '02',
     title: 'Professional from start to finish',
     description: 'Clear communication, punctual service and personal assistance throughout your transfer.',
-    photo: `${import.meta.env.BASE_URL}images/about/luggage-assistance.jpg`,
-    alt: 'Chauffeur assisting a traveler with luggage beside a car',
   },
   {
     number: '03',
     title: 'Genuine Italian hospitality',
     description: 'A welcoming, attentive approach designed to help you enjoy the journey as much as the destination.',
-    photo: `${import.meta.env.BASE_URL}images/about/standard-italian-hospitality.jpg`,
-    alt: 'Hotel professional welcoming a guest and handing over a room key',
   },
 ]
 
@@ -94,17 +88,15 @@ export default function About({ navigate }: AboutProps) {
       </section>
 
       <section className="ab-standards ab-shell ab-section" aria-labelledby="ab-standards-title">
-        <p className="ab-eyebrow">What guides us</p>
         <h2 id="ab-standards-title">The Easy Lux standard.</h2>
         <div className="ab-standard-list">
           {standards.map(standard => (
-            <article className="ab-standard" key={standard.number}>
+            <article className={`ab-standard${standard.number === '02' ? ' ab-standard-featured' : ''}`} key={standard.number}>
               <span className="ab-standard-number">{standard.number}</span>
               <div className="ab-standard-copy">
                 <h3>{standard.title}</h3>
                 <p>{standard.description}</p>
               </div>
-              <PhotoSlot className={standard.number === '03' ? 'ab-standard-hospitality' : ''} src={standard.photo} alt={standard.alt} ratio="16:5" position="center" />
             </article>
           ))}
         </div>
