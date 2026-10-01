@@ -40,6 +40,7 @@ export default defineConfig(({ mode }) => ({
   base: process.env.GITHUB_ACTIONS === "true" ? "/Easylux/" : "/",
   build: {
     outDir: "dist/client",
+    manifest: true,
   },
   optimizeDeps: {
     include: ["react", "react-dom/client"],

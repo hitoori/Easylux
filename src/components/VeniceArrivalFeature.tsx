@@ -1,3 +1,4 @@
+import OptimizedImage from './OptimizedImage'
 import {
   ArrowRight,
   Boat,
@@ -11,7 +12,7 @@ interface VeniceArrivalFeatureProps {
 export default function VeniceArrivalFeature({ onPlanJourney }: VeniceArrivalFeatureProps) {
   return (
     <section data-home-arrival className="water-route-section home-flow-section">
-      <img
+      <OptimizedImage
         src={publicAsset('images/home/water-taxi/venice-water-taxi.jpg')}
         alt=""
         aria-hidden="true"
@@ -46,7 +47,7 @@ export default function VeniceArrivalFeature({ onPlanJourney }: VeniceArrivalFea
         </div>
       </div>
       <div className="water-route-visual">
-        <img src={publicAsset('images/home/water-taxi/route-map.png')} alt="" aria-hidden="true" className="water-route-map" />
+        <OptimizedImage src={publicAsset('images/home/water-taxi/route-map.png')} alt="" aria-hidden="true" className="water-route-map" />
         <Boat size={38} weight="light" className="water-route-boat" aria-hidden="true" />
         <span className="water-route-label water-route-label-venice">Venice address</span>
         <span className="water-route-label water-route-label-roma">Piazzale Roma</span>

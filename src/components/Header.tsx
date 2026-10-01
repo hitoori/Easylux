@@ -1,4 +1,6 @@
-import { useEffect, useState, type MouseEvent } from 'react'
+import { preloadPage } from '../config/pageLoaders'
+import OptimizedImage from './OptimizedImage'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { navigationItems } from '../config/navigation'
 import { pagePath, type Page } from '../types/navigation'
 import { publicAsset } from '../lib/publicAsset'
@@ -14,13 +16,21 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const elevatedRef = useRef(false)
   useEffect(() => {
-    const updateHeaderState = () => setScrolled(window.scrollY > 64)
+    let frame = 0
+    const readScroll = () => {
+      frame = 0
+      const next = window.scrollY > 64
+      if (next !== elevatedRef.current) { elevatedRef.current = next; setScrolled(next) }
+    }
+    const updateHeaderState = () => { if (!frame) frame = window.requestAnimationFrame(readScroll) }
 
     updateHeaderState()
     window.addEventListener('scroll', updateHeaderState, { passive: true })
 
-    return () => window.removeEventListener('scroll', updateHeaderState)
+    return () => { window.removeEventListener('scroll', updateHeaderState); window.cancelAnimationFrame(frame) }
   }, [])
 
   const headerElevated = scrolled || menuOpen
@@ -38,7 +48,8 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[filter] duration-500 ${
+      onKeyDown={event => { if (event.key === 'Escape') { setMenuOpen(false); menuButtonRef.current?.focus() } }}
+      className={`fixed inset-x-0 top-0 z-50 ${
         headerElevated ? 'drop-shadow-[0_10px_28px_rgba(0,0,0,0.2)]' : ''
       }`}
     >
@@ -72,9 +83,10 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
           className="group flex h-full shrink-0 items-center text-left"
           aria-label="Easy Lux — Home"
         >
-          <img
+          <OptimizedImage
             src={logoImage}
             alt="Easy Lux"
+            loading="eager" sizes="72px"
             className={`translate-y-0.5 object-contain drop-shadow-[0_3px_8px_rgba(0,0,0,0.72)] transition-[width,height,transform] duration-500 group-hover:scale-[1.03] ${
               headerElevated
                 ? 'h-[60px] w-[60px] sm:h-[60px] sm:w-[60px] lg:h-[62px] lg:w-[62px]'
@@ -88,15 +100,17 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
         </a>
 
         {/* Right-aligned desktop navigation */}
-        <div className="ml-auto hidden items-center justify-end gap-5 xl:flex xl:gap-7">
-          <nav className="flex items-center gap-5 2xl:gap-6" aria-label="Main navigation">
+        <div className="ml-auto hidden items-center justify-end gap-7 xl:flex 2xl:gap-10">
+          <nav className="flex items-center gap-7 2xl:gap-10" aria-label="Main navigation">
             {navigationItems.map((link) => (
               <a
                 key={link.page}
                 href={pagePath(link.page)}
+                onPointerEnter={() => preloadPage(link.page)}
+                onFocus={() => preloadPage(link.page)}
                 onClick={event => followPageLink(event, link.page)}
                 aria-current={currentPage === link.page ? 'page' : undefined}
-                className={`relative whitespace-nowrap py-2.5 text-[12px] tracking-[0.02em] [text-shadow:0_2px_7px_rgba(0,0,0,0.92)] transition-colors duration-200 2xl:text-[13px] ${
+                className={`relative whitespace-nowrap py-3.5 text-[16px] tracking-[0.025em] [text-shadow:0_2px_7px_rgba(0,0,0,0.92)] transition-colors duration-200 2xl:text-[18px] ${
                   currentPage === link.page
                     ? 'text-cream after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gold'
                     : 'text-[rgba(236,230,219,0.68)] hover:text-cream'
@@ -109,7 +123,7 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
           <a
             href={pagePath('contact')}
             onClick={event => followPageLink(event, 'contact')}
-            className="flex shrink-0 items-center gap-2 rounded-sm border border-[rgba(194,154,69,0.72)] bg-[rgba(13,14,15,0.16)] px-5 py-3 text-[12px] font-medium tracking-[0.02em] text-gold-light shadow-[0_4px_18px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-gold hover:text-[var(--background)] 2xl:px-6"
+            className="flex shrink-0 items-center gap-2 rounded-sm border border-[rgba(194,154,69,0.72)] bg-[rgba(13,14,15,0.16)] px-7 py-4 text-[16px] font-medium tracking-[0.02em] text-gold-light shadow-[0_4px_18px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-gold hover:text-[var(--background)] 2xl:px-8 2xl:py-[18px] 2xl:text-[17px]"
           >
             {currentPage === 'home' || currentPage === 'services' ? 'Request a Quote' : 'Book Your Ride'}
           </a>
@@ -118,7 +132,8 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
         {/* Tablet/mobile actions */}
         <div className="ml-auto flex items-center justify-end xl:hidden">
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
+            ref={menuButtonRef}
+            onClick={() => setMenuOpen(value => !value)}
             className="flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-1.5 rounded-sm p-2.5"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
@@ -142,17 +157,19 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
         id="mobile-navigation"
         inert={!menuOpen}
         className={`relative z-10 overflow-hidden transition-all duration-300 xl:hidden ${
-          menuOpen ? 'max-h-[500px]' : 'max-h-0'
+          menuOpen ? 'max-h-[calc(100dvh-72px)] overflow-y-auto' : 'max-h-0'
         }`}
       >
-        <nav className="flex flex-col gap-1 border-t border-[rgba(194,154,69,0.1)] bg-[var(--background-secondary)] px-6 py-4">
+        <nav className="flex flex-col gap-3 border-t border-[rgba(194,154,69,0.1)] bg-[var(--background-secondary)] px-6 py-6">
           {navigationItems.map((link) => (
             <a
               key={link.page}
               href={pagePath(link.page)}
-              onClick={event => followPageLink(event, link.page)}
+              onPointerEnter={() => preloadPage(link.page)}
+                onFocus={() => preloadPage(link.page)}
+                onClick={event => followPageLink(event, link.page)}
               aria-current={currentPage === link.page ? 'page' : undefined}
-              className={`border-b border-[rgba(194,154,69,0.08)] py-3 text-left text-[15px] transition-colors last:border-0 ${
+              className={`border-b border-[rgba(194,154,69,0.08)] py-5 text-left text-[20px] transition-colors last:border-0 ${
                 currentPage === link.page
                   ? 'text-gold'
                   : 'text-[rgba(200,192,181,0.7)] hover:text-cream'
@@ -164,7 +181,7 @@ export default function Header({ currentPage, navigate }: HeaderProps) {
           <a
             href={pagePath('contact')}
             onClick={event => followPageLink(event, 'contact')}
-            className="mt-3 border border-gold py-3 text-[13px] font-medium tracking-[0.02em] text-gold transition-all duration-300 hover:bg-gold hover:text-[var(--background)]"
+            className="mt-5 border border-gold py-5 text-[16px] font-medium tracking-[0.02em] text-gold transition-all duration-300 hover:bg-gold hover:text-[var(--background)]"
           >
             {currentPage === 'home' || currentPage === 'services' ? 'Request a Quote' : 'Book Your Ride'}
           </a>

@@ -1,3 +1,4 @@
+import OptimizedImage from '../OptimizedImage'
 import { useState } from 'react'
 import { cruiseRoutes, priceLabel } from './serviceData'
 import type { RequestJourney } from './ServiceRoutes'
@@ -16,7 +17,7 @@ export default function CruiseTransfer({ onRequest }: { onRequest: RequestJourne
         </div>
       </div>
       <figure className="ct-cruise-photo">
-        <img src={publicAsset('images/services/cruise/cruise-port-transfer-ship.jpg')} alt="Cruise ship docked at port at sunset" />
+        <OptimizedImage src={publicAsset('images/services/cruise/cruise-port-transfer-ship.jpg')} alt="Cruise ship docked at port at sunset" />
       </figure>
       <div className="ct-journey" role="group" aria-label="Cruise transfer details">
         <div className="ct-journey-detail"><span className="ct-route-label">FROM</span><span className="ct-route-place">Your hotel, airport or address</span></div>

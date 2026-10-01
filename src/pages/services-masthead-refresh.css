@@ -214,7 +214,7 @@
   background:
     linear-gradient(90deg, rgba(13, 14, 15, .96) 0%, rgba(13, 14, 15, .88) 29%, rgba(13, 14, 15, .52) 48%, rgba(13, 14, 15, .08) 100%),
     linear-gradient(0deg, #0d0e0f 0%, rgba(13, 14, 15, .08) 65%, rgba(13, 14, 15, .06) 100%),
-    url('/images/services/cruise/cruise-port-transfer-ship.jpg') center 70% / cover;
+    url('/images/services/cruise/cruise-port-transfer-ship.webp') center 70% / cover;
 }
 
 .services-new-page.services-experience #service-cruise .ct-shell {
@@ -506,7 +506,7 @@
     background-image:
       linear-gradient(90deg, rgba(13, 14, 15, .84), rgba(13, 14, 15, .34)),
       linear-gradient(0deg, #0d0e0f 0%, rgba(13, 14, 15, .1) 75%),
-      url('/images/services/cruise/cruise-port-transfer-ship.jpg');
+      url('/images/services/cruise/cruise-port-transfer-ship.webp');
     background-size: cover;
   }
 
@@ -537,7 +537,7 @@
     background-image:
       linear-gradient(90deg, rgba(13, 14, 15, .91), rgba(13, 14, 15, .38)),
       linear-gradient(0deg, #0d0e0f 0%, rgba(13, 14, 15, .08) 72%),
-      url('/images/services/cruise/cruise-port-transfer-ship.jpg');
+      url('/images/services/cruise/cruise-port-transfer-ship.webp');
   }
 
   .services-new-page.services-experience #service-cruise .ct-intro { gap: 18px; padding-bottom: 18px; }

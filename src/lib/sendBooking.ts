@@ -5,6 +5,7 @@ export interface BookingPayload {
   name: string
   email: string
   phone?: string
+  preferredContact?: 'email' | 'whatsapp'
   details: string
   consent: boolean
   website?: string

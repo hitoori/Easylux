@@ -88,3 +88,18 @@ The Home booking, Home quote, Services quote, and Contact forms use `/api/bookin
 6. After domain verification, submit a test request using an email you own. Confirm that the client receives the acknowledgement and the company Gmail inbox receives the order. Check spam and Resend delivery logs if either is missing.
 
 The Home forms use a required customer email to send the acknowledgement. All email delivery runs on the server, and failures are shown without a false success message.
+
+
+## Frontend assets, SEO and privacy preferences
+
+Photographs are published as responsive WebP files. Editable originals are kept in `assets/source-images` outside the public directory. `src/config/image-manifest.json` connects original names to their optimized counterparts. `OptimizedImage` adds dimensions, lazy loading and responsive sources; important first-screen photos load eagerly. To regenerate images after replacing originals, run `python3 scripts/optimize-images.py` with Pillow available.
+
+Fonts are self-hosted in `public/fonts` with their OFL licenses. `npm run build` also pre-renders all six pages into HTML with page-specific titles, descriptions, canonical URLs and social previews. Other pages load as separate JavaScript/CSS chunks. Production route styles are included in the generated HTML to avoid an unstyled first render.
+
+Home photographs and client stories advance every eight seconds with no visible pause buttons. Autoplay stops outside the viewport, in hidden tabs, for keyboard focus and when reduced motion is requested; hovering does not stop it. Manual navigation remains available, and Private Journey details stay on the selected destination while photographs rotate.
+
+`useScrollReveal` shares one-time section entrances across the pages: 520ms opacity/translation transitions, with short staggered column entrances. Already-visible content and keyboard-focused controls remain immediately available. Without JavaScript, IntersectionObserver, or with reduced motion enabled, page content remains visible. Existing column transforms, responsive opacity and sticky navigation are preserved. The heading entrances follow the Services masthead rhythm; page navigation retains the current view until the destination commits, then resolves any requested section scroll.
+
+Google Places address suggestions are optional and disabled until the visitor allows them. A themed privacy banner appears on the first visit whether or not `VITE_GOOGLE_MAPS_API_KEY` configures that optional service. Accept all and Essential only both save a choice; without a configured service, neither enables tracking. Rejecting suggestions leaves manual address entry available. Cookie settings in the footer allow the visitor to change the choice. Consent preferences are stored locally for 180 days; withdrawing an already-loaded Google service refreshes the page. No analytics or advertising trackers are installed. The combined Privacy & Cookies notice is at `/cookies`.
+
+Form-data handling and the complete company privacy/booking terms remain a separate release task. Confirm the controller's legal identity and processing/retention details before publishing those documents. Performance and consent behavior should also be checked on the deployed domain, where hosting settings or later integrations may differ from localhost.

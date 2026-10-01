@@ -1,0 +1,867 @@
+{
+  "images/brand/easy-lux-logo-wordmark.png": {
+    "src": "images/brand/easy-lux-logo-wordmark.webp",
+    "width": 192,
+    "height": 192,
+    "variants": [
+      {
+        "src": "images/brand/easy-lux-logo-wordmark.webp",
+        "width": 192
+      }
+    ]
+  },
+  "images/brand/easy-lux-logo-icon.png": {
+    "src": "images/brand/easy-lux-logo-icon.webp",
+    "width": 192,
+    "height": 192,
+    "variants": [
+      {
+        "src": "images/brand/easy-lux-logo-icon.webp",
+        "width": 192
+      }
+    ]
+  },
+  "images/shared/private-van-passenger-cabin.png": {
+    "src": "images/shared/private-van-passenger-cabin.webp",
+    "width": 1858,
+    "height": 846,
+    "variants": [
+      {
+        "src": "images/shared/private-van-passenger-cabin-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/shared/private-van-passenger-cabin-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/shared/private-van-passenger-cabin-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/shared/private-van-passenger-cabin.webp",
+        "width": 1858
+      }
+    ]
+  },
+  "images/about/personal-chauffeur-service.png": {
+    "src": "images/about/personal-chauffeur-service.webp",
+    "width": 1920,
+    "height": 733,
+    "variants": [
+      {
+        "src": "images/about/personal-chauffeur-service-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/about/personal-chauffeur-service-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/about/personal-chauffeur-service-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/about/personal-chauffeur-service.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/about/story-private-journey.png": {
+    "src": "images/about/story-private-journey.webp",
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "images/about/story-private-journey-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/about/story-private-journey-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/about/story-private-journey-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/about/story-private-journey.webp",
+        "width": 1448
+      }
+    ]
+  },
+  "images/about/dolomites-where-we-operate.jpg": {
+    "src": "images/about/dolomites-where-we-operate.webp",
+    "width": 1920,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "images/about/dolomites-where-we-operate-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/about/dolomites-where-we-operate-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/about/dolomites-where-we-operate-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/about/dolomites-where-we-operate.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/about/car-door.jpg": {
+    "src": "images/about/car-door.webp",
+    "width": 1282,
+    "height": 1920,
+    "variants": [
+      {
+        "src": "images/about/car-door-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/about/car-door-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/about/car-door-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/about/car-door.webp",
+        "width": 1282
+      }
+    ]
+  },
+  "images/about/family-airport-arrival.png": {
+    "src": "images/about/family-airport-arrival.webp",
+    "width": 1774,
+    "height": 887,
+    "variants": [
+      {
+        "src": "images/about/family-airport-arrival-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/about/family-airport-arrival-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/about/family-airport-arrival-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/about/family-airport-arrival.webp",
+        "width": 1774
+      }
+    ]
+  },
+  "images/about/comfortable-vehicle.png": {
+    "src": "images/about/comfortable-vehicle.webp",
+    "width": 1586,
+    "height": 992,
+    "variants": [
+      {
+        "src": "images/about/comfortable-vehicle-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/about/comfortable-vehicle-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/about/comfortable-vehicle-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/about/comfortable-vehicle.webp",
+        "width": 1586
+      }
+    ]
+  },
+  "images/about/airport-transfer-van.png": {
+    "src": "images/about/airport-transfer-van.webp",
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "images/about/airport-transfer-van-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/about/airport-transfer-van-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/about/airport-transfer-van-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/about/airport-transfer-van.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "images/services/venice-dolomites-transfer.png": {
+    "src": "images/services/venice-dolomites-transfer.webp",
+    "width": 1920,
+    "height": 640,
+    "variants": [
+      {
+        "src": "images/services/venice-dolomites-transfer-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/services/venice-dolomites-transfer-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/services/venice-dolomites-transfer-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/services/venice-dolomites-transfer.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/home/private-journeys/adriatic-coast-beach-aerial.jpg": {
+    "src": "images/home/private-journeys/adriatic-coast-beach-aerial.webp",
+    "width": 1920,
+    "height": 1439,
+    "variants": [
+      {
+        "src": "images/home/private-journeys/adriatic-coast-beach-aerial-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/private-journeys/adriatic-coast-beach-aerial-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/private-journeys/adriatic-coast-beach-aerial-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/private-journeys/adriatic-coast-beach-aerial.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/home/private-journeys/dolomites-mountain-landscape.jpg": {
+    "src": "images/home/private-journeys/dolomites-mountain-landscape.webp",
+    "width": 1920,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "images/home/private-journeys/dolomites-mountain-landscape-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/private-journeys/dolomites-mountain-landscape-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/private-journeys/dolomites-mountain-landscape-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/private-journeys/dolomites-mountain-landscape.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/home/private-journeys/prosecco-hills.jpg": {
+    "src": "images/home/private-journeys/prosecco-hills.webp",
+    "width": 1920,
+    "height": 1281,
+    "variants": [
+      {
+        "src": "images/home/private-journeys/prosecco-hills-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/private-journeys/prosecco-hills-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/private-journeys/prosecco-hills-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/private-journeys/prosecco-hills.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/home/private-journeys/cruise-ship-at-terminal.jpg": {
+    "src": "images/home/private-journeys/cruise-ship-at-terminal.webp",
+    "width": 1920,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "images/home/private-journeys/cruise-ship-at-terminal-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/private-journeys/cruise-ship-at-terminal-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/private-journeys/cruise-ship-at-terminal-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/private-journeys/cruise-ship-at-terminal.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/home/water-taxi/route-map.png": {
+    "src": "images/home/water-taxi/route-map.webp",
+    "width": 1659,
+    "height": 948,
+    "variants": [
+      {
+        "src": "images/home/water-taxi/route-map.webp",
+        "width": 1659
+      }
+    ]
+  },
+  "images/home/water-taxi/venice-water-taxi.jpg": {
+    "src": "images/home/water-taxi/venice-water-taxi.webp",
+    "width": 1920,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "images/home/water-taxi/venice-water-taxi-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/water-taxi/venice-water-taxi-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/water-taxi/venice-water-taxi-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/water-taxi/venice-water-taxi.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/home/vehicle/black-private-van-venice.png": {
+    "src": "images/home/vehicle/black-private-van-venice.webp",
+    "width": 1122,
+    "height": 1402,
+    "variants": [
+      {
+        "src": "images/home/vehicle/black-private-van-venice-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/vehicle/black-private-van-venice-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/vehicle/black-private-van-venice.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "images/home/vehicle/chauffeur-pickup.jpg": {
+    "src": "images/home/vehicle/chauffeur-pickup.webp",
+    "width": 720,
+    "height": 960,
+    "variants": [
+      {
+        "src": "images/home/vehicle/chauffeur-pickup-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/vehicle/chauffeur-pickup.webp",
+        "width": 720
+      }
+    ]
+  },
+  "images/home/vehicle/chauffeur-luggage-assistance.png": {
+    "src": "images/home/vehicle/chauffeur-luggage-assistance.webp",
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "images/home/vehicle/chauffeur-luggage-assistance-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/vehicle/chauffeur-luggage-assistance-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/vehicle/chauffeur-luggage-assistance-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/vehicle/chauffeur-luggage-assistance.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "images/home/hero/venice-grand-canal.jpg": {
+    "src": "images/home/hero/venice-grand-canal.webp",
+    "width": 1920,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "images/home/hero/venice-grand-canal-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/hero/venice-grand-canal-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/hero/venice-grand-canal-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/hero/venice-grand-canal.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/home/hero/dolomites-green-valley.jpg": {
+    "src": "images/home/hero/dolomites-green-valley.webp",
+    "width": 1920,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "images/home/hero/dolomites-green-valley-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/hero/dolomites-green-valley-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/hero/dolomites-green-valley-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/hero/dolomites-green-valley.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/home/hero/lake-como-boat.jpg": {
+    "src": "images/home/hero/lake-como-boat.webp",
+    "width": 1920,
+    "height": 1354,
+    "variants": [
+      {
+        "src": "images/home/hero/lake-como-boat-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/hero/lake-como-boat-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/hero/lake-como-boat-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/hero/lake-como-boat.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/home/hero/sicily-coast.jpg": {
+    "src": "images/home/hero/sicily-coast.webp",
+    "width": 1920,
+    "height": 1281,
+    "variants": [
+      {
+        "src": "images/home/hero/sicily-coast-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/hero/sicily-coast-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/hero/sicily-coast-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/hero/sicily-coast.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/home/hero/dolomites-cave-peaks.jpg": {
+    "src": "images/home/hero/dolomites-cave-peaks.webp",
+    "width": 1920,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "images/home/hero/dolomites-cave-peaks-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/hero/dolomites-cave-peaks-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/hero/dolomites-cave-peaks-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/hero/dolomites-cave-peaks.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/home/hero/alpine-lakeside-cabin.jpg": {
+    "src": "images/home/hero/alpine-lakeside-cabin.webp",
+    "width": 1920,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "images/home/hero/alpine-lakeside-cabin-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/hero/alpine-lakeside-cabin-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/hero/alpine-lakeside-cabin-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/hero/alpine-lakeside-cabin.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/home/hero/venice-canal-boats.jpg": {
+    "src": "images/home/hero/venice-canal-boats.webp",
+    "width": 1920,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "images/home/hero/venice-canal-boats-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/home/hero/venice-canal-boats-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/home/hero/venice-canal-boats-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/home/hero/venice-canal-boats.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/services/hourly/several-stops-chauffeur-panorama.jpg": {
+    "src": "images/services/hourly/several-stops-chauffeur-panorama.webp",
+    "width": 1920,
+    "height": 616,
+    "variants": [
+      {
+        "src": "images/services/hourly/several-stops-chauffeur-panorama-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/services/hourly/several-stops-chauffeur-panorama-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/services/hourly/several-stops-chauffeur-panorama-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/services/hourly/several-stops-chauffeur-panorama.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/services/water-taxi/venice-lagoon-water-taxi.jpg": {
+    "src": "images/services/water-taxi/venice-lagoon-water-taxi.webp",
+    "width": 1920,
+    "height": 1440,
+    "variants": [
+      {
+        "src": "images/services/water-taxi/venice-lagoon-water-taxi-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/services/water-taxi/venice-lagoon-water-taxi-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/services/water-taxi/venice-lagoon-water-taxi-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/services/water-taxi/venice-lagoon-water-taxi.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/services/water-taxi/arriving-mobile-map-v2.jpg": {
+    "src": "images/services/water-taxi/venice-water-taxi-arrival-route-mobile.webp",
+    "width": 1339,
+    "height": 1175,
+    "variants": [
+      {
+        "src": "images/services/water-taxi/venice-water-taxi-arrival-route-mobile.webp",
+        "width": 1339
+      }
+    ]
+  },
+  "images/services/water-taxi/leaving-mobile-map-v2.jpg": {
+    "src": "images/services/water-taxi/venice-water-taxi-departure-route-mobile.webp",
+    "width": 1338,
+    "height": 1175,
+    "variants": [
+      {
+        "src": "images/services/water-taxi/venice-water-taxi-departure-route-mobile.webp",
+        "width": 1338
+      }
+    ]
+  },
+  "images/services/water-taxi/arriving-wide-map.png": {
+    "src": "images/services/water-taxi/venice-water-taxi-arrival-route.webp",
+    "width": 1920,
+    "height": 768,
+    "variants": [
+      {
+        "src": "images/services/water-taxi/venice-water-taxi-arrival-route.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/services/water-taxi/leaving-wide-map.png": {
+    "src": "images/services/water-taxi/venice-water-taxi-departure-route.webp",
+    "width": 1920,
+    "height": 768,
+    "variants": [
+      {
+        "src": "images/services/water-taxi/venice-water-taxi-departure-route.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/services/cruise/cruise-port-transfer-ship.jpg": {
+    "src": "images/services/cruise/cruise-port-transfer-ship.webp",
+    "width": 1920,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "images/services/cruise/cruise-port-transfer-ship-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/services/cruise/cruise-port-transfer-ship-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/services/cruise/cruise-port-transfer-ship-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/services/cruise/cruise-port-transfer-ship.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "images/services/cruise/private-cruise-transfer.jpg": {
+    "src": "images/services/cruise/private-cruise-transfer.webp",
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "images/services/cruise/private-cruise-transfer-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/services/cruise/private-cruise-transfer-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/services/cruise/private-cruise-transfer-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/services/cruise/private-cruise-transfer.webp",
+        "width": 1448
+      }
+    ]
+  },
+  "images/services/europe/italy-europe-chauffeur.jpg": {
+    "src": "images/services/europe/italy-europe-chauffeur.webp",
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "images/services/europe/italy-europe-chauffeur-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/services/europe/italy-europe-chauffeur-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/services/europe/italy-europe-chauffeur-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/services/europe/italy-europe-chauffeur.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "images/services/europe/italy-europe-route-map.png": {
+    "src": "images/services/europe/italy-europe-route-map.webp",
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "images/services/europe/italy-europe-route-map.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "images/services/seaside/adriatic-coast.jpg": {
+    "src": "images/services/seaside/adriatic-coast.webp",
+    "width": 1800,
+    "height": 1354,
+    "variants": [
+      {
+        "src": "images/services/seaside/adriatic-coast-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/services/seaside/adriatic-coast-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/services/seaside/adriatic-coast-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/services/seaside/adriatic-coast.webp",
+        "width": 1800
+      }
+    ]
+  },
+  "images/services/airport/venice-airport-change.jpeg": {
+    "src": "images/services/airport/airport-terminal-sign.webp",
+    "width": 900,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "images/services/airport/airport-terminal-sign-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/services/airport/airport-terminal-sign.webp",
+        "width": 900
+      }
+    ]
+  },
+  "images/services/airport/venice-airport-arrivals.jpeg": {
+    "src": "images/services/airport/venice-airport-arrivals.webp",
+    "width": 900,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "images/services/airport/venice-airport-arrivals-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/services/airport/venice-airport-arrivals.webp",
+        "width": 900
+      }
+    ]
+  },
+  "images/services/airport/journeys/to-the-airport.jpg": {
+    "src": "images/services/airport/journeys/airport-departures-sign.webp",
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "images/services/airport/journeys/airport-departures-sign-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/services/airport/journeys/airport-departures-sign-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/services/airport/journeys/airport-departures-sign-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/services/airport/journeys/airport-departures-sign.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "images/services/airport/journeys/from-the-airport.jpg": {
+    "src": "images/services/airport/journeys/airport-arrivals-sign.webp",
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "images/services/airport/journeys/airport-arrivals-sign-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/services/airport/journeys/airport-arrivals-sign-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/services/airport/journeys/airport-arrivals-sign-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/services/airport/journeys/airport-arrivals-sign.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "images/services/airport/journeys/address-to-address.jpg": {
+    "src": "images/services/airport/journeys/chauffeur-loading-luggage.webp",
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "images/services/airport/journeys/chauffeur-loading-luggage-640w.webp",
+        "width": 640
+      },
+      {
+        "src": "images/services/airport/journeys/chauffeur-loading-luggage-960w.webp",
+        "width": 960
+      },
+      {
+        "src": "images/services/airport/journeys/chauffeur-loading-luggage-1280w.webp",
+        "width": 1280
+      },
+      {
+        "src": "images/services/airport/journeys/chauffeur-loading-luggage.webp",
+        "width": 1448
+      }
+    ]
+  }
+}

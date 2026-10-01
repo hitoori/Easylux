@@ -1,3 +1,4 @@
+import OptimizedImage from '../OptimizedImage'
 import { useState } from 'react'
 import { mountainRoutes, priceLabel } from './serviceData'
 import type { RequestJourney } from './ServiceRoutes'
@@ -13,7 +14,7 @@ export default function MountainsTransfer({ onRequest }: { onRequest: RequestJou
     <div className="mt-shell">
       <p className="mt-eyebrow">PRIVATE MOUNTAIN TRANSFERS</p>
       <h2 id="mountains-title">From the city to the<br className="mt-mobile-title-break" /> mountains.</h2>
-      <img className="mt-panorama" src={publicAsset('images/services/venice-dolomites-transfer.png')} alt="Mercedes chauffeur vehicle between Venice and the Dolomite mountains" width={2172} height={724} loading="lazy" decoding="async" />
+      <OptimizedImage className="mt-panorama" src={publicAsset('images/services/venice-dolomites-transfer.png')} alt="Mercedes chauffeur vehicle between Venice and the Dolomite mountains" width={2172} height={724} loading="lazy" decoding="async" />
       <div className="mt-information">
         <p className="mt-description">Private transfers from Venice to Cortina d’Ampezzo, Corvara, Canazei and other Dolomites destinations.</p>
         <button type="button" className="mt-request mt-disclosure" aria-expanded={routesOpen} aria-controls="dolomites-route-prices" onClick={() => { setRoutesOpen(current => !current); setVisibleCount(3) }}>{routesOpen ? 'HIDE ROUTES & PRICES' : 'VIEW ROUTES & PRICES'} <span aria-hidden="true">{routesOpen ? '↑' : '↓'}</span></button>

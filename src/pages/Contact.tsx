@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import OptimizedImage from '../components/OptimizedImage'
+import { useRef, useState } from 'react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import { EnvelopeSimple, Phone, WhatsappLogo, MapPin, AirplaneTilt, Boat, Mountains, GlobeHemisphereWest, Anchor, Waves } from '@phosphor-icons/react'
 import { ArrowRight, Clock, Message, Check, Plus } from '../components/PikaIcons'
-import { flushSync } from 'react-dom'
 import { serviceOptions } from '../components/services/serviceData'
 import type { Page } from '../types/navigation'
 import { company } from '../config/company'
@@ -31,7 +32,9 @@ const contactChannels = [
   { label: 'Email', links: [{ value: company.email, href: `mailto:${company.email}` }], Icon: EnvelopeSimple, note: "We'll reply as soon as possible" },
 ]
 
-export default function Contact({ navigate }: { navigate: (page: Page) => void }) {
+export default function Contact({ navigate }: { navigate: (page: Page, sectionId?: string) => void }) {
+  const pageRef = useRef<HTMLDivElement>(null)
+  useScrollReveal(pageRef, '.ct-concierge > *, .ct-information > article, .ct-services-heading, .ct-services-marquee, .ct-faq')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -43,9 +46,7 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
   const [requestCode, setRequestCode] = useState('')
   const [openAnswer, setOpenAnswer] = useState<number | null>(null)
   const viewService = (id: string) => {
-    flushSync(() => navigate('services'))
-    const section = document.getElementById(`service-${id}`)
-    if (section) window.scrollTo({ top: section.getBoundingClientRect().top + window.scrollY - 148, behavior: 'instant' })
+    navigate('services', `service-${id}`)
   }
   const submitContact = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -60,9 +61,9 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
   }
 
   return (
-    <div className="contact-page">
+    <div ref={pageRef} className="contact-page">
       <header className="ct-hero" aria-labelledby="contact-title">
-        <img className="ct-hero-image" src={publicAsset('images/home/hero/venice-grand-canal.jpg')} alt="" fetchPriority="high" />
+        <OptimizedImage className="ct-hero-image" src={publicAsset('images/home/hero/venice-grand-canal.jpg')} alt="" fetchPriority="high" />
         <div className="ct-shell ct-hero-content">
           <div>
             <p className="ct-kicker">Contact Easy Lux</p>
@@ -125,7 +126,7 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
           </form>
         </div>
 
-        <aside className="ct-contact-panel" aria-labelledby="ct-direct-title">
+        <aside className="ct-contact-panel" data-reveal-delay="70" aria-labelledby="ct-direct-title">
           <div>
             <h2 id="ct-direct-title">Speak with us directly</h2>
           </div>
@@ -138,7 +139,7 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
           </div>
 
           <div className="ct-area">
-            <img src={publicAsset('images/home/water-taxi/venice-water-taxi.jpg')} alt="" loading="lazy" />
+            <OptimizedImage src={publicAsset('images/home/water-taxi/venice-water-taxi.jpg')} alt="" loading="lazy" />
             <div><span><MapPin size={17} weight="light" aria-hidden="true" />Our operational base</span>
               <h3>Venice, Italy</h3>
               <p>{company.serviceArea}</p>
@@ -157,7 +158,7 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
             ['The extra details', 'Child seats, planned stops or any special requests.'],
           ].map(([title, text]) => <li key={title}><Check size={16} aria-hidden="true" /><div><h3>{title}</h3><p>{text}</p></div></li>)}</ul>
         </article>
-        <article className="ct-info-featured">
+        <article className="ct-info-featured" data-reveal-delay="70">
           <p className="ct-info-label">The next steps</p><h2>From request to pickup</h2>
           <ol className="ct-info-list ct-info-timeline">{[
             ['Tell us your plans', 'Fill in the form or contact us directly.'],
@@ -165,7 +166,7 @@ export default function Contact({ navigate }: { navigate: (page: Page) => void }
             ['Meet your driver', 'Your meeting instructions are confirmed before travel.'],
           ].map(([title, text], i) => <li key={title}><span className="ct-info-number">0{i + 1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
         </article>
-        <article>
+        <article data-reveal-delay="140">
           <p className="ct-info-label">Travel details</p><h2>Good to know</h2>
           <ul className="ct-info-list">{[
             ['Arriving by air', 'Share your flight number so we can follow your arrival.'],

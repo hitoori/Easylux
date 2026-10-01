@@ -274,3 +274,12 @@
   .home-page .h2-booking-wrap { margin: 56px 16px 0; }
   .home-page [data-booking-dock] button[type='submit'] { width: 100%; }
 }
+
+/* Opacity-only photography transitions keep scrolling and inputs responsive. */
+.home-page .hero-slide { width: 100%; height: 100%; object-fit: cover; z-index: 1; transition: opacity 900ms cubic-bezier(.22,1,.36,1); }
+.home-page .hero-slide.active { z-index: 0; }
+.home-page .h2-hero-shade { z-index: 2; }
+.home-page .h2-hero-copy,.home-page .h2-booking-wrap { z-index: 3; }
+.private-journeys-photo-caption { position: absolute; z-index: 4; top: 20px; left: 20px; padding: 7px 12px; background: rgba(13,14,15,.7); font-size: 12px; color: var(--text-primary); }
+.home-page .client-stories-stage figure { animation-duration: 450ms; }
+@media(prefers-reduced-motion:reduce) { .home-page .hero-slide { transition: none; } }

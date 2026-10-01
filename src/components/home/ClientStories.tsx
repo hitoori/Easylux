@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useRef } from 'react'
+import { useCarousel } from '../../hooks/useCarousel'
 import { ArrowLeft, ArrowRight } from '@phosphor-icons/react'
 
 const stories = [
@@ -9,18 +10,15 @@ const stories = [
 ]
 
 export default function ClientStories() {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const sectionRef = useRef<HTMLElement>(null)
+  const carousel = useCarousel(stories.length, 8000, sectionRef)
+  const activeIndex = carousel.activeIndex
   const [name, place, quote] = stories[activeIndex]
-  const move = (direction: number) => setActiveIndex(index => (index + direction + stories.length) % stories.length)
+  const move = (direction: number) => { void carousel.select((activeIndex + direction + stories.length) % stories.length) }
   const indicator = <>{String(activeIndex + 1).padStart(2, '0')} <span>/ {String(stories.length).padStart(2, '0')}</span></>
 
-  useEffect(() => {
-    const timer = window.setTimeout(() => setActiveIndex(index => (index + 1) % stories.length), 8000)
-    return () => window.clearTimeout(timer)
-  }, [activeIndex])
-
   return (
-    <section className="h2-testimonials client-stories" aria-labelledby="client-stories-title">
+    <section ref={sectionRef} {...carousel.interactionProps} className="h2-testimonials client-stories" aria-labelledby="client-stories-title">
       <div className="home-flow-section client-stories-content">
         <header className="client-stories-heading">
           <div>

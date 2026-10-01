@@ -1,4 +1,6 @@
+import OptimizedImage from '../components/OptimizedImage'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import type { Page } from '../types/navigation'
 import { serviceOptions, type JourneyRequest, type JourneyService, type QuoteSelection } from '../components/services/serviceData'
 import { HourlySection, WaterTaxiSection, EuropeSection, MountainsSection, SeasideSection, CruiseSection } from '../components/services/SelectedServiceSections'
@@ -33,6 +35,8 @@ import PricingGuide from '../components/services/PricingGuide'
 import FloatingServiceNav from '../components/services/FloatingServiceNav'
 
 export default function Services({ navigate }: { navigate: (page: Page) => void }) {
+  const pageRef = useRef<HTMLDivElement>(null)
+  useScrollReveal(pageRef, ':scope > section:not(.services-masthead)')
   const [activeSection, setActiveSection] = useState<JourneyService | null>(null)
   const [showFloatingNav, setShowFloatingNav] = useState(false)
   const [meetingOpen, setMeetingOpen] = useState(false)
@@ -72,15 +76,6 @@ export default function Services({ navigate }: { navigate: (page: Page) => void 
   }, [])
 
   useEffect(() => {
-    const items = document.querySelectorAll('[data-svc-reveal]')
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target) }
-    }), { threshold: 0.05 })
-    items.forEach(item => observer.observe(item))
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
     if (!meetingOpen) return
     modalReturnFocus.current = document.activeElement as HTMLElement
     const previousOverflow = document.body.style.overflow
@@ -111,9 +106,9 @@ export default function Services({ navigate }: { navigate: (page: Page) => void 
   }
   const requestJourney = (request: JourneyRequest) => setSelection(previous => ({ ...request, revision: (previous?.revision ?? 0) + 1 }))
 
-  return <div className={`services-new-page services-experience${activeSection === 'hourly' ? ' is-hourly-active' : ''}${activeSection === 'water-taxi' ? ' is-water-taxi-active' : ''}${activeSection === 'europe' ? ' is-europe-active' : ''}`}>
+  return <div ref={pageRef} className={`services-new-page services-experience${activeSection === 'hourly' ? ' is-hourly-active' : ''}${activeSection === 'water-taxi' ? ' is-water-taxi-active' : ''}${activeSection === 'europe' ? ' is-europe-active' : ''}`}>
     <section className="services-masthead" aria-labelledby="services-title">
-      <img className="services-masthead-photo" src={publicAsset('images/services/water-taxi/venice-lagoon-water-taxi.jpg')} alt="Boat crossing the Venetian lagoon near Santa Maria della Salute" width={2200} height={1650} fetchPriority="high" />
+      <OptimizedImage className="services-masthead-photo" src={publicAsset('images/services/water-taxi/venice-lagoon-water-taxi.jpg')} alt="Boat crossing the Venetian lagoon near Santa Maria della Salute" width={2200} height={1650} fetchPriority="high" />
       <div className="services-masthead-shell">
         <div className="services-masthead-copy">
           <p className="services-masthead-eyebrow">SERVICES &amp; PRICES</p>
@@ -160,11 +155,11 @@ export default function Services({ navigate }: { navigate: (page: Page) => void 
       </div>
       <div className="svc-meeting-gallery">
         <figure>
-          <div className="svc-meeting-photo"><img src={`${import.meta.env.BASE_URL}images/services/airport/venice-airport-arrivals.jpeg`} alt="Arrivals exit at Venice Marco Polo Airport" /></div>
+          <div className="svc-meeting-photo"><OptimizedImage src={`${import.meta.env.BASE_URL}images/services/airport/venice-airport-arrivals.jpeg`} alt="Arrivals exit at Venice Marco Polo Airport" /></div>
           <figcaption><span>01</span><strong>Exit through Arrivals</strong></figcaption>
         </figure>
         <figure>
-          <div className="svc-meeting-photo"><img src={`${import.meta.env.BASE_URL}images/services/airport/venice-airport-change.jpeg`} alt="Currency exchange counter marked Change inside Venice Marco Polo Airport" /></div>
+          <div className="svc-meeting-photo"><OptimizedImage src={`${import.meta.env.BASE_URL}images/services/airport/venice-airport-change.jpeg`} alt="Currency exchange counter marked Change inside Venice Marco Polo Airport" /></div>
           <figcaption><span>02</span><strong>Nearby reference point</strong><small>Look for the CHANGE office.</small></figcaption>
         </figure>
       </div>

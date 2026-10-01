@@ -28,7 +28,7 @@ export async function handleBookingRequest(request, env) {
   const origin = request.headers.get("origin");
   if (origin && origin !== new URL(request.url).origin) return json({ error: "Invalid origin." }, 403);
   if (!request.headers.get("content-type")?.includes("application/json")) return json({ error: "Invalid content type." }, 415);
-  if (Number(request.headers.get("content-length") || 0) > 12000) return json({ error: "Request too large." }, 413);
+  if (Number(request.headers.get("content-length") || 0) > 24000) return json({ error: "Request too large." }, 413);
   let data;
   try { data = await request.json(); } catch { return json({ error: "Invalid request." }, 400); }
   if (!data || typeof data !== "object") return json({ error: "Invalid request." }, 400);
@@ -37,11 +37,19 @@ export async function handleBookingRequest(request, env) {
   const clean = (value, max) => typeof value === "string" ? value.trim().slice(0, max) : "";
   const kind = clean(data.kind, 32);
   const source = clean(data.source, 32);
-  const service = clean(data.service, 120) || ({ transfer: "Private Transfer", hourly: "Chauffeur by the Hour", tours: "Private Journey", custom: "Bespoke transfer quote" }[kind] || "Transfer enquiry");
+  const service = clean(data.service, 120) || ({ transfer: "Private Transfer", hourly: "Chauffeur by the Hour", tours: "Private Day Trips", custom: "Bespoke transfer quote" }[kind] || "Transfer enquiry");
   const name = clean(data.name, 120);
   const email = clean(data.email, 160);
   const phone = clean(data.phone, 80);
-  const details = clean(data.details, 6000);
+  const details = clean(data.details, 16000);
+  const preferredContact = clean(data.preferredContact, 16);
+  const validInternationalPhone = (value) => /^\+[1-9][\d\s().-]+$/.test(value) && value.replace(/\D/g, "").length >= 7 && value.replace(/\D/g, "").length <= 15;
+  if (typeof data.details === "string" && data.details.length > 16000) return json({ error: "Please shorten your journey details and try again." }, 413);
+  if ((preferredContact && !["email", "whatsapp"].includes(preferredContact)) ||
+      (preferredContact === "whatsapp" && !validInternationalPhone(phone)) ||
+      (preferredContact && phone && !validInternationalPhone(phone))) {
+    return json({ error: "Please provide a valid international phone number for WhatsApp." }, 400);
+  }
   const requestId = clean(data.requestId, 64);
   if (!["transfer", "hourly", "tours", "custom"].includes(kind) || !["home-booking", "home-quote", "services-quote", "contact"].includes(source) || name.length < 2 ||
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || details.length < 10 ||
@@ -59,7 +67,7 @@ export async function handleBookingRequest(request, env) {
   const copies = {
     booking: {
       title: "Your booking request is received",
-      paragraphs: ["Thank you for choosing EasyLux Transfer.", "We are pleased to confirm that your booking request has been successfully received and that all the details regarding your transfer have been registered in our system.", "You will shortly be contacted by one of our operators via email or WhatsApp, who will provide you with all the necessary information regarding your transfer, including service details, meeting arrangements with your driver, and any additional information you may need for a smooth and comfortable journey.", "During this communication, you will also receive instructions on how to proceed with a deposit payment, which is required to fully confirm your booking and secure the availability of your requested transfer.", "Thank you once again for choosing EasyLux Transfer. We look forward to providing you with a professional, reliable, and comfortable transfer experience."],
+      paragraphs: ["Thank you for choosing Easy Lux Transfer.", "Your request has been sent. This request is not yet a confirmed booking.", `We’ll contact you ${preferredContact === "whatsapp" ? "on WhatsApp" : preferredContact === "email" ? "by email" : "by email or WhatsApp"} with availability and your final quote.`, "All extras, quantities and estimated charges shown below are subject to availability and confirmation in your quote. The journey price and any water taxi connection are separate from the estimated extras subtotal.", "Your booking is confirmed once the details are agreed and the deposit payment is received."],
       signoff: "Kind regards,\nEasyLux Transfer\nCustomer Service Team\nPrivate Transfers • Airports • Train Stations • Chauffeur Services",
       subject: "Booking request received",
     },
@@ -78,9 +86,10 @@ export async function handleBookingRequest(request, env) {
   };
   const copy = copies[family];
   const requestDetails = `Service: ${service}\nForm: ${sourceLabel}\n\n${details}`;
-  const companyText = `New request · ${sourceLabel}\nService: ${service}\nReference: ${requestCode}\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone || "Not provided"}\n\n${details}`;
+  const requestStatus = family === "booking" ? "\nStatus: Request only — not yet a confirmed booking. Estimated extras must be confirmed in the quote." : "";
+  const companyText = `New request · ${sourceLabel}\nService: ${service}\nReference: ${requestCode}${requestStatus}\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone || "Not provided"}\nPreferred contact: ${preferredContact || "Not specified"}\n\n${details}`;
   const customerText = `Dear ${name},\n\n${[...copy.paragraphs, "Your request details:", requestDetails, copy.signoff].join("\n\n")}\n\nReference: ${requestCode}`;
-  const companyHtml = emailTemplate({ title: `New request · ${sourceLabel}`, companyIntro: `<strong style="color:#f0ece4">${escapeHtml(name)}</strong> sent a request through <strong style="color:#f0ece4">${escapeHtml(sourceLabel)}</strong>.<br/>Service: ${escapeHtml(service)}<br/>Email: <a href="mailto:${escapeHtml(email)}" style="color:#e0b83e">${escapeHtml(email)}</a><br/>Phone: ${escapeHtml(phone || "Not provided")}`, code: requestCode, details, env });
+  const companyHtml = emailTemplate({ title: `New request · ${sourceLabel}`, companyIntro: `<strong style="color:#f0ece4">${escapeHtml(name)}</strong> sent a request through <strong style="color:#f0ece4">${escapeHtml(sourceLabel)}</strong>.<br/>Service: ${escapeHtml(service)}<br/>Email: <a href="mailto:${escapeHtml(email)}" style="color:#e0b83e">${escapeHtml(email)}</a><br/>Phone: ${escapeHtml(phone || "Not provided")}<br/>Preferred contact: ${escapeHtml(preferredContact || "Not specified")}${requestStatus ? `<br/>${escapeHtml(requestStatus)}` : ""}`, code: requestCode, details, env });
   const customerHtml = emailTemplate({
     title: copy.title,
     paragraphs: [`Dear ${name},`, ...copy.paragraphs],

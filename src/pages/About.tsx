@@ -1,4 +1,6 @@
-import type { CSSProperties } from 'react'
+import OptimizedImage from '../components/OptimizedImage'
+import { useRef, type CSSProperties } from 'react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import { WhatsappLogo } from '@phosphor-icons/react'
 import { ArrowRight } from '../components/PikaIcons'
 import { company } from '../config/company'
@@ -21,7 +23,7 @@ function PhotoSlot({ className = '', src, alt, ratio, position = 'center', eager
 
   return (
     <div className={`ab-photo-slot ${className}`} style={style}>
-      <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" fetchPriority={eager ? 'high' : 'auto'} />
+      <OptimizedImage sizes={eager ? '(max-width: 760px) 100vw, 60vw' : '(max-width: 760px) 100vw, 50vw'} src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" fetchPriority={eager ? 'high' : 'auto'} />
     </div>
   )
 }
@@ -47,8 +49,10 @@ const standards = [
 ]
 
 export default function About({ navigate }: AboutProps) {
+  const pageRef = useRef<HTMLDivElement>(null)
+  useScrollReveal(pageRef, '.ab-facts-grid, .ab-story > *, .ab-luxury-layout > *, .ab-standards > p, .ab-standards > h2, .ab-standard-list > article, .ab-collage-grid > *, .ab-operate > *, .ab-manifesto, .ab-final-layout > *')
   return (
-    <div className="about-page">
+    <div ref={pageRef} className="about-page">
       <header className="ab-hero ab-shell" aria-labelledby="about-title">
         <div className="ab-hero-copy">
           <p className="ab-eyebrow">About Easy Lux</p>
@@ -93,7 +97,7 @@ export default function About({ navigate }: AboutProps) {
         <p className="ab-standards-intro">Our company is the result of our hard work, our ambitions and our belief that passion can become excellence when combined with dedication.</p>
         <div className="ab-standard-list">
           {standards.map(standard => (
-            <article className={`ab-standard${standard.number === '02' ? ' ab-standard-featured' : ''}`} key={standard.number}>
+            <article data-reveal-delay={(Number(standard.number) - 1) * 70} className={`ab-standard${standard.number === '02' ? ' ab-standard-featured' : ''}`} key={standard.number}>
               <span className="ab-standard-number">{standard.number}</span>
               <div className="ab-standard-copy">
                 <h3>{standard.title}</h3>
@@ -110,7 +114,7 @@ export default function About({ navigate }: AboutProps) {
             <PhotoSlot src={`${import.meta.env.BASE_URL}images/about/comfortable-vehicle.png`} alt="Black Mercedes private transfer van outside a hotel" ratio="4:3" position="center" />
             <figcaption>Comfortable vehicles</figcaption>
           </figure>
-          <div className="ab-collage-side">
+          <div className="ab-collage-side" data-reveal-delay="70">
             <figure>
               <PhotoSlot src={`${import.meta.env.BASE_URL}images/shared/private-van-passenger-cabin.png`} alt="Comfortable passenger seating inside the private transfer van" ratio="16:7" position="center" />
               <figcaption>Comfort on board</figcaption>

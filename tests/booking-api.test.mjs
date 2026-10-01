@@ -22,6 +22,11 @@ test('booking endpoint rejects invalid input before email delivery', async () =>
   assert.equal(response.status, 400)
 })
 
+test('WhatsApp contact preference requires a real international number', async () => {
+  const response = await handleBookingRequest(request({ ...payload, preferredContact: 'whatsapp', phone: '+1------' }), {})
+  assert.equal(response.status, 400)
+})
+
 test('booking endpoint sends company and customer emails with one idempotency key', async () => {
   const originalFetch = globalThis.fetch
   let sent
@@ -40,5 +45,7 @@ test('booking endpoint sends company and customer emails with one idempotency ke
     const messages = JSON.parse(sent.body)
     assert.deepEqual(messages.map(message => message.to[0]), ['office@example.com', payload.email])
     assert.match(messages[1].text, /deposit payment/)
+    assert.match(messages[1].text, /not yet a confirmed booking/)
+    assert.match(messages[0].text, /not yet a confirmed booking/)
   } finally { globalThis.fetch = originalFetch }
 })

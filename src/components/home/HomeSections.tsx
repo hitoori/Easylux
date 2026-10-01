@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import OptimizedImage from '../OptimizedImage'
+import { useRef, useState } from 'react'
+import { useScrollReveal } from '../../hooks/useScrollReveal'
 import {
   ArrowRight,
   CaretDown,
@@ -46,8 +48,8 @@ const displayRoutePlace = (place: string) => place.replace(/ (TV|VE|PD|VR|BZ|BL)
 
 export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: HomeSectionsProps) {
   const flowRef = useRef<HTMLDivElement>(null)
+  useScrollReveal(flowRef, '.home-flow-section')
   const [visibleRouteCount, setVisibleRouteCount] = useState(initialRouteCount)
-  const [selectedServiceIndex, setSelectedServiceIndex] = useState<number | null>(null)
   const allPopularRoutesVisible = visibleRouteCount >= popularTransferRoutes.length
 
   const handleRoutesButton = () => {
@@ -59,50 +61,6 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
     setVisibleRouteCount(popularTransferRoutes.length)
   }
 
-  const selectService = (index: number, page: Page) => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      navigate(page)
-      return
-    }
-
-    setSelectedServiceIndex(index)
-    window.setTimeout(() => navigate(page), 180)
-  }
-
-  useEffect(() => {
-    const flow = flowRef.current
-    if (!flow) return
-
-    const sections = Array.from(flow.querySelectorAll<HTMLElement>('.home-flow-section'))
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-    if (reducedMotion || !('IntersectionObserver' in window)) {
-      sections.forEach((section) => section.classList.add('is-visible'))
-      return
-    }
-
-    flow.classList.add('home-motion-ready')
-    const mobileFade = window.matchMedia('(max-width: 760px)').matches
-    if (!mobileFade) sections[0]?.classList.add('is-visible')
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return
-          entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target)
-        })
-      },
-      {
-        threshold: 0.08,
-        rootMargin: '0px 0px -4% 0px',
-      },
-    )
-
-    const sectionsToObserve = mobileFade ? sections : sections.slice(1)
-    sectionsToObserve.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [])
 
   return (
     <div ref={flowRef} className="home-sections-flow">
@@ -135,12 +93,8 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
               <button
                 key={service.title}
                 type="button"
-                onClick={() => selectService(index, service.page)}
+                onClick={() => navigate(service.page)}
                 className={`home-service-item group flex min-h-[204px] flex-col border-b border-[rgba(36,41,44,0.72)] py-7 text-left transition-[background-color,box-shadow,transform] duration-200 hover:bg-[rgba(13,14,15,0.38)] active:scale-[0.995] sm:min-h-[224px] sm:border-b-0 sm:px-7 xl:min-h-[238px] xl:border-t-0 xl:px-7 ${
-                  selectedServiceIndex === index
-                    ? 'bg-[rgba(5,6,7,0.58)] shadow-[inset_0_0_0_1px_rgba(194,154,69,0.34)]'
-                    : ''
-                } ${
                   index > 1 ? 'sm:border-t sm:border-[rgba(36,41,44,0.72)]' : ''
                 } ${
                   index % 2 === 0 ? 'sm:pl-0' : 'sm:border-l'
@@ -172,7 +126,7 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
         className="home-flow-section order-2 h2-fleet"
       >
         <div className="h2-fleet-editorial">
-          <img className="h2-fleet-exterior" src={publicAsset('images/home/vehicle/chauffeur-pickup.jpg')} alt="Chauffeur welcoming a passenger into a black private transfer van" />
+          <OptimizedImage className="h2-fleet-exterior" src={publicAsset('images/home/vehicle/chauffeur-pickup.jpg')} alt="Chauffeur welcoming a passenger into a black private transfer van" />
           <div className="h2-fleet-content">
             <div className="h2-fleet-heading">
               <p className="h2-kicker">Private vehicle</p>
@@ -180,8 +134,8 @@ export default function HomeSections({ navigate, onBookRoute, onPlanJourney }: H
               <p>Tell us how many people and bags are travelling. We’ll confirm a suitable vehicle before you book.</p>
             </div>
             <div className="h2-fleet-gallery">
-              <img src={publicAsset('images/shared/private-van-passenger-cabin.png')} alt="Passenger seating inside the private transfer van" />
-              <img src={publicAsset('images/home/vehicle/chauffeur-luggage-assistance.png')} alt="Chauffeur assisting with luggage" />
+              <OptimizedImage src={publicAsset('images/shared/private-van-passenger-cabin.png')} sizes="(max-width: 760px) 100vw, 35vw" alt="Passenger seating inside the private transfer van" />
+              <OptimizedImage src={publicAsset('images/home/vehicle/chauffeur-luggage-assistance.png')} sizes="(max-width: 760px) 100vw, 35vw" alt="Chauffeur assisting with luggage" />
             </div>
             <div className="h2-fleet-benefits">
               <article><h3>Prepared for you</h3><p>Passenger and luggage details checked before confirmation.</p></article>

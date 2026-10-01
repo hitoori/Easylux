@@ -1,3 +1,4 @@
+import OptimizedImage from '../OptimizedImage'
 import { useEffect, useRef } from 'react'
 import { ArrowRight } from '@phosphor-icons/react'
 import type { JourneyRequest } from './serviceData'
@@ -45,7 +46,7 @@ export default function ProseccoHills({ onRequest }: { onRequest: (request: Jour
   }, [])
 
   return <section ref={sectionRef} id="service-prosecco" className="ph-section" aria-labelledby="prosecco-title">
-    <img className="ph-backdrop" src={publicAsset('images/home/private-journeys/prosecco-hills.jpg')} alt="" aria-hidden="true" width={2400} height={1601} loading="lazy" decoding="async" />
+    <OptimizedImage className="ph-backdrop" src={publicAsset('images/home/private-journeys/prosecco-hills.jpg')} alt="" aria-hidden="true" width={2400} height={1601} loading="lazy" decoding="async" />
     <div className="ph-shell">
       <div className="ph-copy">
         <p className="ph-eyebrow">PROSECCO HILLS · VENETO</p>

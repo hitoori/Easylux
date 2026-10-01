@@ -1,3 +1,4 @@
+import OptimizedImage from '../OptimizedImage'
 import { useState } from 'react'
 import type { RequestJourney } from './ServiceRoutes'
 import './airport-transfers.css'
@@ -64,7 +65,7 @@ export default function AirportTransfers({ onMeetingPoint, onRequest }: { onMeet
 
         <div className={`ac-visual ac-visual--${['arrival', 'departure', 'address'][selected]}`}>
           <div className="ac-image-frame">
-            <img key={journey.image} className="ac-image-main ac-fade" src={journey.image} alt={journey.imageAlt} loading="lazy" />
+            <OptimizedImage key={journey.image} className="ac-image-main ac-fade" src={journey.image} alt={journey.imageAlt} loading="lazy" />
           </div>
         </div>
 

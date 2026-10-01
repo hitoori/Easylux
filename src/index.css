@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap');
 @import 'tailwindcss';
 
 :root {
@@ -224,20 +223,6 @@ input[type='datetime-local']::-webkit-calendar-picker-indicator {
   padding-bottom: clamp(3rem, 4vw, 3.5rem);
 }
 
-.home-motion-ready .home-flow-section {
-  opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-.home-motion-ready .home-flow-section.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .hero-slide {
   position: absolute;
   inset: 0;
@@ -285,8 +270,16 @@ input[type='datetime-local']::-webkit-calendar-picker-indicator {
   animation: servicesHeroIn 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.services-masthead-copy {
+.services-masthead-copy,
+.home-page .h2-hero-copy,
+.about-page .ab-hero-copy,
+.faq-page .fq-hero-content > div,
+.contact-page .ct-hero-content > div {
   animation: servicesHeroIn 880ms 100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.home-page .h2-booking-wrap {
+  animation: servicesHeroIn 880ms 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .services-navigator {
@@ -786,7 +779,7 @@ input[type='datetime-local']::-webkit-calendar-picker-indicator {
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
@@ -1027,8 +1020,42 @@ input[type='datetime-local']::-webkit-calendar-picker-indicator {
   .service-route-row,
   .home-motion-ready .home-flow-section,
   .home-hero-intro,
-  .home-booking-dock {
+  .home-booking-dock,
+  .services-masthead-copy,
+  .home-page .h2-hero-copy,
+  .home-page .h2-booking-wrap,
+  .about-page .ab-hero-copy,
+  .faq-page .fq-hero-content > div,
+  .contact-page .ct-hero-content > div {
+    animation: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
+}
+
+.page-enter { animation: page-enter 280ms cubic-bezier(.22,1,.36,1); }
+@keyframes page-enter { from { opacity: .65; } to { opacity: 1; } }
+/* Restrict loading blur to the viewport instead of rasterizing the full page. */
+.page-transition-veil { position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: 0; background: rgba(13,14,15,.16); transition: opacity 180ms ease; }
+.page-transition-veil.is-pending { opacity: 1; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+.page-loading-preview { min-height: 75vh; max-width: 1292px; margin-inline: auto; padding: 160px 24px 64px; }
+.page-loading-shapes { filter: blur(4px); opacity: .35; }
+.page-loading-shapes > span { display: block; width: 62%; height: 30px; margin-bottom: 20px; background: var(--text-metadata); }
+.page-loading-shapes > span:nth-child(2) { width: 38%; height: 14px; }
+.page-loading-shapes > div { height: 240px; margin: 40px 0 28px; background: linear-gradient(120deg,var(--surface-hover),var(--background-secondary)); border: 1px solid var(--border-gold); }
+.page-loading-shapes > span:last-child { width: 48%; height: 12px; }
+@media(max-width:600px) { .page-loading-preview { padding-top: 130px; } .page-loading-shapes > div { height: 190px; } }
+@media(prefers-reduced-motion:reduce) { .page-enter { animation: none; } .page-transition-veil { transition: none; } .page-transition-veil.is-pending { backdrop-filter: none; -webkit-backdrop-filter: none; } .page-loading-shapes { filter: none; } }
+
+/* Shared one-time section entrances. Individual translate preserves page transforms. */
+[data-motion-state] {
+  transition: opacity 520ms cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms), translate 520ms cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms) !important;
+}
+@media(prefers-reduced-motion:no-preference) {
+  [data-motion-state="pending"] { opacity: 0 !important; translate: 0 14px; }
+  [data-motion-state="visible"] { translate: none; }
+}
+[data-motion-immediate] { transition: none !important; }
+@media(prefers-reduced-motion:reduce) {
+  [data-motion-state] { translate: none !important; transition: none !important; }
 }

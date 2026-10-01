@@ -1,3 +1,4 @@
+import OptimizedImage from '../OptimizedImage'
 import { useEffect, useState } from 'react'
 import { coastalRoutes, priceLabel } from './serviceData'
 import type { RequestJourney } from './ServiceRoutes'
@@ -33,7 +34,7 @@ export default function SeasideTransfer({ onRequest }: { onRequest: RequestJourn
           <h2 id="coast-title">From Venice, straight to the coast.</h2>
           <p className="cs-description">Private transfers from Venice or Marco Polo Airport to Jesolo, Bibione, Caorle and other Adriatic seaside destinations.</p>
         </div>
-        <div className="cs-visual"><div className="cs-panorama"><img src={publicAsset('images/services/seaside/adriatic-coast.jpg')} alt="Adriatic seaside town overlooking the sea" loading="lazy" /></div></div>
+        <div className="cs-visual"><div className="cs-panorama"><OptimizedImage src={publicAsset('images/services/seaside/adriatic-coast.jpg')} alt="Adriatic seaside town overlooking the sea" loading="lazy" /></div></div>
       </div>
       <div id="coast-route-prices" className="cs-all-routes">
         <ol id="coast-route-list" className="cs-route-grid">

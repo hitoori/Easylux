@@ -1,3 +1,5 @@
+import { CookieSettingsButton } from './CookieConsent'
+import OptimizedImage from './OptimizedImage'
 import { FacebookLogo, InstagramLogo, TiktokLogo } from '@phosphor-icons/react'
 import type { MouseEvent } from 'react'
 import { pagePath, type Page } from '../types/navigation'
@@ -31,7 +33,7 @@ export default function Footer({ navigate }: { navigate: (page: Page) => void })
       <div className="home-footer-main">
         <div className="home-footer-brand">
           <a href={pagePath('home')} className="home-footer-logo" onClick={event => followPageLink(event, 'home')} aria-label="Easy Lux — Home">
-            <img src={publicAsset('images/brand/easy-lux-logo-wordmark.png')} alt="Easy Lux" width={80} height={88} loading="lazy" />
+            <OptimizedImage src={publicAsset('images/brand/easy-lux-logo-wordmark.png')} alt="Easy Lux" width={80} height={88} loading="lazy" />
             <span className="home-footer-tagline">Your driver<br />Around Italy</span>
           </a>
           <h2>Private Chauffeur</h2>
@@ -62,11 +64,11 @@ export default function Footer({ navigate }: { navigate: (page: Page) => void })
         </div>
       </div>
       <div className="home-footer-bottom">
-        <p>© {new Date().getFullYear()} Easy Lux Transfer. All rights reserved.</p>
-        <div className="home-footer-legal" aria-label="Legal documents awaiting publication">
-          {['Privacy Policy', 'Terms', 'Cookies'].map((label) => (
-            <button key={label} type="button" disabled title="Document not yet published">{label}</button>
-          ))}
+        <p>© <span suppressHydrationWarning>{new Date().getFullYear()}</span> Easy Lux Transfer. All rights reserved.</p>
+        <div className="home-footer-legal" aria-label="Legal and privacy information">
+          <a href={pagePath('cookies')} onClick={event => followPageLink(event, 'cookies')}>Privacy & Cookies</a>
+          <button type="button" disabled title="Document not yet published">Terms</button>
+          <CookieSettingsButton />
         </div>
       </div>
     </footer>

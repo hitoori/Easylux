@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import OptimizedImage from '../OptimizedImage'
+import { prepareImage, useCarousel } from '../../hooks/useCarousel'
+import { useRef, useState } from 'react'
 import type { BookingPrefill } from '../BookingForm'
 import { publicAsset } from '../../lib/publicAsset'
 
@@ -41,30 +43,21 @@ interface PrivateJourneysProps {
   onBookRoute: (route: Omit<BookingPrefill, 'requestId'>) => void
 }
 
+const prepareJourney = (index: number) => prepareImage(destinations[index].image, '(max-width: 760px) 100vw, 80vw')
+
 export default function PrivateJourneys({ onBookRoute }: PrivateJourneysProps) {
   const [selectedJourneyIndex, setSelectedJourneyIndex] = useState(0)
-  const [transitionFromIndex, setTransitionFromIndex] = useState<number | null>(null)
-  const previousJourneyIndex = useRef(0)
+  const sectionRef = useRef<HTMLElement>(null)
+  const carousel = useCarousel(destinations.length, 8000, sectionRef, prepareJourney)
   const selected = destinations[selectedJourneyIndex]
-
-  useEffect(() => {
-    if (previousJourneyIndex.current === selectedJourneyIndex) return
-
-    setTransitionFromIndex(previousJourneyIndex.current)
-    previousJourneyIndex.current = selectedJourneyIndex
-    const timer = window.setTimeout(() => setTransitionFromIndex(null), 850)
-    return () => window.clearTimeout(timer)
-  }, [selectedJourneyIndex])
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => {
-      setSelectedJourneyIndex(index => (index + 1) % destinations.length)
-    }, 5000)
-    return () => window.clearTimeout(timer)
-  }, [selectedJourneyIndex])
+  const photo = destinations[carousel.activeIndex]
+  const selectJourney = (index: number) => {
+    setSelectedJourneyIndex(index)
+    void carousel.select(index)
+  }
 
   return (
-    <section data-home-prosecco className="private-journeys home-flow-section" aria-labelledby="private-journeys-title">
+    <section ref={sectionRef} {...carousel.interactionProps} data-home-prosecco className="private-journeys home-flow-section" aria-labelledby="private-journeys-title">
       <div className="private-journeys-layout">
         <div className="private-journeys-copy">
           <p className="private-journeys-kicker">Private journeys</p>
@@ -79,7 +72,7 @@ export default function PrivateJourneys({ onBookRoute }: PrivateJourneysProps) {
               aria-selected={index === selectedJourneyIndex} aria-controls="private-journey-panel"
               className={index === selectedJourneyIndex ? 'is-selected' : undefined}
               tabIndex={index === selectedJourneyIndex ? 0 : -1}
-              onClick={() => setSelectedJourneyIndex(index)}
+              onClick={() => selectJourney(index)}
               onKeyDown={(event) => {
                 let next = index
                 if (event.key === 'ArrowRight') next = (index + 1) % destinations.length
@@ -88,7 +81,7 @@ export default function PrivateJourneys({ onBookRoute }: PrivateJourneysProps) {
                 else if (event.key === 'End') next = destinations.length - 1
                 else return
                 event.preventDefault()
-                setSelectedJourneyIndex(next)
+                selectJourney(next)
                 document.getElementById(`journey-tab-${destinations[next].id}`)?.focus()
               }}
             >
@@ -99,8 +92,9 @@ export default function PrivateJourneys({ onBookRoute }: PrivateJourneysProps) {
 
           <div id="private-journey-panel" className="private-journeys-visual" role="tabpanel" aria-labelledby={`journey-tab-${selected.id}`} tabIndex={0}>
             <div className="private-journeys-photo">
-              {transitionFromIndex !== null && <img key={`out-${destinations[transitionFromIndex].id}`} className="is-outgoing" src={destinations[transitionFromIndex].image} alt="" aria-hidden="true" decoding="async" />}
-              <img key={`in-${selected.id}`} className="is-current" src={selected.image} alt={selected.alt} loading="lazy" decoding="async" />
+              {carousel.previousIndex !== null && <OptimizedImage key={`out-${destinations[carousel.previousIndex].id}`} className="is-outgoing" src={destinations[carousel.previousIndex].image} alt="" aria-hidden="true" decoding="async" />}
+              <OptimizedImage key={`in-${photo.id}`} className="is-current" src={photo.image} alt={photo.alt} loading="lazy" sizes="(max-width: 760px) 100vw, 80vw" decoding="async" />
+              <span className="private-journeys-photo-caption">{photo.label}</span>
             </div>
           <div className="private-journeys-route" aria-live="polite">
             <div className="private-journeys-stops">

@@ -1,3 +1,4 @@
+import OptimizedImage from '../OptimizedImage'
 import { useEffect, useState } from 'react'
 import { ArrowRight, Briefcase, Buildings, CarProfile, ForkKnife, ShoppingBag } from '@phosphor-icons/react'
 import { italyRoutes, priceLabel } from './serviceData'
@@ -17,7 +18,7 @@ export function HourlySection({ onRequest }: { onRequest: RequestJourney }) {
   return <section id="service-hourly" className="sv-section sv-hourly sv-hourly-mockup" aria-labelledby="hourly-title">
     <div className="svc-shell hourly-mockup-shell">
       <div className="hourly-mockup-visual">
-        <div className="hourly-mockup-frame"><img src={publicAsset('images/services/hourly/several-stops-chauffeur-panorama.jpg')} alt="Chauffeur welcoming a passenger into a private vehicle" loading="lazy" /></div>
+        <div className="hourly-mockup-frame"><OptimizedImage src={publicAsset('images/services/hourly/several-stops-chauffeur-panorama.jpg')} alt="Chauffeur welcoming a passenger into a private vehicle" loading="lazy" /></div>
         <h2 id="hourly-title">Several stops.<br />One chauffeur.</h2>
       </div>
 
@@ -109,7 +110,7 @@ export function WaterTaxiSection({ onRequest }: { onRequest: RequestJourney }) {
             {waterTaxiJourneys.map((item, index) => <div key={item.route} className={`wt-map-frame wt-map-layer${direction === index ? ' is-active' : ''}`} role="tabpanel" id={`water-panel-${index}`} aria-labelledby={`water-tab-${index}`} aria-hidden={direction !== index} inert={direction !== index} tabIndex={direction === index ? 0 : -1}>
               <picture>
                 <source media="(max-width: 1023px)" srcSet={item.mobileImage} />
-                <img src={item.image} alt={item.alt} width={1983} height={793} loading="eager" decoding="async" />
+                <OptimizedImage src={item.image} alt={item.alt} width={1983} height={793} loading="eager" decoding="async" />
               </picture>
             </div>)}
           </div>
@@ -182,7 +183,7 @@ export function EuropeSection({ onRequest, fareRequest = 0 }: { onRequest: Reque
 
   return <section id="service-europe" className="et-section" aria-labelledby="europe-title">
     <div className="et-intro">
-      <div className="et-photo"><img src={publicAsset('images/services/europe/italy-europe-chauffeur.jpg')} alt="Chauffeur welcoming a passenger into a private vehicle" loading="lazy" /></div>
+      <div className="et-photo"><OptimizedImage src={publicAsset('images/services/europe/italy-europe-chauffeur.jpg')} alt="Chauffeur welcoming a passenger into a private vehicle" loading="lazy" /></div>
       <div className="et-copy">
         <p className="et-eyebrow">PRIVATE JOURNEYS · ITALY &amp; EUROPE</p>
         <h2 id="europe-title">Private transfers across Italy and into Europe.</h2>

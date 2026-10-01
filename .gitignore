@@ -25,3 +25,8 @@ public/design-options/
 !public/**/*.png
 !public/**/*.jpg
 !public/**/*.jpeg
+
+# Keep editable photography originals outside the published site.
+!assets/source-images/**/*.png
+!assets/source-images/**/*.jpg
+!assets/source-images/**/*.jpeg

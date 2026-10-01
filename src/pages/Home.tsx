@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import OptimizedImage from '../components/OptimizedImage'
+import { prepareImage, useCarousel } from '../hooks/useCarousel'
+import { useRef, useState } from 'react'
 import type { Page } from '../types/navigation'
 import BookingForm, { type BookingPrefill } from '../components/BookingForm'
 import HomeSections from '../components/home/HomeSections'
@@ -37,19 +39,16 @@ const heroSlides = [
   },
 ]
 
+const prepareHero = (index: number) => prepareImage(heroSlides[index].url, '100vw')
+
 export default function Home({ navigate }: HomeProps) {
-  const [activeSlide, setActiveSlide] = useState(0)
+  const heroRef = useRef<HTMLElement>(null)
+  const carousel = useCarousel(heroSlides.length, 8000, heroRef, prepareHero)
+  const activeSlide = carousel.activeIndex
   const [routePrefill, setRoutePrefill] = useState<BookingPrefill | null>(null)
 
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveSlide(current => (current + 1) % heroSlides.length)
-    }, 6000)
-    return () => window.clearInterval(timer)
-  }, [])
-
   const scrollToBooking = () => {
-    document.getElementById('home-booking')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    document.getElementById('home-booking')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' })
   }
 
   const bookRoute = (route: Omit<BookingPrefill, 'requestId'>) => {
@@ -63,23 +62,18 @@ export default function Home({ navigate }: HomeProps) {
   return (
     <div className="home-page overflow-hidden bg-[var(--background)]">
       <section
+        ref={heroRef}
         data-home-hero
         className="h2-hero relative overflow-hidden bg-[var(--background)]"
       >
-        {heroSlides.map((slide, index) => (
-          <div
-            key={slide.url}
-            role="img"
-            aria-label={slide.label}
+        {heroSlides.map((slide, index) => (index === activeSlide || index === carousel.previousIndex) ? (
+          <OptimizedImage key={slide.url} src={slide.url} alt={slide.label}
             aria-hidden={index !== activeSlide}
             className={`hero-slide ${index === activeSlide ? 'active' : ''}`}
-            style={{
-              backgroundImage: `url(${slide.url})`,
-              backgroundPosition: slide.position,
-              opacity: index === activeSlide ? 1 : 0,
-            }}
+            style={{ objectPosition: slide.position }} sizes="100vw"
+            loading="eager" fetchPriority={index === 0 ? 'high' : 'auto'}
           />
-        ))}
+        ) : null)}
         <div className="h2-hero-shade" />
 
         <div className="h2-hero-copy">
@@ -99,7 +93,7 @@ export default function Home({ navigate }: HomeProps) {
           <div className="mx-auto w-full">
             <BookingForm prefill={routePrefill} />
           </div>
-          <nav className="hero-photo-nav" aria-label="Hero photographs">
+          <nav {...carousel.interactionProps} className="hero-photo-nav" aria-label="Hero photographs">
             <p className="hero-photo-caption" aria-live="polite" aria-atomic="true">
               {heroSlides[activeSlide].caption}
             </p>
@@ -110,7 +104,7 @@ export default function Home({ navigate }: HomeProps) {
                   type="button"
                   aria-label={`Show ${slide.label} background`}
                   aria-current={index === activeSlide ? 'true' : undefined}
-                  onClick={() => setActiveSlide(index)}
+                  onClick={() => void carousel.select(index)}
                 >
                   <span />
                 </button>

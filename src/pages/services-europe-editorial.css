@@ -105,7 +105,7 @@
 .services-new-page.services-experience .sv-europe-map-image::before {
   position: absolute;
   inset: 0;
-  background: url('/images/services/europe/italy-europe-route-map.png') calc(50% - 22px) center / 112% auto no-repeat;
+  background: url('/images/services/europe/italy-europe-route-map.webp') calc(50% - 22px) center / 112% auto no-repeat;
   content: '';
   opacity: .72;
 }

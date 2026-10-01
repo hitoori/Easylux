@@ -86,7 +86,7 @@
 .h2-hero {
   position: relative;
   min-height: 760px;
-  background: url("/images/home/hero/sicily-coast.jpg") center
+  background: url("/images/home/hero/sicily-coast.webp") center
     58% / cover no-repeat;
 }
 .h2-hero-shade {
@@ -431,7 +431,7 @@
   min-height: 560px;
   display: grid;
   place-items: center;
-  background: url("/images/home/private-journeys/prosecco-hills.jpg") center/cover
+  background: url("/images/home/private-journeys/prosecco-hills.webp") center/cover
     no-repeat;
   text-align: center;
 }
@@ -1440,7 +1440,7 @@
   min-height: 650px;
   padding: 0;
   border-top: 1px solid var(--border);
-  background: url("/images/home/water-taxi/venice-water-taxi.jpg") 72% 63% / cover no-repeat;
+  background: url("/images/home/water-taxi/venice-water-taxi.webp") 72% 63% / cover no-repeat;
   overflow: hidden;
 }
 .h2-water-shade {
