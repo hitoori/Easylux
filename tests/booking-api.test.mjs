@@ -74,9 +74,13 @@ test('every public form sends its full details to the business and an acknowledg
       assert.equal(messages.length, 2)
       assert.deepEqual(messages[0].to, ['easyluxtransfer@gmail.com'])
       assert.equal(messages[0].reply_to, payload.email)
+      assert.equal(messages[0].from, 'Easy Lux Transfer <booking@mail.easyluxtransfer.com>')
       assert.ok(messages[0].text.includes(details))
       assert.deepEqual(messages[1].to, [payload.email])
       assert.equal(messages[1].reply_to, 'easyluxtransfer@gmail.com')
+      assert.equal(messages[1].from, 'Easy Lux Transfer <booking@mail.easyluxtransfer.com>')
+      assert.match(messages[1].html, /<img src="https:\/\/easyluxtransfer\.com\/images\/brand\/easy-lux-logo-wordmark\.png"/)
+      assert.ok(messages[1].html.includes('YOUR DRIVER<br/>AROUND ITALY'))
       assert.ok(messages[1].text.includes(details))
       const templatePhrase = source === 'home-booking'
         ? 'all the details regarding your transfer have been registered in our system.'
