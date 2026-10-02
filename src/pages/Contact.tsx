@@ -4,7 +4,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 import { EnvelopeSimple, Phone, WhatsappLogo, MapPin, AirplaneTilt, Boat, Mountains, GlobeHemisphereWest, Anchor, Waves } from '@phosphor-icons/react'
 import { ArrowRight, Clock, Message, Check, Plus } from '../components/PikaIcons'
 import { serviceOptions } from '../components/services/serviceData'
-import type { Page } from '../types/navigation'
+import { pagePath, type Page } from '../types/navigation'
 import { company } from '../config/company'
 import { sendBooking } from '../lib/sendBooking'
 import './contact.css'
@@ -112,7 +112,7 @@ export default function Contact({ navigate }: { navigate: (page: Page, sectionId
               <textarea id="ct-message" name="message" rows={4} value={message} onChange={event => setMessage(event.target.value)} placeholder="Pick-up, destination, date and time, passengers, luggage and any special requests…" required />
             </label>
 
-            <label className="ct-consent"><input type="checkbox" checked={consent} onChange={event => setConsent(event.target.checked)} required /> I agree to be contacted about this enquiry.</label>
+            <label className="ct-consent"><input type="checkbox" checked={consent} onChange={event => setConsent(event.target.checked)} required /> <span>I agree to be contacted about this enquiry. <a href={pagePath('cookies')} target="_blank" rel="noopener noreferrer" className="text-gold underline underline-offset-4">Privacy Policy</a>.</span></label>
 
             <div className="ct-submit">
               <button type="submit" className="ct-primary" disabled={sending || Boolean(requestCode)}>{sending ? 'Sending…' : requestCode ? 'Enquiry sent' : 'Send enquiry'} <ArrowRight size={18} aria-hidden="true" /></button>

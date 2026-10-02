@@ -66,7 +66,7 @@ export default function Footer({ navigate }: { navigate: (page: Page) => void })
       <div className="home-footer-bottom">
         <p>© <span suppressHydrationWarning>{new Date().getFullYear()}</span> Easy Lux Transfer. All rights reserved.</p>
         <div className="home-footer-legal" aria-label="Legal and privacy information">
-          <a href={pagePath('cookies')} onClick={event => followPageLink(event, 'cookies')}>Privacy & Cookies</a>
+          <a href={pagePath('cookies')} onClick={event => followPageLink(event, 'cookies')}>Privacy Policy</a>
           <button type="button" disabled title="Document not yet published">Terms</button>
           <CookieSettingsButton />
         </div>

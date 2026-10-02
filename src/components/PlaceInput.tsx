@@ -1,6 +1,7 @@
 import OptimizedImage from './OptimizedImage'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import { useCookieConsent } from './CookieConsent'
+import './place-input.css'
 
 const mapsKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY?.trim()
 let placesLibrary: Promise<google.maps.PlacesLibrary> | undefined
@@ -38,12 +39,72 @@ export default function PlaceInput({ value, onChange, className, placeholder, la
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(-1)
   const [available, setAvailable] = useState(Boolean(mapsKey))
+  const listId = useId()
+  const input = useRef<HTMLInputElement>(null)
+  const popup = useRef<HTMLSpanElement>(null)
+  const [position, setPosition] = useState({ left: 12, top: 12, width: 320, maxHeight: 320 })
+  const visible = open && suggestions.length > 0
   const session = useRef<google.maps.places.AutocompleteSessionToken | null>(null)
   const requestId = useRef(0)
   const selectedValue = useRef('')
   const selectionId = useRef(0)
 
   useEffect(() => () => { selectionId.current++ }, [])
+
+  useLayoutEffect(() => {
+    const list = popup.current
+    const field = input.current
+    if (!visible || !list || !field) return
+    // The top layer escapes the hero's clipping and the booking dialog's scroll container.
+    const placePopup = () => {
+      const bounds = field.getBoundingClientRect()
+      const viewport = window.visualViewport
+      const viewportLeft = viewport?.offsetLeft ?? 0
+      const viewportTop = viewport?.offsetTop ?? 0
+      const viewportWidth = viewport?.width ?? window.innerWidth
+      const viewportBottom = viewportTop + (viewport?.height ?? window.innerHeight)
+      if (bounds.bottom < viewportTop || bounds.top > viewportBottom) { setOpen(false); return }
+      const width = Math.min(Math.max(bounds.width, 300), 420, viewportWidth - 24)
+      const below = Math.max(0, viewportBottom - bounds.bottom - 20)
+      const above = Math.max(0, bounds.top - viewportTop - 20)
+      const belowPreferred = below >= Math.min(list.scrollHeight, 340) || below >= above
+      const maxHeight = Math.min(340, belowPreferred ? below : above)
+      const height = Math.min(list.scrollHeight, maxHeight)
+      const left = Math.max(viewportLeft + 12, Math.min(bounds.left, viewportLeft + viewportWidth - width - 12))
+      const top = belowPreferred ? bounds.bottom + 8 : bounds.top - height - 8
+      setPosition(previous => previous.left === left && previous.top === top && previous.width === width && previous.maxHeight === maxHeight ? previous : { left, top, width, maxHeight })
+    }
+    const reposition = (event: Event) => {
+      if (event.target instanceof Node && list.contains(event.target)) return
+      placePopup()
+    }
+    const dismiss = (event: PointerEvent) => {
+      if (event.target instanceof Node && !list.contains(event.target) && event.target !== field) setOpen(false)
+    }
+    list.showPopover()
+    placePopup()
+    const observer = new ResizeObserver(placePopup)
+    observer.observe(field)
+    observer.observe(list)
+    window.addEventListener('resize', reposition)
+    window.addEventListener('scroll', reposition, true)
+    window.visualViewport?.addEventListener('resize', reposition)
+    window.visualViewport?.addEventListener('scroll', reposition)
+    document.addEventListener('pointerdown', dismiss)
+    return () => {
+      if (list.matches(':popover-open')) list.hidePopover()
+      observer.disconnect()
+      window.removeEventListener('resize', reposition)
+      window.removeEventListener('scroll', reposition, true)
+      window.visualViewport?.removeEventListener('resize', reposition)
+      window.visualViewport?.removeEventListener('scroll', reposition)
+      document.removeEventListener('pointerdown', dismiss)
+    }
+  }, [visible, suggestions])
+
+  useEffect(() => {
+    if (visible && active >= 0) popup.current?.querySelectorAll('[role="option"]')[active]?.scrollIntoView({ block: 'nearest' })
+  }, [active, visible])
 
   useEffect(() => {
     if (!mapsAllowed || !mapsKey || !open || value.trim().length < 3 || value === selectedValue.current) {
@@ -95,12 +156,13 @@ export default function PlaceInput({ value, onChange, className, placeholder, la
 
   return <span className="relative block">
     <input
+      ref={input}
       type="text"
       id={inputId}
       value={value}
       onChange={event => { selectionId.current++; selectedValue.current = ''; onMetadataChange?.(null); onChange(event.target.value); setOpen(true); setActive(-1) }}
       onFocus={() => setOpen(true)}
-      onBlur={() => window.setTimeout(() => setOpen(false), 150)}
+      onBlur={() => { if (input.current) input.current.scrollLeft = 0; window.setTimeout(() => setOpen(false), 150) }}
       onKeyDown={event => {
         if (event.key === 'Escape') { setOpen(false); setActive(-1) }
         if (event.key === 'ArrowDown' && suggestions.length) { event.preventDefault(); setActive((active + 1) % suggestions.length) }
@@ -108,17 +170,20 @@ export default function PlaceInput({ value, onChange, className, placeholder, la
         if (event.key === 'Enter' && open && active >= 0 && suggestions[active]) { event.preventDefault(); void choose(suggestions[active]) }
       }}
       placeholder={placeholder}
-      className={className}
+      title={value || undefined}
+      className={`place-input ${className}`}
       autoComplete="off"
       aria-label={label}
       aria-invalid={invalid}
       aria-describedby={describedBy}
-      aria-expanded={open && suggestions.length > 0}
+      aria-expanded={visible}
+      aria-controls={visible ? listId : undefined}
+      aria-activedescendant={visible && active >= 0 ? `${listId}-${active}` : undefined}
       aria-autocomplete={mapsAllowed && available ? 'list' : 'none'}
       role="combobox"
     />
-    {open && suggestions.length > 0 && <span role="listbox" className="absolute left-0 top-full z-[100] mt-3 block w-[min(80vw,390px)] overflow-hidden rounded-lg border border-[rgba(194,154,69,0.45)] bg-[#17191a] shadow-[0_18px_42px_rgba(0,0,0,.65)]">
-      {suggestions.map((item, index) => <button key={item.placeId} type="button" role="option" aria-selected={index === active} onMouseDown={event => event.preventDefault()} onClick={() => void choose(item)} className={`block w-full px-4 py-2.5 text-left text-[13px] text-cream hover:bg-[rgba(194,154,69,.14)] ${index === active ? 'bg-[rgba(194,154,69,.14)]' : ''}`}>{item.text.toString()}</button>)}
+    {visible && <span ref={popup} id={listId} popover="manual" role="listbox" aria-label={`${label} suggestions`} className="place-suggestions" style={position}>
+      {suggestions.map((item, index) => <button key={item.placeId} id={`${listId}-${index}`} type="button" role="option" tabIndex={-1} aria-selected={index === active} onPointerDown={event => event.preventDefault()} onClick={() => void choose(item)}>{item.text.toString()}</button>)}
       <span className="flex justify-end border-t border-white/10 bg-white px-3 py-1.5"><OptimizedImage src={`${import.meta.env.BASE_URL}images/powered_by_google_on_white.png`} alt="Powered by Google" width={59} height={18} className="h-[18px] w-auto" /></span>
     </span>}
   </span>

@@ -28,10 +28,11 @@
   border-top: 1px solid var(--border); padding: 22px max(3vw, calc((100vw - 1450px) / 2));
 }
 .home-footer-bottom p { margin: 0; color: var(--text-muted); font-size: 13px; line-height: 1.7; }
-.home-footer-legal { display: flex; align-items: center; flex-shrink: 0; }
-.home-footer-legal button { padding: 0 22px; border: 0; border-left: 1px solid var(--border); background: none; color: var(--text-muted); font: 400 13px/1.6 "Manrope", sans-serif; cursor: not-allowed; }
-.home-footer-legal button:first-child { padding-left: 0; border-left: 0; }
-.home-footer-legal button:last-child { padding-right: 0; }
+.home-footer-legal { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; flex-shrink: 0; width: min(100%, 450px); }
+.home-footer-legal :is(a, button) { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 44px; padding: 8px 12px; border: 0; background: transparent; color: var(--text-muted); font: 400 13px/1.6 "Manrope", sans-serif; text-align: center; text-decoration: none; white-space: nowrap; cursor: pointer; }
+.home-footer-legal :is(a, button) + :is(a, button)::before { content: ""; position: absolute; left: 0; top: 50%; width: 1px; height: 16px; background: var(--border); transform: translateY(-50%); }
+.home-footer-legal :is(a, button):hover:not(:disabled) { color: var(--gold-hover); }
+.home-footer-legal button:disabled { cursor: default; }
 .home-footer button:focus-visible, .home-footer a:focus-visible { outline: 2px solid var(--gold); outline-offset: 5px; }
 @media (max-width: 1000px) {
   .home-footer-main { grid-template-columns: 1fr 1fr; gap: 42px; }
@@ -44,7 +45,7 @@
   .home-footer h3 { font-size: 11px; margin-bottom: 18px; }
   .home-footer nav a { font-size: 14px; }
   .home-footer-bottom { padding: 24px 20px; }
-  .home-footer-legal button { padding: 0 16px; font-size: 12px; }
+  .home-footer-legal :is(a, button) { padding: 8px 6px; font-size: 12px; }
 }
 
 .home-footer-social{display:flex;gap:12px;margin-top:26px}

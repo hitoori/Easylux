@@ -1,3 +1,4 @@
+import { pagePath } from '../../types/navigation'
 import { useState } from 'react'
 import { ArrowRight } from '@phosphor-icons/react'
 import { sendBooking } from '../../lib/sendBooking'
@@ -56,7 +57,7 @@ export default function JourneyRequest() {
             <textarea name="journey" placeholder="Pick-up, destination, date, passengers, luggage and any stops or waiting…" required minLength={10} maxLength={3000} rows={4} />
           </label>
         </div>
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="consent" required /> I agree to be contacted about this request.</label>
+        <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="consent" required /> <span>I agree to be contacted about this request. <a href={pagePath('cookies')} target="_blank" rel="noopener noreferrer" className="text-gold underline underline-offset-4">Privacy Policy</a>.</span></label>
         <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px]" />
         <button type="submit" disabled={sending}>{sending ? 'Sending…' : 'Send your request'} <ArrowRight size={20} weight="light" aria-hidden="true" /></button>
         <p className="home-final-request-status" role="status">

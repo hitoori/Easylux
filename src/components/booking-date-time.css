@@ -1,0 +1,40 @@
+.booking-date-trigger { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; min-width: 0; min-height: 40px; margin-top: 6px; padding: 8px 11px; border: 1px solid rgba(116,111,105,.5); border-radius: 8px; background: rgba(13,14,15,.65); color: var(--text-primary); text-align: left; font: 400 13px/1.5 var(--font-body); cursor: pointer; transition: border-color .18s, background-color .18s; }
+.booking-date-trigger:hover { border-color: var(--border-gold); }
+.booking-date-trigger:is(:focus-visible, [aria-expanded="true"]) { border-color: var(--gold); outline: 2px solid var(--gold); outline-offset: 3px; }
+.booking-date-trigger[aria-invalid="true"] { border-color: var(--error); }
+.booking-date-trigger > svg { flex-shrink: 0; color: var(--gold); }
+.booking-date-text { display: block; flex: 1; min-width: 0; }
+.booking-date-value { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.booking-date-value.is-empty { color: var(--text-muted); }
+.booking-date-trigger--dock { justify-content: flex-start; min-height: 58px; margin: 0; padding: 8px 14px; gap: 12px; background: rgba(13,14,15,.62); border-color: rgba(36,41,44,.96); font-size: 14px; }
+.booking-date-label { display: block; margin-bottom: 4px; color: var(--text-secondary); font-size: 11px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; }
+.booking-date-popup { position: fixed; inset: auto; margin: 0; z-index: 1000; box-sizing: border-box; width: min(320px, calc(100vw - 24px)); max-height: calc(100svh - 24px); overflow: auto; padding: 14px; border: 1px solid var(--border-gold); border-radius: 10px; background: var(--background-secondary); color: var(--text-primary); box-shadow: 0 18px 50px rgba(0,0,0,.55); font-family: var(--font-body); }
+.booking-date-popup::backdrop { background: transparent; }
+.booking-date-popup :is(button, select):focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.booking-date-popup button { cursor: pointer; font-family: inherit; }
+.booking-date-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; color: var(--text-secondary); font-size: 12px; }
+.booking-date-heading button { display: grid; place-items: center; width: 28px; height: 28px; border: 0; background: transparent; color: var(--text-muted); }
+.booking-date-heading button:hover { color: var(--gold-hover); }
+.booking-date-popup .rdp-root { --rdp-accent-color: var(--gold); --rdp-accent-background-color: var(--surface-hover); --rdp-today-color: var(--gold-hover); --rdp-selected-border: 1px solid var(--gold); --rdp-day-width: 38px; --rdp-day-height: 38px; --rdp-day_button-width: 36px; --rdp-day_button-height: 36px; --rdp-day_button-border-radius: 6px; --rdp-disabled-opacity: .3; --rdp-outside-opacity: .4; --rdp-nav_button-height: 32px; --rdp-nav_button-width: 32px; --rdp-nav-height: 40px; }
+.booking-date-popup .rdp-months { max-width: none; width: 100%; }
+.booking-date-popup .rdp-month_grid { width: 100%; }
+.booking-date-popup .rdp-caption_label { font-size: 18px; font-weight: 600; }
+.booking-date-popup .rdp-weekday { color: var(--text-muted); font-size: 11px; font-weight: 500; }
+.booking-date-popup .rdp-day { text-align: center; }
+.booking-date-popup .rdp-day_button { margin-inline: auto; font-size: 13px; color: inherit; }
+.booking-date-popup .rdp-day_button:hover:not(:disabled) { background: var(--surface-hover); }
+.booking-date-popup .rdp-selected .rdp-day_button { background: var(--gold); color: var(--background); }
+.booking-time-selects { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+.booking-time-selects label { color: var(--text-secondary); font-size: 12px; }
+.booking-time-selects select { display: block; width: 100%; min-height: 38px; margin-top: 6px; padding: 7px 10px; border: 1px solid var(--border-gold); border-radius: 6px; background: var(--background); color: var(--text-primary); font: 400 14px var(--font-body); color-scheme: dark; }
+.booking-date-actions { display: grid; grid-template-columns: auto 1fr; gap: 10px; margin-top: 14px; }
+.booking-date-actions button { min-height: 38px; padding: 8px 12px; border: 1px solid var(--border-gold); border-radius: 6px; background: transparent; color: var(--gold); font-size: 12px; font-weight: 600; }
+.booking-date-actions button:last-child { background: var(--gold); border-color: var(--gold); color: var(--background); }
+.booking-date-actions button:hover:not(:disabled) { border-color: var(--gold-hover); }
+.booking-date-actions button:last-child:hover:not(:disabled) { background: var(--gold-hover); }
+.booking-date-actions button:disabled { opacity: .4; cursor: not-allowed; }
+.booking-date-error { margin-top: 8px; color: var(--error); font-size: 12px; }
+.booking-calendar-loading { display: grid; min-height: 270px; place-items: center; color: var(--text-muted); font-size: 12px; }
+@media (min-width: 640px) { .booking-date-trigger--dock { min-height: 68px; padding: 10px 16px; font-size: 15px; } }
+@media (min-width: 1024px) { .booking-date-trigger--dock { min-height: 72px; } }
+@media (prefers-reduced-motion: reduce) { .booking-date-trigger { transition: none; } }

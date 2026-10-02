@@ -49,7 +49,7 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
   return <ConsentContext.Provider value={{ maps, chosen, openSettings, save }}>
     {children}
     {ready && !chosen && <aside className="cookie-banner" aria-labelledby="cookie-banner-title">
-      <div className="cookie-banner-copy"><span className="cookie-eyebrow">Easy Lux · Your privacy</span><h2 id="cookie-banner-title">Cookies & privacy</h2><p>We use essential browser storage to remember your privacy preferences. {addressSuggestionsConfigured ? 'With your permission, Google can also suggest addresses for your journey. ' : ''}We do not use advertising or analytics trackers. <a href={pagePath('cookies')}>Privacy & Cookies</a>.</p></div>
+      <div className="cookie-banner-copy"><span className="cookie-eyebrow">Easy Lux · Your privacy</span><h2 id="cookie-banner-title">Cookies & privacy</h2><p>We use essential browser storage to remember your privacy preferences. {addressSuggestionsConfigured ? 'With your permission, Google can also suggest addresses for your journey. ' : ''}We do not use advertising or analytics trackers. <a href={pagePath('cookies')}>Privacy Policy</a>.</p></div>
       <div className="cookie-actions">
         <button type="button" onClick={() => save(false)}>Essential only</button>
         <button type="button" onClick={() => save(true)}>Accept all</button>
@@ -64,7 +64,7 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
       {addressSuggestionsConfigured ? <label className="cookie-option"><input type="checkbox" checked={draftMaps} onChange={event => setDraftMaps(event.target.checked)} /><span><strong>Google address suggestions</strong><small>Optional. When used, your typed address and connection data are sent to Google. You can enter an address manually with this disabled.</small></span></label> : <p>No optional services are currently configured.</p>}
       {addressSuggestionsConfigured && <p className="cookie-detail">Disabling a Google service that has already loaded refreshes the page to stop it. Any unsent form entries will be cleared.</p>}
       <div className="cookie-actions"><button type="button" onClick={() => save(false)}>Essential only</button><button type="button" onClick={() => save(draftMaps)}>Save preferences</button></div>
-      <a href={pagePath('cookies')}>Privacy & Cookies</a>
+      <a href={pagePath('cookies')}>Privacy Policy</a>
     </dialog>
   </ConsentContext.Provider>
 }

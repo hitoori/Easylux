@@ -74,11 +74,11 @@ The Home booking, Home quote, Services quote, and Contact forms use `/api/bookin
    Resend only allows its shared test sender to deliver to the account owner. This confirms the app-to-email flow; it does not test delivery to external customers.
 
 3. For customer delivery, add a domain you own in Resend and verify it by adding the DNS records shown in Resend at your domain provider. A Gmail inbox can still receive orders, but a verified sending domain is needed to send confirmations to customers.
-4. After domain verification, use a sender on that domain, for example `Easy Lux <booking@your-domain.com>`. Set these **server-only** values in `.env.local` for local development and as secrets/environment variables in the production Worker:
+4. Easy Lux uses the sending subdomain `mail.easyluxtransfer.com` in Resend's Ireland region. Keep receiving disabled there: requests and replies go to the existing Gmail inbox. Add exactly the DNS records provided by Resend, with CNAME records set to DNS only, then wait until the domain status is **Verified**. Set these **server-only** values in `.env.local` for local development and as secrets/environment variables in the production Worker:
 
    ```text
    RESEND_API_KEY=re_...
-   BOOKING_FROM_EMAIL=Easy Lux <booking@your-domain.com>
+   BOOKING_FROM_EMAIL=Easy Lux <booking@mail.easyluxtransfer.com>
    BOOKING_TO_EMAIL=easyluxtransfer@gmail.com
    ```
 
@@ -88,6 +88,10 @@ The Home booking, Home quote, Services quote, and Contact forms use `/api/bookin
 6. After domain verification, submit a test request using an email you own. Confirm that the client receives the acknowledgement and the company Gmail inbox receives the order. Check spam and Resend delivery logs if either is missing.
 
 The Home forms use a required customer email to send the acknowledgement. All email delivery runs on the server, and failures are shown without a false success message.
+
+`wrangler.jsonc` contains the public sender/recipient settings for future builds. `RESEND_API_KEY` stays in the Worker's encrypted secrets and the ignored local environment; it must never enter a frontend build variable. `npm test` checks delivery for all three Home booking categories plus Home quote, Services quote and Contact with a mocked email provider, without sending real mail.
+
+Configuration verified on 2026-10-02: Resend reports `mail.easyluxtransfer.com` as **Verified**, and the live Worker has all three email settings. The owner confirmed that real submission emails arrive successfully. The existing booking, quote and Contact acknowledgement texts are preserved. Google project `Easy Lux Maps` (`easy-lux-maps`) is created in the owner’s personal account. Maps JavaScript API and Places API (New) are enabled, and the browser key is restricted to `https://easyluxtransfer.com/*` and those two APIs. The console shows linked billing with Pay as you go and zero usage; no monthly subscription was selected. The key is installed in ignored `.env.local` and the Cloudflare production build variable `VITE_GOOGLE_MAPS_API_KEY`; it also permits `http://localhost:5173/*` for local testing. Production was rebuilt from the already-published commit `512d611`, without publishing unrelated local edits. Google address suggestions and selecting Marco Polo Airport were verified on the live Home form. Email secrets and the existing acknowledgement templates were confirmed intact after the rebuild.
 
 
 ## Frontend assets, SEO and privacy preferences

@@ -9,7 +9,7 @@ export const pageMetadata: Record<Page, { title: string; description: string; im
   about: { title: 'About Easy Lux | A Personal Approach to Private Travel', description: 'Meet the young couple behind Easy Lux. A personal approach to private chauffeur travel, guided by professionalism, punctuality and care.', image: 'images/about/airport-transfer-van.png', imageAlt: 'Private transfer van at an airport' },
   faq: { title: 'Easy Lux FAQ | Booking, Pick-ups & Water Taxi', description: 'Answers about booking, prices, pick-ups, luggage and Venice Water Taxi connections.', image: 'images/home/vehicle/black-private-van-venice.png', imageAlt: 'Black private transfer van in Venice' },
   contact: { title: 'Contact Easy Lux | Venice Transfers & Chauffeur Quotes', description: 'Request a private transfer quote from Venice or Treviso. Contact Easy Lux for airport pick-ups, Water Taxi connections and travel across Italy and Europe.', image: 'images/home/hero/venice-grand-canal.jpg', imageAlt: 'Venice Grand Canal and waterfront architecture' },
-  cookies: { title: 'Privacy & Cookies | Easy Lux', description: 'Learn about essential browser storage and optional Google address suggestions. Manage or withdraw your privacy choices on Easy Lux Transfer.', image: 'images/home/hero/venice-canal-boats.jpg', imageAlt: 'Venice Grand Canal' },
+  cookies: { title: 'Privacy Policy | Easy Lux', description: 'How Easy Lux uses your contact and journey details, handles booking requests and cookies, and explains your GDPR privacy rights in Italy and the EU.', image: 'images/home/hero/venice-canal-boats.jpg', imageAlt: 'Venice Grand Canal' },
 }
 
 export function metadataTags(page: Page) {
